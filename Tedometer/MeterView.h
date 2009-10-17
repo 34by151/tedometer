@@ -15,6 +15,8 @@
 	float meterValue;
 	float meterMax;
 	float meterMin;
+	
+	BOOL isDialBeingDragged;
 }
 
 @property (nonatomic) float meterValue;

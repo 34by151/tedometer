@@ -89,6 +89,7 @@
 	gatewayAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"gatewayAddress"];
 	gatewayAddressLabel.text = gatewayAddress;
 	 */
+	meterView.meterMax = maxMeterValue;
 	[self dismissModalViewControllerAnimated:YES];
 	shouldAutoRefresh = YES;
 	[self refresh];
@@ -194,7 +195,6 @@
 		
 		// update meter
 		
-		meterView.meterMax = maxMeterValue;
 
 		switch( meterDataType ) {
 			case MeterDataTypeCost: {

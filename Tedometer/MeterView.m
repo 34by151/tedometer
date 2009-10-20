@@ -239,7 +239,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	UITouch *touch = [touches anyObject];
 	
 	CGPoint locationPolar = [self polarCoordFromViewPoint:[touch locationInView:self]];
-	
+	/*
 	float angleToDial = ABS( [self dialAngle] - locationPolar.y );
 	
 	BOOL isWithinRadiusThreshold = false;
@@ -250,6 +250,10 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		isDialBeingDragged = YES;
 		[self setNeedsDisplay];
 	}
+	*/
+	
+	if( ABS( [self  - locationPolar.x
+	
 	NSLog( @"touchesBegan isDialBeingDragged = %i", isDialBeingDragged );
 }
 
@@ -261,7 +265,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	if( isDialBeingDragged ) {
 		UITouch *touch = [touches anyObject];
 		
-		//CGPoint prevLocationPolar = [self polarCoordFromViewPoint: [touch previousLocationInView:self]];
+		CGPoint prevLocationPolar = [self polarCoordFromViewPoint: [touch previousLocationInView:self]];
 		CGPoint locationPolar = [self polarCoordFromViewPoint: [touch locationInView:self]];
 		
 		double maxValueAngle = meterSpan;

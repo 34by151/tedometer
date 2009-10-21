@@ -63,9 +63,7 @@
 
 	meterDataType = [[NSUserDefaults standardUserDefaults] integerForKey:@"meterType"];
 	maxMeterValue = [[NSUserDefaults standardUserDefaults] floatForKey:@"maxMeterValue"];
-	
-	meterView.meterMax = maxMeterValue;
-	
+		
 	[super viewWillAppear:animated];
 }
 
@@ -89,7 +87,7 @@
 	gatewayAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"gatewayAddress"];
 	gatewayAddressLabel.text = gatewayAddress;
 	 */
-	meterView.meterMax = maxMeterValue;
+	//meterView.meterMax = maxMeterValue;
 	[self dismissModalViewControllerAnimated:YES];
 	shouldAutoRefresh = YES;
 	[self refresh];
@@ -219,7 +217,6 @@
 	}
 	else {
 		// render the meter with the dial on 0
-		meterView.meterMax = 100;
 		meterView.meterValue = 0;
 	}
 

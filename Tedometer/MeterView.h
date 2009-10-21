@@ -12,14 +12,36 @@
 
 @interface MeterView : UIView {
 
-	float meterValue;
-	float meterMax;
-	float meterMin;
+	double meterValue;
+	double meterMax;
+	double meterMin;
+	
+	double radiansPerTick;
+	double unitsPerTick;
+	
+	double meterUpperBound;
+	double meterLowerBound;
 	
 	BOOL isDialBeingDragged;
+	BOOL isResizeAnimationInProgress;
+	double radiansPerTickWhenTouchesBegan;
+	double meterOffsetFromZeroWhenTouchesBegan;
+	double animationRadianIncrement;
+	double resizeGapBeforeAnimation;
+	
+	//float meterValueWhenTouchesBegan;
+	//float meterMaxWhenTouchesBegan;
+	
+	NSNumberFormatter *currencyFormatter;
 }
 
-@property (nonatomic) float meterValue;
-@property (nonatomic) float meterMax;
+@property (nonatomic) double meterValue;
+
+- (double) meterRadius;
+- (double) dialLength;
+- (double) dialAngle;
+- (CGPoint) polarCoordFromViewPoint:(CGPoint)point;
+- (double) radiansFromMeterZeroForViewPoint:(CGPoint)point;
+
 
 @end

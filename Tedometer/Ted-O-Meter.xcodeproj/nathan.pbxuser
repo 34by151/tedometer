@@ -57,9 +57,9 @@
 	};
 	289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1177, 3094}}";
-			sepNavSelRange = "{7593, 0}";
-			sepNavVisRange = "{6829, 937}";
+			sepNavIntBoundsRect = "{{0, 0}, {1174, 3263}}";
+			sepNavSelRange = "{8127, 21}";
+			sepNavVisRange = "{473, 1496}";
 		};
 	};
 	289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {
@@ -77,7 +77,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = D8E2221B1079836B0086F577 /* Ted-O-Meter */;
 		activeSDKPreference = iphoneos3.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Ted-O-Meter */;
@@ -132,6 +132,30 @@
 					PBXFileDataSource_SCM_ColumnID,
 				);
 			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					688,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
 			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -140,7 +164,7 @@
 					672,
 					60,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 				);
@@ -154,33 +178,40 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 277322522;
-			PBXWorkspaceStateSaveDate = 277322522;
+			PBXPerProjectTemplateStateSaveDate = 277509226;
+			PBXWorkspaceStateSaveDate = 277509226;
 		};
 		perUserProjectItems = {
-			D815DA26108701DD00683DD5 /* PBXTextBookmark */ = D815DA26108701DD00683DD5 /* PBXTextBookmark */;
-			D815DA3910871D2400683DD5 /* PBXTextBookmark */ = D815DA3910871D2400683DD5 /* PBXTextBookmark */;
-			D815DA3E10871D2400683DD5 /* PlistBookmark */ = D815DA3E10871D2400683DD5 /* PlistBookmark */;
-			D8326CF610879CCA00597700 /* PlistBookmark */ = D8326CF610879CCA00597700 /* PlistBookmark */;
-			D8326CF710879CCA00597700 /* PBXTextBookmark */ = D8326CF710879CCA00597700 /* PBXTextBookmark */;
-			D8326CF810879CCA00597700 /* PBXTextBookmark */ = D8326CF810879CCA00597700 /* PBXTextBookmark */;
-			D8326CF910879CCA00597700 /* PBXTextBookmark */ = D8326CF910879CCA00597700 /* PBXTextBookmark */;
-			D8326CFA10879CCA00597700 /* PlistBookmark */ = D8326CFA10879CCA00597700 /* PlistBookmark */;
-			D8901389108633AC002F9B8F /* PBXTextBookmark */ = D8901389108633AC002F9B8F /* PBXTextBookmark */;
-			D89014A410868A5F002F9B8F /* PBXTextBookmark */ = D89014A410868A5F002F9B8F /* PBXTextBookmark */;
-			D89014A510868A5F002F9B8F /* PBXTextBookmark */ = D89014A510868A5F002F9B8F /* PBXTextBookmark */;
-			D89014CF108690EE002F9B8F /* PBXBookmark */ = D89014CF108690EE002F9B8F /* PBXBookmark */;
-			D89014D0108690EE002F9B8F /* PBXTextBookmark */ = D89014D0108690EE002F9B8F /* PBXTextBookmark */;
-			D89014F61086A566002F9B8F /* PBXTextBookmark */ = D89014F61086A566002F9B8F /* PBXTextBookmark */;
-			D890150B1086A797002F9B8F /* PBXTextBookmark */ = D890150B1086A797002F9B8F /* PBXTextBookmark */;
-			D89015121086A8FF002F9B8F /* PBXTextBookmark */ = D89015121086A8FF002F9B8F /* PBXTextBookmark */;
-			D89015131086A8FF002F9B8F /* PBXTextBookmark */ = D89015131086A8FF002F9B8F /* PBXTextBookmark */;
-			D89015141086A8FF002F9B8F /* PBXTextBookmark */ = D89015141086A8FF002F9B8F /* PBXTextBookmark */;
-			D89015151086A8FF002F9B8F /* PBXTextBookmark */ = D89015151086A8FF002F9B8F /* PBXTextBookmark */;
-			D890151C1086A9DA002F9B8F /* PBXTextBookmark */ = D890151C1086A9DA002F9B8F /* PBXTextBookmark */;
-			D89FD9181085285200518895 /* PBXBookmark */ = D89FD9181085285200518895 /* PBXBookmark */;
-			D8E223E71079D2220086F577 /* PBXTextBookmark */ = D8E223E71079D2220086F577 /* PBXTextBookmark */;
-			D8E223F21079D45D0086F577 /* PBXTextBookmark */ = D8E223F21079D45D0086F577 /* PBXTextBookmark */;
+			D815DA26108701DD00683DD5 = D815DA26108701DD00683DD5 /* PBXTextBookmark */;
+			D815DA3910871D2400683DD5 = D815DA3910871D2400683DD5 /* PBXTextBookmark */;
+			D8326CF710879CCA00597700 = D8326CF710879CCA00597700 /* PBXTextBookmark */;
+			D8901389108633AC002F9B8F = D8901389108633AC002F9B8F /* PBXTextBookmark */;
+			D89014A410868A5F002F9B8F = D89014A410868A5F002F9B8F /* PBXTextBookmark */;
+			D89014A510868A5F002F9B8F = D89014A510868A5F002F9B8F /* PBXTextBookmark */;
+			D89014CF108690EE002F9B8F = D89014CF108690EE002F9B8F /* PBXBookmark */;
+			D89014D0108690EE002F9B8F = D89014D0108690EE002F9B8F /* PBXTextBookmark */;
+			D89014F61086A566002F9B8F = D89014F61086A566002F9B8F /* PBXTextBookmark */;
+			D890150B1086A797002F9B8F = D890150B1086A797002F9B8F /* PBXTextBookmark */;
+			D89015121086A8FF002F9B8F = D89015121086A8FF002F9B8F /* PBXTextBookmark */;
+			D89015131086A8FF002F9B8F = D89015131086A8FF002F9B8F /* PBXTextBookmark */;
+			D89015141086A8FF002F9B8F = D89015141086A8FF002F9B8F /* PBXTextBookmark */;
+			D89015151086A8FF002F9B8F = D89015151086A8FF002F9B8F /* PBXTextBookmark */;
+			D890151C1086A9DA002F9B8F = D890151C1086A9DA002F9B8F /* PBXTextBookmark */;
+			D89FD9181085285200518895 = D89FD9181085285200518895 /* PBXBookmark */;
+			D8C48F51108A7476003BDC08 /* PlistBookmark */ = D8C48F51108A7476003BDC08 /* PlistBookmark */;
+			D8C48F58108A74AB003BDC08 /* PlistBookmark */ = D8C48F58108A74AB003BDC08 /* PlistBookmark */;
+			D8C48F59108A74AB003BDC08 /* PlistBookmark */ = D8C48F59108A74AB003BDC08 /* PlistBookmark */;
+			D8C48F6F108D811D003BDC08 /* PlistBookmark */ = D8C48F6F108D811D003BDC08 /* PlistBookmark */;
+			D8C48F70108D811D003BDC08 /* PBXTextBookmark */ = D8C48F70108D811D003BDC08 /* PBXTextBookmark */;
+			D8C48F87108FB106003BDC08 /* PBXTextBookmark */ = D8C48F87108FB106003BDC08 /* PBXTextBookmark */;
+			D8C48F88108FB106003BDC08 /* PBXTextBookmark */ = D8C48F88108FB106003BDC08 /* PBXTextBookmark */;
+			D8C48F89108FB106003BDC08 /* PBXTextBookmark */ = D8C48F89108FB106003BDC08 /* PBXTextBookmark */;
+			D8C48F8D108FB10D003BDC08 /* PBXTextBookmark */ = D8C48F8D108FB10D003BDC08 /* PBXTextBookmark */;
+			D8E223E71079D2220086F577 = D8E223E71079D2220086F577 /* PBXTextBookmark */;
+			D8E223F21079D45D0086F577 = D8E223F21079D45D0086F577 /* PBXTextBookmark */;
+			D8EE002D1087D9DA005491EB = D8EE002D1087D9DA005491EB /* PlistBookmark */;
+			D8EE003D10885EFC005491EB = D8EE003D10885EFC005491EB /* PlistBookmark */;
+			D8EEFFEF1087CA2C005491EB = D8EEFFEF1087CA2C005491EB /* PBXTextBookmark */;
 		};
 		sourceControlManager = D8E2221E1079838A0086F577 /* Source Control */;
 		userBuildSettings = {
@@ -211,28 +242,6 @@
 		vrLen = 1103;
 		vrLoc = 7124;
 	};
-	D815DA3E10871D2400683DD5 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/nathan/Developer/iPhone/TED5000/Ted5000/Ted-O-Meter-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
-	};
-	D8326CF610879CCA00597700 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/nathan/Developer/iPhone/TED5000/Ted5000/Ted-O-Meter-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
 	D8326CF710879CCA00597700 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = D8E222281079838E0086F577 /* access.c */;
@@ -242,37 +251,6 @@
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 93500;
-	};
-	D8326CF810879CCA00597700 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
-		name = "MeterView.h: 20";
-		rLen = 5;
-		rLoc = 303;
-		rType = 0;
-		vrLen = 365;
-		vrLoc = 0;
-	};
-	D8326CF910879CCA00597700 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
-		name = "MeterView.h: 20";
-		rLen = 5;
-		rLoc = 303;
-		rType = 0;
-		vrLen = 365;
-		vrLoc = 0;
-	};
-	D8326CFA10879CCA00597700 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/nathan/Developer/iPhone/TED5000/Ted5000/Ted-O-Meter-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775807;
 	};
 	D8901389108633AC002F9B8F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -311,8 +289,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 69;
-		location = "Ted-O-Meter";
-		modificationTime = 277259539.955203;
+		modificationTime = 277987759.864333;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -360,11 +337,10 @@
 		delayBeforeContinue = 0;
 		fileReference = D89FD92710852E7E00518895 /* MeterView.m */;
 		functionName = "-drawRect:";
-		hitCount = 2;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 97;
-		location = "Ted-O-Meter";
-		modificationTime = 277259563.613677;
+		modificationTime = 277987759.864361;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -444,16 +420,16 @@
 	};
 	D89FD92610852E7E00518895 /* MeterView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {890, 593}}";
-			sepNavSelRange = "{303, 5}";
-			sepNavVisRange = "{0, 365}";
+			sepNavIntBoundsRect = "{{0, 0}, {890, 578}}";
+			sepNavSelRange = "{189, 0}";
+			sepNavVisRange = "{0, 393}";
 		};
 	};
 	D89FD92710852E7E00518895 /* MeterView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {890, 1664}}";
-			sepNavSelRange = "{2982, 0}";
-			sepNavVisRange = "{2495, 1271}";
+			sepNavIntBoundsRect = "{{0, 0}, {999, 5798}}";
+			sepNavSelRange = "{2578, 1}";
+			sepNavVisRange = "{920, 1264}";
 		};
 	};
 	D89FDA1B1085ADB100518895 /* MeterView.m:18 */ = {
@@ -469,10 +445,114 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 18;
-		location = "Ted-O-Meter";
-		modificationTime = 277259539.955023;
+		modificationTime = 277987759.864376;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
+	};
+	D8C48F51108A7476003BDC08 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/nathan/Developer/iPhone/TED5000/Tedometer-trunk/Ted-O-Meter-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	D8C48F58108A74AB003BDC08 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/nathan/Developer/iPhone/TED5000/Tedometer-trunk/Ted-O-Meter-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	D8C48F59108A74AB003BDC08 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/nathan/Developer/iPhone/TED5000/Tedometer-trunk/Ted-O-Meter-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	D8C48F6F108D811D003BDC08 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/nathan/Developer/iPhone/TED5000/Tedometer-trunk/Ted-O-Meter-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	D8C48F70108D811D003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 100";
+		rLen = 1;
+		rLoc = 2578;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 2387;
+	};
+	D8C48F87108FB106003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
+		name = "MeterView.h: 10";
+		rLen = 0;
+		rLoc = 189;
+		rType = 0;
+		vrLen = 393;
+		vrLoc = 0;
+	};
+	D8C48F88108FB106003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 100";
+		rLen = 1;
+		rLoc = 2578;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 2387;
+	};
+	D8C48F89108FB106003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 100";
+		rLen = 1;
+		rLoc = 2578;
+		rType = 0;
+		vrLen = 1877;
+		vrLoc = 6682;
+	};
+	D8C48F8D108FB10D003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 100";
+		rLen = 1;
+		rLoc = 2578;
+		rType = 0;
+		vrLen = 1877;
+		vrLoc = 6682;
+	};
+	D8C48F91108FC816003BDC08 /* SynthesizeSingleton.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {890, 897}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1034}";
+		};
 	};
 	D8E2221B1079836B0086F577 /* Ted-O-Meter */ = {
 		isa = PBXExecutable;
@@ -582,5 +662,39 @@
 		name = NSNumberFormatter.h;
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNumberFormatter.h;
 		sourceTree = "<absolute>";
+	};
+	D8EE002D1087D9DA005491EB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/nathan/Developer/iPhone/TED5000/Tedometer-trunk/Ted-O-Meter-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	D8EE003D10885EFC005491EB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/nathan/Developer/iPhone/TED5000/Tedometer-trunk/Ted-O-Meter-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	D8EEFFEF1087CA2C005491EB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
+		name = "MeterView.h: 17";
+		rLen = 0;
+		rLoc = 277;
+		rType = 0;
+		vrLen = 365;
+		vrLoc = 0;
 	};
 }

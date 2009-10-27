@@ -72,7 +72,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TedometerAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TedometerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TedometerAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Ted-O-Meter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ted-O-Meter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* TED-O-Meter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TED-O-Meter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Ted-O-Meter.app */,
+				1D6058910D05DD3D006BFB54 /* TED-O-Meter.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,9 +440,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Ted-O-Meter */ = {
+		1D6058900D05DD3D006BFB54 /* TED-O-Meter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ted-O-Meter" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TED-O-Meter" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -452,9 +452,9 @@
 			);
 			dependencies = (
 			);
-			name = "Ted-O-Meter";
+			name = "TED-O-Meter";
 			productName = Ted5000;
-			productReference = 1D6058910D05DD3D006BFB54 /* Ted-O-Meter.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* TED-O-Meter.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -476,7 +476,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Ted-O-Meter */,
+				1D6058900D05DD3D006BFB54 /* TED-O-Meter */,
 			);
 		};
 /* End PBXProject section */
@@ -568,7 +568,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
 				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
-				PRODUCT_NAME = "Ted-O-Meter";
+				PRODUCT_NAME = "TED-O-Meter";
 			};
 			name = Debug;
 		};
@@ -580,7 +580,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
 				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
-				PRODUCT_NAME = "Ted-O-Meter";
+				PRODUCT_NAME = "TED-O-Meter";
 			};
 			name = Release;
 		};
@@ -617,7 +617,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ted-O-Meter" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TED-O-Meter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

@@ -36,6 +36,7 @@
 
 - (double) meterRadius;
 - (double) dialLength;
+- (double) angleForValue:(double)value;
 - (double) dialAngle;
 - (CGPoint) polarCoordFromViewPoint:(CGPoint)point;
 - (double) radiansFromMeterZeroForViewPoint:(CGPoint)point;

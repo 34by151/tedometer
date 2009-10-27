@@ -114,6 +114,9 @@
 	
 	NSDictionary* nodeDict = self.xmlDocumentNodeNameToVariableNameConversionsDict;
 	NSDictionary* defaultNodeDict = self.defaultXmlDocumentNodeNameToVariableNameConversionsDict;
+	NSMutableArray* attributesToLoad = [NSMutableArray arrayWithArray: [defaultNodeDict allKeys]];
+	[attributesToLoad addObjectsFromArray:[nodeDict allKeys]];
+	
 	
 	CXMLElement *rootElement = [document rootElement];
 	if( rootElement != nil ) {
@@ -121,7 +124,7 @@
 		if( meterNode != nil ) {
 			CXMLNode *totalNode = [meterNode childNamed:@"Total"];
 			if( totalNode != nil ) {
-				for( NSString *aKey in [nodeDict allKeys] ) {
+				for( NSString *aKey in attributesToLoad ) {
 					NSString *nodeName = [nodeDict valueForKey:aKey];
 					if( nodeName == nil ) {
 						nodeName = [defaultNodeDict valueForKey:aKey];
@@ -140,7 +143,7 @@
 			}
 		}
 	}
-	
+		
 	return isSuccessful;
 }
 

@@ -257,8 +257,40 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 #endif
 
 	
+	// draw max/min ranges
+	double outerArcWidth = 2.0; 
+	double innerArcWidth = 3.0;
+	
+	double startRadius = meterRadius - edgeWidth;
+	
+	double rangeMax;
+	double rangeMin;
+	double startAngle;
+	double endAngle;
+	
+	// inner range (today)
+	rangeMax = tedometerData.curMeter.todayPeakValue;
+	rangeMin = tedometerData.curMeter.todayMinValue;
+	CGContextSetRGBStrokeColor(context, 0.3, 0.3, 0.6, isDialBeingDragged ? 0.2 : 0.6);
+	CGContextSetLineWidth(context, (innerArcWidth + outerArcWidth));		// we double the arc width so that there's no gap between lines
+	startAngle = [self angleForValue:rangeMin];
+	endAngle = [self angleForValue:rangeMax];
+	CGContextAddArc( context, 0, 0, startRadius - (outerArcWidth + innerArcWidth / 2), startAngle, endAngle, 1 ); 
+	CGContextStrokePath( context );
+	
+	// outer range (month)
+	rangeMax = tedometerData.curMeter.mtdPeakValue;
+	rangeMin = tedometerData.curMeter.mtdMinValue;
+	CGContextSetRGBStrokeColor(context, 0.3, 0.3, 0.6, isDialBeingDragged ? 0.2 : 1.0);
+	CGContextSetLineWidth(context, outerArcWidth);
+	startAngle = [self angleForValue:rangeMin];
+	endAngle = [self angleForValue:rangeMax];
+	CGContextAddArc( context, 0, 0, startRadius - outerArcWidth / 2, startAngle, endAngle, 1 ); 
+	CGContextStrokePath( context );
+	
+	
 	// draw ticks
-	CGContextSetRGBStrokeColor(context, 0.4, 0.4, 0.4, 1.0);
+	CGContextSetRGBStrokeColor(context, 0.35, 0.35, 0.35, 1.0);
 	CGContextSetLineWidth(context, 1.0);
 	
 	for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
@@ -306,6 +338,9 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	}
 #endif
 	
+
+	
+
 	// draw dial
 	float dialAngle;
 #ifdef DRAW_FOR_ICON_SCREENSHOT
@@ -325,7 +360,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	
 	// TODO: Convert this to a filled polygon?
 	float centerOffset = -3.0;
-	float largeEndWidth = 5.0;
+	float largeEndWidth = 6.0;
 	CGContextSetLineCap( context, kCGLineCapRound );
 	CGContextSetLineWidth(context, 10.0);
 	CGContextMoveToPoint( context, centerOffset, largeEndWidth / 2.0 );
@@ -337,7 +372,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	CGContextStrokePath(context);
 	
 	CGContextRestoreGState(context);
-		
+	
 }
 
 /**
@@ -371,9 +406,13 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	return pPolar;
 }
 
-- (double) dialAngle {
-	double angleFromOffset = MAX( 0, MIN( meterValue / unitsPerTick * radiansPerTick, meterSpan ) );
+- (double) angleForValue:(double)value {
+	double angleFromOffset = MAX( 0, MIN( value / unitsPerTick * radiansPerTick, meterSpan ) );
 	return radOffset - angleFromOffset;
+}
+
+- (double) dialAngle {
+	return [self angleForValue:meterValue];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -325,7 +325,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	
 	// TODO: Convert this to a filled polygon?
 	float centerOffset = -3.0;
-	float largeEndWidth = 3.0;
+	float largeEndWidth = 5.0;
 	CGContextSetLineCap( context, kCGLineCapRound );
 	CGContextSetLineWidth(context, 10.0);
 	CGContextMoveToPoint( context, centerOffset, largeEndWidth / 2.0 );

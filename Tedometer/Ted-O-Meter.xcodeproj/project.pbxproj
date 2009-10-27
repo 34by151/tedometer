@@ -23,10 +23,10 @@
 		D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E40CF1093E6AF006F0A90 /* TedometerData.m */; };
 		D81E49F710967578006F0A90 /* CostMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E49F610967578006F0A90 /* CostMeter.m */; };
 		D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4A5310967923006F0A90 /* CarbonMeter.m */; };
-		D890148310868696002F9B8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D890148210868696002F9B8F /* icon.png */; };
 		D89FD92810852E7E00518895 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89FD92710852E7E00518895 /* MeterView.m */; };
 		D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA0D1085ACB700518895 /* meter_bg_metal.png */; };
 		D89FDA971085C0E800518895 /* meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA961085C0E800518895 /* meter_glare.png */; };
+		D8C4938F1097080D003BDC08 /* icon_full.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C4938E1097080D003BDC08 /* icon_full.png */; };
 		D8E222701079838E0086F577 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D8E222281079838E0086F577 /* access.c */; };
 		D8E222711079838E0086F577 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D8E2222A1079838E0086F577 /* alloc.c */; };
 		D8E222721079838E0086F577 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D8E2222B1079838E0086F577 /* attrask.c */; };
@@ -108,6 +108,7 @@
 		D89FDA0D1085ACB700518895 /* meter_bg_metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_bg_metal.png; sourceTree = "<group>"; };
 		D89FDA961085C0E800518895 /* meter_glare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_glare.png; sourceTree = "<group>"; };
 		D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CO2ToolbarIcon.png; sourceTree = "<group>"; };
+		D8C4938E1097080D003BDC08 /* icon_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_full.png; sourceTree = "<group>"; };
 		D8E222211079838E0086F577 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		D8E222231079838E0086F577 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
 		D8E222241079838E0086F577 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8C4938E1097080D003BDC08 /* icon_full.png */,
 				D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */,
 				D890148210868696002F9B8F /* icon.png */,
 				D89FDA961085C0E800518895 /* meter_glare.png */,
@@ -489,7 +491,7 @@
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */,
 				D89FDA971085C0E800518895 /* meter_glare.png in Resources */,
-				D890148310868696002F9B8F /* icon.png in Resources */,
+				D8C4938F1097080D003BDC08 /* icon_full.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

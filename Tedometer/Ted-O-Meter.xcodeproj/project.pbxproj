@@ -19,8 +19,15 @@
 		289233A70DB2D0840083E9F9 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A50DB2D0840083E9F9 /* MainView.m */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
+		D81E402D1093A3EE006F0A90 /* Model.graffle in Resources */ = {isa = PBXBuildFile; fileRef = D81E402B1093A3EE006F0A90 /* Model.graffle */; };
+		D81E402E1093A3EE006F0A90 /* ScratchPad.graffle in Resources */ = {isa = PBXBuildFile; fileRef = D81E402C1093A3EE006F0A90 /* ScratchPad.graffle */; };
+		D81E405B1093B434006F0A90 /* PowerMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E405A1093B434006F0A90 /* PowerMeter.m */; };
+		D81E405F1093B6B4006F0A90 /* LiveData.xml in Resources */ = {isa = PBXBuildFile; fileRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */; };
+		D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E40CF1093E6AF006F0A90 /* TedometerData.m */; };
+		D81E4769109622E0006F0A90 /* LICENSES.txt in Resources */ = {isa = PBXBuildFile; fileRef = D81E4768109622E0006F0A90 /* LICENSES.txt */; };
+		D81E49F710967578006F0A90 /* CostMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E49F610967578006F0A90 /* CostMeter.m */; };
+		D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4A5310967923006F0A90 /* CarbonMeter.m */; };
 		D890148310868696002F9B8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D890148210868696002F9B8F /* icon.png */; };
-		D89FD9101085143F00518895 /* meter_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FD90F1085143F00518895 /* meter_bg.png */; };
 		D89FD92810852E7E00518895 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89FD92710852E7E00518895 /* MeterView.m */; };
 		D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA0D1085ACB700518895 /* meter_bg_metal.png */; };
 		D89FDA971085C0E800518895 /* meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA961085C0E800518895 /* meter_glare.png */; };
@@ -62,6 +69,7 @@
 		D8E222931079838E0086F577 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E2226C1079838E0086F577 /* CXMLNode.m */; };
 		D8E222941079838E0086F577 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E2226F1079838E0086F577 /* CTidy.m */; };
 		D8E2229B107983FE0086F577 /* CXMLNode-utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E2229A107983FE0086F577 /* CXMLNode-utils.m */; };
+		D8FBF0B410925B07007FAF98 /* Meter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FBF0B310925B07007FAF98 /* Meter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,14 +93,24 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Ted-O-Meter_Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ted-O-Meter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D81E402B1093A3EE006F0A90 /* Model.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Model.graffle; sourceTree = "<group>"; };
+		D81E402C1093A3EE006F0A90 /* ScratchPad.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ScratchPad.graffle; sourceTree = "<group>"; };
+		D81E40591093B434006F0A90 /* PowerMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerMeter.h; sourceTree = "<group>"; };
+		D81E405A1093B434006F0A90 /* PowerMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerMeter.m; sourceTree = "<group>"; };
+		D81E405E1093B6B4006F0A90 /* LiveData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LiveData.xml; sourceTree = "<group>"; };
+		D81E40CE1093E6AF006F0A90 /* TedometerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TedometerData.h; sourceTree = "<group>"; };
+		D81E40CF1093E6AF006F0A90 /* TedometerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TedometerData.m; sourceTree = "<group>"; };
+		D81E4768109622E0006F0A90 /* LICENSES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSES.txt; sourceTree = "<group>"; };
+		D81E49F510967578006F0A90 /* CostMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostMeter.h; sourceTree = "<group>"; };
+		D81E49F610967578006F0A90 /* CostMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostMeter.m; sourceTree = "<group>"; };
+		D81E4A5210967923006F0A90 /* CarbonMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarbonMeter.h; sourceTree = "<group>"; };
+		D81E4A5310967923006F0A90 /* CarbonMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarbonMeter.m; sourceTree = "<group>"; };
 		D89013DF10866A43002F9B8F /* Ted5000.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ted5000.h; sourceTree = "<group>"; };
 		D890148210868696002F9B8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		D89FD90F1085143F00518895 /* meter_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_bg.png; sourceTree = "<group>"; };
 		D89FD92610852E7E00518895 /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
 		D89FD92710852E7E00518895 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterView.m; sourceTree = "<group>"; };
 		D89FDA0D1085ACB700518895 /* meter_bg_metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_bg_metal.png; sourceTree = "<group>"; };
 		D89FDA961085C0E800518895 /* meter_glare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_glare.png; sourceTree = "<group>"; };
-		D8C48F91108FC816003BDC08 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		D8E222211079838E0086F577 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		D8E222231079838E0086F577 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
 		D8E222241079838E0086F577 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
@@ -170,6 +188,9 @@
 		D8E2226F1079838E0086F577 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		D8E22299107983FE0086F577 /* CXMLNode-utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXMLNode-utils.h"; sourceTree = "<group>"; };
 		D8E2229A107983FE0086F577 /* CXMLNode-utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXMLNode-utils.m"; sourceTree = "<group>"; };
+		D8FBF0AF10925AB4007FAF98 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		D8FBF0B210925B07007FAF98 /* Meter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meter.h; sourceTree = "<group>"; };
+		D8FBF0B310925B07007FAF98 /* Meter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +253,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D81E40661093B6CF006F0A90 /* Reference */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
 				080E96DDFE201D6D7F000001 /* Application Delegate */,
@@ -246,12 +268,22 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D8C48F91108FC816003BDC08 /* SynthesizeSingleton.h */,
+				D8FBF0AF10925AB4007FAF98 /* SynthesizeSingleton.h */,
 				D8E222201079838E0086F577 /* TouchXML */,
 				D8E22299107983FE0086F577 /* CXMLNode-utils.h */,
 				D8E2229A107983FE0086F577 /* CXMLNode-utils.m */,
 				32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				D81E40CE1093E6AF006F0A90 /* TedometerData.h */,
+				D81E40CF1093E6AF006F0A90 /* TedometerData.m */,
+				D8FBF0B210925B07007FAF98 /* Meter.h */,
+				D8FBF0B310925B07007FAF98 /* Meter.m */,
+				D81E40591093B434006F0A90 /* PowerMeter.h */,
+				D81E405A1093B434006F0A90 /* PowerMeter.m */,
+				D81E49F510967578006F0A90 /* CostMeter.h */,
+				D81E49F610967578006F0A90 /* CostMeter.m */,
+				D81E4A5210967923006F0A90 /* CarbonMeter.h */,
+				D81E4A5310967923006F0A90 /* CarbonMeter.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -262,7 +294,6 @@
 				D890148210868696002F9B8F /* icon.png */,
 				D89FDA961085C0E800518895 /* meter_glare.png */,
 				D89FDA0D1085ACB700518895 /* meter_bg_metal.png */,
-				D89FD90F1085143F00518895 /* meter_bg.png */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
@@ -279,6 +310,17 @@
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D81E40661093B6CF006F0A90 /* Reference */ = {
+			isa = PBXGroup;
+			children = (
+				D81E402B1093A3EE006F0A90 /* Model.graffle */,
+				D81E402C1093A3EE006F0A90 /* ScratchPad.graffle */,
+				D81E405E1093B6B4006F0A90 /* LiveData.xml */,
+				D81E4768109622E0006F0A90 /* LICENSES.txt */,
+			);
+			name = Reference;
 			sourceTree = "<group>";
 		};
 		D8E222201079838E0086F577 /* TouchXML */ = {
@@ -447,10 +489,13 @@
 				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
-				D89FD9101085143F00518895 /* meter_bg.png in Resources */,
 				D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */,
 				D89FDA971085C0E800518895 /* meter_glare.png in Resources */,
 				D890148310868696002F9B8F /* icon.png in Resources */,
+				D81E402D1093A3EE006F0A90 /* Model.graffle in Resources */,
+				D81E402E1093A3EE006F0A90 /* ScratchPad.graffle in Resources */,
+				D81E405F1093B6B4006F0A90 /* LiveData.xml in Resources */,
+				D81E4769109622E0006F0A90 /* LICENSES.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +551,11 @@
 				D8E222941079838E0086F577 /* CTidy.m in Sources */,
 				D8E2229B107983FE0086F577 /* CXMLNode-utils.m in Sources */,
 				D89FD92810852E7E00518895 /* MeterView.m in Sources */,
+				D8FBF0B410925B07007FAF98 /* Meter.m in Sources */,
+				D81E405B1093B434006F0A90 /* PowerMeter.m in Sources */,
+				D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */,
+				D81E49F710967578006F0A90 /* CostMeter.m in Sources */,
+				D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,13 +580,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nathan Hadfield";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
 				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
 				PRODUCT_NAME = "Ted-O-Meter";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7B6C5EAE-4187-4A36-B33D-71BCA00F43F1";
 			};
 			name = Release;
 		};

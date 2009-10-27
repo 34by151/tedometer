@@ -39,9 +39,6 @@ typedef enum {
 	NSInteger mtdMinMonth;
 	NSInteger mtdMinDay;
 
-	NSNumberFormatter* valueFormatter;
-	NSNumberFormatter* tickLabelFormatter;
-	
 	double radiansPerTick;
 	double unitsPerTick;
 	
@@ -68,16 +65,16 @@ typedef enum {
 @property(readwrite, assign) double radiansPerTick;
 @property(readwrite, assign) double unitsPerTick;
 @property(readonly) NSInteger meterMaxValue;
-@property(readwrite, retain) NSNumberFormatter* valueFormatter;
-@property(readwrite, retain) NSNumberFormatter* tickLabelFormatter;
 @property(readwrite, assign) MeterValueType meterValueType;
 @property(readonly) NSString* xmlDocumentNodeName;
 @property(readonly) NSDictionary* xmlDocumentNodeNameToVariableNameConversionsDict;
 @property(readonly) NSDictionary* defaultXmlDocumentNodeNameToVariableNameConversionsDict;
 
-- (void)refreshDataFromXmlDocument:(CXMLDocument *)document;
+- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;
 - (id) initWithCoder:(NSCoder*)decoder;
 - (NSInteger) valueForMeterValueType:(MeterValueType)unitType;
+- (NSString *) tickLabelStringForInteger:(NSInteger) value;
+- (NSString *) meterStringForInteger:(NSInteger) value; 
 
 @end

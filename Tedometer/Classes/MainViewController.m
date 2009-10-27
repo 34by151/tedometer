@@ -10,28 +10,25 @@
 #import "MainView.h"
 #import "CXMLNode-utils.h"
 #import "TouchXML.h"
+#import "TedometerData.h"
+#import "Ted5000AppDelegate.h"
 
 @implementation MainViewController
 
-@synthesize gatewayAddressLabel;
-@synthesize costNowLabel;
-@synthesize costHourLabel;
-@synthesize costMonthLabel;
-@synthesize costProjLabel;
-@synthesize powerNowLabel;
-@synthesize powerHourLabel;
-@synthesize powerMonthLabel;
-@synthesize powerProjLabel;
-@synthesize carbonNowLabel;
-@synthesize carbonHourLabel;
-@synthesize carbonMonthLabel;
-@synthesize carbonProjLabel;
+@synthesize nowValue;
+@synthesize hourValue;
+@synthesize todayValue;
+@synthesize monthValue;
+@synthesize projValue;
 @synthesize meterLabel;
 @synthesize meterView;
+@synthesize activityIndicator;
+@synthesize toolbar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		document = nil;
     }
     return self;
 }
@@ -39,36 +36,48 @@
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
  - (void)viewDidLoad {
-	 /*
-	 UIImageView *imageView = [[UIImageView alloc] initWithImage:[self GCA]];
-	 [self.view addSubview:imageView];
-	 */
+
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
 	 // staring at blackness until the first refresh
+	 
+	 UIButton * infoDarkButtonType = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+	 infoDarkButtonType.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
+	 infoDarkButtonType.backgroundColor = [UIColor clearColor];
+	 [infoDarkButtonType addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+	 UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoDarkButtonType];
+	 
+	 NSMutableArray *toolbarItems = [[NSMutableArray alloc] initWithArray:toolbar.items];
+	 [toolbarItems addObject:infoButton];
+	 toolbar.items = toolbarItems;
+	 [toolbarItems release];
+	 [infoDarkButtonType release];
+	 [infoButton release];
+	 
+	 nowValue.text = @"...";
+	 hourValue.text = @"...";
+	 todayValue.text = @"...";
+	 monthValue.text = @"...";
+	 projValue.text = @"...";
+	 
 	 shouldAutoRefresh = YES;
 	 [self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 2.0];
 
+	 tedometerData = [TedometerData sharedTedometerData];
 	 [super viewDidLoad];
  }
 
 
 - (void) viewWillAppear:(BOOL)animated {
-	gatewayAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"gatewayAddress"];
-	gatewayAddressLabel.text = gatewayAddress;
-	
-	
-	autoRefreshInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"refreshRate"];
-	if( autoRefreshInterval == 0 )
-		autoRefreshInterval = 2.0;
-
-	meterDataType = [[NSUserDefaults standardUserDefaults] integerForKey:@"meterType"];
-	maxMeterValue = [[NSUserDefaults standardUserDefaults] floatForKey:@"maxMeterValue"];
-		
+				
 	[super viewWillAppear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	//[self refresh];
+	[self refreshView];
+	
+	if( tedometerData.refreshRate == -1.0 ) {
+		[self refreshData];
+	}
 	[super viewDidAppear:animated];
 }
 
@@ -83,14 +92,11 @@
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
 
-    /*
-	gatewayAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"gatewayAddress"];
-	gatewayAddressLabel.text = gatewayAddress;
-	 */
-	//meterView.meterMax = maxMeterValue;
+	[TedometerData archiveToDocumentsFolder];
+	
 	[self dismissModalViewControllerAnimated:YES];
 	shouldAutoRefresh = YES;
-	[self refresh];
+	// refresh will get called in viewDidAppear:
 }
 
 
@@ -129,122 +135,101 @@
 }
 
 -(void) repeatRefresh {
-	if( shouldAutoRefresh && autoRefreshInterval != 11.0 )
+	if( shouldAutoRefresh && tedometerData.refreshRate != -1.0 )
 		[self refreshData];
-	[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: autoRefreshInterval];
+	[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: tedometerData.refreshRate];
 }
 
--(void) refreshData {
-	
-	NSString *urlString = [NSString stringWithFormat:@"http://%@/api/LiveData.xml", gatewayAddress];
+-(void) reloadXmlDocument {
+
+	NSString *urlString = [NSString stringWithFormat:@"http://%@/api/LiveData.xml", tedometerData.gatewayHost];
     NSURL *url = [NSURL URLWithString: urlString];
 	
 	NSError* error;
-	if( document )
-		[document release];
-    document = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:&error] retain];
-	if( document )
-		[self refresh];
-	else 
+	CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:&error] retain];
+	if( ! newDocument ) {
 		NSLog( @"%@", [error localizedDescription]);
-
-	
+	}
+	else {
+		@synchronized( self ) {
+			if( document )
+				[document release];
+			document = newDocument;
+		}
+		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
+	}
 }
 
--(IBAction) refresh {
-		
-	
-	//NSString *urlString = [NSString stringWithFormat:@"http://%@/api/LiveData.xml", gatewayAddress];
-    //NSURL *url = [NSURL URLWithString: urlString];
-	
-    //CXMLDocument *document = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:&error] autorelease];
-	if( document ) {
-		NSNumberFormatter *currencyFormatter = [[[NSNumberFormatter alloc] init] autorelease];
-		[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-		
-		CXMLNode *costNode = [[document rootElement] childNamed:@"Cost"];
-		CXMLNode *totalCostNode = [costNode childNamed:@"Total"];
-		
-		NSInteger costNow = [[[totalCostNode childNamed:@"CostNow"] stringValue] intValue];
-		costNowLabel.text = [NSString stringWithFormat:@"%@/hr",[currencyFormatter stringFromNumber:[NSNumber numberWithFloat: costNow/100.0]]];
-		costHourLabel.text = [currencyFormatter stringFromNumber:[NSNumber numberWithFloat: ([[[totalCostNode childNamed:@"CostHour"] stringValue] intValue])/100.0]];
-		costMonthLabel.text = [currencyFormatter stringFromNumber:[NSNumber numberWithFloat: ([[[totalCostNode childNamed:@"CostMTD"] stringValue] intValue])/100.0]];
-		costProjLabel.text = [currencyFormatter stringFromNumber:[NSNumber numberWithFloat: ([[[totalCostNode childNamed:@"CostProj"] stringValue] intValue])/100.0]];
-		
-		
-		CXMLNode *powerNode = [[document rootElement] childNamed:@"Power"];
-		CXMLNode *totalPowerNode = [powerNode childNamed:@"Total"];
-		NSInteger powerNow = [[[totalPowerNode childNamed:@"PowerNow"] stringValue] intValue];
-		NSInteger powerHour = [[[totalPowerNode childNamed:@"PowerHour"] stringValue] intValue];
-		NSInteger powerMonth = [[[totalPowerNode childNamed:@"PowerMTD"] stringValue] intValue];
-		NSInteger powerProj = [[[totalPowerNode childNamed:@"PowerProj"] stringValue] intValue];
-		
-		powerNowLabel.text = [NSString stringWithFormat:@"%01.2f kW/hr", powerNow/1000.0];
-		powerHourLabel.text = [NSString stringWithFormat:@"%01.2f kW", powerHour/1000.0];
-		powerMonthLabel.text = [NSString stringWithFormat:@"%01.2f kW", powerMonth/1000.0];
-		powerProjLabel.text = [NSString stringWithFormat:@"%01.2f kW", powerProj/1000.0];
-		
-		CXMLNode *utilityNode = [[document rootElement] childNamed:@"Utility"];
-		NSInteger carbonRate = [[[utilityNode childNamed:@"CarbonRate"] stringValue] intValue];
-		carbonNowLabel.text = [NSString stringWithFormat:@"%01.2f lbs/hr", powerNow * carbonRate/100000.0];
-		carbonHourLabel.text = [NSString stringWithFormat:@"%01.2f lbs", powerHour * carbonRate/100000.0];
-		carbonMonthLabel.text = [NSString stringWithFormat:@"%01.2f lbs", powerMonth * carbonRate/100000.0];
-		carbonProjLabel.text = [NSString stringWithFormat:@"%01.2f lbs", powerProj * carbonRate/100000.0];
-		
-		// update meter
-		
+-(void) stopActivityIndicator {
+	[activityIndicator stopAnimating];
+}
 
-		switch( meterDataType ) {
-			case MeterDataTypeCost: {
-				meterLabel.text = costNowLabel.text;
-				meterView.meterValue = costNow;
-				break;
-			}
-				
-			case MeterDataTypePower: {
-				meterLabel.text = powerNowLabel.text;
-				meterView.meterValue = powerNow/1000;
-				break;
-			}
-				
-			case MeterDataTypeCarbon: {
-				meterLabel.text = carbonNowLabel.text;
-				meterView.meterValue = powerNow * carbonRate/100000.0;
-				break;
-			}
-		}
+-(IBAction) refreshData {
+	
+	[activityIndicator startAnimating];
+	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
+	[[(Ted5000AppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
+	[op release];
+}
+
+-(void) refreshView {
 		
+	BOOL isSuccessful = NO;
+	
+	@synchronized( self ) {
+		if( document ) 
+			isSuccessful = [tedometerData refreshDataFromXmlDocument:document];
+	}
+	if( isSuccessful ) {
+		nowValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.now];
+		hourValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.hour];
+		todayValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.today];
+		monthValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.mtd];
+		projValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.projected];
+		
+		meterLabel.text = [nowValue.text stringByAppendingString:@"/hr"];
+		meterView.meterValue = tedometerData.curMeter.now;
 	}
 	else {
 		// render the meter with the dial on 0
 		meterView.meterValue = 0;
 	}
 
+	meterView.meterUpperBound = tedometerData.curMeter.meterMaxValue;
 	[meterView setNeedsDisplay];
 	
+}
+
+- (IBAction) activateCostMeter {
+	[tedometerData activateCostMeter];
+	[self refreshView];
+}
+
+- (IBAction) activatePowerMeter {
+	[tedometerData activatePowerMeter];
+	[self refreshView];
+}
+
+- (IBAction) activateCarbonMeter {
+	[tedometerData activateCarbonMeter];
+	[self refreshView];
 }
 
 - (void)dealloc {
 	if( document )
 		[document release];
+	
+	[nowValue release];
+	[hourValue release];
+	[todayValue release];
+	[monthValue release];
+	[projValue release];
+	[meterLabel release];
+	[meterView release];
+	[activityIndicator release];
     [super dealloc];
 	
-}
-
-- (UIImage *)GCA
-{
-	NSString *requestString = @"http://chart.apis.google.com/chart?";
-	NSString *param = @"cht=gom&chd=t:60&chs=250x100&chl=Power&chf=bg,s,000000";
-	requestString = [requestString stringByAppendingString:param];
-	requestString = [requestString stringByAddingPercentEscapesUsingEncoding:
-					 NSUTF8StringEncoding];
-	
-	NSURL *requestURL = [NSURL URLWithString:requestString];
-	NSData *chartData = [NSData dataWithContentsOfURL:requestURL];
-	
-	UIImage *chartImage = [UIImage imageWithData:chartData];
-	
-	return chartImage;
 }
 
 @end

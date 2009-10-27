@@ -19,15 +19,19 @@
 
 @property(readwrite, nonatomic, retain) NSArray* meters;
 @property(readwrite, assign) NSInteger refreshRate;
-@property(readwrite, retain) NSString* gatewayHost;
+@property(readwrite, copy) NSString* gatewayHost;
 @property(readwrite, assign) NSInteger curMeterIdx;
+@property(readonly) Meter* curMeter;
 
 + (TedometerData *) sharedTedometerData;
 
-- (Meter*) curMeter;
 - (Meter*) nextMeter;
 - (Meter*) prevMeter;
-- (void)refreshDataFromXmlDocument:(CXMLDocument *)document;
+- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
+
+- (void) activatePowerMeter;
+- (void) activateCostMeter;
+- (void) activateCarbonMeter;
 
 - (void) encodeWithCoder:(NSCoder*)encoder;
 - (id) initWithCoder:(NSCoder*)decoder;

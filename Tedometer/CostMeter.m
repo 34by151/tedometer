@@ -1,27 +1,25 @@
 //
-//  PowerMeter.m
+//  CostMeter.m
 //  Ted-O-Meter
 //
-//  Created by Nathan on 10/24/09.
+//  Created by Nathan on 10/26/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "PowerMeter.h"
+#import "CostMeter.h"
 
 
-@implementation PowerMeter
+@implementation CostMeter
 
 -(NSInteger) meterMaxValue {
-	return 10000;
+	return 1000;
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;
 + (NSNumberFormatter *)meterStringNumberFormatter {
 	if( ! meterStringNumberFormatter ) {
 		meterStringNumberFormatter = [[NSNumberFormatter alloc] init];
-		[meterStringNumberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-		[meterStringNumberFormatter setMaximumFractionDigits:2];
-		[meterStringNumberFormatter setMinimumFractionDigits:2];
+		[meterStringNumberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	}
 	return meterStringNumberFormatter;
 }
@@ -30,46 +28,46 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 + (NSNumberFormatter *)tickLabelStringNumberFormatter {
 	if( ! tickLabelStringNumberFormatter ) {
 		tickLabelStringNumberFormatter = [[NSNumberFormatter alloc] init];
-		[tickLabelStringNumberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-		[tickLabelStringNumberFormatter setMaximumFractionDigits:1];
+		[tickLabelStringNumberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+		[tickLabelStringNumberFormatter setMaximumFractionDigits:2];
 	}
 	return tickLabelStringNumberFormatter;
 }
 
 - (NSString *) tickLabelStringForInteger:(NSInteger) value  {
-	NSString *valueStr = [[PowerMeter tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/1000.0]];
+	NSString *valueStr = [[CostMeter tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
 	return valueStr;
 }
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
-	NSString *valueStr = [[PowerMeter meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/1000.0]];
-	return [valueStr stringByAppendingString:@" kW"];
+	NSString *valueStr = [[CostMeter meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
+	return valueStr;
 }
 
 - (NSString*) xmlDocumentNodeName {
-	return @"Power";
+	return @"Cost";
 }
 
 - (NSDictionary*) xmlDocumentNodeNameToVariableNameConversionsDict {
 	/*
-	 <Power>
+	 <Cost>
 	 <Total>
-	 <PowerNow>1570</PowerNow>
-	 <PowerHour>1682</PowerHour>
-	 <PowerTDY>32581</PowerTDY>
-	 <PowerMTD>824305</PowerMTD>
-	 <PowerProj>1681897</PowerProj>
-	 <KVA>1863</KVA>
-	 <PeakTdy>12265</PeakTdy>
-	 <PeakMTD>12265</PeakMTD>
-	 <PeakTdyHour>9</PeakTdyHour>
-	 <PeakTdyMin>40</PeakTdyMin>
+	 <CostNow>13</CostNow>
+	 <CostHour>13</CostHour>
+	 <CostTDY>250</CostTDY>
+	 <CostMTD>6632</CostMTD>
+	 <CostProj>13219</CostProj>
+	 <PeakTdy>95</PeakTdy>
+	 <PeakMTD>95</PeakMTD>
+	 <PeakTdyHour>0</PeakTdyHour>
+	 <PeakTdyMin>27</PeakTdyMin>
 	 <PeakMTDMonth>10</PeakMTDMonth>
 	 <PeakMTDDay>24</PeakMTDDay>
-	 <MinTdy>1005</MinTdy>
-	 <MinMTD>0</MinMTD>
+	 
+	 <MinTdy>8</MinTdy>
+	 <MinMTD>8</MinMTD>
 	 <MinTdyHour>1</MinTdyHour>
-	 <MinTdyMin>42</MinTdyMin>
+	 <MinTdyMin>31</MinTdyMin>
 	 <MinMTDMonth>10</MinMTDMonth>
 	 <MinMTDDay>14</MinMTDDay>
 	 </Total>
@@ -78,11 +76,11 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	 */
 	
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"PowerNow",	@"now",
-			@"PowerHour",	@"hour",
-			@"PowerTDY",	@"today",
-			@"PowerMTD",	@"mtd",
-			@"PowerProj",	@"projected",
+			@"CostNow",	@"now",
+			@"CostHour",	@"hour",
+			@"CostTDY",	@"today",
+			@"CostMTD",	@"mtd",
+			@"CostProj",	@"projected",
 			nil];
 }
 
@@ -95,7 +93,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 		if( radiansPerTick == 0 )
 			radiansPerTick = M_PI / 10.0;
 		if( unitsPerTick == 0 )
-			unitsPerTick = 100.0;
+			unitsPerTick = 10.0;
 	}
 	return self;
 }

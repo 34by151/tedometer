@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TedometerData.h"
 
 
 @interface MeterView : UIView {
 
 	double meterValue;
-	double meterMax;
-	double meterMin;
 	
 	double radiansPerTick;
 	double unitsPerTick;
@@ -33,15 +32,18 @@
 	//float meterMaxWhenTouchesBegan;
 	
 	NSNumberFormatter *currencyFormatter;
+	TedometerData *tedometerData;
+	
 }
 
-@property (nonatomic) double meterValue;
+@property (nonatomic, assign) double meterValue;
+@property (nonatomic, assign) double meterUpperBound;
 
 - (double) meterRadius;
 - (double) dialLength;
 - (double) dialAngle;
 - (CGPoint) polarCoordFromViewPoint:(CGPoint)point;
 - (double) radiansFromMeterZeroForViewPoint:(CGPoint)point;
-
+- (void) updateTedometerData;
 
 @end

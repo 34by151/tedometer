@@ -10,57 +10,47 @@
 #import "MeterView.h"
 #import "Ted5000.h"
 #import "TouchXML.h"
+#import "TedometerData.h"
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
-	UILabel *gatewayAddressLabel;
-	NSString *gatewayAddress;
-	UILabel *costNowLabel;
-	UILabel *costHourLabel;
-	UILabel *costMonthLabel;
-	UILabel *costProjLabel;
-	UILabel *powerNowLabel;
-	UILabel *powerHourLabel;
-	UILabel *powerMonthLabel;
-	UILabel *powerProjLabel;
-	UILabel *carbonNowLabel;
-	UILabel *carbonHourLabel;
-	UILabel *carbonMonthLabel;
-	UILabel *carbonProjLabel;
+	
+	UILabel *nowValue;
+	UILabel *hourValue;
+	UILabel *todayValue;
+	UILabel *monthValue;
+	UILabel *projValue;
+	
+	UIToolbar *toolbar;
 	
 	MeterView *meterView;
 	
 	UILabel *meterLabel;
+	UIActivityIndicatorView *activityIndicator;
 		
 	BOOL shouldAutoRefresh;
-	float autoRefreshInterval;
-	
-	int meterDataType;
-	float maxMeterValue;
-	
+		
 	CXMLDocument *document;
+	
+	TedometerData *tedometerData;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *gatewayAddressLabel;
-@property (nonatomic, retain) IBOutlet UILabel *costNowLabel;
-@property (nonatomic, retain) IBOutlet UILabel *costHourLabel;
-@property (nonatomic, retain) IBOutlet UILabel *costMonthLabel;
-@property (nonatomic, retain) IBOutlet UILabel *costProjLabel;
-@property (nonatomic, retain) IBOutlet UILabel *powerNowLabel;
-@property (nonatomic, retain) IBOutlet UILabel *powerHourLabel;
-@property (nonatomic, retain) IBOutlet UILabel *powerMonthLabel;
-@property (nonatomic, retain) IBOutlet UILabel *powerProjLabel;
-@property (nonatomic, retain) IBOutlet UILabel *carbonNowLabel;
-@property (nonatomic, retain) IBOutlet UILabel *carbonHourLabel;
-@property (nonatomic, retain) IBOutlet UILabel *carbonMonthLabel;
-@property (nonatomic, retain) IBOutlet UILabel *carbonProjLabel;
+@property (nonatomic, retain) IBOutlet UILabel *nowValue;
+@property (nonatomic, retain) IBOutlet UILabel *hourValue;
+@property (nonatomic, retain) IBOutlet UILabel *todayValue;
+@property (nonatomic, retain) IBOutlet UILabel *monthValue;
+@property (nonatomic, retain) IBOutlet UILabel *projValue;
 @property (nonatomic, retain) IBOutlet UILabel *meterLabel;
 @property (nonatomic, retain) IBOutlet MeterView *meterView;
+@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-- (UIImage *)GCA;
 - (IBAction)showInfo;
-- (IBAction)refresh;
+- (IBAction)refreshData;
+- (void)refreshView;
 - (void) repeatRefresh;
--(void) refreshData;
+- (IBAction) activateCostMeter;
+- (IBAction) activatePowerMeter;
+- (IBAction) activateCarbonMeter;
 
 
 @end

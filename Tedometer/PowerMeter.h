@@ -13,4 +13,7 @@
 
 }
 
++ (NSNumberFormatter *)tickLabelStringNumberFormatter;
++ (NSNumberFormatter *)meterStringNumberFormatter;
+
 @end

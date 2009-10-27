@@ -8,7 +8,15 @@
 
 #import "TedometerData.h"
 #import "PowerMeter.h"
+#import "CostMeter.h"
+#import "CarbonMeter.h"
 #import "SynthesizeSingleton.h"
+
+#define NUM_METERS	3
+
+#define kPowerMeterIx	0
+#define kCostMeterIdx	1
+#define kCarbonMeterIdx 2
 
 @implementation TedometerData
 
@@ -58,18 +66,22 @@ static TedometerData *sharedTedometerData = nil;
 					[self release];
 					self = [tedometerData retain];
 				}
-				else {
-					
-					self.refreshRate = 3;
+				
+				if( [self.meters count] < NUM_METERS ) {
 					NSMutableArray *newMeters = [[NSMutableArray alloc] init];
 					[newMeters addObject: [[[PowerMeter alloc] init] autorelease]];
+					[newMeters addObject: [[[CostMeter alloc] init] autorelease]];
+					[newMeters addObject: [[[CarbonMeter alloc] init] autorelease]];
 					// TODO: Add other meters
 					self.meters = newMeters;
 					[newMeters release];
+					
 				}
-				
+
+				if( self.refreshRate == 0 )
+					self.refreshRate = 3;
+
 				sharedTedometerData = self;
-				
             }
         }
     }
@@ -113,9 +125,22 @@ NSString* _archiveLocation;
 	return result;
 }
 							
--(Meter*) curMeter {
-	return nil;
+- (Meter*) curMeter {
+	return [meters objectAtIndex:curMeterIdx];
 }
+
+- (void) activatePowerMeter {
+	curMeterIdx = kPowerMeterIx;
+}
+
+- (void) activateCostMeter {
+	curMeterIdx = kCostMeterIdx;
+}
+
+- (void) activateCarbonMeter {
+	curMeterIdx = kCarbonMeterIdx;
+}
+
 
 - (void) encodeWithCoder:(NSCoder*)encoder {
 	[encoder encodeObject:meters forKey:@"meters"];
@@ -154,9 +179,22 @@ NSString* _archiveLocation;
 	return [meters objectAtIndex: newIdx];
 }
 
-- (void)refreshDataFromXmlDocument:(CXMLDocument *)document {
-	for( Meter *aMeter in self.meters )
-		[aMeter refreshDataFromXmlDocument:document];
+- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
+	BOOL isSuccessful = NO;
+	for( Meter *aMeter in self.meters ) {
+		isSuccessful = [aMeter refreshDataFromXmlDocument:document];
+		if( ! isSuccessful )
+			break;
+	}
+	return isSuccessful;
+}
+
+- (void) dealloc {
+	[meters release];
+	if( gatewayHost )
+		[gatewayHost release];
+	
+	[super dealloc];
 }
 
 @end

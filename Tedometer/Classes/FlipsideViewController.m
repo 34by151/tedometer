@@ -8,6 +8,7 @@
 
 #import "FlipsideViewController.h"
 #import "Ted5000.h"
+#import "TedometerData.h"
 
 @implementation FlipsideViewController
 
@@ -15,74 +16,80 @@
 @synthesize gatewayAddress;
 @synthesize refreshRateSlider;
 @synthesize refreshRateLabel;
-@synthesize meterDataSegmentedControl;
-@synthesize maxMeterValueSlider;
-@synthesize maxMeterValueLabel;
 
-- (void)setMaxMeterValueSliderDefaultsForMeterType:(NSInteger)meterType {
-	[self updateMaxMeterValueSliderLimitsForMeterType:meterType];
+
+// slider range must be 0 to num elts -1 (0-10)
+NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
+
+NSInteger secondsToSliderValue( NSInteger seconds ) {
+	NSInteger numItems = sizeof( sliderToSeconds ) / sizeof( NSInteger );
 	
-	switch( meterType ) {
-		case MeterDataTypeCost:
-			maxMeterValueSlider.value = 100;
+	NSInteger sliderValue = numItems - 1;	// if invalid value, default to last item
+	for( NSInteger i=0; i < numItems; ++i ) {
+		if( sliderToSeconds[i] == seconds ) {
+			sliderValue = i;
 			break;
-		case MeterDataTypePower:
-			maxMeterValueSlider.value = 10;
-			break;
-		case MeterDataTypeCarbon:
-			maxMeterValueSlider.value = 15;
-			break;
+		}
 	}
-	
+	return sliderValue;
 }
 
-- (void)updateMaxMeterValueSliderLimitsForMeterType:(NSInteger)meterType {
-	switch( meterType ) {
-		case MeterDataTypeCost:
-			maxMeterValueSlider.maximumValue = 500;
-			maxMeterValueSlider.minimumValue = 10;
-			break;
-		case MeterDataTypePower:
-			maxMeterValueSlider.maximumValue = 30;
-			maxMeterValueSlider.minimumValue = 1;
-			break;
-		case MeterDataTypeCarbon:
-			maxMeterValueSlider.maximumValue = 40;
-			maxMeterValueSlider.minimumValue = 1;
-			break;
+NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
+	NSInteger numItems = sizeof( sliderToSeconds ) / sizeof( NSInteger );
+	
+	NSInteger seconds;
+	if( sliderValue < 0 || sliderValue >= numItems ) {
+		seconds = sliderToSeconds[numItems-1];	// if invalid value, default to last item
 	}
-}
+	else {
+		seconds = sliderToSeconds[sliderValue];
+	}
 
+	return seconds; 
+}
+	
 - (void)viewDidLoad {
     [super viewDidLoad];
+	tedometerData = [TedometerData sharedTedometerData];
     self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor]; 
 
-	gatewayAddress.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"gatewayAddress"];
-	refreshRateSlider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"refreshRate"];
-	meterDataSegmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"meterType"];
-	
-	[self updateMaxMeterValueSliderLimitsForMeterType:meterDataSegmentedControl.selectedSegmentIndex];
-	
-	NSInteger maxMeterValue = [[NSUserDefaults standardUserDefaults] integerForKey:@"maxMeterValue"];
-	if( maxMeterValue == 0 )
-		maxMeterValue = 100;		// initial default is 1 dollar
-	maxMeterValueSlider.value = maxMeterValue;
-	
-	if( refreshRateSlider.value == 0 )
-		refreshRateSlider.value = 2;
-	
-	
+	gatewayAddress.text = tedometerData.gatewayHost;
+	refreshRateSlider.value = secondsToSliderValue( tedometerData.refreshRate );
+
 	[self updateRefreshRateLabel: refreshRateSlider];
-	[self updateMeterValueLabel: maxMeterValueSlider];
+}
+
+- (IBAction)updateRefreshRateLabel:(id)sender {	
+	float refreshRate = [refreshRateSlider value];
+	
+	NSInteger labelValue = sliderValueToSeconds((NSInteger)refreshRate);
+
+	NSString *unit;
+	if( labelValue < 60 ) {
+		unit = (labelValue == 1) ? @"second" : @"seconds";
+	}
+	else {
+		labelValue /= 60;
+		unit = (labelValue == 1) ? @"minute": @"minutes";
+	}
+	
+	NSString *label;
+	if( labelValue == -1 ) {
+		label = @"Manual";
+		refreshRateLabel.text = label;
+	}
+	else {
+		NSString* label = [[NSString alloc] initWithFormat:@"%i %@", labelValue, unit, nil];
+		refreshRateLabel.text = label;
+		[label release];
+	}
+
 }
 
 
 - (IBAction)done {
-	[[NSUserDefaults standardUserDefaults] setObject:gatewayAddress.text forKey:@"gatewayAddress"];
-	[[NSUserDefaults standardUserDefaults] setInteger:refreshRateSlider.value forKey:@"refreshRate"];
-	[[NSUserDefaults standardUserDefaults] setInteger:meterDataSegmentedControl.selectedSegmentIndex forKey:@"meterType"];
-	[[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)maxMeterValueSlider.value forKey:@"maxMeterValue"];
-	
+	tedometerData.gatewayHost = gatewayAddress.text;
+	tedometerData.refreshRate = sliderValueToSeconds( refreshRateSlider.value );
 	
 	[self.delegate flipsideViewControllerDidFinish:self];	
 }
@@ -93,54 +100,6 @@
 
 - (IBAction)backgroundClick:(id)sender {
 	[gatewayAddress resignFirstResponder];
-}
-
-- (IBAction)updateRefreshRateLabel:(id)sender {	
-	float refreshRate = [refreshRateSlider value];
-	NSString *label;
-	if( refreshRate == 11.0) 
-		label = @"Never";
-	else
-		label = [NSString stringWithFormat:@"%i %@", (int) refreshRate, (refreshRate == 1.0 ? @"second" : @"seconds"), nil];
-	refreshRateLabel.text = label;
-}
-
-- (IBAction)meterDataSelectionChanged:(id)sender {
-	[self setMaxMeterValueSliderDefaultsForMeterType: meterDataSegmentedControl.selectedSegmentIndex];
-	[self updateMeterValueLabel:meterDataSegmentedControl];
-}
-
-- (IBAction)updateMeterValueLabel:(id)sender {
-	
-	[self updateMaxMeterValueSliderLimitsForMeterType: meterDataSegmentedControl.selectedSegmentIndex];
-	
-	switch( meterDataSegmentedControl.selectedSegmentIndex ) {
-		case MeterDataTypeCost: {
-			
-			NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
-			[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-			NSInteger sliderValue = ((NSInteger)(maxMeterValueSlider.value / 10))*10;	
-			if( sliderValue < maxMeterValueSlider.minimumValue )
-				sliderValue = maxMeterValueSlider.minimumValue;
-			maxMeterValueSlider.value = sliderValue;	// round to nearest tenth
-
-			maxMeterValueLabel.text = [NSString stringWithFormat:@"%@/hr", [currencyFormatter stringFromNumber:[NSNumber numberWithFloat:sliderValue / 100.0]]];
-			[currencyFormatter release];
-			break;
-		}
-		
-		case MeterDataTypePower: {
-			maxMeterValueLabel.text = [NSString stringWithFormat:@"%i kW/hr", (NSInteger)maxMeterValueSlider.value];
-			break;
-		}
-		
-		case MeterDataTypeCarbon: {
-			maxMeterValueLabel.text = [NSString stringWithFormat:@"%i lbs/hr", (NSInteger)maxMeterValueSlider.value];
-			break;
-		}
-	};
-	
-
 }
 
 
@@ -166,7 +125,10 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+	[gatewayAddress release];
+	[refreshRateSlider release];
+	[refreshRateLabel release];	
+	[super dealloc];
 }
 
 

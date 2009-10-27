@@ -9,9 +9,11 @@
 #import "MeterView.h"
 #import <math.h>
 
+
 @implementation MeterView
 
 @synthesize meterValue;
+@synthesize meterUpperBound;
 
 #define meterGap (M_PI * 2/3)
 #define radOffset (M_PI + (M_PI - meterGap)/2.0)
@@ -86,8 +88,6 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		meterValue = 25;
-		meterMin = 0;
-		meterMax = 100;
 		unitsPerTick = 10;
 		radiansPerTick = meterSpan / 10;
     }
@@ -95,21 +95,27 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 }
 
 - (void)awakeFromNib {
+
+	tedometerData = [TedometerData sharedTedometerData];
+
 	meterValue = 0;
-	meterMin = 0;
-	meterMax = 100;
 	
-	meterUpperBound = 1000;
+	meterUpperBound = [[tedometerData curMeter] meterMaxValue];
 	meterLowerBound = 10;
-	unitsPerTick = 10;
-	radiansPerTick = meterSpan / 10;
+	unitsPerTick = [[tedometerData curMeter] unitsPerTick];
+	radiansPerTick = [[tedometerData curMeter] radiansPerTick];
 	isDialBeingDragged = NO;
 	isResizeAnimationInProgress = NO;
 	
+	if( radiansPerTick == 0 )
+		radiansPerTick = M_PI / 10.0;
+	if( unitsPerTick == 0 )
+		unitsPerTick = 10;
+
+	
 	currencyFormatter = [[[NSNumberFormatter alloc] init] retain];
 	[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-
-
+	
 }
 
 - (double) dialLength {
@@ -140,8 +146,10 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 
 	if( isResizeAnimationInProgress ) {
 		double newRadiansPerTick = radiansPerTick + animationRadianIncrement;
-		if( newRadiansPerTick * numWholeTicks > meterSpan ) 
+		if( newRadiansPerTick * numWholeTicks > meterSpan ) { 
 			isResizeAnimationInProgress = NO;
+			[self updateTedometerData];
+		}
 		else 
 			radiansPerTick = newRadiansPerTick;
 	}
@@ -279,8 +287,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		
 		double curRad = curTick * drawRadiansPerTick;
 		double labelValue = curTick * drawUnitsPerTick;
-		NSString *label = [NSString stringWithFormat:@"%0i", (int)labelValue];
-		//NSString *label = [currencyFormatter stringFromNumber:[NSNumber numberWithFloat: labelValue/100.0]];
+		NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
 		CGSize labelSize = [label sizeWithFont: font];
 		double angle = radOffset - curRad;
 		double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
@@ -294,24 +301,29 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	CGContextRestoreGState(context);
 	
 	// draw dial
+	CGContextSaveGState(context);
+	CGContextRotateCTM(context, [self dialAngle]);
 	
-	double dialAngle = [self dialAngle];
-	double x1 = 5 * cos( dialAngle + M_PI );	// make the short end of the dial extend a bit beyond the center
-	double y1 = 5 * sin( dialAngle + M_PI );
-	double x2 = dialLength * cos( dialAngle );
-	double y2 = dialLength * sin( dialAngle );
-
 	CGContextSetRGBStrokeColor(context, 1.0, 0.2, 0.2, 1.0);
 	if( false && isDialBeingDragged ) 
 		CGContextSetShadowWithColor( context, CGSizeMake( 0, 0 ), 20.0, [UIColor colorWithRed:1.0 green:0.2 blue:0.2 alpha:1.0].CGColor );
 	else 
-		CGContextSetShadow( context, CGSizeMake( 0, -2 ), 2 );
+		CGContextSetShadow( context, CGSizeMake( 0, -2.5 ), 4 );
 	
+	// TODO: Convert this to a filled polygon?
+	float centerOffset = -3.0;
+	float largeEndWidth = 3.0;
 	CGContextSetLineCap( context, kCGLineCapRound );
 	CGContextSetLineWidth(context, 10.0);
-	CGContextMoveToPoint( context, x1, y1 );
-	CGContextAddLineToPoint( context, x2, y2 );
+	CGContextMoveToPoint( context, centerOffset, largeEndWidth / 2.0 );
+	CGContextAddLineToPoint( context, dialLength, 0 );
+	CGContextMoveToPoint( context, centerOffset, -largeEndWidth / 2.0 );
+	CGContextAddLineToPoint( context, dialLength, 0 );
+	CGContextMoveToPoint( context, centerOffset, largeEndWidth / 2.0 );
+	CGContextAddLineToPoint( context, centerOffset, -largeEndWidth / 2.0 );
 	CGContextStrokePath(context);
+	
+	CGContextRestoreGState(context);
 		
 }
 
@@ -416,7 +428,11 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		int numWholeTicks = (int) (meterSpan / radiansPerTick);
 		double curSpan = numWholeTicks * radiansPerTick;
 		resizeGapBeforeAnimation = meterSpan - curSpan;
-		if( resizeGapBeforeAnimation > 0 ) {
+		
+		if( resizeGapBeforeAnimation == 0 ) {
+			[self updateTedometerData];
+		}
+		else {
 			isResizeAnimationInProgress = YES;
 			animationRadianIncrement = (meterSpan - curSpan) / (double) numWholeTicks / (double) numAnimationFrames;
 			
@@ -441,6 +457,10 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
     [super dealloc];
 }
 
+- (void) updateTedometerData {
+	[[tedometerData curMeter] setRadiansPerTick:radiansPerTick];
+	[[tedometerData curMeter] setUnitsPerTick:unitsPerTick];
+}
 
 
 

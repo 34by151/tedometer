@@ -32,11 +32,9 @@
 @synthesize meterValueType;
 @synthesize radiansPerTick;
 @synthesize unitsPerTick;
-@synthesize valueFormatter;
-@synthesize tickLabelFormatter;
 
 -(NSInteger) meterMaxValue {
-	return 100;
+	return 1000;
 }
 
 - (void) encodeWithCoder:(NSCoder*)encoder {
@@ -50,13 +48,10 @@
 		self.radiansPerTick = [decoder decodeDoubleForKey:@"radiansPerTick"];
 		self.unitsPerTick = [decoder decodeDoubleForKey:@"unitsPerTick"];
 		self.meterValueType = [decoder decodeIntegerForKey:@"meterValueType"];
-		/*
-		tickLabelFormatter = [[[NSNumberFormatter alloc] init] autorelease];
-		valueFormatter = tickLabelFormatter;
-		 */
 	}
 	return self;
 }
+
 
 - (NSInteger) valueForMeterValueType:(MeterValueType)unitType {
 	switch( meterValueType ) {
@@ -68,6 +63,14 @@
 		default:
 			return now;
 	}
+}
+
+- (NSString *) tickLabelStringForInteger:(NSInteger) value  {
+	return [NSString stringWithFormat:@"%0i", value];
+}
+
+- (NSString *) meterStringForInteger:(NSInteger) value {
+	return [NSString stringWithFormat:@"%0i", value];
 }
 
 - (NSString*) xmlDocumentNodeName {
@@ -99,26 +102,45 @@
 			nil];
 }
 
-- (void)refreshDataFromXmlDocument:(CXMLDocument *)document {
+- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
 	
+	BOOL isSuccessful = NO; 
 	
 	
 	NSDictionary* nodeDict = self.xmlDocumentNodeNameToVariableNameConversionsDict;
 	NSDictionary* defaultNodeDict = self.defaultXmlDocumentNodeNameToVariableNameConversionsDict;
 	
-	CXMLNode *meterNode = [[document rootElement] childNamed:self.xmlDocumentNodeName];
-	CXMLNode *totalNode = [meterNode childNamed:@"Total"];
-	
-	for( NSString *aKey in [nodeDict allKeys] ) {
-		NSString *nodeName = [nodeDict valueForKey:aKey];
-		if( nodeName == nil ) {
-			nodeName = [defaultNodeDict valueForKey:aKey];
-		}
-		if( nodeName ) {
-			NSInteger value = [[[totalNode childNamed:nodeName] stringValue]  integerValue];
-			[self setValue: [NSNumber numberWithInteger:value] forKey:aKey];
+	CXMLElement *rootElement = [document rootElement];
+	if( rootElement != nil ) {
+		CXMLNode *meterNode = [rootElement childNamed:self.xmlDocumentNodeName];
+		if( meterNode != nil ) {
+			CXMLNode *totalNode = [meterNode childNamed:@"Total"];
+			if( totalNode != nil ) {
+				for( NSString *aKey in [nodeDict allKeys] ) {
+					NSString *nodeName = [nodeDict valueForKey:aKey];
+					if( nodeName == nil ) {
+						nodeName = [defaultNodeDict valueForKey:aKey];
+					}
+					if( nodeName ) {
+						CXMLNode *attributeNode = [totalNode childNamed:nodeName];
+						if( attributeNode != nil ) {
+							isSuccessful = YES;
+							NSInteger value = [[attributeNode stringValue] integerValue];
+							NSNumber *numberObject = [[NSNumber alloc ]initWithInteger:value];
+							[self setValue: numberObject forKey:aKey];
+							[numberObject release];
+						}
+					}
+				}
+			}
 		}
 	}
+	
+	return isSuccessful;
+}
+
+-(void)dealloc {
+	[super dealloc];
 }
 
 @end

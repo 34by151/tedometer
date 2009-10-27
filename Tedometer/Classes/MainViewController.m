@@ -11,7 +11,7 @@
 #import "CXMLNode-utils.h"
 #import "TouchXML.h"
 #import "TedometerData.h"
-#import "Ted5000AppDelegate.h"
+#import "TedometerAppDelegate.h"
 
 @implementation MainViewController
 
@@ -21,6 +21,7 @@
 @synthesize monthValue;
 @synthesize projValue;
 @synthesize meterLabel;
+@synthesize meterTitle;
 @synthesize meterView;
 @synthesize activityIndicator;
 @synthesize toolbar;
@@ -58,6 +59,8 @@
 	 todayValue.text = @"...";
 	 monthValue.text = @"...";
 	 projValue.text = @"...";
+	 
+	 meterTitle.text = @"";
 	 
 	 shouldAutoRefresh = YES;
 	 [self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 2.0];
@@ -166,16 +169,21 @@
 }
 
 -(IBAction) refreshData {
+
+	if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+		return;
 	
 	[activityIndicator startAnimating];
 	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
-	[[(Ted5000AppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
+	[[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
 	[op release];
 }
 
 -(void) refreshView {
 		
 	BOOL isSuccessful = NO;
+
+#ifndef DRAW_FOR_ICON_SCREENSHOT
 	
 	@synchronized( self ) {
 		if( document ) 
@@ -188,6 +196,7 @@
 		monthValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.mtd];
 		projValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.projected];
 		
+		meterTitle.text = [tedometerData.curMeter.meterTitle uppercaseString];
 		meterLabel.text = [nowValue.text stringByAppendingString:@"/hr"];
 		meterView.meterValue = tedometerData.curMeter.now;
 	}
@@ -197,6 +206,7 @@
 	}
 
 	meterView.meterUpperBound = tedometerData.curMeter.meterMaxValue;
+#endif
 	[meterView setNeedsDisplay];
 	
 }
@@ -216,6 +226,12 @@
 	[self refreshView];
 }
 
+- (IBAction)nextMeter {
+	[tedometerData nextMeter];
+	[self refreshView];
+}
+	 
+	 
 - (void)dealloc {
 	if( document )
 		[document release];

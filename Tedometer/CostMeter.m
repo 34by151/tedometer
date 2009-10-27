@@ -11,12 +11,16 @@
 
 @implementation CostMeter
 
+- (NSString*) meterTitle {
+	return @"Cost";
+}
+
 -(NSInteger) meterMaxValue {
-	return 1000;
+	return 10000;
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;
-+ (NSNumberFormatter *)meterStringNumberFormatter {
+- (NSNumberFormatter *)meterStringNumberFormatter {
 	if( ! meterStringNumberFormatter ) {
 		meterStringNumberFormatter = [[NSNumberFormatter alloc] init];
 		[meterStringNumberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -25,7 +29,7 @@ static NSNumberFormatter *meterStringNumberFormatter;
 }
 
 static NSNumberFormatter *tickLabelStringNumberFormatter;
-+ (NSNumberFormatter *)tickLabelStringNumberFormatter {
+- (NSNumberFormatter *)tickLabelStringNumberFormatter {
 	if( ! tickLabelStringNumberFormatter ) {
 		tickLabelStringNumberFormatter = [[NSNumberFormatter alloc] init];
 		[tickLabelStringNumberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -35,12 +39,12 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 }
 
 - (NSString *) tickLabelStringForInteger:(NSInteger) value  {
-	NSString *valueStr = [[CostMeter tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
+	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
 	return valueStr;
 }
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
-	NSString *valueStr = [[CostMeter meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
+	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
 	return valueStr;
 }
 
@@ -84,18 +88,13 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 			nil];
 }
 
-- (void) encodeWithCoder:(NSCoder*)encoder {
-	[super encodeWithCoder:encoder];
-}
-
-- (id) initWithCoder:(NSCoder*)decoder {
-	if( self = [super initWithCoder: decoder] ) {
-		if( radiansPerTick == 0 )
-			radiansPerTick = M_PI / 10.0;
-		if( unitsPerTick == 0 )
-			unitsPerTick = 10.0;
+- (id) init {
+	if( self = [super init] ) {
+		self.radiansPerTick = meterSpan / 10.0;
+		self.unitsPerTick = 10.0;
 	}
 	return self;
 }
+
 
 @end

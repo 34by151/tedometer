@@ -7,7 +7,6 @@
 //
 
 #import "FlipsideViewController.h"
-#import "Ted5000.h"
 #import "TedometerData.h"
 
 @implementation FlipsideViewController

@@ -81,7 +81,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = D8E2221B1079836B0086F577 /* Ted-O-Meter */;
-		activeSDKPreference = iphonesimulator3.0;
+		activeSDKPreference = iphoneos3.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Ted-O-Meter */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Ted-O-Meter */,
@@ -1663,6 +1663,12 @@
 			D8C493A310970997003BDC08 /* PBXBookmark */ = D8C493A310970997003BDC08 /* PBXBookmark */;
 			D8C493A410970997003BDC08 /* PBXBookmark */ = D8C493A410970997003BDC08 /* PBXBookmark */;
 			D8C493A510970997003BDC08 /* PBXTextBookmark */ = D8C493A510970997003BDC08 /* PBXTextBookmark */;
+			D8C493A8109709C1003BDC08 /* PBXBookmark */ = D8C493A8109709C1003BDC08 /* PBXBookmark */;
+			D8C493A9109709C1003BDC08 /* PBXTextBookmark */ = D8C493A9109709C1003BDC08 /* PBXTextBookmark */;
+			D8C493AA109709C1003BDC08 /* PBXTextBookmark */ = D8C493AA109709C1003BDC08 /* PBXTextBookmark */;
+			D8C493AB109709C1003BDC08 /* PBXTextBookmark */ = D8C493AB109709C1003BDC08 /* PBXTextBookmark */;
+			D8C493B010970A8D003BDC08 /* PBXTextBookmark */ = D8C493B010970A8D003BDC08 /* PBXTextBookmark */;
+			D8C493B110970A8D003BDC08 /* PBXTextBookmark */ = D8C493B110970A8D003BDC08 /* PBXTextBookmark */;
 			D8E223E71079D2220086F577 = D8E223E71079D2220086F577 /* PBXTextBookmark */;
 			D8E223F21079D45D0086F577 = D8E223F21079D45D0086F577 /* PBXTextBookmark */;
 			D8FBEC4710899FD5007FAF98 = D8FBEC4710899FD5007FAF98 /* PBXTextBookmark */;
@@ -1952,7 +1958,7 @@
 		fRef = D89013DF10866A43002F9B8F /* Tedometer.h */;
 		name = "Ted5000.h: 10";
 		rLen = 0;
-		rLoc = 216;
+		rLoc = 218;
 		rType = 0;
 		vrLen = 221;
 		vrLoc = 0;
@@ -13928,8 +13934,8 @@
 	D89013DF10866A43002F9B8F /* Tedometer.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1125, 597}}";
-			sepNavSelRange = "{215, 0}";
-			sepNavVisRange = "{0, 498}";
+			sepNavSelRange = "{137, 0}";
+			sepNavVisRange = "{0, 500}";
 			sepNavWindowFrame = "{{110, 660}, {1119, 871}}";
 		};
 	};
@@ -13963,7 +13969,7 @@
 		fRef = D89013DF10866A43002F9B8F /* Tedometer.h */;
 		name = "Ted5000.h: 12";
 		rLen = 0;
-		rLoc = 216;
+		rLoc = 218;
 		rType = 0;
 		vrLen = 221;
 		vrLoc = 0;
@@ -13999,7 +14005,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1125, 6175}}";
 			sepNavSelRange = "{10112, 0}";
-			sepNavVisRange = "{9538, 1646}";
+			sepNavVisRange = "{9488, 1696}";
 			sepNavWindowFrame = "{{956, 44}, {852, 918}}";
 		};
 	};
@@ -14736,7 +14742,7 @@
 		fRef = D89013DF10866A43002F9B8F /* Tedometer.h */;
 		name = "Tedometer.h: 11";
 		rLen = 0;
-		rLoc = 232;
+		rLoc = 234;
 		rType = 0;
 		vrLen = 416;
 		vrLoc = 0;
@@ -16265,7 +16271,7 @@
 		fRef = D89013DF10866A43002F9B8F /* Tedometer.h */;
 		name = "Tedometer.h: 11";
 		rLen = 0;
-		rLoc = 215;
+		rLoc = 217;
 		rType = 0;
 		vrLen = 498;
 		vrLoc = 0;
@@ -16489,6 +16495,60 @@
 		fRef = D890148210868696002F9B8F /* icon.png */;
 	};
 	D8C493A510970997003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 206";
+		rLen = 676;
+		rLoc = 8009;
+		rType = 0;
+		vrLen = 1842;
+		vrLoc = 9942;
+	};
+	D8C493A8109709C1003BDC08 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = D890148210868696002F9B8F /* icon.png */;
+	};
+	D8C493A9109709C1003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 312";
+		rLen = 0;
+		rLoc = 10112;
+		rType = 0;
+		vrLen = 1696;
+		vrLoc = 9488;
+	};
+	D8C493AA109709C1003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89013DF10866A43002F9B8F /* Tedometer.h */;
+		name = "Tedometer.h: 11";
+		rLen = 0;
+		rLoc = 137;
+		rType = 0;
+		vrLen = 500;
+		vrLoc = 0;
+	};
+	D8C493AB109709C1003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 206";
+		rLen = 676;
+		rLoc = 8009;
+		rType = 0;
+		vrLen = 1831;
+		vrLoc = 9942;
+	};
+	D8C493B010970A8D003BDC08 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89013DF10866A43002F9B8F /* Tedometer.h */;
+		name = "Tedometer.h: 11";
+		rLen = 0;
+		rLoc = 137;
+		rType = 0;
+		vrLen = 500;
+		vrLoc = 0;
+	};
+	D8C493B110970A8D003BDC08 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
 		name = "LiveData.xml: 206";

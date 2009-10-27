@@ -1,16 +1,16 @@
 //
-//  Ted5000AppDelegate.m
-//  Ted5000
+//  TedometerAppDelegate.m
+//  Ted-O-Meter
 //
 //  Created by Nathan on 10/4/09.
 //  Copyright __MyCompanyName__ 2009. All rights reserved.
 //
 
-#import "Ted5000AppDelegate.h"
+#import "TedometerAppDelegate.h"
 #import "MainViewController.h"
 #import "TedometerData.h"
 
-@implementation Ted5000AppDelegate
+@implementation TedometerAppDelegate
 
 
 @synthesize window;

@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TedometerData.h"
 
-
 @interface MeterView : UIView {
 
 	double meterValue;
@@ -28,10 +27,6 @@
 	double animationRadianIncrement;
 	double resizeGapBeforeAnimation;
 	
-	//float meterValueWhenTouchesBegan;
-	//float meterMaxWhenTouchesBegan;
-	
-	NSNumberFormatter *currencyFormatter;
 	TedometerData *tedometerData;
 	
 }

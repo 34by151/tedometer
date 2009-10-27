@@ -79,7 +79,7 @@ static TedometerData *sharedTedometerData = nil;
 				}
 
 				if( self.refreshRate == 0 )
-					self.refreshRate = 3;
+					self.refreshRate = 10;
 
 				sharedTedometerData = self;
             }
@@ -130,15 +130,15 @@ NSString* _archiveLocation;
 }
 
 - (void) activatePowerMeter {
-	curMeterIdx = kPowerMeterIx;
+	self.curMeterIdx = kPowerMeterIx;
 }
 
 - (void) activateCostMeter {
-	curMeterIdx = kCostMeterIdx;
+	self.curMeterIdx = kCostMeterIdx;
 }
 
 - (void) activateCarbonMeter {
-	curMeterIdx = kCarbonMeterIdx;
+	self.curMeterIdx = kCarbonMeterIdx;
 }
 
 
@@ -164,7 +164,7 @@ NSString* _archiveLocation;
 	if( newIdx >= [meters count] )
 		newIdx = 0;
 	
-	curMeterIdx = newIdx;
+	self.curMeterIdx = newIdx;
 	
 	return [meters objectAtIndex: newIdx];
 }
@@ -174,7 +174,7 @@ NSString* _archiveLocation;
 	if( newIdx < 0 )
 		newIdx = [meters count] - 1;
 	
-	curMeterIdx = newIdx;
+	self.curMeterIdx = newIdx;
 	
 	return [meters objectAtIndex: newIdx];
 }

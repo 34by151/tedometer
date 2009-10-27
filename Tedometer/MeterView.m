@@ -7,21 +7,14 @@
 //
 
 #import "MeterView.h"
+#import "Tedometer.h"
 #import <math.h>
-
 
 @implementation MeterView
 
 @synthesize meterValue;
 @synthesize meterUpperBound;
 
-#define meterGap (M_PI * 2/3)
-#define radOffset (M_PI + (M_PI - meterGap)/2.0)
-#define meterSpan (2*M_PI - meterGap)
-#define touchThresholdAngle (M_PI / 10)
-#define touchThresholdRadius 10
-#define minRadiansPerTick (M_PI / 10)
-#define maxRadiansPerTick (M_PI / 5)
 
 #define USE_SMOOTH_CAUTION_ARC
 
@@ -112,12 +105,19 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	if( unitsPerTick == 0 )
 		unitsPerTick = 10;
 
-	
-	currencyFormatter = [[[NSNumberFormatter alloc] init] retain];
-	[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-	
+	[tedometerData addObserver:self forKeyPath:@"curMeterIdx" options:0 context:nil];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	unitsPerTick = [[tedometerData curMeter] unitsPerTick];
+	radiansPerTick = [[tedometerData curMeter] radiansPerTick];
+	
+	if( radiansPerTick == 0 )
+		radiansPerTick = M_PI / 10.0;
+	if( unitsPerTick == 0 )
+		unitsPerTick = 10;
+	
+}
 - (double) dialLength {
 	return [self meterRadius] - 35;
 }
@@ -255,6 +255,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	}
 
 #endif
+
 	
 	// draw ticks
 	CGContextSetRGBStrokeColor(context, 0.4, 0.4, 0.4, 1.0);
@@ -272,37 +273,49 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		CGContextAddLineToPoint( context, x2, y2 );
 	}
 	CGContextStrokePath(context);
+
+#ifndef DRAW_FOR_ICON_SCREENSHOT
 	
 	// draw tick labels
-	CGContextSaveGState(context);
-	CGContextScaleCTM(context, 1.0, -1.0);
 	
-	
-	double labelGap = 8;
-	UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
-	UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
-	[textColor set];
-	
-	for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+	if( unitsPerTick > 0 && radiansPerTick > 0 ) {
+		CGContextSaveGState(context);
+		CGContextScaleCTM(context, 1.0, -1.0);
 		
-		double curRad = curTick * drawRadiansPerTick;
-		double labelValue = curTick * drawUnitsPerTick;
-		NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
-		CGSize labelSize = [label sizeWithFont: font];
-		double angle = radOffset - curRad;
-		double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
-		labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
-		double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
-		double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
-		[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+		
+		double labelGap = 8;
+		UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
+		UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+		[textColor set];
+		
+		for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+			
+			double curRad = curTick * drawRadiansPerTick;
+			double labelValue = curTick * drawUnitsPerTick;
+			NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
+			CGSize labelSize = [label sizeWithFont: font];
+			double angle = radOffset - curRad;
+			double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
+			labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
+			double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
+			double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
+			[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+		}
+		CGContextStrokePath(context);
+		CGContextRestoreGState(context);
 	}
-	CGContextStrokePath(context);
-
-	CGContextRestoreGState(context);
+#endif
 	
 	// draw dial
+	float dialAngle;
+#ifdef DRAW_FOR_ICON_SCREENSHOT
+	dialAngle = M_PI - M_PI/3.0;
+#else
+	dialAngle = [self dialAngle];
+#endif
+	
 	CGContextSaveGState(context);
-	CGContextRotateCTM(context, [self dialAngle]);
+	CGContextRotateCTM(context, dialAngle);
 	
 	CGContextSetRGBStrokeColor(context, 1.0, 0.2, 0.2, 1.0);
 	if( false && isDialBeingDragged ) 
@@ -453,7 +466,6 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 }
 
 - (void)dealloc {
-	[currencyFormatter release];
     [super dealloc];
 }
 

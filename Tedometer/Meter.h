@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "TouchXML.h"
+#import "Tedometer.h"		// Has constants for meter size in radians; needed to initialize radians/units per tick
+
 
 typedef enum {
 	kMeterValueTypeNow,
@@ -69,6 +71,7 @@ typedef enum {
 @property(readonly) NSString* xmlDocumentNodeName;
 @property(readonly) NSDictionary* xmlDocumentNodeNameToVariableNameConversionsDict;
 @property(readonly) NSDictionary* defaultXmlDocumentNodeNameToVariableNameConversionsDict;
+@property(readonly) NSString* meterTitle;
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;

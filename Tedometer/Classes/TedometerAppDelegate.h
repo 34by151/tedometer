@@ -1,6 +1,6 @@
 //
-//  Ted5000AppDelegate.h
-//  Ted5000
+//  TedometerAppDelegate.h
+//  Ted-O-Meter
 //
 //  Created by Nathan on 10/4/09.
 //  Copyright __MyCompanyName__ 2009. All rights reserved.
@@ -10,7 +10,7 @@
 
 @class MainViewController;
 
-@interface Ted5000AppDelegate : NSObject <UIApplicationDelegate> {
+@interface TedometerAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     MainViewController *mainViewController;
 	NSOperationQueue *sharedOperationQueue;

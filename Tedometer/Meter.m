@@ -37,6 +37,11 @@
 	return 1000;
 }
 
+- (NSString*) meterTitle {
+	[self doesNotRecognizeSelector:_cmd];
+	return nil;
+}
+
 - (void) encodeWithCoder:(NSCoder*)encoder {
 	[encoder encodeDouble:radiansPerTick forKey:@"radiansPerTick"];
 	[encoder encodeDouble:unitsPerTick forKey:@"unitsPerTick"];

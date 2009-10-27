@@ -8,7 +8,6 @@
 
 #import "FlipsideViewController.h"
 #import "MeterView.h"
-#import "Ted5000.h"
 #import "TouchXML.h"
 #import "TedometerData.h"
 
@@ -25,6 +24,7 @@
 	MeterView *meterView;
 	
 	UILabel *meterLabel;
+	UILabel *meterTitle;
 	UIActivityIndicatorView *activityIndicator;
 		
 	BOOL shouldAutoRefresh;
@@ -40,6 +40,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *monthValue;
 @property (nonatomic, retain) IBOutlet UILabel *projValue;
 @property (nonatomic, retain) IBOutlet UILabel *meterLabel;
+@property (nonatomic, retain) IBOutlet UILabel *meterTitle;
 @property (nonatomic, retain) IBOutlet MeterView *meterView;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -51,6 +52,7 @@
 - (IBAction) activateCostMeter;
 - (IBAction) activatePowerMeter;
 - (IBAction) activateCarbonMeter;
+- (IBAction) nextMeter;
 
 
 @end

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* Ted5000AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Ted5000AppDelegate.m */; };
+		1D3623260D0F684500981E51 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TedometerAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -19,12 +19,8 @@
 		289233A70DB2D0840083E9F9 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A50DB2D0840083E9F9 /* MainView.m */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
-		D81E402D1093A3EE006F0A90 /* Model.graffle in Resources */ = {isa = PBXBuildFile; fileRef = D81E402B1093A3EE006F0A90 /* Model.graffle */; };
-		D81E402E1093A3EE006F0A90 /* ScratchPad.graffle in Resources */ = {isa = PBXBuildFile; fileRef = D81E402C1093A3EE006F0A90 /* ScratchPad.graffle */; };
 		D81E405B1093B434006F0A90 /* PowerMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E405A1093B434006F0A90 /* PowerMeter.m */; };
-		D81E405F1093B6B4006F0A90 /* LiveData.xml in Resources */ = {isa = PBXBuildFile; fileRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */; };
 		D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E40CF1093E6AF006F0A90 /* TedometerData.m */; };
-		D81E4769109622E0006F0A90 /* LICENSES.txt in Resources */ = {isa = PBXBuildFile; fileRef = D81E4768109622E0006F0A90 /* LICENSES.txt */; };
 		D81E49F710967578006F0A90 /* CostMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E49F610967578006F0A90 /* CostMeter.m */; };
 		D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4A5310967923006F0A90 /* CarbonMeter.m */; };
 		D890148310868696002F9B8F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D890148210868696002F9B8F /* icon.png */; };
@@ -74,8 +70,8 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* Ted5000AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ted5000AppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* Ted5000AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ted5000AppDelegate.m; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TedometerAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* TedometerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TedometerAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Ted-O-Meter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ted-O-Meter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
@@ -105,12 +101,13 @@
 		D81E49F610967578006F0A90 /* CostMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostMeter.m; sourceTree = "<group>"; };
 		D81E4A5210967923006F0A90 /* CarbonMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarbonMeter.h; sourceTree = "<group>"; };
 		D81E4A5310967923006F0A90 /* CarbonMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarbonMeter.m; sourceTree = "<group>"; };
-		D89013DF10866A43002F9B8F /* Ted5000.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ted5000.h; sourceTree = "<group>"; };
+		D89013DF10866A43002F9B8F /* Tedometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tedometer.h; sourceTree = "<group>"; };
 		D890148210868696002F9B8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D89FD92610852E7E00518895 /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
 		D89FD92710852E7E00518895 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterView.m; sourceTree = "<group>"; };
 		D89FDA0D1085ACB700518895 /* meter_bg_metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_bg_metal.png; sourceTree = "<group>"; };
 		D89FDA961085C0E800518895 /* meter_glare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_glare.png; sourceTree = "<group>"; };
+		D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CO2ToolbarIcon.png; sourceTree = "<group>"; };
 		D8E222211079838E0086F577 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		D8E222231079838E0086F577 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
 		D8E222241079838E0086F577 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
@@ -210,8 +207,8 @@
 		080E96DDFE201D6D7F000001 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* Ted5000AppDelegate.h */,
-				1D3623250D0F684500981E51 /* Ted5000AppDelegate.m */,
+				1D3623240D0F684500981E51 /* TedometerAppDelegate.h */,
+				1D3623250D0F684500981E51 /* TedometerAppDelegate.m */,
 			);
 			name = "Application Delegate";
 			path = Classes;
@@ -245,7 +242,7 @@
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
-				D89013DF10866A43002F9B8F /* Ted5000.h */,
+				D89013DF10866A43002F9B8F /* Tedometer.h */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -291,6 +288,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */,
 				D890148210868696002F9B8F /* icon.png */,
 				D89FDA961085C0E800518895 /* meter_glare.png */,
 				D89FDA0D1085ACB700518895 /* meter_bg_metal.png */,
@@ -492,10 +490,6 @@
 				D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */,
 				D89FDA971085C0E800518895 /* meter_glare.png in Resources */,
 				D890148310868696002F9B8F /* icon.png in Resources */,
-				D81E402D1093A3EE006F0A90 /* Model.graffle in Resources */,
-				D81E402E1093A3EE006F0A90 /* ScratchPad.graffle in Resources */,
-				D81E405F1093B6B4006F0A90 /* LiveData.xml in Resources */,
-				D81E4769109622E0006F0A90 /* LICENSES.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* Ted5000AppDelegate.m in Sources */,
+				1D3623260D0F684500981E51 /* TedometerAppDelegate.m in Sources */,
 				289233A60DB2D0840083E9F9 /* FlipsideView.m in Sources */,
 				289233A70DB2D0840083E9F9 /* MainView.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,

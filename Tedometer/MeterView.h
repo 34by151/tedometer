@@ -26,13 +26,15 @@
 	double meterOffsetFromZeroWhenTouchesBegan;
 	double animationRadianIncrement;
 	double resizeGapBeforeAnimation;
-	
+	BOOL isShowingTodayStatistics;
+
 	TedometerData *tedometerData;
 	
 }
 
 @property (nonatomic, assign) double meterValue;
 @property (nonatomic, assign) double meterUpperBound;
+@property (nonatomic, assign) BOOL isShowingTodayStatistics;
 
 - (double) meterRadius;
 - (double) dialLength;
@@ -41,5 +43,7 @@
 - (CGPoint) polarCoordFromViewPoint:(CGPoint)point;
 - (double) radiansFromMeterZeroForViewPoint:(CGPoint)point;
 - (void) updateTedometerData;
+- (void) drawPointerInContext:(CGContextRef) context atAngle:(double)angle radius:(double)radius width:(double)width length:(double)length;
+
 
 @end

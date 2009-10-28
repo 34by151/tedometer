@@ -14,9 +14,11 @@
 
 @synthesize meterValue;
 @synthesize meterUpperBound;
+@synthesize isShowingTodayStatistics;
 
-
-#define USE_SMOOTH_CAUTION_ARC
+//#define DRAW_FOR_POINTER_SCREENSHOT
+#define USE_SMOOTH_CAUTION_ARC	// as opposed to using step-up caution arcs
+#define USE_RANGE_POINTERS		// as opposed to using range arcs
 
 double magnitude( CGPoint p );
 double distanceFromCenterToEdgeOfRectAtAngle( CGSize size, double angle );
@@ -99,6 +101,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	radiansPerTick = [[tedometerData curMeter] radiansPerTick];
 	isDialBeingDragged = NO;
 	isResizeAnimationInProgress = NO;
+	isShowingTodayStatistics = YES;
 	
 	if( radiansPerTick == 0 )
 		radiansPerTick = M_PI / 10.0;
@@ -119,7 +122,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	
 }
 - (double) dialLength {
-	return [self meterRadius] - 35;
+	return [self meterRadius] - 45;
 }
 
 - (double) meterRadius {
@@ -257,6 +260,89 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 #endif
 
 	
+	// draw ticks
+	CGContextSetRGBStrokeColor(context, 0.35, 0.35, 0.35, 1.0);
+	CGContextSetLineWidth(context, 1.0);
+	
+	for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+		
+		double curRad = curTick * drawRadiansPerTick;
+		double angle = radOffset - curRad;
+		double x1 = (meterRadius - edgeWidth) * cos( angle );
+		double y1 = (meterRadius - edgeWidth) * sin( angle );
+		double x2 = (meterRadius - edgeWidth - tickLength) * cos( angle );
+		double y2 = (meterRadius - edgeWidth - tickLength) * sin( angle );
+		CGContextMoveToPoint( context, x1, y1 );
+		CGContextAddLineToPoint( context, x2, y2 );
+	}
+	CGContextStrokePath(context);
+	
+
+
+#ifndef DRAW_FOR_ICON_SCREENSHOT
+	
+	// draw tick labels
+	
+	if( unitsPerTick > 0 && radiansPerTick > 0 ) {
+		CGContextSaveGState(context);
+		CGContextScaleCTM(context, 1.0, -1.0);
+		
+		
+		double labelGap = 8;
+		UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
+		UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+
+		[textColor set];
+		
+		for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+			
+			double curRad = curTick * drawRadiansPerTick;
+			double labelValue = curTick * drawUnitsPerTick;
+			NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
+			CGSize labelSize = [label sizeWithFont: font];
+			double angle = radOffset - curRad;
+			double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
+			labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
+			double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
+			double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
+			[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+		}
+		CGContextStrokePath(context);
+		CGContextRestoreGState(context);
+	}
+#endif
+	
+
+	
+#ifdef USE_RANGE_POINTERS
+	
+	double pointerWidth = 10.0;
+	double pointerProtrusionLength = tickLength * 0.2;
+	double pointerProtrusionBeyondTicks = 4;
+	double pointerLength = tickLength + pointerProtrusionLength + pointerProtrusionBeyondTicks;
+	double pointerRadius = meterRadius - edgeWidth + pointerProtrusionBeyondTicks;
+	
+	double peakValue = isShowingTodayStatistics ? tedometerData.curMeter.todayPeakValue : tedometerData.curMeter.mtdPeakValue;
+	if( peakValue > 0 ) {
+		double angle = [self angleForValue:peakValue];
+		CGContextSetRGBFillColor( context, 0.98, 0.62, 0.23, 1.0 );	// yellow
+		[self drawPointerInContext:context atAngle:angle radius:pointerRadius width:pointerWidth length:pointerLength];
+	}
+	
+	double lowValue = isShowingTodayStatistics ? tedometerData.curMeter.todayMinValue : tedometerData.curMeter.mtdMinValue;
+	if( lowValue > 0 ) {
+		double angle = [self angleForValue:lowValue];
+		CGContextSetRGBFillColor(context, 0.3, 0.3, 1.0, 1.0);	// blue
+#ifdef DRAW_FOR_POINTER_SCREENSHOT
+		double radius = pointerRadius + pointerLength + edgeWidth + 1;
+		[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
+#else
+		[self drawPointerInContext:context atAngle: angle radius:pointerRadius width:pointerWidth length:pointerLength];
+#endif
+
+	}
+	
+#else
 	// draw max/min ranges
 	double outerArcWidth = 2.0; 
 	double innerArcWidth = 3.0;
@@ -287,58 +373,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	endAngle = [self angleForValue:rangeMax];
 	CGContextAddArc( context, 0, 0, startRadius - outerArcWidth / 2, startAngle, endAngle, 1 ); 
 	CGContextStrokePath( context );
-	
-	
-	// draw ticks
-	CGContextSetRGBStrokeColor(context, 0.35, 0.35, 0.35, 1.0);
-	CGContextSetLineWidth(context, 1.0);
-	
-	for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
-		
-		double curRad = curTick * drawRadiansPerTick;
-		double angle = radOffset - curRad;
-		double x1 = (meterRadius - edgeWidth) * cos( angle );
-		double y1 = (meterRadius - edgeWidth) * sin( angle );
-		double x2 = (meterRadius - edgeWidth - tickLength) * cos( angle );
-		double y2 = (meterRadius - edgeWidth - tickLength) * sin( angle );
-		CGContextMoveToPoint( context, x1, y1 );
-		CGContextAddLineToPoint( context, x2, y2 );
-	}
-	CGContextStrokePath(context);
-
-#ifndef DRAW_FOR_ICON_SCREENSHOT
-	
-	// draw tick labels
-	
-	if( unitsPerTick > 0 && radiansPerTick > 0 ) {
-		CGContextSaveGState(context);
-		CGContextScaleCTM(context, 1.0, -1.0);
-		
-		
-		double labelGap = 8;
-		UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
-		UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
-		[textColor set];
-		
-		for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
-			
-			double curRad = curTick * drawRadiansPerTick;
-			double labelValue = curTick * drawUnitsPerTick;
-			NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
-			CGSize labelSize = [label sizeWithFont: font];
-			double angle = radOffset - curRad;
-			double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
-			labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
-			double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
-			double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
-			[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
-		}
-		CGContextStrokePath(context);
-		CGContextRestoreGState(context);
-	}
-#endif
-	
-
+#endif	
 	
 
 	// draw dial
@@ -372,7 +407,25 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	CGContextStrokePath(context);
 	
 	CGContextRestoreGState(context);
+}
+
+- (void) drawPointerInContext:(CGContextRef) context atAngle:(double)angle radius:(double)radius width:(double)width length:(double)length {
+
+	CGContextSaveGState(context);
 	
+	CGContextRotateCTM(context, angle);
+	
+	CGContextSetShadow( context, CGSizeMake( 0, -1 ), 1 );
+	CGContextSetLineWidth( context, 0 );
+	CGContextMoveToPoint( context, radius, width / 2 );
+	CGContextAddLineToPoint( context, radius - width / 2, 0 );
+	CGContextAddLineToPoint( context, radius, - width / 2 );
+	
+	CGContextAddLineToPoint( context, radius - length, 0 );
+	CGContextClosePath( context );
+	CGContextFillPath( context );
+	
+	CGContextRestoreGState( context );
 }
 
 /**

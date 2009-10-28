@@ -13,11 +13,16 @@
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
 	
-	UILabel *nowValue;
-	UILabel *hourValue;
-	UILabel *todayValue;
-	UILabel *monthValue;
+	UILabel *avgValue;
+	UILabel *peakValue;
+	UILabel *lowValue;
+	UILabel *totalLabel;
 	UILabel *projValue;
+	UILabel *avgLabel;
+	UILabel *peakLabel;
+	UILabel *lowLabel;
+	UILabel *totalValue;
+	UILabel *projLabel;
 	
 	UIToolbar *toolbar;
 	
@@ -26,23 +31,33 @@
 	UILabel *meterLabel;
 	UILabel *meterTitle;
 	UIActivityIndicatorView *activityIndicator;
-		
+	
+	UIButton *todayMonthToggleButton;
+	
 	BOOL shouldAutoRefresh;
 		
 	CXMLDocument *document;
 	
 	TedometerData *tedometerData;
+	
+	BOOL isShowingTodayStatistics;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *nowValue;
-@property (nonatomic, retain) IBOutlet UILabel *hourValue;
-@property (nonatomic, retain) IBOutlet UILabel *todayValue;
-@property (nonatomic, retain) IBOutlet UILabel *monthValue;
+@property (nonatomic, retain) IBOutlet UILabel *avgValue;
+@property (nonatomic, retain) IBOutlet UILabel *avgLabel;
+@property (nonatomic, retain) IBOutlet UILabel *peakValue;
+@property (nonatomic, retain) IBOutlet UILabel *peakLabel;
+@property (nonatomic, retain) IBOutlet UILabel *lowValue;
+@property (nonatomic, retain) IBOutlet UILabel *lowLabel;
+@property (nonatomic, retain) IBOutlet UILabel *totalValue;
+@property (nonatomic, retain) IBOutlet UILabel *totalLabel;
 @property (nonatomic, retain) IBOutlet UILabel *projValue;
+@property (nonatomic, retain) IBOutlet UILabel *projLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterTitle;
 @property (nonatomic, retain) IBOutlet MeterView *meterView;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UIButton *todayMonthToggleButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)showInfo;
@@ -53,6 +68,7 @@
 - (IBAction) activatePowerMeter;
 - (IBAction) activateCarbonMeter;
 - (IBAction) nextMeter;
+- (IBAction) toggleTodayMonthStatistics;
 
 
 @end

@@ -42,6 +42,37 @@
 	return nil;
 }
 
+- (NSString *) todayPeakTimeString {
+	return [self timeStringForHour:todayPeakHour minute:todayPeakMinute];
+}
+
+- (NSString *) todayMinTimeString {
+	return [self timeStringForHour:todayMinHour minute:todayMinMinute];
+}
+
+- (NSString *) mtdPeakTimeString {
+	return [self timeStringForMonth: mtdPeakMonth day: mtdPeakDay];
+}
+
+- (NSString *) mtdMinTimeString {
+	return [self timeStringForMonth: mtdMinMonth day: mtdMinDay];
+}
+
+
+- (NSString *) timeStringForHour:(NSInteger)anHour minute:(NSInteger)aMinute {
+	NSString *amPmStr = anHour > 11 ? @"pm" : @"am";
+	if( anHour > 12 )
+		anHour -= 12;
+	if( anHour == 0 )
+		anHour = 12;
+	return [NSString stringWithFormat:@"%i:%02i%@", anHour, aMinute, amPmStr];
+}
+
+static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", @"May", @"Jun", @"July", @"August", @"September", @"October", @"November", @"December"};
+- (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay {
+	return [NSString stringWithFormat:@"%@ %i", [monthStrings[aMonth-1] substringToIndex:3], aDay];
+}
+
 - (void) encodeWithCoder:(NSCoder*)encoder {
 	[encoder encodeDouble:radiansPerTick forKey:@"radiansPerTick"];
 	[encoder encodeDouble:unitsPerTick forKey:@"unitsPerTick"];

@@ -15,16 +15,22 @@
 
 @implementation MainViewController
 
-@synthesize nowValue;
-@synthesize hourValue;
-@synthesize todayValue;
-@synthesize monthValue;
+@synthesize avgLabel;
+@synthesize avgValue;
+@synthesize peakLabel;
+@synthesize peakValue;
+@synthesize lowLabel;
+@synthesize lowValue;
+@synthesize totalLabel;
+@synthesize totalValue;
+@synthesize projLabel;
 @synthesize projValue;
 @synthesize meterLabel;
 @synthesize meterTitle;
 @synthesize meterView;
 @synthesize activityIndicator;
 @synthesize toolbar;
+@synthesize todayMonthToggleButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -41,6 +47,7 @@
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
 	 // staring at blackness until the first refresh
 	 
+	 // Add Info Icon to toolbar
 	 UIButton * infoDarkButtonType = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
 	 infoDarkButtonType.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
 	 infoDarkButtonType.backgroundColor = [UIColor clearColor];
@@ -54,10 +61,20 @@
 	 [infoDarkButtonType release];
 	 [infoButton release];
 	 
-	 nowValue.text = @"...";
-	 hourValue.text = @"...";
-	 todayValue.text = @"...";
-	 monthValue.text = @"...";
+	 // Add custom image to Today/Month toggle button
+	 UIImage *buttonImageNormal = [UIImage imageNamed:@"translucentButton.png"]; 
+	 UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0]; 
+	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
+
+	 UIImage *buttonImagePressed = [UIImage imageNamed:@"whiteButton.png"]; 
+	 UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0]; 
+	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
+	 
+	 isShowingTodayStatistics = YES;			// stores toggle state for Today/Month button
+	 
+	 avgValue.text = @"...";
+	 peakValue.text = @"...";
+	 lowValue.text = @"...";
 	 projValue.text = @"...";
 	 
 	 meterTitle.text = @"";
@@ -190,15 +207,31 @@
 			isSuccessful = [tedometerData refreshDataFromXmlDocument:document];
 	}
 	if( isSuccessful ) {
-		nowValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.now];
-		hourValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.hour];
-		todayValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.today];
-		monthValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.mtd];
-		projValue.text = [tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.projected];
-		
+
 		meterTitle.text = [tedometerData.curMeter.meterTitle uppercaseString];
-		meterLabel.text = [nowValue.text stringByAppendingString:@"/hr"];
+		meterLabel.text = [[tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.now] stringByAppendingString:@"/hr"];
 		meterView.meterValue = tedometerData.curMeter.now;
+
+		if( isShowingTodayStatistics ) {
+			avgValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.hour];
+			peakValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.todayPeakValue];
+			peakLabel.text = [NSString stringWithFormat:@"Peak (%@)", tedometerData.curMeter.todayPeakTimeString];
+			lowValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.todayMinValue];
+			lowLabel.text = [NSString stringWithFormat:@"Low (%@)", tedometerData.curMeter.todayMinTimeString];
+			totalValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.today];
+			projValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.hour * 24];	// projected daily = hour avg * 24
+			projLabel.text = @"Est. today";
+		}
+		else {
+			avgValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.today];
+			peakValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.mtdPeakValue];
+			peakLabel.text = [NSString stringWithFormat:@"Peak (%@)", tedometerData.curMeter.mtdPeakTimeString];
+			lowValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.mtdMinValue];
+			lowLabel.text = [NSString stringWithFormat:@"Low (%@)", tedometerData.curMeter.mtdMinTimeString];
+			totalValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.mtd];
+			projValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.projected];	// projected daily = hour avg * 24
+			projLabel.text = @"Est. this month";
+		}
 	}
 	else {
 		// render the meter with the dial on 0
@@ -210,6 +243,16 @@
 	[meterView setNeedsDisplay];
 	
 }
+
+int buttonCount = 0;
+- (IBAction) toggleTodayMonthStatistics {
+	isShowingTodayStatistics = ! isShowingTodayStatistics;
+	NSString* buttonLabel = isShowingTodayStatistics ? @"Today" : @"This Month";
+	self.meterView.isShowingTodayStatistics = isShowingTodayStatistics;
+	[self.todayMonthToggleButton setTitle:buttonLabel forState:UIControlStateNormal];
+	[self refreshView];
+}
+
 
 - (IBAction) activateCostMeter {
 	[tedometerData activateCostMeter];
@@ -236,12 +279,20 @@
 	if( document )
 		[document release];
 	
-	[nowValue release];
-	[hourValue release];
-	[todayValue release];
-	[monthValue release];
+	[avgValue release];
+	[avgLabel release];
+	[peakValue release];
+	[peakLabel release];
+	[lowValue release];
+	[lowLabel release];
+	[totalValue release];
+	[totalLabel release];
 	[projValue release];
+	[projLabel release];
 	[meterLabel release];
+	[meterTitle release];
+	[toolbar release];
+	[todayMonthToggleButton release];
 	[meterView release];
 	[activityIndicator release];
     [super dealloc];

@@ -72,6 +72,11 @@ typedef enum {
 @property(readonly) NSDictionary* xmlDocumentNodeNameToVariableNameConversionsDict;
 @property(readonly) NSDictionary* defaultXmlDocumentNodeNameToVariableNameConversionsDict;
 @property(readonly) NSString* meterTitle;
+@property(readonly) NSString* todayPeakTimeString;
+@property(readonly) NSString* todayMinTimeString;
+@property(readonly) NSString* mtdPeakTimeString;
+@property(readonly) NSString* mtdMinTimeString;
+
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;
@@ -79,5 +84,7 @@ typedef enum {
 - (NSInteger) valueForMeterValueType:(MeterValueType)unitType;
 - (NSString *) tickLabelStringForInteger:(NSInteger) value;
 - (NSString *) meterStringForInteger:(NSInteger) value; 
+- (NSString *) timeStringForHour:(NSInteger)anHour minute:(NSInteger)aMinute;
+- (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay;
 
 @end

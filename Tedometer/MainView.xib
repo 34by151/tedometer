@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="61"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -138,6 +138,16 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 							</object>
+							<object class="IBUIActivityIndicatorView" id="541409388">
+								<reference key="NSNextResponder" ref="614999557"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{118, 219}, {20, 20}}</string>
+								<reference key="NSSuperview" ref="614999557"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<int key="IBUIStyle">2</int>
+							</object>
 							<object class="IBUIImageView" id="601527731">
 								<reference key="NSNextResponder" ref="614999557"/>
 								<int key="NSvFlags">274</int>
@@ -183,16 +193,6 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-							</object>
-							<object class="IBUIActivityIndicatorView" id="541409388">
-								<reference key="NSNextResponder" ref="614999557"/>
-								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{118, 219}, {20, 20}}</string>
-								<reference key="NSSuperview" ref="614999557"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<int key="IBUIStyle">2</int>
 							</object>
 						</object>
 						<string key="NSFrame">{{31, 6}, {257, 257}}</string>
@@ -472,7 +472,7 @@
 							<string key="NSResourceName">low_arrow.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="465489336">
+					<object class="IBUILabel" id="687799191">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{31, 382}, {161, 21}}</string>
@@ -491,7 +491,7 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="788633917">
+					<object class="IBUILabel" id="863106071">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{174, 382}, {122, 21}}</string>
@@ -682,7 +682,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">projLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="465489336"/>
+						<reference key="destination" ref="687799191"/>
 					</object>
 					<int key="connectionID">176</int>
 				</object>
@@ -690,7 +690,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">projValue</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="788633917"/>
+						<reference key="destination" ref="863106071"/>
 					</object>
 					<int key="connectionID">177</int>
 				</object>
@@ -749,8 +749,8 @@
 							<reference ref="125323634"/>
 							<reference ref="777837999"/>
 							<reference ref="453399870"/>
-							<reference ref="465489336"/>
-							<reference ref="788633917"/>
+							<reference ref="687799191"/>
+							<reference ref="863106071"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -919,13 +919,13 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">174</int>
-						<reference key="object" ref="465489336"/>
+						<reference key="object" ref="687799191"/>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">ProjLabel</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">175</int>
-						<reference key="object" ref="788633917"/>
+						<reference key="object" ref="863106071"/>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">ProjValue</string>
 					</object>

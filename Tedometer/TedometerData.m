@@ -23,7 +23,6 @@
 @synthesize meters;
 @synthesize refreshRate;
 @synthesize gatewayHost;
-@synthesize curMeterIdx;
 
 
 // ----------------------------------------------------------------------
@@ -77,7 +76,7 @@ static TedometerData *sharedTedometerData = nil;
 					[newMeters release];
 					
 				}
-
+				
 				if( self.refreshRate == 0 )
 					self.refreshRate = 10;
 
@@ -99,7 +98,20 @@ static TedometerData *sharedTedometerData = nil;
 - (id)autorelease { return self; }
 // ----------------------------------------------------------------------
 
+- (NSInteger) curMeterIdx {
+	return curMeterIdx;
+}
 
+- (void) setCurMeterIdx:(NSInteger) value {
+	// TODO: Adjust radians & units per meter of other meters based
+	// on ration of now values of both meters (assume linear relationship).
+	// If now value is 0, do not change (use defaults)
+	
+	Meter *newMeter = [meters objectAtIndex:value];
+	Meter *curMeter = [meters objectAIndex:curMeterIdx];
+	curMeterIdx = value;
+}
+	
 NSString* _archiveLocation;
 
 + (NSString*)archiveLocation

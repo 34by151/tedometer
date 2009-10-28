@@ -20,7 +20,7 @@
 @property(readwrite, nonatomic, retain) NSArray* meters;
 @property(readwrite, assign) NSInteger refreshRate;
 @property(readwrite, copy) NSString* gatewayHost;
-@property(readwrite, assign) NSInteger curMeterIdx;
+//@property(readwrite, assign) NSInteger curMeterIdx;
 @property(readonly) Meter* curMeter;
 
 + (TedometerData *) sharedTedometerData;

@@ -41,6 +41,10 @@
 	return 100000;
 }
 
+- (NSString*) meterReadingString {
+	return [self meterStringForInteger:self.now];
+}
+
 static NSNumberFormatter *meterStringNumberFormatter;
 - (NSNumberFormatter *)meterStringNumberFormatter {
 	if( ! meterStringNumberFormatter ) {

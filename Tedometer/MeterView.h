@@ -30,6 +30,7 @@
 
 	TedometerData *tedometerData;
 	
+	NSInteger numTouchRevolutionsWhileDragging;
 }
 
 @property (nonatomic, assign) double meterValue;

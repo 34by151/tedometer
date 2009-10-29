@@ -80,6 +80,10 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return 10000;
 }
 
+- (NSString*) meterReadingString {
+	return [[self meterStringForInteger:self.now] stringByAppendingString:@"/hr"];
+}
+
 - (NSInteger) todayAverage {
 	TedometerData *tedometerData = [TedometerData sharedTedometerData];
 	NSInteger hoursSoFar = (tedometerData.gatewayHour + tedometerData.gatewayMinute/60.0);

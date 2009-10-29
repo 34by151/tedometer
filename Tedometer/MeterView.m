@@ -20,9 +20,6 @@
 //#define DRAW_FOR_AVG_POINTER_SCREENSHOT
 //#define DRAW_FOR_LOW_POINTER_SCREENSHOT
 
-#define USE_SMOOTH_CAUTION_ARC	// as opposed to using step-up caution arcs
-#define USE_RANGE_POINTERS		// as opposed to using range arcs
-
 double magnitude( CGPoint p );
 double distanceFromCenterToEdgeOfRectAtAngle( CGSize size, double angle );
 CGPoint cartesianToPolar( CGPoint p );
@@ -186,46 +183,8 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	
 	int numArcTicks = meterSpan / drawRadiansPerTick;
 
-#ifndef USE_SMOOTH_CAUTION_ARC
 	
-	if( ! isDialBeingDragged ) {
-		
-		int numArcTicksWhenTouchesBegan = meterSpan / radiansPerTickWhenTouchesBegan;
-
-		// draw danger arc
-		
-		double arcWidth = tickLength * 2 / 3.0;
-		CGContextSetRGBStrokeColor(context, 0.9, 0.1, 0.1, isDialBeingDragged ? 0.4 : 0.8);
-		CGContextSetLineWidth(context, arcWidth);
-		double dangerEndAngle = radOffset - numArcTicksWhenTouchesBegan * radiansPerTickWhenTouchesBegan;
-		double dangerStartAngle = dangerEndAngle + floor(numArcTicksWhenTouchesBegan / 3.0)* radiansPerTickWhenTouchesBegan;
-		CGContextAddArc( context, 0, 0, meterRadius - edgeWidth - arcWidth / 2, dangerStartAngle, dangerEndAngle, 1 ); 
-		CGContextStrokePath( context );
-		
-		// draw warning arc
-		arcWidth /= 2.0;
-		CGContextSetRGBStrokeColor(context, 0.9, 0.1, 0.1, isDialBeingDragged ? 0.3 : 0.6);
-		CGContextSetLineWidth(context, arcWidth);
-		double warningEndAngle = dangerStartAngle;
-		double warningStartAngle = warningEndAngle + floor(numArcTicksWhenTouchesBegan / 5.0) * radiansPerTickWhenTouchesBegan;
-		CGContextAddArc( context, 0, 0, meterRadius - edgeWidth - arcWidth / 2, warningStartAngle, warningEndAngle, 1 ); 
-		CGContextStrokePath( context );
-		
-		// draw caution arc
-		arcWidth /= 2.0;
-		CGContextSetRGBStrokeColor(context, 0.9, 0.1, 0.1, isDialBeingDragged ? 0.2 : 0.3);
-		CGContextSetLineWidth(context, arcWidth);
-		double cautionEndAngle = warningStartAngle;
-		double cautionStartAngle = cautionEndAngle + ceil(numArcTicksWhenTouchesBegan / 5.0) * radiansPerTickWhenTouchesBegan;
-		CGContextAddArc( context, 0, 0, meterRadius - edgeWidth - arcWidth / 2, cautionStartAngle, cautionEndAngle, 1 ); 
-		CGContextStrokePath( context );
-		
-	}
-	
-#else
-	
-	// alternate danger arc style -- smooth curve instead of steps
-	
+	// danger arc
 	double arcRadians = meterSpan * 6/7.0;
 	double arcStartRadian = radOffset - meterSpan + arcRadians;
 	double arcEndRadian = radOffset - meterSpan;
@@ -260,8 +219,6 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		CGContextStrokePath( context );
 	}
 
-#endif
-
 	
 	// draw ticks
 	CGContextSetRGBStrokeColor(context, 0.35, 0.35, 0.35, 1.0);
@@ -285,129 +242,94 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 #ifndef DRAW_FOR_ICON_SCREENSHOT
 	
 	// draw tick labels
-	
-	if( unitsPerTick > 0 && radiansPerTick > 0 ) {
-		CGContextSaveGState(context);
-		CGContextScaleCTM(context, 1.0, -1.0);
-		
-		
-		double labelGap = 8;
-		UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
-		UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+	if( meterValue > 0.0 ) {
 
-		[textColor set];
-		
-		for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+		if( unitsPerTick > 0 && radiansPerTick > 0 ) {
+			CGContextSaveGState(context);
+			CGContextScaleCTM(context, 1.0, -1.0);
 			
-			double curRad = curTick * drawRadiansPerTick;
-			double labelValue = curTick * drawUnitsPerTick;
-			NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
-			CGSize labelSize = [label sizeWithFont: font];
-			double angle = radOffset - curRad;
-			double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
-			labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
-			double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
-			double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
-			[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+			
+			double labelGap = 8;
+			UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
+			UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+
+			[textColor set];
+			
+			for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+				
+				double curRad = curTick * drawRadiansPerTick;
+				double labelValue = curTick * drawUnitsPerTick;
+				NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
+				CGSize labelSize = [label sizeWithFont: font];
+				double angle = radOffset - curRad;
+				double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
+				labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
+				double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
+				double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
+				[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+			}
+			CGContextStrokePath(context);
+			CGContextRestoreGState(context);
 		}
-		CGContextStrokePath(context);
-		CGContextRestoreGState(context);
-	}
 #endif
 	
 
-	
-#ifdef USE_RANGE_POINTERS
-	
-	double pointerWidth = 10.0;
-	double pointerProtrusionLength = tickLength * 0.2;
-	double pointerProtrusionBeyondTicks = 4;
-	double pointerLength = tickLength + pointerProtrusionLength + pointerProtrusionBeyondTicks;
-	double pointerRadius = meterRadius - edgeWidth + pointerProtrusionBeyondTicks;
-	
-	double peakValue = isShowingTodayStatistics ? tedometerData.curMeter.todayPeakValue : tedometerData.curMeter.mtdPeakValue;
-	double avgValue = isShowingTodayStatistics ? tedometerData.curMeter.todayAverage : tedometerData.curMeter.monthAverage;
-	double lowValue = isShowingTodayStatistics ? tedometerData.curMeter.todayMinValue : tedometerData.curMeter.mtdMinValue;
-	double peakAngle = 0;
-	double avgAngle = 0;
-	double lowAngle = 0;
-	double overlapOffset = (0.5 * M_PI / 180.0);	// if values overlap, displace them by half a degree 
-	
-	if( peakValue > 0 &&  [self isMeterAbleToDisplayValue:peakValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
-		peakAngle = [self angleForValue:peakValue];
-		CGContextSetRGBFillColor( context, 0.98, 0.62, 0.23, 1.0 );	// yellow
+		double pointerWidth = 10.0;
+		double pointerProtrusionLength = tickLength * 0.2;
+		double pointerProtrusionBeyondTicks = 4;
+		double pointerLength = tickLength + pointerProtrusionLength + pointerProtrusionBeyondTicks;
+		double pointerRadius = meterRadius - edgeWidth + pointerProtrusionBeyondTicks;
+		
+		double peakValue = isShowingTodayStatistics ? tedometerData.curMeter.todayPeakValue : tedometerData.curMeter.mtdPeakValue;
+		double avgValue = isShowingTodayStatistics ? tedometerData.curMeter.todayAverage : tedometerData.curMeter.monthAverage;
+		double lowValue = isShowingTodayStatistics ? tedometerData.curMeter.todayMinValue : tedometerData.curMeter.mtdMinValue;
+		double peakAngle = 0;
+		double avgAngle = 0;
+		double lowAngle = 0;
+		double overlapOffset = (0.5 * M_PI / 180.0);	// if values overlap, displace them by half a degree 
+		
+		if( [self isMeterAbleToDisplayValue:peakValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
+			peakAngle = [self angleForValue:peakValue];
+			CGContextSetRGBFillColor( context, 0.98, 0.62, 0.23, 1.0 );	// yellow
 #ifdef DRAW_FOR_PEAK_POINTER_SCREENSHOT
-		double radius = pointerRadius + pointerLength + edgeWidth + 1;
-		[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
+			double radius = pointerRadius + pointerLength + edgeWidth + 1;
+			[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
 #else
-		[self drawPointerInContext:context atAngle:peakAngle radius:pointerRadius width:pointerWidth length:pointerLength];
+			[self drawPointerInContext:context atAngle:peakAngle radius:pointerRadius width:pointerWidth length:pointerLength];
 #endif
-	}
+		}
 
-	if( lowValue > 0 &&  [self isMeterAbleToDisplayValue:lowValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
-		lowAngle = [self angleForValue:lowValue];
-		if( peakValue > 0 && ABS(peakAngle - lowAngle) < 2.0 * overlapOffset )
-			lowAngle += 2.0 * overlapOffset;
-		CGContextSetRGBFillColor(context, 0.3, 0.3, 1.0, 1.0);	// blue
+		if( [self isMeterAbleToDisplayValue:lowValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
+			lowAngle = [self angleForValue:lowValue];
+			if( peakValue > 0 && ABS(peakAngle - lowAngle) < 2.0 * overlapOffset )
+				lowAngle += 2.0 * overlapOffset;
+			CGContextSetRGBFillColor(context, 0.3, 0.3, 1.0, 1.0);	// blue
 #ifdef DRAW_FOR_LOW_POINTER_SCREENSHOT
-		double radius = pointerRadius + pointerLength + edgeWidth + 1;
-		[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
+			double radius = pointerRadius + pointerLength + edgeWidth + 1;
+			[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
 #else
-		[self drawPointerInContext:context atAngle: lowAngle radius:pointerRadius width:pointerWidth length:pointerLength];
+			[self drawPointerInContext:context atAngle: lowAngle radius:pointerRadius width:pointerWidth length:pointerLength];
 #endif
+			
+		}
 		
-	}
-	
-	if( avgValue > 0 &&  [self isMeterAbleToDisplayValue:avgValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
-		avgAngle = [self angleForValue:avgValue];
-		if( peakValue > 0 && ABS(peakAngle - avgAngle) < overlapOffset )
-			avgAngle = peakAngle + overlapOffset;
-		if( lowValue > 0 && ABS(avgAngle - lowAngle) < overlapOffset )
-			avgAngle = lowAngle - overlapOffset;
-		
-		CGContextSetRGBFillColor( context, 0.60, 0.77, 0.19, 1.0 );	// green
+		if( avgValue > 0 && [self isMeterAbleToDisplayValue:avgValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
+			avgAngle = [self angleForValue:avgValue];
+			if( peakValue > 0 && ABS(peakAngle - avgAngle) < overlapOffset )
+				avgAngle = peakAngle + overlapOffset;
+			if( lowValue > 0 && ABS(avgAngle - lowAngle) < overlapOffset )
+				avgAngle = lowAngle - overlapOffset;
+			
+			CGContextSetRGBFillColor( context, 0.60, 0.77, 0.19, 1.0 );	// green
 #ifdef DRAW_FOR_AVG_POINTER_SCREENSHOT
-		double radius = pointerRadius + pointerLength + edgeWidth + 1;
-		[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
+			double radius = pointerRadius + pointerLength + edgeWidth + 1;
+			[self drawPointerInContext:context atAngle: - M_PI /4 radius:radius width:pointerWidth length:pointerLength];
 #else
-		[self drawPointerInContext:context atAngle:avgAngle radius:pointerRadius width:pointerWidth length:pointerLength];
+			[self drawPointerInContext:context atAngle:avgAngle radius:pointerRadius width:pointerWidth length:pointerLength];
 #endif
+		}
+		
 	}
-	
-	
-#else
-	// draw max/min ranges
-	double outerArcWidth = 2.0; 
-	double innerArcWidth = 3.0;
-	
-	double startRadius = meterRadius - edgeWidth;
-	
-	double rangeMax;
-	double rangeMin;
-	double startAngle;
-	double endAngle;
-	
-	// inner range (today)
-	rangeMax = tedometerData.curMeter.todayPeakValue;
-	rangeMin = tedometerData.curMeter.todayMinValue;
-	CGContextSetRGBStrokeColor(context, 0.3, 0.3, 0.6, isDialBeingDragged ? 0.2 : 0.6);
-	CGContextSetLineWidth(context, (innerArcWidth + outerArcWidth));		// we double the arc width so that there's no gap between lines
-	startAngle = [self angleForValue:rangeMin];
-	endAngle = [self angleForValue:rangeMax];
-	CGContextAddArc( context, 0, 0, startRadius - (outerArcWidth + innerArcWidth / 2), startAngle, endAngle, 1 ); 
-	CGContextStrokePath( context );
-	
-	// outer range (month)
-	rangeMax = tedometerData.curMeter.mtdPeakValue;
-	rangeMin = tedometerData.curMeter.mtdMinValue;
-	CGContextSetRGBStrokeColor(context, 0.3, 0.3, 0.6, isDialBeingDragged ? 0.2 : 1.0);
-	CGContextSetLineWidth(context, outerArcWidth);
-	startAngle = [self angleForValue:rangeMin];
-	endAngle = [self angleForValue:rangeMax];
-	CGContextAddArc( context, 0, 0, startRadius - outerArcWidth / 2, startAngle, endAngle, 1 ); 
-	CGContextStrokePath( context );
-#endif	
-	
 
 	// draw dial
 	float dialAngle;
@@ -518,6 +440,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		isDialBeingDragged = YES;
 		radiansPerTickWhenTouchesBegan = radiansPerTick;
 		meterOffsetFromZeroWhenTouchesBegan = meterRadiansFromZeroForLocation;
+		numTouchRevolutionsWhileDragging = 0;
 		[self setNeedsDisplay];
 	}
 	
@@ -535,7 +458,21 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		UITouch *touch = [touches anyObject];
 		
 		CGPoint location = [touch locationInView:self];
+		CGPoint prevLocation = [touch previousLocationInView:self];
 
+		CGPoint locationPolar = [self polarCoordFromViewPoint:location];
+		CGPoint prevLocationPolar = [self polarCoordFromViewPoint:prevLocation];
+
+		if( prevLocationPolar.y > 1.5 * M_PI && locationPolar.y < 1.5 * M_PI ) {
+			// dragged clockwise across bottom of meter
+			numTouchRevolutionsWhileDragging += 1;
+		}
+		else if( prevLocationPolar.y < 1.5 * M_PI && locationPolar.y > 1.5 * M_PI ) {
+			// dragged counter-clockwise across bottom of meter
+			numTouchRevolutionsWhileDragging -= 1;
+		}
+		
+		//double touchAngleInView = [self ang
 		double touchAngle = [self radiansFromMeterZeroForViewPoint:location];
 		
 		if( touchAngle > (2*M_PI - (meterGap / 2.0)) )

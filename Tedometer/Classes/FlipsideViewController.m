@@ -50,7 +50,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	tedometerData = [TedometerData sharedTedometerData];
-    self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor]; 
+    //self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor]; 
 
 	gatewayAddress.text = tedometerData.gatewayHost;
 	refreshRateSlider.value = secondsToSliderValue( tedometerData.refreshRate );

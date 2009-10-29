@@ -69,6 +69,7 @@ typedef enum {
 @property(readonly) NSInteger meterMaxValue;
 @property(readwrite, assign) MeterValueType meterValueType;
 @property(readonly) NSString* meterTitle;
+@property(readonly) NSString* meterReadingString;
 @property(readonly) NSString* todayPeakTimeString;
 @property(readonly) NSString* todayMinTimeString;
 @property(readonly) NSString* mtdPeakTimeString;

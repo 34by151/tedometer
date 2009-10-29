@@ -378,7 +378,7 @@
 								<float key="IBUIWidth">40</float>
 								<reference key="IBUIToolbar" ref="987535781"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="477325253">
+							<object class="IBUIBarButtonItem" id="748932039">
 								<string key="IBUITitle">V</string>
 								<float key="IBUIWidth">40</float>
 								<reference key="IBUIToolbar" ref="987535781"/>
@@ -522,7 +522,7 @@
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">2</int>
 					</object>
-					<object class="IBUIImageView" id="413782349">
+					<object class="IBUIImageView" id="236060262">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{9, 319}, {20, 20}}</string>
@@ -738,7 +738,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">activateVoltageMeter</string>
-						<reference key="source" ref="477325253"/>
+						<reference key="source" ref="748932039"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">182</int>
@@ -747,7 +747,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">avgLabelPointerImage</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="413782349"/>
+						<reference key="destination" ref="236060262"/>
 					</object>
 					<int key="connectionID">183</int>
 				</object>
@@ -792,7 +792,7 @@
 							<reference ref="1020466564"/>
 							<reference ref="479298590"/>
 							<reference ref="893225097"/>
-							<reference ref="413782349"/>
+							<reference ref="236060262"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -863,7 +863,7 @@
 							<reference ref="690789168"/>
 							<reference ref="848067404"/>
 							<reference ref="698443878"/>
-							<reference ref="477325253"/>
+							<reference ref="748932039"/>
 						</object>
 						<reference key="parent" ref="883825266"/>
 					</object>
@@ -974,12 +974,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">180</int>
-						<reference key="object" ref="413782349"/>
+						<reference key="object" ref="236060262"/>
 						<reference key="parent" ref="883825266"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">181</int>
-						<reference key="object" ref="477325253"/>
+						<reference key="object" ref="748932039"/>
 						<reference key="parent" ref="987535781"/>
 					</object>
 				</object>
@@ -1057,7 +1057,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MainView</string>
-					<string>{{591, 369}, {320, 480}}</string>
+					<string>{{491, 625}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

@@ -9,7 +9,7 @@
 	};
 	1D3623250D0F684500981E51 /* TedometerAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {854, 722}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 754}}";
 			sepNavSelRange = "{235, 0}";
 			sepNavVisRange = "{0, 1095}";
 		};
@@ -22,14 +22,14 @@
 	};
 	289233A20DB2D0840083E9F9 /* FlipsideView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {890, 550}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 754}}";
 			sepNavSelRange = "{172, 0}";
 			sepNavVisRange = "{0, 178}";
 		};
 	};
 	289233A30DB2D0840083E9F9 /* FlipsideView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {890, 550}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 754}}";
 			sepNavSelRange = "{190, 0}";
 			sepNavVisRange = "{0, 436}";
 		};
@@ -58,24 +58,24 @@
 	};
 	289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1234, 4186}}";
-			sepNavSelRange = "{7976, 0}";
-			sepNavVisRange = "{6298, 2508}";
+			sepNavIntBoundsRect = "{{0, 0}, {1234, 4173}}";
+			sepNavSelRange = "{6532, 0}";
+			sepNavVisRange = "{5781, 2646}";
 			sepNavWindowFrame = "{{548, 31}, {1293, 945}}";
 		};
 	};
 	289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {890, 550}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 754}}";
 			sepNavSelRange = "{868, 0}";
 			sepNavVisRange = "{0, 1001}";
 		};
 	};
 	289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {854, 1742}}";
-			sepNavSelRange = "{2162, 0}";
-			sepNavVisRange = "{0, 1499}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 1729}}";
+			sepNavSelRange = "{1304, 0}";
+			sepNavVisRange = "{791, 1374}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -792,6 +792,56 @@
 			D86DD95910999F5D00C5135A /* PBXTextBookmark */ = D86DD95910999F5D00C5135A /* PBXTextBookmark */;
 			D86DD95A10999F5D00C5135A /* PBXTextBookmark */ = D86DD95A10999F5D00C5135A /* PBXTextBookmark */;
 			D86DD95B10999F5D00C5135A /* PBXTextBookmark */ = D86DD95B10999F5D00C5135A /* PBXTextBookmark */;
+			D86DD9641099EDB600C5135A /* PBXTextBookmark */ = D86DD9641099EDB600C5135A /* PBXTextBookmark */;
+			D86DD9651099EDB600C5135A /* PBXTextBookmark */ = D86DD9651099EDB600C5135A /* PBXTextBookmark */;
+			D86DD9661099EDB600C5135A /* PBXTextBookmark */ = D86DD9661099EDB600C5135A /* PBXTextBookmark */;
+			D86DD9671099EDB600C5135A /* PBXTextBookmark */ = D86DD9671099EDB600C5135A /* PBXTextBookmark */;
+			D86DD9681099EDB600C5135A /* PBXTextBookmark */ = D86DD9681099EDB600C5135A /* PBXTextBookmark */;
+			D86DD96B1099EE6100C5135A /* PBXTextBookmark */ = D86DD96B1099EE6100C5135A /* PBXTextBookmark */;
+			D86DD96C1099EE6100C5135A /* PBXTextBookmark */ = D86DD96C1099EE6100C5135A /* PBXTextBookmark */;
+			D86DD96D1099EE6100C5135A /* PBXTextBookmark */ = D86DD96D1099EE6100C5135A /* PBXTextBookmark */;
+			D86DD96E1099EE6100C5135A /* PBXTextBookmark */ = D86DD96E1099EE6100C5135A /* PBXTextBookmark */;
+			D86DD9711099EE8000C5135A /* PBXTextBookmark */ = D86DD9711099EE8000C5135A /* PBXTextBookmark */;
+			D86DD9721099EE8000C5135A /* PBXTextBookmark */ = D86DD9721099EE8000C5135A /* PBXTextBookmark */;
+			D86DD9731099EE8000C5135A /* PBXTextBookmark */ = D86DD9731099EE8000C5135A /* PBXTextBookmark */;
+			D86DD9741099EE8000C5135A /* PBXTextBookmark */ = D86DD9741099EE8000C5135A /* PBXTextBookmark */;
+			D86DD9781099EFD000C5135A /* PBXTextBookmark */ = D86DD9781099EFD000C5135A /* PBXTextBookmark */;
+			D86DD9791099EFD000C5135A /* PBXTextBookmark */ = D86DD9791099EFD000C5135A /* PBXTextBookmark */;
+			D86DD97A1099EFD000C5135A /* PBXTextBookmark */ = D86DD97A1099EFD000C5135A /* PBXTextBookmark */;
+			D86DD97B1099EFD000C5135A /* PBXTextBookmark */ = D86DD97B1099EFD000C5135A /* PBXTextBookmark */;
+			D86DD97C1099EFD000C5135A /* PBXTextBookmark */ = D86DD97C1099EFD000C5135A /* PBXTextBookmark */;
+			D86DD97D1099EFD000C5135A /* PBXTextBookmark */ = D86DD97D1099EFD000C5135A /* PBXTextBookmark */;
+			D86DD97E1099EFD000C5135A /* PBXTextBookmark */ = D86DD97E1099EFD000C5135A /* PBXTextBookmark */;
+			D86DD97F1099EFD000C5135A /* PBXTextBookmark */ = D86DD97F1099EFD000C5135A /* PBXTextBookmark */;
+			D86DD9801099EFD000C5135A /* PBXTextBookmark */ = D86DD9801099EFD000C5135A /* PBXTextBookmark */;
+			D86DD9811099EFD000C5135A /* PBXTextBookmark */ = D86DD9811099EFD000C5135A /* PBXTextBookmark */;
+			D86DD9821099EFD000C5135A /* PBXTextBookmark */ = D86DD9821099EFD000C5135A /* PBXTextBookmark */;
+			D86DD98E1099F58A00C5135A /* PBXTextBookmark */ = D86DD98E1099F58A00C5135A /* PBXTextBookmark */;
+			D86DD98F1099F58A00C5135A /* PBXTextBookmark */ = D86DD98F1099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9901099F58A00C5135A /* PBXTextBookmark */ = D86DD9901099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9911099F58A00C5135A /* PBXTextBookmark */ = D86DD9911099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9921099F58A00C5135A /* PBXTextBookmark */ = D86DD9921099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9931099F58A00C5135A /* PBXTextBookmark */ = D86DD9931099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9941099F58A00C5135A /* PBXTextBookmark */ = D86DD9941099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9951099F58A00C5135A /* PBXTextBookmark */ = D86DD9951099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9961099F58A00C5135A /* PBXTextBookmark */ = D86DD9961099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9971099F58A00C5135A /* PBXTextBookmark */ = D86DD9971099F58A00C5135A /* PBXTextBookmark */;
+			D86DD9A21099F93500C5135A /* PBXTextBookmark */ = D86DD9A21099F93500C5135A /* PBXTextBookmark */;
+			D86DD9A31099F93500C5135A /* PBXTextBookmark */ = D86DD9A31099F93500C5135A /* PBXTextBookmark */;
+			D86DD9A41099F93500C5135A /* PBXTextBookmark */ = D86DD9A41099F93500C5135A /* PBXTextBookmark */;
+			D86DD9A51099F93500C5135A /* PBXTextBookmark */ = D86DD9A51099F93500C5135A /* PBXTextBookmark */;
+			D86DD9A61099F93500C5135A /* PBXTextBookmark */ = D86DD9A61099F93500C5135A /* PBXTextBookmark */;
+			D86DD9A71099F93500C5135A /* PBXTextBookmark */ = D86DD9A71099F93500C5135A /* PBXTextBookmark */;
+			D86DD9A81099F93500C5135A /* PBXTextBookmark */ = D86DD9A81099F93500C5135A /* PBXTextBookmark */;
+			D86DD9AB1099FCC900C5135A /* PBXTextBookmark */ = D86DD9AB1099FCC900C5135A /* PBXTextBookmark */;
+			D86DD9AC1099FCC900C5135A /* PBXTextBookmark */ = D86DD9AC1099FCC900C5135A /* PBXTextBookmark */;
+			D86DD9AD1099FCC900C5135A /* PBXTextBookmark */ = D86DD9AD1099FCC900C5135A /* PBXTextBookmark */;
+			D86DD9AE1099FCC900C5135A /* PBXTextBookmark */ = D86DD9AE1099FCC900C5135A /* PBXTextBookmark */;
+			D86DD9AF1099FCC900C5135A /* PBXTextBookmark */ = D86DD9AF1099FCC900C5135A /* PBXTextBookmark */;
+			D86DD9B61099FD2C00C5135A /* PBXTextBookmark */ = D86DD9B61099FD2C00C5135A /* PBXTextBookmark */;
+			D86DD9B71099FD2C00C5135A /* PBXTextBookmark */ = D86DD9B71099FD2C00C5135A /* PBXTextBookmark */;
+			D86DD9B81099FD2C00C5135A /* PBXTextBookmark */ = D86DD9B81099FD2C00C5135A /* PBXTextBookmark */;
+			D86DD9B91099FD2C00C5135A /* PBXTextBookmark */ = D86DD9B91099FD2C00C5135A /* PBXTextBookmark */;
 			D8901389108633AC002F9B8F = D8901389108633AC002F9B8F /* PBXTextBookmark */;
 			D8C491D41096E918003BDC08 = D8C491D41096E918003BDC08 /* PBXTextBookmark */;
 			D8C4925F1096F0BA003BDC08 = D8C4925F1096F0BA003BDC08 /* PBXTextBookmark */;
@@ -848,7 +898,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 209";
 		rLen = 0;
-		rLoc = 8879;
+		rLoc = 8815;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 3066;
@@ -1006,7 +1056,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 111";
 		rLen = 213;
-		rLoc = 3043;
+		rLoc = 2905;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 2425;
@@ -1085,7 +1135,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 40";
 		rLen = 81;
-		rLoc = 2406;
+		rLoc = 2524;
 		rType = 0;
 		vrLen = 824;
 		vrLoc = 0;
@@ -1095,7 +1145,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 75";
 		rLen = 0;
-		rLoc = 2887;
+		rLoc = 2937;
 		rType = 0;
 		vrLen = 1780;
 		vrLoc = 863;
@@ -1135,7 +1185,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1381;
 		vrLoc = 10044;
@@ -1195,7 +1245,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 209";
 		rLen = 0;
-		rLoc = 8879;
+		rLoc = 8815;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 3066;
@@ -1303,7 +1353,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 933;
 		vrLoc = 0;
@@ -1343,7 +1393,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 3;
@@ -1353,7 +1403,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 215";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 6058;
@@ -1403,7 +1453,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 5800;
@@ -1413,7 +1463,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 151;
-		rLoc = 3212;
+		rLoc = 3262;
 		rType = 0;
 		vrLen = 2019;
 		vrLoc = 969;
@@ -1423,7 +1473,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 40";
 		rLen = 81;
-		rLoc = 2406;
+		rLoc = 2524;
 		rType = 0;
 		vrLen = 822;
 		vrLoc = 0;
@@ -1433,7 +1483,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 49";
 		rLen = 0;
-		rLoc = 3195;
+		rLoc = 3313;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 465;
@@ -1463,7 +1513,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 151;
-		rLoc = 3212;
+		rLoc = 3262;
 		rType = 0;
 		vrLen = 2020;
 		vrLoc = 968;
@@ -1473,7 +1523,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 53";
 		rLen = 0;
-		rLoc = 2909;
+		rLoc = 3027;
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 241;
@@ -1483,7 +1533,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 58";
 		rLen = 0;
-		rLoc = 2901;
+		rLoc = 3019;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 591;
@@ -1513,7 +1563,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 3;
@@ -1543,7 +1593,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 226";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 0;
@@ -1553,7 +1603,7 @@
 		comments = "'timeStringForHour' undeclared (first use in this function)";
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		rLen = 1;
-		rLoc = 110;
+		rLoc = 114;
 		rType = 1;
 	};
 	D86DD4901097ADD700C5135A /* PBXTextBookmark */ = {
@@ -1561,7 +1611,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 46";
 		rLen = 0;
-		rLoc = 2525;
+		rLoc = 2643;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 614;
@@ -1571,7 +1621,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 67";
 		rLen = 74;
-		rLoc = 3357;
+		rLoc = 3475;
 		rType = 0;
 		vrLen = 1824;
 		vrLoc = 411;
@@ -1581,7 +1631,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 0;
-		rLoc = 3289;
+		rLoc = 3339;
 		rType = 0;
 		vrLen = 2329;
 		vrLoc = 662;
@@ -1591,7 +1641,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 88";
 		rLen = 0;
-		rLoc = 3362;
+		rLoc = 3412;
 		rType = 0;
 		vrLen = 2385;
 		vrLoc = 608;
@@ -1611,7 +1661,7 @@
 		comments = "'Meter' may not respond to '-timeStringForHour:mintue:'";
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		rLen = 1;
-		rLoc = 114;
+		rLoc = 118;
 		rType = 1;
 	};
 	D86DD4991097ADF900C5135A /* PBXTextBookmark */ = {
@@ -1619,7 +1669,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 50";
 		rLen = 0;
-		rLoc = 2686;
+		rLoc = 2804;
 		rType = 0;
 		vrLen = 1275;
 		vrLoc = 3720;
@@ -1629,7 +1679,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 46";
 		rLen = 0;
-		rLoc = 2525;
+		rLoc = 2643;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 614;
@@ -1639,7 +1689,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 244";
 		rLen = 0;
-		rLoc = 9286;
+		rLoc = 9222;
 		rType = 0;
 		vrLen = 1380;
 		vrLoc = 7293;
@@ -1659,7 +1709,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 243";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 2092;
 		vrLoc = 5610;
@@ -1669,7 +1719,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 243";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 1885;
 		vrLoc = 5610;
@@ -1689,7 +1739,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 50";
 		rLen = 0;
-		rLoc = 2686;
+		rLoc = 2804;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 3720;
@@ -1699,7 +1749,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 151;
-		rLoc = 3212;
+		rLoc = 3262;
 		rType = 0;
 		vrLen = 2025;
 		vrLoc = 968;
@@ -1769,7 +1819,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 45";
 		rLen = 0;
-		rLoc = 2518;
+		rLoc = 2636;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 1395;
@@ -1779,7 +1829,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 80";
 		rLen = 0;
-		rLoc = 3932;
+		rLoc = 4050;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 1737;
@@ -1799,7 +1849,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 80";
 		rLen = 0;
-		rLoc = 3932;
+		rLoc = 4050;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 1783;
@@ -1819,7 +1869,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 80";
 		rLen = 0;
-		rLoc = 3932;
+		rLoc = 4050;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 1783;
@@ -1839,7 +1889,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 80";
 		rLen = 0;
-		rLoc = 3932;
+		rLoc = 4050;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 2881;
@@ -1859,7 +1909,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 244";
 		rLen = 0;
-		rLoc = 9286;
+		rLoc = 9222;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 8024;
@@ -1889,7 +1939,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 243";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 799;
 		vrLoc = 8024;
@@ -1899,7 +1949,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 243";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 1893;
 		vrLoc = 6626;
@@ -1947,7 +1997,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 239";
 		rLen = 0;
-		rLoc = 8913;
+		rLoc = 8849;
 		rType = 0;
 		vrLen = 1347;
 		vrLoc = 7293;
@@ -1957,7 +2007,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 239";
 		rLen = 0;
-		rLoc = 8913;
+		rLoc = 8849;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 7390;
@@ -1977,7 +2027,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 239";
 		rLen = 0;
-		rLoc = 8913;
+		rLoc = 8849;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 5605;
@@ -2031,7 +2081,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 242";
 		rLen = 0;
-		rLoc = 8978;
+		rLoc = 8914;
 		rType = 0;
 		vrLen = 1347;
 		vrLoc = 7293;
@@ -2051,7 +2101,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 242";
 		rLen = 0;
-		rLoc = 8978;
+		rLoc = 8914;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 7495;
@@ -2071,7 +2121,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 242";
 		rLen = 0;
-		rLoc = 8978;
+		rLoc = 8914;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 7495;
@@ -2091,7 +2141,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 244";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 7702;
@@ -2111,7 +2161,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 246";
 		rLen = 0;
-		rLoc = 9286;
+		rLoc = 9222;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 7293;
@@ -2131,7 +2181,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 246";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 7940;
@@ -2151,7 +2201,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 246";
 		rLen = 0;
-		rLoc = 9264;
+		rLoc = 9200;
 		rType = 0;
 		vrLen = 856;
 		vrLoc = 7947;
@@ -2181,7 +2231,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 249";
 		rLen = 0;
-		rLoc = 9288;
+		rLoc = 9224;
 		rType = 0;
 		vrLen = 835;
 		vrLoc = 8024;
@@ -2191,7 +2241,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 229";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1973;
 		vrLoc = 6590;
@@ -2211,7 +2261,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 220";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1988;
 		vrLoc = 6626;
@@ -2231,7 +2281,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 220";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 7143;
@@ -2251,7 +2301,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 66";
 		rLen = 0;
-		rLoc = 3182;
+		rLoc = 3300;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 809;
@@ -2271,7 +2321,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 68";
 		rLen = 1;
-		rLoc = 3187;
+		rLoc = 3305;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 2714;
@@ -2281,7 +2331,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 220";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 7143;
@@ -2291,7 +2341,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 246";
 		rLen = 0;
-		rLoc = 9104;
+		rLoc = 9040;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 7640;
@@ -2321,7 +2371,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1499;
 		vrLoc = 8323;
@@ -2331,7 +2381,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 273";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1597;
 		vrLoc = 8323;
@@ -2351,7 +2401,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 264";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1592;
 		vrLoc = 8330;
@@ -2371,7 +2421,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 7914;
@@ -2391,7 +2441,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 265";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1668;
 		vrLoc = 7702;
@@ -2411,7 +2461,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 285";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 8285;
@@ -2431,7 +2481,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 293";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 9204;
@@ -2451,7 +2501,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 297";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2002;
 		vrLoc = 8713;
@@ -2471,7 +2521,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 264";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 8331;
@@ -2491,7 +2541,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 263";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 8323;
@@ -2511,7 +2561,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 297";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2009;
 		vrLoc = 8445;
@@ -2531,7 +2581,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 281";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2071;
 		vrLoc = 8531;
@@ -2551,7 +2601,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 430";
 		rLen = 0;
-		rLoc = 15771;
+		rLoc = 12628;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 13904;
@@ -2571,7 +2621,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 428";
 		rLen = 0;
-		rLoc = 15771;
+		rLoc = 12628;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 13904;
@@ -2591,7 +2641,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 267";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 8331;
@@ -2611,7 +2661,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 312";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 9235;
@@ -2631,7 +2681,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1751;
 		vrLoc = 8330;
@@ -2651,7 +2701,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1845;
 		vrLoc = 8332;
@@ -2671,7 +2721,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1837;
 		vrLoc = 8359;
@@ -2691,7 +2741,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1986;
 		vrLoc = 8443;
@@ -2711,7 +2761,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2098;
 		vrLoc = 8443;
@@ -2731,7 +2781,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 50";
 		rLen = 0;
-		rLoc = 2686;
+		rLoc = 2804;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 3818;
@@ -2741,7 +2791,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 50";
 		rLen = 0;
-		rLoc = 2686;
+		rLoc = 2804;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 3818;
@@ -2751,7 +2801,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 269";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1648;
 		vrLoc = 8322;
@@ -2789,7 +2839,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 247";
 		rLen = 0;
-		rLoc = 9118;
+		rLoc = 9054;
 		rType = 0;
 		vrLen = 2093;
 		vrLoc = 6194;
@@ -2819,7 +2869,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 303";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1487;
 		vrLoc = 16177;
@@ -2829,7 +2879,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 270";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1624;
 		vrLoc = 8396;
@@ -2849,7 +2899,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 265";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1599;
 		vrLoc = 8360;
@@ -2869,7 +2919,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 265";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1592;
 		vrLoc = 8368;
@@ -2889,7 +2939,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 268";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 8369;
@@ -2933,7 +2983,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 268";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1657;
 		vrLoc = 8396;
@@ -2943,7 +2993,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 278";
 		rLen = 0;
-		rLoc = 9170;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 9882;
@@ -2963,7 +3013,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 304";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 9123;
@@ -2983,7 +3033,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 304";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1688;
 		vrLoc = 9039;
@@ -2993,7 +3043,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 104";
 		rLen = 0;
-		rLoc = 2934;
+		rLoc = 2796;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 2200;
@@ -3013,7 +3063,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 302";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1662;
 		vrLoc = 9156;
@@ -3033,7 +3083,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 309";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2219;
 		vrLoc = 9282;
@@ -3053,7 +3103,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 310";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2209;
 		vrLoc = 9156;
@@ -3073,7 +3123,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 315";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1983;
 		vrLoc = 9761;
@@ -3093,7 +3143,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 310";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1968;
 		vrLoc = 9808;
@@ -3113,7 +3163,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 310";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2058;
 		vrLoc = 9872;
@@ -3133,7 +3183,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 307";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1986;
 		vrLoc = 9995;
@@ -3153,7 +3203,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 310";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2240;
 		vrLoc = 9504;
@@ -3173,7 +3223,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 309";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2219;
 		vrLoc = 9529;
@@ -3193,7 +3243,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 309";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 2238;
 		vrLoc = 9462;
@@ -3213,7 +3263,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 283";
 		rLen = 0;
-		rLoc = 9171;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 8669;
@@ -3233,7 +3283,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 408";
 		rLen = 0;
-		rLoc = 14618;
+		rLoc = 11477;
 		rType = 0;
 		vrLen = 1641;
 		vrLoc = 13292;
@@ -3253,7 +3303,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 318";
 		rLen = 0;
-		rLoc = 10395;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1808;
 		vrLoc = 10128;
@@ -3273,7 +3323,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 340";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2147;
 		vrLoc = 10329;
@@ -3293,7 +3343,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 346";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2326;
 		vrLoc = 10391;
@@ -3313,7 +3363,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 343";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2261;
 		vrLoc = 10572;
@@ -3333,7 +3383,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 344";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2344;
 		vrLoc = 10373;
@@ -3353,7 +3403,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 349";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2320;
 		vrLoc = 10496;
@@ -3373,7 +3423,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 347";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2255;
 		vrLoc = 10678;
@@ -3393,7 +3443,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 347";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2229;
 		vrLoc = 10719;
@@ -3413,7 +3463,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 320";
 		rLen = 0;
-		rLoc = 10491;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1906;
 		vrLoc = 10212;
@@ -3433,7 +3483,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 346";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2104;
 		vrLoc = 10868;
@@ -3453,7 +3503,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 349";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2068;
 		vrLoc = 10242;
@@ -3473,7 +3523,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 319";
 		rLen = 0;
-		rLoc = 10449;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2083;
 		vrLoc = 10327;
@@ -3493,7 +3543,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 319";
 		rLen = 0;
-		rLoc = 10449;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1981;
 		vrLoc = 10214;
@@ -3513,7 +3563,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 339";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1885;
 		vrLoc = 10247;
@@ -3533,7 +3583,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 339";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1918;
 		vrLoc = 10249;
@@ -3553,7 +3603,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 340";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2098;
 		vrLoc = 10408;
@@ -3573,7 +3623,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 340";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2086;
 		vrLoc = 10531;
@@ -3593,7 +3643,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 340";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2022;
 		vrLoc = 10649;
@@ -3613,7 +3663,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 339";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1982;
 		vrLoc = 10713;
@@ -3660,7 +3710,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 319";
 		rLen = 0;
-		rLoc = 10449;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1798;
 		vrLoc = 10248;
@@ -3680,7 +3730,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 360";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1903;
 		vrLoc = 10470;
@@ -3700,7 +3750,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 359";
 		rLen = 0;
-		rLoc = 11685;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 10312;
@@ -3720,7 +3770,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 338";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1353;
 		vrLoc = 10558;
@@ -3740,7 +3790,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 320";
 		rLen = 0;
-		rLoc = 10449;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1475;
 		vrLoc = 10248;
@@ -3760,7 +3810,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 339";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 10248;
@@ -3780,7 +3830,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 339";
 		rLen = 0;
-		rLoc = 10666;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 10276;
@@ -3800,7 +3850,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 320";
 		rLen = 0;
-		rLoc = 10449;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1454;
 		vrLoc = 10247;
@@ -3820,7 +3870,7 @@
 		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
 		name = "MeterView.h: 46";
 		rLen = 0;
-		rLoc = 1353;
+		rLoc = 1398;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 128;
@@ -3830,7 +3880,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 437";
 		rLen = 141;
-		rLoc = 15774;
+		rLoc = 12631;
 		rType = 0;
 		vrLen = 1711;
 		vrLoc = 14012;
@@ -3840,7 +3890,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 448";
 		rLen = 0;
-		rLoc = 16114;
+		rLoc = 12971;
 		rType = 0;
 		vrLen = 1663;
 		vrLoc = 14153;
@@ -3860,7 +3910,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1660;
 		vrLoc = 11504;
@@ -3880,7 +3930,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1627;
 		vrLoc = 11625;
@@ -3900,7 +3950,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1680;
 		vrLoc = 11840;
@@ -3920,7 +3970,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1808;
 		vrLoc = 11845;
@@ -3940,7 +3990,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1749;
 		vrLoc = 11992;
@@ -3960,7 +4010,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1612;
 		vrLoc = 11286;
@@ -3980,7 +4030,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 366";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1587;
 		vrLoc = 11622;
@@ -4000,7 +4050,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 367";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 11031;
@@ -4070,7 +4120,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 125";
 		rLen = 0;
-		rLoc = 3540;
+		rLoc = 3402;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 2847;
@@ -4090,7 +4140,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 125";
 		rLen = 0;
-		rLoc = 3540;
+		rLoc = 3402;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 3038;
@@ -4110,7 +4160,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 220";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2054;
 		vrLoc = 6221;
@@ -4120,7 +4170,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 287";
 		rLen = 0;
-		rLoc = 9970;
+		rLoc = 9906;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 2990;
@@ -4140,7 +4190,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 287";
 		rLen = 0;
-		rLoc = 9970;
+		rLoc = 9906;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 2990;
@@ -4150,7 +4200,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 231";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2231;
 		vrLoc = 6183;
@@ -4193,7 +4243,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 125";
 		rLen = 0;
-		rLoc = 3540;
+		rLoc = 3402;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 3039;
@@ -4213,7 +4263,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 231";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2211;
 		vrLoc = 6242;
@@ -4321,7 +4371,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 67";
 		rLen = 0;
-		rLoc = 3108;
+		rLoc = 3226;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 933;
@@ -4341,7 +4391,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 59";
 		rLen = 0;
-		rLoc = 2907;
+		rLoc = 3025;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 936;
@@ -4361,7 +4411,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 59";
 		rLen = 0;
-		rLoc = 2907;
+		rLoc = 3025;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 936;
@@ -4486,7 +4536,7 @@
 		isa = PBXTextBookmark;
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		rLen = 0;
-		rLoc = 567;
+		rLoc = 504;
 		rType = 1;
 	};
 	D86DD77B1098D6F700C5135A /* PBXTextBookmark */ = {
@@ -4494,7 +4544,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 523";
 		rLen = 0;
-		rLoc = 19713;
+		rLoc = 17207;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 16542;
@@ -4504,7 +4554,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 523";
 		rLen = 0;
-		rLoc = 19713;
+		rLoc = 17207;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 16542;
@@ -4561,7 +4611,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 79";
 		rLen = 0;
-		rLoc = 2325;
+		rLoc = 2375;
 		rType = 0;
 		vrLen = 2073;
 		vrLoc = 966;
@@ -4600,7 +4650,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 79";
 		rLen = 0;
-		rLoc = 2310;
+		rLoc = 2360;
 		rType = 0;
 		vrLen = 2070;
 		vrLoc = 966;
@@ -4620,7 +4670,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 43";
 		rLen = 0;
-		rLoc = 2378;
+		rLoc = 2496;
 		rType = 0;
 		vrLen = 883;
 		vrLoc = 193;
@@ -4649,7 +4699,7 @@
 		isa = PBXTextBookmark;
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		rLen = 1;
-		rLoc = 497;
+		rLoc = 419;
 		rType = 1;
 	};
 	D86DD79C1098ED3B00C5135A /* PBXTextBookmark */ = {
@@ -4657,7 +4707,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 333";
 		rLen = 0;
-		rLoc = 13347;
+		rLoc = 11474;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 10249;
@@ -4667,7 +4717,7 @@
 		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
 		name = "MeterView.h: 47";
 		rLen = 0;
-		rLoc = 1352;
+		rLoc = 1397;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 131;
@@ -4677,7 +4727,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 462";
 		rLen = 143;
-		rLoc = 17122;
+		rLoc = 13979;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 14756;
@@ -4687,7 +4737,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 326";
 		rLen = 0;
-		rLoc = 11262;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 1843;
 		vrLoc = 10250;
@@ -4697,7 +4747,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 422";
 		rLen = 0;
-		rLoc = 16255;
+		rLoc = 13112;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 13963;
@@ -4707,7 +4757,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 502";
 		rLen = 32;
-		rLoc = 18843;
+		rLoc = 16337;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 16119;
@@ -4717,7 +4767,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 505";
 		rLen = 0;
-		rLoc = 18960;
+		rLoc = 16454;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 16119;
@@ -4726,7 +4776,7 @@
 		isa = PBXTextBookmark;
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		rLen = 1;
-		rLoc = 467;
+		rLoc = 389;
 		rType = 1;
 	};
 	D86DD7AE1098F23000C5135A /* PBXTextBookmark */ = {
@@ -4734,7 +4784,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 504";
 		rLen = 0;
-		rLoc = 18957;
+		rLoc = 16451;
 		rType = 0;
 		vrLen = 1528;
 		vrLoc = 16049;
@@ -4744,7 +4794,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 500";
 		rLen = 0;
-		rLoc = 18717;
+		rLoc = 15614;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 16594;
@@ -4754,7 +4804,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 507";
 		rLen = 0;
-		rLoc = 18889;
+		rLoc = 16383;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 16594;
@@ -4774,7 +4824,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 228";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2284;
 		vrLoc = 6157;
@@ -4788,7 +4838,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 507";
 		rLen = 0;
-		rLoc = 18889;
+		rLoc = 16383;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 16645;
@@ -4798,7 +4848,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2249;
 		vrLoc = 6157;
@@ -4838,7 +4888,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 146";
 		rLen = 118;
-		rLoc = 4638;
+		rLoc = 4756;
 		rType = 0;
 		vrLen = 1342;
 		vrLoc = 3897;
@@ -4888,7 +4938,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 79";
 		rLen = 0;
-		rLoc = 2310;
+		rLoc = 2360;
 		rType = 0;
 		vrLen = 2103;
 		vrLoc = 934;
@@ -4898,7 +4948,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 131";
 		rLen = 0;
-		rLoc = 4638;
+		rLoc = 4756;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 2888;
@@ -5018,7 +5068,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 79";
 		rLen = 0;
-		rLoc = 2310;
+		rLoc = 2360;
 		rType = 0;
 		vrLen = 2074;
 		vrLoc = 968;
@@ -5028,7 +5078,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 127";
 		rLen = 0;
-		rLoc = 4638;
+		rLoc = 4756;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 2551;
@@ -5198,7 +5248,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 507";
 		rLen = 0;
-		rLoc = 18889;
+		rLoc = 16383;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 16645;
@@ -5208,7 +5258,7 @@
 		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
 		name = "MeterView.h: 47";
 		rLen = 0;
-		rLoc = 1352;
+		rLoc = 1397;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 190;
@@ -5218,7 +5268,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2312;
 		vrLoc = 6156;
@@ -5238,7 +5288,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2347;
 		vrLoc = 6156;
@@ -5258,7 +5308,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2349;
 		vrLoc = 6156;
@@ -5278,7 +5328,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2360;
 		vrLoc = 6156;
@@ -5298,7 +5348,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 43";
 		rLen = 0;
-		rLoc = 1883;
+		rLoc = 2001;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 136;
@@ -5308,7 +5358,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 80";
 		rLen = 0;
-		rLoc = 2375;
+		rLoc = 2425;
 		rType = 0;
 		vrLen = 2120;
 		vrLoc = 968;
@@ -5318,7 +5368,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 507";
 		rLen = 0;
-		rLoc = 18889;
+		rLoc = 16383;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 16645;
@@ -5328,7 +5378,7 @@
 		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
 		name = "MeterView.h: 47";
 		rLen = 0;
-		rLoc = 1352;
+		rLoc = 1397;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 0;
@@ -5338,7 +5388,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2360;
 		vrLoc = 6156;
@@ -5348,7 +5398,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2266;
 		vrLoc = 6156;
@@ -5368,7 +5418,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2297;
 		vrLoc = 6156;
@@ -5388,7 +5438,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2673;
 		vrLoc = 6156;
@@ -5408,7 +5458,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2673;
 		vrLoc = 6156;
@@ -5448,7 +5498,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 332";
 		rLen = 0;
-		rLoc = 12526;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2821;
 		vrLoc = 9572;
@@ -5458,7 +5508,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 328";
 		rLen = 0;
-		rLoc = 11461;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2781;
 		vrLoc = 9572;
@@ -5478,7 +5528,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 358";
 		rLen = 0;
-		rLoc = 12924;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2439;
 		vrLoc = 10240;
@@ -5498,7 +5548,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 357";
 		rLen = 0;
-		rLoc = 12905;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2454;
 		vrLoc = 10240;
@@ -5518,7 +5568,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 359";
 		rLen = 0;
-		rLoc = 12978;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2455;
 		vrLoc = 10240;
@@ -5538,7 +5588,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 359";
 		rLen = 0;
-		rLoc = 12978;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2455;
 		vrLoc = 10240;
@@ -5598,7 +5648,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 123";
 		rLen = 0;
-		rLoc = 4638;
+		rLoc = 4756;
 		rType = 0;
 		vrLen = 791;
 		vrLoc = 0;
@@ -5617,7 +5667,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 216";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2236;
 		vrLoc = 6179;
@@ -5627,7 +5677,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 359";
 		rLen = 0;
-		rLoc = 12978;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2455;
 		vrLoc = 10240;
@@ -5647,7 +5697,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 341";
 		rLen = 0;
-		rLoc = 12054;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2611;
 		vrLoc = 10240;
@@ -5667,7 +5717,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 360";
 		rLen = 0;
-		rLoc = 12978;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2611;
 		vrLoc = 10240;
@@ -5687,7 +5737,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 360";
 		rLen = 0;
-		rLoc = 12978;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2611;
 		vrLoc = 10240;
@@ -5707,7 +5757,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 360";
 		rLen = 0;
-		rLoc = 12978;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2611;
 		vrLoc = 10240;
@@ -5801,7 +5851,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 224";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2544;
 		vrLoc = 6156;
@@ -5861,7 +5911,7 @@
 		fRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */;
 		name = "FlipsideViewController.m: 88";
 		rLen = 0;
-		rLoc = 2162;
+		rLoc = 2164;
 		rType = 0;
 		vrLen = 1499;
 		vrLoc = 0;
@@ -5871,7 +5921,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 230";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2576;
 		vrLoc = 6228;
@@ -5881,7 +5931,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 329";
 		rLen = 0;
-		rLoc = 10911;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2905;
 		vrLoc = 9613;
@@ -5911,7 +5961,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 78";
 		rLen = 0;
-		rLoc = 2411;
+		rLoc = 2461;
 		rType = 0;
 		vrLen = 2216;
 		vrLoc = 688;
@@ -5931,7 +5981,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 78";
 		rLen = 0;
-		rLoc = 2411;
+		rLoc = 2461;
 		rType = 0;
 		vrLen = 2216;
 		vrLoc = 688;
@@ -5941,7 +5991,7 @@
 		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
 		name = "Meter.m: 60";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2439;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 0;
@@ -5951,7 +6001,7 @@
 		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
 		name = "MeterView.m: 329";
 		rLen = 0;
-		rLoc = 10911;
+		rLoc = 8489;
 		rType = 0;
 		vrLen = 2905;
 		vrLoc = 9613;
@@ -5961,7 +6011,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2600;
 		vrLoc = 6203;
@@ -5981,7 +6031,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2604;
 		vrLoc = 6203;
@@ -5998,16 +6048,16 @@
 	};
 	D86DD8CF10998D2200C5135A /* VoltageMeter.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1321, 754}}";
-			sepNavSelRange = "{0, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1177, 532}}";
+			sepNavSelRange = "{190, 0}";
 			sepNavVisRange = "{0, 235}";
 		};
 	};
 	D86DD8D010998D2200C5135A /* VoltageMeter.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1321, 1898}}";
-			sepNavSelRange = "{512, 0}";
-			sepNavVisRange = "{22, 1359}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 1950}}";
+			sepNavSelRange = "{598, 0}";
+			sepNavVisRange = "{22, 1378}";
 		};
 	};
 	D86DD8D210998DB200C5135A /* PBXTextBookmark */ = {
@@ -6015,7 +6065,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2604;
 		vrLoc = 6203;
@@ -6065,7 +6115,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 54";
 		rLen = 0;
-		rLoc = 1851;
+		rLoc = 1936;
 		rType = 0;
 		vrLen = 1797;
 		vrLoc = 464;
@@ -6075,7 +6125,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 54";
 		rLen = 0;
-		rLoc = 1851;
+		rLoc = 1936;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 766;
@@ -6133,7 +6183,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 217";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2568;
 		vrLoc = 5917;
@@ -6143,7 +6193,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 79";
 		rLen = 0;
-		rLoc = 2420;
+		rLoc = 2470;
 		rType = 0;
 		vrLen = 2438;
 		vrLoc = 886;
@@ -6163,7 +6213,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 25";
 		rLen = 0;
-		rLoc = 563;
+		rLoc = 648;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 0;
@@ -6173,7 +6223,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 25";
 		rLen = 0;
-		rLoc = 563;
+		rLoc = 648;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 0;
@@ -6183,7 +6233,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 233";
 		rLen = 0;
-		rLoc = 8585;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 2763;
 		vrLoc = 5868;
@@ -6233,7 +6283,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 0;
-		rLoc = 2830;
+		rLoc = 2880;
 		rType = 0;
 		vrLen = 2483;
 		vrLoc = 886;
@@ -6243,7 +6293,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 243";
 		rLen = 0;
-		rLoc = 7628;
+		rLoc = 7564;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 6659;
@@ -6273,7 +6323,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 0;
-		rLoc = 2830;
+		rLoc = 2880;
 		rType = 0;
 		vrLen = 2484;
 		vrLoc = 885;
@@ -6283,7 +6333,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 248";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2353;
 		vrLoc = 6264;
@@ -6331,7 +6381,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 0;
-		rLoc = 2830;
+		rLoc = 2880;
 		rType = 0;
 		vrLen = 2484;
 		vrLoc = 885;
@@ -6351,7 +6401,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 232";
 		rLen = 0;
-		rLoc = 7795;
+		rLoc = 7731;
 		rType = 0;
 		vrLen = 2289;
 		vrLoc = 6175;
@@ -6361,7 +6411,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 219";
 		rLen = 0;
-		rLoc = 6987;
+		rLoc = 6923;
 		rType = 0;
 		vrLen = 2292;
 		vrLoc = 6175;
@@ -6371,7 +6421,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2435;
 		vrLoc = 6264;
@@ -6431,7 +6481,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 100";
 		rLen = 0;
-		rLoc = 2837;
+		rLoc = 2922;
 		rType = 0;
 		vrLen = 2075;
 		vrLoc = 1748;
@@ -6441,7 +6491,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2435;
 		vrLoc = 6264;
@@ -6471,7 +6521,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 100";
 		rLen = 0;
-		rLoc = 2837;
+		rLoc = 2922;
 		rType = 0;
 		vrLen = 2077;
 		vrLoc = 1748;
@@ -6481,7 +6531,7 @@
 		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
 		name = "Meter.h: 87";
 		rLen = 0;
-		rLoc = 2830;
+		rLoc = 2880;
 		rType = 0;
 		vrLen = 2530;
 		vrLoc = 839;
@@ -6501,7 +6551,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 242";
 		rLen = 0;
-		rLoc = 8355;
+		rLoc = 8291;
 		rType = 0;
 		vrLen = 2380;
 		vrLoc = 6178;
@@ -6511,7 +6561,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 241";
 		rLen = 0;
-		rLoc = 8216;
+		rLoc = 8152;
 		rType = 0;
 		vrLen = 2374;
 		vrLoc = 6177;
@@ -6521,7 +6571,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2476;
 		vrLoc = 6264;
@@ -6561,7 +6611,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 241";
 		rLen = 0;
-		rLoc = 8216;
+		rLoc = 8152;
 		rType = 0;
 		vrLen = 2382;
 		vrLoc = 6177;
@@ -6571,7 +6621,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 294";
 		rLen = 0;
-		rLoc = 9602;
+		rLoc = 9538;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 8706;
@@ -6581,7 +6631,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2476;
 		vrLoc = 6264;
@@ -6611,7 +6661,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 294";
 		rLen = 0;
-		rLoc = 9602;
+		rLoc = 9538;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 8706;
@@ -6631,7 +6681,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2476;
 		vrLoc = 6264;
@@ -6671,7 +6721,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 236";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2476;
 		vrLoc = 6264;
@@ -6721,7 +6771,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 231";
 		rLen = 0;
-		rLoc = 7655;
+		rLoc = 7591;
 		rType = 0;
 		vrLen = 1972;
 		vrLoc = 6922;
@@ -6731,7 +6781,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 266";
 		rLen = 0;
-		rLoc = 8803;
+		rLoc = 8739;
 		rType = 0;
 		vrLen = 2258;
 		vrLoc = 7027;
@@ -6741,7 +6791,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 237";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2508;
 		vrLoc = 6298;
@@ -6771,7 +6821,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 266";
 		rLen = 0;
-		rLoc = 8803;
+		rLoc = 8739;
 		rType = 0;
 		vrLen = 2401;
 		vrLoc = 6511;
@@ -6791,7 +6841,7 @@
 		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
 		name = "VoltageMeter.m: 100";
 		rLen = 0;
-		rLoc = 2837;
+		rLoc = 2922;
 		rType = 0;
 		vrLen = 2026;
 		vrLoc = 1798;
@@ -6811,7 +6861,7 @@
 		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
 		name = "MainViewController.m: 237";
 		rLen = 0;
-		rLoc = 7976;
+		rLoc = 7912;
 		rType = 0;
 		vrLen = 2508;
 		vrLoc = 6298;
@@ -6827,6 +6877,506 @@
 		vrLoc = 689;
 	};
 	D86DD95B10999F5D00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD9641099EDB600C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
+		name = "VoltageMeter.m: 37";
+		rLen = 0;
+		rLoc = 512;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 0;
+	};
+	D86DD9651099EDB600C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 246";
+		rLen = 0;
+		rLoc = 7352;
+		rType = 0;
+		vrLen = 2328;
+		vrLoc = 5025;
+	};
+	D86DD9661099EDB600C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 237";
+		rLen = 0;
+		rLoc = 7912;
+		rType = 0;
+		vrLen = 2508;
+		vrLoc = 6298;
+	};
+	D86DD9671099EDB600C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1468;
+		vrLoc = 689;
+	};
+	D86DD9681099EDB600C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD96B1099EE6100C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 246";
+		rLen = 0;
+		rLoc = 7352;
+		rType = 0;
+		vrLen = 2328;
+		vrLoc = 5025;
+	};
+	D86DD96C1099EE6100C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 237";
+		rLen = 0;
+		rLoc = 7912;
+		rType = 0;
+		vrLen = 2508;
+		vrLoc = 6298;
+	};
+	D86DD96D1099EE6100C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1468;
+		vrLoc = 689;
+	};
+	D86DD96E1099EE6100C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD9711099EE8000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 246";
+		rLen = 0;
+		rLoc = 7352;
+		rType = 0;
+		vrLen = 2328;
+		vrLoc = 5025;
+	};
+	D86DD9721099EE8000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 237";
+		rLen = 0;
+		rLoc = 7912;
+		rType = 0;
+		vrLen = 2508;
+		vrLoc = 6298;
+	};
+	D86DD9731099EE8000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1468;
+		vrLoc = 689;
+	};
+	D86DD9741099EE8000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD9781099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 246";
+		rLen = 0;
+		rLoc = 7352;
+		rType = 0;
+		vrLen = 2327;
+		vrLoc = 5025;
+	};
+	D86DD9791099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B210925B07007FAF98 /* Meter.h */;
+		name = "Meter.h: 72";
+		rLen = 50;
+		rLoc = 2085;
+		rType = 0;
+		vrLen = 2534;
+		vrLoc = 885;
+	};
+	D86DD97A1099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A80DB2D0DB0083E9F9 /* MainViewController.h */;
+		name = "MainViewController.h: 64";
+		rLen = 0;
+		rLoc = 1934;
+		rType = 0;
+		vrLen = 1800;
+		vrLoc = 435;
+	};
+	D86DD97B1099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 83";
+		rLen = 116;
+		rLoc = 1641;
+		rType = 0;
+		vrLen = 1446;
+		vrLoc = 994;
+	};
+	D86DD97C1099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */;
+		name = "VoltageMeter.m: 45";
+		rLen = 0;
+		rLoc = 598;
+		rType = 0;
+		vrLen = 1378;
+		vrLoc = 22;
+	};
+	D86DD97D1099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 66;
+		rLoc = 6511;
+		rType = 0;
+		vrLen = 2507;
+		vrLoc = 6298;
+	};
+	D86DD97E1099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 0;
+		rLoc = 6573;
+		rType = 0;
+		vrLen = 2371;
+		vrLoc = 6298;
+	};
+	D86DD97F1099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 237";
+		rLen = 0;
+		rLoc = 7912;
+		rType = 0;
+		vrLen = 2508;
+		vrLoc = 6298;
+	};
+	D86DD9801099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 0;
+		rLoc = 6532;
+		rType = 0;
+		vrLen = 2646;
+		vrLoc = 5781;
+	};
+	D86DD9811099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 689;
+	};
+	D86DD9821099EFD000C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD98E1099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */;
+		name = "FlipsideViewController.h: 31";
+		rLen = 0;
+		rLoc = 868;
+		rType = 0;
+		vrLen = 1001;
+		vrLoc = 0;
+	};
+	D86DD98F1099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A20DB2D0840083E9F9 /* FlipsideView.h */;
+		name = "FlipsideView.h: 12";
+		rLen = 0;
+		rLoc = 172;
+		rType = 0;
+		vrLen = 178;
+		vrLoc = 0;
+	};
+	D86DD9901099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A30DB2D0840083E9F9 /* FlipsideView.m */;
+		name = "FlipsideView.m: 13";
+		rLen = 0;
+		rLoc = 190;
+		rType = 0;
+		vrLen = 436;
+		vrLoc = 0;
+	};
+	D86DD9911099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* TedometerAppDelegate.m */;
+		name = "TedometerAppDelegate.m: 11";
+		rLen = 0;
+		rLoc = 235;
+		rType = 0;
+		vrLen = 1095;
+		vrLoc = 0;
+	};
+	D86DD9921099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 128";
+		rLen = 0;
+		rLoc = 4011;
+		rType = 0;
+		vrLen = 1461;
+		vrLoc = 2824;
+	};
+	D86DD9931099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */;
+		name = "FlipsideViewController.m: 88";
+		rLen = 0;
+		rLoc = 2164;
+		rType = 0;
+		vrLen = 1470;
+		vrLoc = 688;
+	};
+	D86DD9941099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */;
+		name = "FlipsideViewController.m: 53";
+		rLen = 0;
+		rLoc = 1304;
+		rType = 0;
+		vrLen = 1374;
+		vrLoc = 791;
+	};
+	D86DD9951099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 0;
+		rLoc = 6532;
+		rType = 0;
+		vrLen = 2646;
+		vrLoc = 5781;
+	};
+	D86DD9961099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 689;
+	};
+	D86DD9971099F58A00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD9A21099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */;
+		name = "FlipsideViewController.m: 53";
+		rLen = 0;
+		rLoc = 1304;
+		rType = 0;
+		vrLen = 1374;
+		vrLoc = 791;
+	};
+	D86DD9A31099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92610852E7E00518895 /* MeterView.h */;
+		name = "MeterView.h: 33";
+		rLen = 0;
+		rLoc = 667;
+		rType = 0;
+		vrLen = 1406;
+		vrLoc = 0;
+	};
+	D86DD9A41099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 246";
+		rLen = 0;
+		rLoc = 7352;
+		rType = 0;
+		vrLen = 1976;
+		vrLoc = 11618;
+	};
+	D86DD9A51099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 11";
+		rLen = 0;
+		rLoc = 176;
+		rType = 0;
+		vrLen = 1514;
+		vrLoc = 0;
+	};
+	D86DD9A61099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 0;
+		rLoc = 6532;
+		rType = 0;
+		vrLen = 2646;
+		vrLoc = 5781;
+	};
+	D86DD9A71099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 689;
+	};
+	D86DD9A81099F93500C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD9AB1099FCC900C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 473";
+		rLen = 0;
+		rLoc = 16308;
+		rType = 0;
+		vrLen = 2053;
+		vrLoc = 15196;
+	};
+	D86DD9AC1099FCC900C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 466";
+		rLen = 0;
+		rLoc = 15917;
+		rType = 0;
+		vrLen = 2095;
+		vrLoc = 15196;
+	};
+	D86DD9AD1099FCC900C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 0;
+		rLoc = 6532;
+		rType = 0;
+		vrLen = 2646;
+		vrLoc = 5781;
+	};
+	D86DD9AE1099FCC900C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 689;
+	};
+	D86DD9AF1099FCC900C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
+		name = "LiveData.xml: 317";
+		rLen = 0;
+		rLoc = 11627;
+		rType = 0;
+		vrLen = 2719;
+		vrLoc = 0;
+	};
+	D86DD9B61099FD2C00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D89FD92710852E7E00518895 /* MeterView.m */;
+		name = "MeterView.m: 466";
+		rLen = 0;
+		rLoc = 15917;
+		rType = 0;
+		vrLen = 2109;
+		vrLoc = 15196;
+	};
+	D86DD9B71099FD2C00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */;
+		name = "MainViewController.m: 214";
+		rLen = 0;
+		rLoc = 6532;
+		rType = 0;
+		vrLen = 2646;
+		vrLoc = 5781;
+	};
+	D86DD9B81099FD2C00C5135A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D8FBF0B310925B07007FAF98 /* Meter.m */;
+		name = "Meter.m: 67";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 689;
+	};
+	D86DD9B91099FD2C00C5135A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = D81E405E1093B6B4006F0A90 /* LiveData.xml */;
 		name = "LiveData.xml: 317";
@@ -6868,16 +7418,16 @@
 	};
 	D89FD92610852E7E00518895 /* MeterView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1125, 676}}";
-			sepNavSelRange = "{1352, 0}";
-			sepNavVisRange = "{0, 929}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 754}}";
+			sepNavSelRange = "{667, 0}";
+			sepNavVisRange = "{0, 1406}";
 		};
 	};
 	D89FD92710852E7E00518895 /* MeterView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1013, 7787}}";
-			sepNavSelRange = "{10911, 0}";
-			sepNavVisRange = "{9613, 2905}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 7332}}";
+			sepNavSelRange = "{15917, 0}";
+			sepNavVisRange = "{15196, 2109}";
 			sepNavWindowFrame = "{{956, 44}, {852, 918}}";
 		};
 	};
@@ -7004,7 +7554,7 @@
 		fRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */;
 		name = "FlipsideViewController.m: 88";
 		rLen = 0;
-		rLoc = 2162;
+		rLoc = 2164;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 0;
@@ -7289,17 +7839,17 @@
 	};
 	D8FBF0B210925B07007FAF98 /* Meter.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1321, 1300}}";
-			sepNavSelRange = "{2830, 0}";
-			sepNavVisRange = "{839, 2530}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 1313}}";
+			sepNavSelRange = "{2085, 50}";
+			sepNavVisRange = "{885, 2534}";
 			sepNavWindowFrame = "{{262, -53}, {852, 918}}";
 		};
 	};
 	D8FBF0B310925B07007FAF98 /* Meter.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {793, 2639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {793, 2717}}";
 			sepNavSelRange = "{1389, 0}";
-			sepNavVisRange = "{689, 1468}";
+			sepNavVisRange = "{689, 1343}";
 			sepNavWindowFrame = "{{129, 213}, {852, 918}}";
 		};
 	};

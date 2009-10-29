@@ -211,7 +211,7 @@
 	if( isSuccessful ) {
 
 		meterTitle.text = [tedometerData.curMeter.meterTitle uppercaseString];
-		meterLabel.text = [[tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.now] stringByAppendingString:@"/hr"];
+		meterLabel.text =  tedometerData.curMeter.meterReadingString;
 		meterView.meterValue = tedometerData.curMeter.now;
 
 		NSArray* detailLabels = [NSArray arrayWithObjects:lowLabel, avgLabel, peakLabel, totalLabel, projLabel, nil];

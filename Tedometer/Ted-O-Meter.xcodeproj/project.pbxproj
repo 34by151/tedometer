@@ -24,9 +24,11 @@
 		D81E49F710967578006F0A90 /* CostMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E49F610967578006F0A90 /* CostMeter.m */; };
 		D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4A5310967923006F0A90 /* CarbonMeter.m */; };
 		D83ECE0510978DEB00C1F5FA /* translucentButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D83ECE0410978DEB00C1F5FA /* translucentButton.png */; };
-		D86DD668109816B800C5135A /* peak_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD667109816B800C5135A /* peak_arrow.png */; };
-		D86DD68E10981ADC00C5135A /* low_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD68D10981ADC00C5135A /* low_arrow.png */; };
 		D86DD6F710982BF500C5135A /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD6F610982BF500C5135A /* whiteButton.png */; };
+		D86DD888109982E400C5135A /* arrow_avg.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD885109982E400C5135A /* arrow_avg.png */; };
+		D86DD889109982E400C5135A /* arrow_low.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD886109982E400C5135A /* arrow_low.png */; };
+		D86DD88A109982E400C5135A /* arrow_peak.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD887109982E400C5135A /* arrow_peak.png */; };
+		D86DD8D110998D2200C5135A /* VoltageMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */; };
 		D89FD92810852E7E00518895 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89FD92710852E7E00518895 /* MeterView.m */; };
 		D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA0D1085ACB700518895 /* meter_bg_metal.png */; };
 		D89FDA971085C0E800518895 /* meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA961085C0E800518895 /* meter_glare.png */; };
@@ -107,9 +109,12 @@
 		D81E4A5310967923006F0A90 /* CarbonMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarbonMeter.m; sourceTree = "<group>"; };
 		D83ECE0410978DEB00C1F5FA /* translucentButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = translucentButton.png; sourceTree = "<group>"; };
 		D86DD457109792D500C5135A /* whiteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButtonPressed.png; sourceTree = "<group>"; };
-		D86DD667109816B800C5135A /* peak_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peak_arrow.png; sourceTree = "<group>"; };
-		D86DD68D10981ADC00C5135A /* low_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = low_arrow.png; sourceTree = "<group>"; };
 		D86DD6F610982BF500C5135A /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		D86DD885109982E400C5135A /* arrow_avg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_avg.png; sourceTree = "<group>"; };
+		D86DD886109982E400C5135A /* arrow_low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_low.png; sourceTree = "<group>"; };
+		D86DD887109982E400C5135A /* arrow_peak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_peak.png; sourceTree = "<group>"; };
+		D86DD8CF10998D2200C5135A /* VoltageMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoltageMeter.h; sourceTree = "<group>"; };
+		D86DD8D010998D2200C5135A /* VoltageMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoltageMeter.m; sourceTree = "<group>"; };
 		D89013DF10866A43002F9B8F /* Tedometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tedometer.h; sourceTree = "<group>"; };
 		D890148210868696002F9B8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D89FD92610852E7E00518895 /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
@@ -291,6 +296,8 @@
 				D81E49F610967578006F0A90 /* CostMeter.m */,
 				D81E4A5210967923006F0A90 /* CarbonMeter.h */,
 				D81E4A5310967923006F0A90 /* CarbonMeter.m */,
+				D86DD8CF10998D2200C5135A /* VoltageMeter.h */,
+				D86DD8D010998D2200C5135A /* VoltageMeter.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -298,9 +305,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D86DD885109982E400C5135A /* arrow_avg.png */,
+				D86DD886109982E400C5135A /* arrow_low.png */,
+				D86DD887109982E400C5135A /* arrow_peak.png */,
 				D86DD6F610982BF500C5135A /* whiteButton.png */,
-				D86DD68D10981ADC00C5135A /* low_arrow.png */,
-				D86DD667109816B800C5135A /* peak_arrow.png */,
 				D86DD457109792D500C5135A /* whiteButtonPressed.png */,
 				D83ECE0410978DEB00C1F5FA /* translucentButton.png */,
 				D8C4938E1097080D003BDC08 /* icon_full.png */,
@@ -507,9 +515,10 @@
 				D89FDA971085C0E800518895 /* meter_glare.png in Resources */,
 				D8C4938F1097080D003BDC08 /* icon_full.png in Resources */,
 				D83ECE0510978DEB00C1F5FA /* translucentButton.png in Resources */,
-				D86DD668109816B800C5135A /* peak_arrow.png in Resources */,
-				D86DD68E10981ADC00C5135A /* low_arrow.png in Resources */,
 				D86DD6F710982BF500C5135A /* whiteButton.png in Resources */,
+				D86DD888109982E400C5135A /* arrow_avg.png in Resources */,
+				D86DD889109982E400C5135A /* arrow_low.png in Resources */,
+				D86DD88A109982E400C5135A /* arrow_peak.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +579,7 @@
 				D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */,
 				D81E49F710967578006F0A90 /* CostMeter.m in Sources */,
 				D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */,
+				D86DD8D110998D2200C5135A /* VoltageMeter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

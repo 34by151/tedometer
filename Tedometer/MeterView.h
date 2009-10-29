@@ -44,6 +44,8 @@
 - (double) radiansFromMeterZeroForViewPoint:(CGPoint)point;
 - (void) updateTedometerData;
 - (void) drawPointerInContext:(CGContextRef) context atAngle:(double)angle radius:(double)radius width:(double)width length:(double)length;
+- (BOOL) isMeterAbleToDisplayValue:(double) value withUnitsPerTick:(double) unitsPerTickValue andRadiansPerTick:(double) radiansPerTickValue;
+
 
 
 @end

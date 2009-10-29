@@ -32,6 +32,8 @@
 	UILabel *meterTitle;
 	UIActivityIndicatorView *activityIndicator;
 	
+	UIImageView *avgLabelPointerImage;
+	
 	UIButton *todayMonthToggleButton;
 	
 	BOOL shouldAutoRefresh;
@@ -59,6 +61,7 @@
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIButton *todayMonthToggleButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) IBOutlet UIImageView *avgLabelPointerImage;
 
 - (IBAction)showInfo;
 - (IBAction)refreshData;
@@ -67,6 +70,7 @@
 - (IBAction) activateCostMeter;
 - (IBAction) activatePowerMeter;
 - (IBAction) activateCarbonMeter;
+- (IBAction) activateVoltageMeter;
 - (IBAction) nextMeter;
 - (IBAction) toggleTodayMonthStatistics;
 

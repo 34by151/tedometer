@@ -9,6 +9,7 @@
 #import "CarbonMeter.h"
 #import "TouchXML.h"
 #import "CXMLNode-utils.h"
+#import "TedometerData.h"
 
 @implementation CarbonMeter
 
@@ -20,7 +21,7 @@
 }
 
 -(NSInteger) meterMaxValue {
-	return 100000;
+	return 1000000;
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;
@@ -57,22 +58,10 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
 	
-	BOOL isSuccessful = NO; 
-	
-	if( [super refreshDataFromXmlDocument:document] ) {
-
-		CXMLElement *rootElement = [document rootElement];
-		if( rootElement != nil ) {
-			CXMLNode *meterNode = [rootElement childNamed:@"Utility"];
-			if( meterNode != nil ) {
-				CXMLNode *attributeNode = [meterNode childNamed:@"CarbonRate"];
-				if( attributeNode != nil ) {
-					isSuccessful = YES;
-					NSInteger value = [[attributeNode stringValue] integerValue];
-					self.carbonRate = value;
-				}
-			}
-		}
+	BOOL isSuccessful = [super refreshDataFromXmlDocument:document]; 
+	if( isSuccessful ) {
+		isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Utility" 
+											  andNodesKeyedByProperty:[NSDictionary dictionaryWithObject:@"CarbonRate" forKey:@"carbonRate"]];
 	}
 	
 	return isSuccessful;

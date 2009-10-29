@@ -31,6 +31,7 @@
 @synthesize activityIndicator;
 @synthesize toolbar;
 @synthesize todayMonthToggleButton;
+@synthesize avgLabelPointerImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -75,7 +76,8 @@
 	 avgValue.text = @"...";
 	 peakValue.text = @"...";
 	 lowValue.text = @"...";
-	 projValue.text = @"...";
+	 projValue.text = @"";
+	 projLabel.text = @"";
 	 
 	 meterTitle.text = @"";
 	 
@@ -212,31 +214,57 @@
 		meterLabel.text = [[tedometerData.curMeter meterStringForInteger:tedometerData.curMeter.now] stringByAppendingString:@"/hr"];
 		meterView.meterValue = tedometerData.curMeter.now;
 
+		NSArray* detailLabels = [NSArray arrayWithObjects:lowLabel, avgLabel, peakLabel, totalLabel, projLabel, nil];
+		NSArray* detailValueLabels = [NSArray arrayWithObjects: lowValue, avgValue, peakValue, totalValue, projValue, nil];
+		NSArray* meterValueProperties;
+		NSArray* meterLabelProperties;
+		
 		if( isShowingTodayStatistics ) {
-			avgValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.hour];
-			peakValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.todayPeakValue];
-			peakLabel.text = [NSString stringWithFormat:@"Peak (%@)", tedometerData.curMeter.todayPeakTimeString];
-			lowValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.todayMinValue];
-			lowLabel.text = [NSString stringWithFormat:@"Low (%@)", tedometerData.curMeter.todayMinTimeString];
-			totalValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.today];
-			projValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.hour * 24];	// projected daily = hour avg * 24
-			projLabel.text = @"Est. today";
+			meterLabelProperties = [NSArray arrayWithObjects:@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"todayProjectedLabel", nil];
+			meterValueProperties = [NSArray arrayWithObjects:@"todayMinValue", @"todayAverage", @"todayPeakValue", @"todayMinValue", @"", nil];
 		}
 		else {
-			avgValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.today];
-			peakValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.mtdPeakValue];
-			peakLabel.text = [NSString stringWithFormat:@"Peak (%@)", tedometerData.curMeter.mtdPeakTimeString];
-			lowValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.mtdMinValue];
-			lowLabel.text = [NSString stringWithFormat:@"Low (%@)", tedometerData.curMeter.mtdMinTimeString];
-			totalValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.mtd];
-			projValue.text = [tedometerData.curMeter meterStringForInteger: tedometerData.curMeter.projected];	// projected daily = hour avg * 24
-			projLabel.text = @"Est. this month";
+			meterLabelProperties = [NSArray arrayWithObjects:@"mtdLowLabel", @"mtdAverageLabel", @"mtdPeakLabel", @"mtdTotalLabel", @"mtdProjectedLabel", nil];
+			meterValueProperties = [NSArray arrayWithObjects:@"mtdMinValue", @"monthAverage", @"mtdPeakValue", @"mtdMinValue", @"projected", nil];
 		}
+		
+		for( NSInteger i = 0; i < [detailLabels count]; ++i ) {
+			NSString* aMeterLabelProperty = [meterLabelProperties objectAtIndex:i];
+			NSString* aMeterLabelString = [tedometerData.curMeter valueForKey:aMeterLabelProperty];
+			
+			UILabel* aLabel = [detailLabels objectAtIndex:i];
+			UILabel* aValueLabel = [detailValueLabels objectAtIndex:i];
+			
+			if( ! [aMeterLabelString isEqualToString:@""] ) {
+				aLabel.text = aMeterLabelString;
+				NSString* aMeterValueProperty = [meterValueProperties objectAtIndex:i];
+				if( ! [aMeterValueProperty isEqualToString:@""] ) {
+					NSNumber* aValue = [tedometerData.curMeter valueForKey:aMeterValueProperty];
+					if( aValue == nil )
+						aValueLabel.text = @"";
+					else
+						aValueLabel.text = [tedometerData.curMeter meterStringForInteger: [aValue integerValue]];
+				}
+				else {
+					aValueLabel.text = @"";
+				}
+			}
+			else {
+				aLabel.text = @"";
+				aValueLabel.text = @"";
+			}
+		}
+		
+						   
 	}
 	else {
 		// render the meter with the dial on 0
 		meterView.meterValue = 0;
 	}
+
+	// Hide the average pointer image if we don't support averages
+	[avgLabelPointerImage setHidden:[avgLabel.text isEqualToString:@""]];
+
 
 	meterView.meterUpperBound = tedometerData.curMeter.meterMaxValue;
 #endif
@@ -269,6 +297,11 @@ int buttonCount = 0;
 	[self refreshView];
 }
 
+- (IBAction) activateVoltageMeter {
+	[tedometerData activateVoltageMeter];
+	[self refreshView];
+}
+
 - (IBAction)nextMeter {
 	[tedometerData nextMeter];
 	[self refreshView];
@@ -295,6 +328,8 @@ int buttonCount = 0;
 	[todayMonthToggleButton release];
 	[meterView release];
 	[activityIndicator release];
+	[avgLabelPointerImage release];
+	
     [super dealloc];
 	
 }

@@ -7,6 +7,7 @@
 //
 
 #import "CostMeter.h"
+#import "TedometerData.h"
 
 
 @implementation CostMeter
@@ -48,11 +49,10 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	return valueStr;
 }
 
-- (NSString*) xmlDocumentNodeName {
-	return @"Cost";
-}
-
-- (NSDictionary*) xmlDocumentNodeNameToVariableNameConversionsDict {
+- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
+	
+	BOOL isSuccessful = NO; 
+	
 	/*
 	 <Cost>
 	 <Total>
@@ -79,13 +79,30 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	 </Power>
 	 */
 	
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"CostNow",	@"now",
-			@"CostHour",	@"hour",
-			@"CostTDY",	@"today",
-			@"CostMTD",	@"mtd",
-			@"CostProj",	@"projected",
-			nil];
+	NSDictionary* nodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+													  @"CostNow",		@"now",
+													  @"CostHour",		@"hour",
+													  @"CostTDY",		@"today",
+													  @"CostMTD",		@"mtd",
+													  @"CostProj",		@"projected",
+													  @"PeakTdy",		@"todayPeakValue",
+													  @"PeakTdyHour",	@"todayPeakHour",
+													  @"PeakTdyMin",	@"todayPeakMinute",
+													  @"MinTdy",		@"todayMinValue",
+													  @"MinTdyHour",	@"todayMinHour",
+													  @"MinTdyMin",		@"todayMinMinute",
+													  @"PeakMTD",		@"mtdPeakValue",
+													  @"PeakMTDMonth",	@"mtdPeakMonth",
+													  @"PeakMTDDay",	@"mtdPeakDay",
+													  @"MinMTD",		@"mtdMinValue",
+													  @"MinMTDMonth",	@"mtdMinMonth",
+													  @"MinMTDDay",		@"mtdMinDay",
+													  nil];
+	
+	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Cost.Total" 
+										  andNodesKeyedByProperty:nodesKeyedByProperty];
+	
+	return isSuccessful;
 }
 
 - (id) init {

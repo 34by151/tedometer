@@ -10,20 +10,31 @@
 #import "PowerMeter.h"
 #import "CostMeter.h"
 #import "CarbonMeter.h"
+#import "VoltageMeter.h"
 #import "SynthesizeSingleton.h"
+#import "CXMLNode-utils.h"
 
-#define NUM_METERS	3
+#define NUM_METERS	4
 
-#define kPowerMeterIx	0
-#define kCostMeterIdx	1
-#define kCarbonMeterIdx 2
+#define kPowerMeterIx		0
+#define kCostMeterIdx		1
+#define kCarbonMeterIdx 	2
+#define kVoltageMeterIdx	3
 
 @implementation TedometerData
 
 @synthesize meters;
 @synthesize refreshRate;
 @synthesize gatewayHost;
-
+@synthesize gatewayHour;
+@synthesize gatewayMinute;
+@synthesize gatewayMonth;
+@synthesize gatewayDayOfMonth;
+@synthesize gatewayYear;
+@synthesize carbonRate;
+@synthesize currentRate;
+@synthesize meterReadDate;
+@synthesize daysLeftInBillingCycle;
 
 // ----------------------------------------------------------------------
 // From http://www.cocoadev.com/index.pl?SingletonDesignPattern
@@ -71,6 +82,7 @@ static TedometerData *sharedTedometerData = nil;
 					[newMeters addObject: [[[PowerMeter alloc] init] autorelease]];
 					[newMeters addObject: [[[CostMeter alloc] init] autorelease]];
 					[newMeters addObject: [[[CarbonMeter alloc] init] autorelease]];
+					[newMeters addObject: [[[VoltageMeter alloc] init] autorelease]];
 					// TODO: Add other meters
 					self.meters = newMeters;
 					[newMeters release];
@@ -107,8 +119,17 @@ static TedometerData *sharedTedometerData = nil;
 	// on ration of now values of both meters (assume linear relationship).
 	// If now value is 0, do not change (use defaults)
 	
+	
 	Meter *newMeter = [meters objectAtIndex:value];
-	Meter *curMeter = [meters objectAIndex:curMeterIdx];
+	Meter *currentMeter = [meters objectAtIndex:curMeterIdx];
+	
+	// voltage meter doesn't share the same scale
+	if( curMeterIdx != kVoltageMeterIdx && value != kVoltageMeterIdx && newMeter.now > 0 && currentMeter.now > 0 ) {
+
+		// using current radiansPerTick and meter position, calculate new unitsPerTick
+		newMeter.radiansPerTick = currentMeter.radiansPerTick;
+		newMeter.unitsPerTick = newMeter.now * (currentMeter.currentMaxMeterValue / (double) currentMeter.now) * (newMeter.radiansPerTick / (double) meterSpan);
+	}
 	curMeterIdx = value;
 }
 	
@@ -153,6 +174,10 @@ NSString* _archiveLocation;
 	self.curMeterIdx = kCarbonMeterIdx;
 }
 
+- (void) activateVoltageMeter {
+	self.curMeterIdx = kVoltageMeterIdx;
+}
+
 
 - (void) encodeWithCoder:(NSCoder*)encoder {
 	[encoder encodeObject:meters forKey:@"meters"];
@@ -192,11 +217,36 @@ NSString* _archiveLocation;
 }
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
+
 	BOOL isSuccessful = NO;
-	for( Meter *aMeter in self.meters ) {
-		isSuccessful = [aMeter refreshDataFromXmlDocument:document];
-		if( ! isSuccessful )
-			break;
+
+	NSDictionary* gatewayTimeNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+										   @"Hour", @"gatewayHour", 
+										   @"Minute", @"gatewayMinute", 
+										   @"Month", @"gatewayMonth", 
+										   @"Day", @"gatewayDayOfMonth", 
+										   @"Year", @"gatewayYear", 
+										   nil];
+	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"GatewayTime" 
+										  andNodesKeyedByProperty:gatewayTimeNodesKeyedByProperty];
+
+	if( isSuccessful ) {
+		NSDictionary* utilityNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+														 @"CarbonRate", @"carbonRate", 
+														 @"CurrentRate", @"currentRate", 
+														 @"MeterReadDate", @"meterReadDate", 
+														 @"DaysLeftInBillingCycle", @"daysLeftInBillingCycle", 
+														 nil];
+		isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Utility" 
+										   andNodesKeyedByProperty:utilityNodesKeyedByProperty];
+	}
+	
+	if( isSuccessful ) {
+		for( Meter *aMeter in self.meters ) {
+			isSuccessful = [aMeter refreshDataFromXmlDocument:document];
+			if( ! isSuccessful )
+				break;
+		}
 	}
 	return isSuccessful;
 }
@@ -208,5 +258,42 @@ NSString* _archiveLocation;
 	
 	[super dealloc];
 }
+
++ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict {
+	
+	BOOL isSuccessful = NO; 
+	
+	CXMLNode *parentNode = [document rootElement];
+	for( NSString* pathElement in [parentNodePath componentsSeparatedByString:@"."] ) {
+		parentNode = [parentNode childNamed:pathElement];
+		if( parentNode == nil ) {
+			NSLog( @"Could not find node named '%@' in path '%@'.", pathElement, parentNodePath );
+			break;
+		}
+	}
+	
+	if( parentNode ) {
+		isSuccessful = YES;
+		for( NSString *aPropertyName in [nodesKeyedByPropertyDict allKeys] ) {
+			NSString *aNodeName = [nodesKeyedByPropertyDict objectForKey:aPropertyName];
+			CXMLNode *aNode = [parentNode childNamed:aNodeName];
+			if( aNode == nil ) {
+				NSLog(@"Could not find node named '%@' at path '%@'.", aNodeName, parentNodePath);
+				isSuccessful = NO;
+				break;
+			}
+			else {
+			
+				NSInteger aValue = [[aNode stringValue] integerValue];
+				NSNumber *aNumberObject = [[NSNumber alloc] initWithInteger:aValue];
+				[object setValue:aNumberObject forKey:aPropertyName];
+				[aNumberObject release];
+			}
+		}
+	}
+	
+	return isSuccessful;
+}
+
 
 @end

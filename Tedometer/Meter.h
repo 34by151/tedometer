@@ -68,15 +68,24 @@ typedef enum {
 @property(readwrite, assign) double unitsPerTick;
 @property(readonly) NSInteger meterMaxValue;
 @property(readwrite, assign) MeterValueType meterValueType;
-@property(readonly) NSString* xmlDocumentNodeName;
-@property(readonly) NSDictionary* xmlDocumentNodeNameToVariableNameConversionsDict;
-@property(readonly) NSDictionary* defaultXmlDocumentNodeNameToVariableNameConversionsDict;
 @property(readonly) NSString* meterTitle;
 @property(readonly) NSString* todayPeakTimeString;
 @property(readonly) NSString* todayMinTimeString;
 @property(readonly) NSString* mtdPeakTimeString;
 @property(readonly) NSString* mtdMinTimeString;
-
+@property(readonly) double currentMaxMeterValue;
+@property(readonly) NSInteger todayAverage;
+@property(readonly) NSInteger monthAverage;
+@property(readonly) NSString* todayLowLabel;
+@property(readonly) NSString* todayAverageLabel;
+@property(readonly) NSString* todayPeakLabel;
+@property(readonly) NSString* todayTotalLabel;
+@property(readonly) NSString* todayProjectedLabel;
+@property(readonly) NSString* mtdLowLabel;
+@property(readonly) NSString* mtdAverageLabel;
+@property(readonly) NSString* mtdPeakLabel;
+@property(readonly) NSString* mtdTotalLabel;
+@property(readonly) NSString* mtdProjectedLabel;
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;

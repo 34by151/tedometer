@@ -8,7 +8,8 @@
 
 #import "Meter.h"
 #import "CXMLNOde-utils.h"
-
+#import "Tedometer.h"
+#import "TedometerData.h"
 
 @implementation Meter
 
@@ -33,8 +34,72 @@
 @synthesize radiansPerTick;
 @synthesize unitsPerTick;
 
--(NSInteger) meterMaxValue {
-	return 1000;
+static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+- (NSString*) todayLowLabel {
+	return [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString];
+}
+
+- (NSString*) todayAverageLabel {
+	return @"Average";
+}
+
+- (NSString*) todayPeakLabel {
+	return [NSString stringWithFormat:@"Peak (%@)", self.todayPeakTimeString];
+}
+
+- (NSString*) todayTotalLabel {
+	return @"Total";
+}
+
+- (NSString*) todayProjectedLabel {
+	return @"";
+}
+
+- (NSString*) mtdLowLabel {
+	return [NSString stringWithFormat:@"Low (%@)", self.mtdMinTimeString];
+}
+
+- (NSString*) mtdAverageLabel {
+	return @"Average";
+}
+
+- (NSString*) mtdPeakLabel {
+	return [NSString stringWithFormat:@"Peak (%@)", self.mtdPeakTimeString];
+}
+
+- (NSString*) mtdTotalLabel {
+	return @"Total";
+}
+
+- (NSString*) mtdProjectedLabel {
+	return @"Est. Monthly Total";
+}
+
+- (NSInteger) meterMaxValue {
+	return 10000;
+}
+
+- (NSInteger) todayAverage {
+	TedometerData *tedometerData = [TedometerData sharedTedometerData];
+	NSInteger hoursSoFar = (tedometerData.gatewayHour + tedometerData.gatewayMinute/60.0);
+	return hoursSoFar == 0 ? 0 : self.today / hoursSoFar;
+}
+
+- (NSInteger) monthAverage {
+	TedometerData *tedometerData = [TedometerData sharedTedometerData];
+	
+	NSInteger fullDaysThisMonth = daysInMonths[ tedometerData.gatewayMonth - 1 ];
+	NSInteger fullDaysSoFar = MAX(0, fullDaysThisMonth - tedometerData.daysLeftInBillingCycle);
+	NSInteger hoursSoFar = fullDaysSoFar * 24 + tedometerData.gatewayHour;
+	
+	return hoursSoFar == 0 ? 0 : self.mtd / hoursSoFar;
+}
+
+
+- (double) currentMaxMeterValue {
+	double numTicks = meterSpan / radiansPerTick; 
+	return numTicks * unitsPerTick;
 }
 
 - (NSString*) meterTitle {
@@ -109,74 +174,12 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 	return [NSString stringWithFormat:@"%0i", value];
 }
 
-- (NSString*) xmlDocumentNodeName {
-	[self doesNotRecognizeSelector:_cmd];
-	return nil;
-}
-
-
-- (NSDictionary*) xmlDocumentNodeNameToVariableNameConversionsDict {
-	[self doesNotRecognizeSelector:_cmd];
-	return nil;
-}
-
-- (NSDictionary*) defaultXmlDocumentNodeNameToVariableNameConversionsDict {
-	
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"PeakTdy",			@"todayPeakValue",
-			@"PeakTdyHour",		@"todayPeakHour",
-			@"PeakTdyMin",		@"todayPeakMinute",
-			@"MinTdy",			@"todayMinValue",
-			@"MinTdyHour",		@"todayMinHour",
-			@"MinTdyMin",		@"todayMinMinute",
-			@"PeakMTD",			@"mtdPeakValue",
-			@"PeakMTDMonth",	@"mtdPeakMonth",
-			@"PeakMTDDay",		@"mtdPeakDay",
-			@"MinMTD",			@"mtdMinValue",
-			@"MinMTDMonth",		@"mtdMinMonth",
-			@"MinMTDDay",		@"mtdMinDay",
-			nil];
-}
-
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
 	
-	BOOL isSuccessful = NO; 
-	
-	
-	NSDictionary* nodeDict = self.xmlDocumentNodeNameToVariableNameConversionsDict;
-	NSDictionary* defaultNodeDict = self.defaultXmlDocumentNodeNameToVariableNameConversionsDict;
-	NSMutableArray* attributesToLoad = [NSMutableArray arrayWithArray: [defaultNodeDict allKeys]];
-	[attributesToLoad addObjectsFromArray:[nodeDict allKeys]];
-	
-	
-	CXMLElement *rootElement = [document rootElement];
-	if( rootElement != nil ) {
-		CXMLNode *meterNode = [rootElement childNamed:self.xmlDocumentNodeName];
-		if( meterNode != nil ) {
-			CXMLNode *totalNode = [meterNode childNamed:@"Total"];
-			if( totalNode != nil ) {
-				for( NSString *aKey in attributesToLoad ) {
-					NSString *nodeName = [nodeDict valueForKey:aKey];
-					if( nodeName == nil ) {
-						nodeName = [defaultNodeDict valueForKey:aKey];
-					}
-					if( nodeName ) {
-						CXMLNode *attributeNode = [totalNode childNamed:nodeName];
-						if( attributeNode != nil ) {
-							isSuccessful = YES;
-							NSInteger value = [[attributeNode stringValue] integerValue];
-							NSNumber *numberObject = [[NSNumber alloc ]initWithInteger:value];
-							[self setValue: numberObject forKey:aKey];
-							[numberObject release];
-						}
-					}
-				}
-			}
-		}
-	}
-		
-	return isSuccessful;
+	[self doesNotRecognizeSelector:_cmd];
+	return NO;
 }
+
 
 -(void)dealloc {
 	[super dealloc];

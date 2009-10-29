@@ -7,7 +7,7 @@
 //
 
 #import "PowerMeter.h"
-
+#import "TedometerData.h"
 
 @implementation PowerMeter
 
@@ -16,7 +16,7 @@
 }
 
 -(NSInteger) meterMaxValue {
-	return 10000;
+	return 100000;
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;
@@ -50,11 +50,10 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	return [valueStr stringByAppendingString:@" kW"];
 }
 
-- (NSString*) xmlDocumentNodeName {
-	return @"Power";
-}
-
-- (NSDictionary*) xmlDocumentNodeNameToVariableNameConversionsDict {
+- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
+	
+	BOOL isSuccessful = NO; 
+	
 	/*
 	 <Power>
 	 <Total>
@@ -81,13 +80,30 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	 </Power>
 	 */
 	
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"PowerNow",	@"now",
-			@"PowerHour",	@"hour",
-			@"PowerTDY",	@"today",
-			@"PowerMTD",	@"mtd",
-			@"PowerProj",	@"projected",
-			nil];
+	NSDictionary* nodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+													  @"PowerNow",		@"now",
+													  @"PowerHour",		@"hour",
+													  @"PowerTDY",		@"today",
+													  @"PowerMTD",		@"mtd",
+													  @"PowerProj",		@"projected",
+													  @"PeakTdy",		@"todayPeakValue",
+													  @"PeakTdyHour",	@"todayPeakHour",
+													  @"PeakTdyMin",	@"todayPeakMinute",
+													  @"MinTdy",		@"todayMinValue",
+													  @"MinTdyHour",	@"todayMinHour",
+													  @"MinTdyMin",		@"todayMinMinute",
+													  @"PeakMTD",		@"mtdPeakValue",
+													  @"PeakMTDMonth",	@"mtdPeakMonth",
+													  @"PeakMTDDay",	@"mtdPeakDay",
+													  @"MinMTD",		@"mtdMinValue",
+													  @"MinMTDMonth",	@"mtdMinMonth",
+													  @"MinMTDDay",		@"mtdMinDay",
+													  nil];
+	
+	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Power.Total" 
+									  andNodesKeyedByProperty:nodesKeyedByProperty];
+	
+	return isSuccessful;
 }
 
 - (id) init {

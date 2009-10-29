@@ -18,7 +18,7 @@
 
 
 // slider range must be 0 to num elts -1 (0-10)
-NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
+static NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
 
 NSInteger secondsToSliderValue( NSInteger seconds ) {
 	NSInteger numItems = sizeof( sliderToSeconds ) / sizeof( NSInteger );

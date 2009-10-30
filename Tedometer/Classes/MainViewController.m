@@ -93,14 +93,46 @@
 											  selector:@selector(applicationWillResignActive:)
 												  name:UIApplicationWillResignActiveNotification object:nil];
 
+	 // Enable battery monitoring so we received the above notification
+	 [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+	 
 	 [[NSNotificationCenter defaultCenter] addObserver:self
 											  selector:@selector(applicationDidBecomeActive:)
 												  name:UIApplicationDidBecomeActiveNotification object:nil];
+	 
+	 
+	 [[NSNotificationCenter defaultCenter] addObserver:self
+											  selector:@selector(batteryStateDidChange:)
+												  name:UIDeviceBatteryStateDidChangeNotification object:nil];
 	 
 	 [self refreshData];
 	 
 	 [super viewDidLoad];
  }
+
+- (void)showAlertMessage:(NSString*) message withTitle:(NSString*)title {
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+- (void) updateIdleTimerState {
+	
+	UIDevice *device = [UIDevice currentDevice];
+	if( device.batteryState == UIDeviceBatteryStateCharging || device.batteryState == UIDeviceBatteryStateFull ) {
+		
+		// The device is plugged in
+		[UIApplication sharedApplication].idleTimerDisabled = tedometerData.isAutolockDisabledWhilePluggedIn;
+	}
+	else {
+		// The device is unplugged
+		[UIApplication sharedApplication].idleTimerDisabled = NO;	
+	}
+}
+
+- (void)batteryStateDidChange:(NSNotification *) notification {
+	[self updateIdleTimerState];
+}
 
 - (void) applicationWillResignActive: (NSNotification*)notification {
 	isApplicationInactive = YES;
@@ -140,12 +172,16 @@
 
 	[TedometerData archiveToDocumentsFolder];
 	
-	[self dismissModalViewControllerAnimated:YES];
+	[self updateIdleTimerState];
 	
+	[self dismissModalViewControllerAnimated:YES];
+
 	if( needsInitialRefresh || tedometerData.refreshRate != -1.0 )
 		[self refreshData];
 	
 	shouldAutoRefresh = YES;
+	
+	
 	// refresh will get called in viewDidAppear:
 }
 
@@ -180,6 +216,9 @@
 }
 
 - (void)viewDidUnload {
+	
+	[UIDevice currentDevice].batteryMonitoringEnabled = NO;
+
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }

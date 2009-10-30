@@ -35,6 +35,7 @@
 @synthesize currentRate;
 @synthesize meterReadDate;
 @synthesize daysLeftInBillingCycle;
+@synthesize isAutolockDisabledWhilePluggedIn;
 
 // ----------------------------------------------------------------------
 // From http://www.cocoadev.com/index.pl?SingletonDesignPattern
@@ -184,6 +185,7 @@ NSString* _archiveLocation;
 	[encoder encodeInteger:refreshRate forKey:@"refreshRate"];
 	[encoder encodeObject:gatewayHost forKey:@"gatewayHost"];
 	[encoder encodeInteger:curMeterIdx forKey:@"curMeterIdx"];
+	[encoder encodeBool:isAutolockDisabledWhilePluggedIn forKey:@"isAutolockDisabledWhilePluggedIn"];
 }
 
 - (id) initWithCoder:(NSCoder*)decoder {
@@ -192,6 +194,7 @@ NSString* _archiveLocation;
 		self.refreshRate = [decoder decodeIntegerForKey:@"refreshRate"];
 		self.gatewayHost = [decoder decodeObjectForKey:@"gatewayHost"];
 		self.curMeterIdx = [decoder decodeIntegerForKey:@"curMeterIdx"];
+		self.isAutolockDisabledWhilePluggedIn = [decoder decodeBoolForKey:@"isAutolockDisabledWhilePluggedIn"];
 	}
 	return self;
 }

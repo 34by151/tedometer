@@ -17,12 +17,15 @@
 	UISlider *refreshRateSlider;
 	UILabel *refreshRateLabel;
 	TedometerData *tedometerData;
+	UISwitch *disableAutolockWhilePluggedIn;
 }
 
 @property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UITextField *gatewayAddress;
 @property (nonatomic, retain) IBOutlet UISlider *refreshRateSlider;
 @property (nonatomic, retain) IBOutlet UILabel *refreshRateLabel;
+@property (nonatomic, retain) IBOutlet UISwitch *disableAutolockWhilePluggedIn;
+
 
 - (IBAction)done;
 - (IBAction)textFieldDoneEditing:(id)sender;

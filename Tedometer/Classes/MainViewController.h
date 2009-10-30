@@ -77,9 +77,11 @@
 - (IBAction) activateVoltageMeter;
 - (IBAction) nextMeter;
 - (IBAction) toggleTodayMonthStatistics;
+- (void) updateIdleTimerState;
 
 - (void) applicationWillResignActive: (NSNotification*)notification;
 - (void) applicationDidBecomeActive: (NSNotification*)notification;
+- (void)batteryStateDidChange:(NSNotification *) notification;
 
 
 @end

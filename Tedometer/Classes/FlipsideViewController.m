@@ -15,6 +15,7 @@
 @synthesize gatewayAddress;
 @synthesize refreshRateSlider;
 @synthesize refreshRateLabel;
+@synthesize disableAutolockWhilePluggedIn;
 
 
 // slider range must be 0 to num elts -1 (0-10)
@@ -54,6 +55,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 
 	gatewayAddress.text = tedometerData.gatewayHost;
 	refreshRateSlider.value = secondsToSliderValue( tedometerData.refreshRate );
+	disableAutolockWhilePluggedIn.on = tedometerData.isAutolockDisabledWhilePluggedIn;
 
 	[self updateRefreshRateLabel: refreshRateSlider];
 }
@@ -89,6 +91,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 - (IBAction)done {
 	tedometerData.gatewayHost = gatewayAddress.text;
 	tedometerData.refreshRate = sliderValueToSeconds( refreshRateSlider.value );
+	tedometerData.isAutolockDisabledWhilePluggedIn = disableAutolockWhilePluggedIn.on;
 	
 	[self.delegate flipsideViewControllerDidFinish:self];	
 }

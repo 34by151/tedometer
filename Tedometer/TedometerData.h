@@ -24,6 +24,7 @@
 	NSInteger currentRate;
 	NSInteger meterReadDate;
 	NSInteger daysLeftInBillingCycle;
+	BOOL isAutolockDisabledWhilePluggedIn;
 	
 }
 
@@ -39,6 +40,7 @@
 @property(readwrite, assign) NSInteger currentRate;
 @property(readwrite, assign) NSInteger meterReadDate;
 @property(readwrite, assign) NSInteger daysLeftInBillingCycle;
+@property(readwrite, assign) BOOL isAutolockDisabledWhilePluggedIn;
 
 
 //@property(readwrite, assign) NSInteger curMeterIdx;

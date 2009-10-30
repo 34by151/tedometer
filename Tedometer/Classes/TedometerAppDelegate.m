@@ -30,7 +30,11 @@
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
 	[window addSubview:[mainViewController view]];
     [window makeKeyAndVisible];
+
 }
+
+
+
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[TedometerData archiveToDocumentsFolder];

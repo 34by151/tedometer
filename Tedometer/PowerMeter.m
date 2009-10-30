@@ -15,8 +15,12 @@
 	return @"Power";
 }
 
--(NSInteger) meterMaxValue {
-	return 100000;
+- (NSInteger) meterEndMax {
+	return 100 * 1000;	// 100 
+}
+
+- (NSInteger) meterEndMin {
+	return (NSInteger) 1000;	// 1
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;

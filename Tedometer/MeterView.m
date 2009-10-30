@@ -6,9 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#import <math.h>
 #import "MeterView.h"
 #import "Tedometer.h"
-#import <math.h>
 
 @implementation MeterView
 
@@ -91,14 +91,20 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 
 - (void)awakeFromNib {
 
+#ifdef DRAW_FOR_ICON_SCREENSHOT
+	drawForIconScreenshot = YES;
+#else
+	drawForIconScreenshot = NO;
+#endif
+	
 	tedometerData = [TedometerData sharedTedometerData];
 
 	meterValue = 0;
 	
-	meterUpperBound = [[tedometerData curMeter] meterMaxValue];
-	meterLowerBound = 10;
-	unitsPerTick = [[tedometerData curMeter] unitsPerTick];
-	radiansPerTick = [[tedometerData curMeter] radiansPerTick];
+	meterUpperBound = tedometerData.curMeter.meterEndMax;
+	meterLowerBound = tedometerData.curMeter.meterEndMin;
+	unitsPerTick = tedometerData.curMeter.unitsPerTick;
+	radiansPerTick = tedometerData.curMeter.radiansPerTick;
 	isDialBeingDragged = NO;
 	isResizeAnimationInProgress = NO;
 	isShowingTodayStatistics = YES;
@@ -112,8 +118,10 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	unitsPerTick = [[tedometerData curMeter] unitsPerTick];
-	radiansPerTick = [[tedometerData curMeter] radiansPerTick];
+	meterUpperBound = tedometerData.curMeter.meterEndMax;
+	meterLowerBound = tedometerData.curMeter.meterEndMin;
+	unitsPerTick = tedometerData.curMeter.unitsPerTick;
+	radiansPerTick = tedometerData.curMeter.radiansPerTick;
 	
 	if( radiansPerTick == 0 )
 		radiansPerTick = M_PI / 10.0;
@@ -239,39 +247,39 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 	
 
 
-#ifndef DRAW_FOR_ICON_SCREENSHOT
+	if( ! drawForIconScreenshot ) {
 	
-	// draw tick labels
-	if( meterValue > 0.0 ) {
+		// draw tick labels
+		if( meterValue > 0.0 ) {
 
-		if( unitsPerTick > 0 && radiansPerTick > 0 ) {
-			CGContextSaveGState(context);
-			CGContextScaleCTM(context, 1.0, -1.0);
-			
-			
-			double labelGap = 8;
-			UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
-			UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
-
-			[textColor set];
-			
-			for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+			if( unitsPerTick > 0 && radiansPerTick > 0 ) {
+				CGContextSaveGState(context);
+				CGContextScaleCTM(context, 1.0, -1.0);
 				
-				double curRad = curTick * drawRadiansPerTick;
-				double labelValue = curTick * drawUnitsPerTick;
-				NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
-				CGSize labelSize = [label sizeWithFont: font];
-				double angle = radOffset - curRad;
-				double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
-				labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
-				double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
-				double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
-				[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+				
+				double labelGap = 8;
+				UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
+				UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+
+				[textColor set];
+				
+				for( int curTick = 0; curTick <= numArcTicks; ++curTick ) {
+					
+					double curRad = curTick * drawRadiansPerTick;
+					double labelValue = curTick * drawUnitsPerTick;
+					NSString *label = [[tedometerData curMeter]tickLabelStringForInteger: labelValue];
+					CGSize labelSize = [label sizeWithFont: font];
+					double angle = radOffset - curRad;
+					double labelCenterRadius = (meterRadius - edgeWidth - tickLength - labelGap);
+					labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
+					double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
+					double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
+					[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+				}
+				CGContextStrokePath(context);
+				CGContextRestoreGState(context);
 			}
-			CGContextStrokePath(context);
-			CGContextRestoreGState(context);
 		}
-#endif
 	
 
 		double pointerWidth = 10.0;
@@ -288,7 +296,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		double lowAngle = 0;
 		double overlapOffset = (0.5 * M_PI / 180.0);	// if values overlap, displace them by half a degree 
 		
-		if( [self isMeterAbleToDisplayValue:peakValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
+		if( peakValue > 0 && [self isMeterAbleToDisplayValue:peakValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
 			peakAngle = [self angleForValue:peakValue];
 			CGContextSetRGBFillColor( context, 0.98, 0.62, 0.23, 1.0 );	// yellow
 #ifdef DRAW_FOR_PEAK_POINTER_SCREENSHOT
@@ -299,7 +307,7 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 #endif
 		}
 
-		if( [self isMeterAbleToDisplayValue:lowValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
+		if( peakValue > 0 && [self isMeterAbleToDisplayValue:lowValue withUnitsPerTick:drawUnitsPerTick andRadiansPerTick:drawRadiansPerTick] ) {
 			lowAngle = [self angleForValue:lowValue];
 			if( peakValue > 0 && ABS(peakAngle - lowAngle) < 2.0 * overlapOffset )
 				lowAngle += 2.0 * overlapOffset;
@@ -331,13 +339,16 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		
 	}
 
+
 	// draw dial
+	
+	
+	
 	float dialAngle;
-#ifdef DRAW_FOR_ICON_SCREENSHOT
-	dialAngle = M_PI - M_PI/3.0;
-#else
-	dialAngle = [self dialAngle];
-#endif
+	if( drawForIconScreenshot )
+		dialAngle = M_PI - M_PI/3.0;
+	else
+		dialAngle = [self dialAngle];
 	
 	CGContextSaveGState(context);
 	CGContextRotateCTM(context, dialAngle);
@@ -441,6 +452,9 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		radiansPerTickWhenTouchesBegan = radiansPerTick;
 		meterOffsetFromZeroWhenTouchesBegan = meterRadiansFromZeroForLocation;
 		numTouchRevolutionsWhileDragging = 0;
+		radiansDragged = 0;
+		radiansDraggedWhenHitUpperBound = 0;
+		radiansDraggedwhenHitLowerBound = 0;
 		[self setNeedsDisplay];
 	}
 	
@@ -463,30 +477,57 @@ double angleBetweenPoints( CGPoint origin, CGPoint p1, CGPoint p2 ) {
 		CGPoint locationPolar = [self polarCoordFromViewPoint:location];
 		CGPoint prevLocationPolar = [self polarCoordFromViewPoint:prevLocation];
 
-		if( prevLocationPolar.y > 1.5 * M_PI && locationPolar.y < 1.5 * M_PI ) {
-			// dragged clockwise across bottom of meter
-			numTouchRevolutionsWhileDragging += 1;
+		double radianDelta = prevLocationPolar.y - locationPolar.y;
+		if( radianDelta < - M_PI ) {
+			// we jumped more than halfway around; assume we crossed 0 going clockwise
+			radianDelta += 2 * M_PI;
 		}
-		else if( prevLocationPolar.y < 1.5 * M_PI && locationPolar.y > 1.5 * M_PI ) {
-			// dragged counter-clockwise across bottom of meter
-			numTouchRevolutionsWhileDragging -= 1;
+		else if( radianDelta > M_PI ) {
+			// we jumped more than halfway around; assume we crossed 0 going counter-clockwise
+			radianDelta -= 2*M_PI;
 		}
 		
-		//double touchAngleInView = [self ang
-		double touchAngle = [self radiansFromMeterZeroForViewPoint:location];
-		
-		if( touchAngle > (2*M_PI - (meterGap / 2.0)) )
-			touchAngle = 0;
-		
+		radiansDragged += radianDelta;
+
 		double ticksToTouchAngleWhenTouchesBegan = meterOffsetFromZeroWhenTouchesBegan / radiansPerTickWhenTouchesBegan;
-		double newRadiansPerTick = touchAngle / ticksToTouchAngleWhenTouchesBegan;
-		
+		double newRadiansPerTick = (meterOffsetFromZeroWhenTouchesBegan + radiansDragged) / ticksToTouchAngleWhenTouchesBegan;
+	
 		double numTicks = meterSpan / newRadiansPerTick;
+		//double numTicks = (meterOffsetFromZeroWhenTouchesBegan + radiansDragged) / radiansPerTick;
 		BOOL exceedsUpperBound = numTicks * unitsPerTick > meterUpperBound;
 		BOOL exceedsLowerBound = numTicks * unitsPerTick < meterLowerBound;
+		
+		
+		// TODO: Fix so that if dragginb beyond boundaries, we only count one revolution around 
+		// (so you don't have to unwind several times before the mete starts dragging again the other direction)
+		// nh 10/29/09: I'm having a hard time getting my head around the math here...
+		
+		//NSLog( @"Num ticks: %f, num units: %f, meterUpperBound: %f", numTicks, numTicks * unitsPerTick, meterUpperBound );
 		if( ! exceedsUpperBound && ! exceedsLowerBound ) {
 			radiansPerTick = newRadiansPerTick;
+			if( radiansDraggedWhenHitUpperBound != 0 || radiansDraggedwhenHitLowerBound != 0 ) {
+				//NSLog(@"No longer outside boundaries.");
+				radiansDraggedWhenHitUpperBound = 0.0;		// if we previously exceeded the upper bound, we don't anymore
+				radiansDraggedwhenHitLowerBound = 0.0;
+			}
 		}
+		else {
+			//NSLog(@"Dragging outside boundaries. Exceeds upper? %i Exceeds lower? %i", exceedsUpperBound, exceedsLowerBound );
+			if( exceedsUpperBound ) {
+				if( radiansDraggedWhenHitUpperBound == 0.0 ) {
+					//NSLog( @"Meter upper bound reached!" );
+					radiansDraggedWhenHitUpperBound = radiansDragged;
+				}
+				
+			}
+			else if( exceedsLowerBound ) {
+				if( radiansDraggedwhenHitLowerBound == 0.0 ) {
+					//NSLog( @"Meter lower bound reached!" );
+					radiansDraggedwhenHitLowerBound = numTicks * radiansPerTick;
+				}
+			}
+		}
+
 				
 		[self setNeedsDisplay];
 	}

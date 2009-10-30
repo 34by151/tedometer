@@ -31,6 +31,11 @@
 	TedometerData *tedometerData;
 	
 	NSInteger numTouchRevolutionsWhileDragging;
+	double radiansDragged;
+	double radiansDraggedWhenHitUpperBound;
+	double radiansDraggedwhenHitLowerBound;
+	
+	BOOL drawForIconScreenshot;
 }
 
 @property (nonatomic, assign) double meterValue;

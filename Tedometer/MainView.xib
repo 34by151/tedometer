@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="61"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -221,8 +221,8 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Average</string>
-						<object class="NSFont" key="IBUIFont" id="1035774887">
-							<string key="NSName">Helvetica</string>
+						<object class="NSFont" key="IBUIFont" id="683143913">
+							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -247,7 +247,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Low</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40MDQyNjEyOTEgMC40Mzg5MzQ1MzQ4IDEAA</bytes>
@@ -269,7 +269,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Peak</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<object class="NSColor" key="IBUITextColor" id="435748028">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC45NzI1NDkwODA4IDAuNjE1Njg2Mjk3NCAwLjIzNTI5NDEzMzQAA</bytes>
@@ -291,7 +291,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Total</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<reference key="IBUITextColor" ref="578579187"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -310,7 +310,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">...</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40MDQyNjEyOTEgMC40Mzg5MzQ1MzQ4IDEAA</bytes>
@@ -333,7 +333,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">...</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<reference key="IBUITextColor" ref="578579187"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -402,7 +402,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">...</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<reference key="IBUITextColor" ref="435748028"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -422,7 +422,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">...</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC41OTUxNjA1NjI2IDAuNzcgMC4xOTI1AA</bytes>
@@ -496,7 +496,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Est. Today</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<reference key="IBUITextColor" ref="578579187"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -515,7 +515,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">...</string>
-						<reference key="IBUIFont" ref="1035774887"/>
+						<reference key="IBUIFont" ref="683143913"/>
 						<reference key="IBUITextColor" ref="578579187"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>

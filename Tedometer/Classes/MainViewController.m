@@ -85,6 +85,10 @@
 	 [self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 2.0];
 
 	 tedometerData = [TedometerData sharedTedometerData];
+	 hasShownFlipsideThisSession = NO;
+	 
+	 [self refreshData];
+	 
 	 [super viewDidLoad];
  }
 
@@ -97,7 +101,7 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[self refreshView];
 	
-	if( tedometerData.refreshRate == -1.0 ) {
+	if( tedometerData.refreshRate != -1.0 ) {
 		[self refreshData];
 	}
 	[super viewDidAppear:animated];
@@ -114,9 +118,16 @@
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
 
+	BOOL needsInitialRefresh = ! hasShownFlipsideThisSession;
+	hasShownFlipsideThisSession = YES;
+
 	[TedometerData archiveToDocumentsFolder];
 	
 	[self dismissModalViewControllerAnimated:YES];
+	
+	if( needsInitialRefresh || tedometerData.refreshRate != -1.0 )
+		[self refreshData];
+	
 	shouldAutoRefresh = YES;
 	// refresh will get called in viewDidAppear:
 }
@@ -204,6 +215,10 @@
 
 #ifndef DRAW_FOR_ICON_SCREENSHOT
 	
+	if( ! hasShownFlipsideThisSession && (tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""]) ) {
+		[self showInfo];
+	}
+	
 	@synchronized( self ) {
 		if( document ) 
 			isSuccessful = [tedometerData refreshDataFromXmlDocument:document];
@@ -221,11 +236,11 @@
 		
 		if( isShowingTodayStatistics ) {
 			meterLabelProperties = [NSArray arrayWithObjects:@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"todayProjectedLabel", nil];
-			meterValueProperties = [NSArray arrayWithObjects:@"todayMinValue", @"todayAverage", @"todayPeakValue", @"todayMinValue", @"", nil];
+			meterValueProperties = [NSArray arrayWithObjects:@"todayMinValue", @"todayAverage", @"todayPeakValue", @"today", @"", nil];
 		}
 		else {
 			meterLabelProperties = [NSArray arrayWithObjects:@"mtdLowLabel", @"mtdAverageLabel", @"mtdPeakLabel", @"mtdTotalLabel", @"mtdProjectedLabel", nil];
-			meterValueProperties = [NSArray arrayWithObjects:@"mtdMinValue", @"monthAverage", @"mtdPeakValue", @"mtdMinValue", @"projected", nil];
+			meterValueProperties = [NSArray arrayWithObjects:@"mtdMinValue", @"monthAverage", @"mtdPeakValue", @"mtd", @"projected", nil];
 		}
 		
 		for( NSInteger i = 0; i < [detailLabels count]; ++i ) {
@@ -265,8 +280,6 @@
 	// Hide the average pointer image if we don't support averages
 	[avgLabelPointerImage setHidden:[avgLabel.text isEqualToString:@""]];
 
-
-	meterView.meterUpperBound = tedometerData.curMeter.meterMaxValue;
 #endif
 	[meterView setNeedsDisplay];
 	

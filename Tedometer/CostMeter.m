@@ -16,8 +16,12 @@
 	return @"Cost";
 }
 
--(NSInteger) meterMaxValue {
-	return 10000;
+- (NSInteger) meterEndMax {
+	return 100 * 100;	// $100 
+}
+
+- (NSInteger) meterEndMin {
+	return (NSInteger) (0.10 * 100);	// $0.10
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;

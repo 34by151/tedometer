@@ -43,6 +43,8 @@
 	TedometerData *tedometerData;
 	
 	BOOL isShowingTodayStatistics;
+	
+	BOOL hasShownFlipsideThisSession;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *avgValue;

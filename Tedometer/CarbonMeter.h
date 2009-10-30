@@ -15,5 +15,5 @@
 	NSInteger carbonRate;
 }
 
-@property(nonatomic, assign) NSInteger carbonRate;
+@property(nonatomic, readwrite) NSInteger carbonRate;
 @end

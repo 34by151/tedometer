@@ -37,8 +37,12 @@
 }
 
 
--(NSInteger) meterMaxValue {
-	return 100000;
+- (NSInteger) meterEndMax {
+	return 1000 * 10;
+}
+
+- (NSInteger) meterEndMin {
+	return 10 * 10;	
 }
 
 - (NSString*) meterReadingString {

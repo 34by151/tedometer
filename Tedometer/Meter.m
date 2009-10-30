@@ -73,11 +73,17 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 }
 
 - (NSString*) mtdProjectedLabel {
-	return @"Est. Monthly Total";
+	return @"Est. Month Total";
 }
 
-- (NSInteger) meterMaxValue {
-	return 10000;
+- (NSInteger) meterEndMax {
+	[self doesNotRecognizeSelector:_cmd];
+	return 0;
+}
+
+- (NSInteger) meterEndMin {
+	[self doesNotRecognizeSelector:_cmd];
+	return 0;
 }
 
 - (NSString*) meterReadingString {

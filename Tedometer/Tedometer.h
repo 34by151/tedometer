@@ -7,8 +7,8 @@
  *
  */
 
-
-//#define DRAW_FOR_ICON_SCREENSHOT		// turns off tick labels, leaves "Ted-O-Meter"
+// turns off tick labels, leaves "Ted-O-Meter"
+//#define DRAW_FOR_ICON_SCREENSHOT		
 
 // Meter sizing
 #define meterGap (M_PI * 2/3)
@@ -16,6 +16,6 @@
 #define meterSpan (2*M_PI - meterGap)
 #define touchThresholdAngle (M_PI / 10)
 #define touchThresholdRadius 10
-#define minRadiansPerTick (M_PI / 10)
+#define minRadiansPerTick (M_PI / 7)
 #define maxRadiansPerTick (M_PI / 5)
 

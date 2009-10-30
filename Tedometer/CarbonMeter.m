@@ -13,15 +13,30 @@
 
 @implementation CarbonMeter
 
-@synthesize carbonRate;
-
 
 - (NSString*) meterTitle {
 	return @"CO2";
 }
 
--(NSInteger) meterMaxValue {
-	return 1000000;
+
+- (NSInteger) carbonRate {
+	if( carbonRate == 0 )
+		carbonRate = 524;	// initial default taken from http://www.pge.com/myhome/environment/calculator/assumptions.shtml
+	
+	return carbonRate;
+}
+
+- (void) setCarbonRate:(NSInteger) value {
+	carbonRate = value;
+}
+
+
+- (NSInteger) meterEndMax {
+	return 100 * 100000 / self.carbonRate; 
+}
+
+- (NSInteger) meterEndMin {
+	return 1 * 100000 / self.carbonRate;	
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;

@@ -115,6 +115,8 @@
 		D86DD887109982E400C5135A /* arrow_peak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_peak.png; sourceTree = "<group>"; };
 		D86DD8CF10998D2200C5135A /* VoltageMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoltageMeter.h; sourceTree = "<group>"; };
 		D86DD8D010998D2200C5135A /* VoltageMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoltageMeter.m; sourceTree = "<group>"; };
+		D86DDBAB109A4B8000C5135A /* logo_512.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = logo_512.tif; sourceTree = "<group>"; };
+		D86DDBB5109A4C9200C5135A /* icon_full_inset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_full_inset.png; sourceTree = "<group>"; };
 		D89013DF10866A43002F9B8F /* Tedometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tedometer.h; sourceTree = "<group>"; };
 		D890148210868696002F9B8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D89FD92610852E7E00518895 /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
@@ -305,12 +307,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D86DDBAB109A4B8000C5135A /* logo_512.tif */,
 				D86DD885109982E400C5135A /* arrow_avg.png */,
 				D86DD886109982E400C5135A /* arrow_low.png */,
 				D86DD887109982E400C5135A /* arrow_peak.png */,
 				D86DD6F610982BF500C5135A /* whiteButton.png */,
 				D86DD457109792D500C5135A /* whiteButtonPressed.png */,
 				D83ECE0410978DEB00C1F5FA /* translucentButton.png */,
+				D86DDBB5109A4C9200C5135A /* icon_full_inset.png */,
 				D8C4938E1097080D003BDC08 /* icon_full.png */,
 				D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */,
 				D890148210868696002F9B8F /* icon.png */,
@@ -631,13 +635,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nathan Hadfield";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "580EAC3A-89A3-42EF-A4A0-909B75B8E379";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Release;

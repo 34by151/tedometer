@@ -66,7 +66,8 @@ typedef enum {
 @property(readwrite, assign) NSInteger mtdMinDay;
 @property(readwrite, assign) double radiansPerTick;
 @property(readwrite, assign) double unitsPerTick;
-@property(readonly) NSInteger meterMaxValue;
+@property(readonly) NSInteger meterEndMax;
+@property(readonly) NSInteger meterEndMin;
 @property(readwrite, assign) MeterValueType meterValueType;
 @property(readonly) NSString* meterTitle;
 @property(readonly) NSString* meterReadingString;

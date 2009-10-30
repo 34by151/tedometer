@@ -95,6 +95,7 @@
 
 	 // Enable battery monitoring so we received the above notification
 	 [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+	 [self updateIdleTimerState];
 	 
 	 [[NSNotificationCenter defaultCenter] addObserver:self
 											  selector:@selector(applicationDidBecomeActive:)

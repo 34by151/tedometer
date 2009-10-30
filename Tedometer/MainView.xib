@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="61"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -458,7 +458,7 @@
 					<object class="IBUIImageView" id="635869746">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{9, 339}, {20, 20}}</string>
+						<string key="NSFrame">{{6, 341}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -472,7 +472,7 @@
 					<object class="IBUIImageView" id="904877150">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{9, 299}, {20, 20}}</string>
+						<string key="NSFrame">{{6, 301}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -525,7 +525,7 @@
 					<object class="IBUIImageView" id="236060262">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{9, 319}, {20, 20}}</string>
+						<string key="NSFrame">{{6, 321}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -784,7 +784,6 @@
 							<reference ref="453399870"/>
 							<reference ref="687799191"/>
 							<reference ref="863106071"/>
-							<reference ref="141671576"/>
 							<reference ref="832694444"/>
 							<reference ref="777837999"/>
 							<reference ref="904877150"/>
@@ -793,6 +792,7 @@
 							<reference ref="479298590"/>
 							<reference ref="893225097"/>
 							<reference ref="236060262"/>
+							<reference ref="141671576"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

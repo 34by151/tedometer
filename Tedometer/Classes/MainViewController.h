@@ -45,6 +45,8 @@
 	BOOL isShowingTodayStatistics;
 	
 	BOOL hasShownFlipsideThisSession;
+	
+	BOOL isApplicationInactive;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *avgValue;
@@ -75,6 +77,9 @@
 - (IBAction) activateVoltageMeter;
 - (IBAction) nextMeter;
 - (IBAction) toggleTodayMonthStatistics;
+
+- (void) applicationWillResignActive: (NSNotification*)notification;
+- (void) applicationDidBecomeActive: (NSNotification*)notification;
 
 
 @end

@@ -86,12 +86,29 @@
 
 	 tedometerData = [TedometerData sharedTedometerData];
 	 hasShownFlipsideThisSession = NO;
+	 isApplicationInactive = NO;
+	 
+	 
+	 [[NSNotificationCenter defaultCenter] addObserver:self
+											  selector:@selector(applicationWillResignActive:)
+												  name:UIApplicationWillResignActiveNotification object:nil];
+
+	 [[NSNotificationCenter defaultCenter] addObserver:self
+											  selector:@selector(applicationDidBecomeActive:)
+												  name:UIApplicationDidBecomeActiveNotification object:nil];
 	 
 	 [self refreshData];
 	 
 	 [super viewDidLoad];
  }
 
+- (void) applicationWillResignActive: (NSNotification*)notification {
+	isApplicationInactive = YES;
+}
+
+- (void) applicationDidBecomeActive: (NSNotification*)notification {
+	isApplicationInactive = NO;
+}
 
 - (void) viewWillAppear:(BOOL)animated {
 				
@@ -200,9 +217,10 @@
 
 -(IBAction) refreshData {
 
-	if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+	if( isApplicationInactive || tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
 		return;
 	
+	//NSLog(@"Refreshing MainView data..." );
 	[activityIndicator startAnimating];
 	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
 	[[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];

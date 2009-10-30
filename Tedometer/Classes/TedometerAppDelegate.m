@@ -35,7 +35,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[TedometerData archiveToDocumentsFolder];
 }
+-(void) applicationWillResignActive:(UIApplication *) application {
+	//NSLog( @"applicationWillResignActive" );
+}
 
+-(void) applicationDidBecomeActive:(UIApplication *)application {
+	//NSLog( @"applicationDidBecomeActive"  );
+}
 
 - (void)dealloc {
 	[mainViewController release];

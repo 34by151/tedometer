@@ -92,7 +92,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 
 - (NSInteger) todayAverage {
 	TedometerData *tedometerData = [TedometerData sharedTedometerData];
-	NSInteger hoursSoFar = (tedometerData.gatewayHour + tedometerData.gatewayMinute/60.0);
+	double hoursSoFar = (tedometerData.gatewayHour + tedometerData.gatewayMinute/60.0);
 	return hoursSoFar == 0 ? 0 : self.today / hoursSoFar;
 }
 

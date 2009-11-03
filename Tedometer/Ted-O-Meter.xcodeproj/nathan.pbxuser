@@ -190,6 +190,7 @@
 			D81E4C9810A08DEB006F0A90 = D81E4C9810A08DEB006F0A90 /* PBXBookmark */;
 			D81E4C9910A08DEB006F0A90 = D81E4C9910A08DEB006F0A90 /* PBXTextBookmark */;
 			D81E4CB110A08ED0006F0A90 /* PBXTextBookmark */ = D81E4CB110A08ED0006F0A90 /* PBXTextBookmark */;
+			D81E4CB710A09010006F0A90 /* PBXTextBookmark */ = D81E4CB710A09010006F0A90 /* PBXTextBookmark */;
 		};
 		sourceControlManager = D8E2221E1079838A0086F577 /* Source Control */;
 		userBuildSettings = {
@@ -333,6 +334,16 @@
 		vrLoc = 0;
 	};
 	D81E4CB110A08ED0006F0A90 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D81E402B1093A3EE006F0A90 /* Model.graffle */;
+		name = "Model.graffle: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1297;
+		vrLoc = 0;
+	};
+	D81E4CB710A09010006F0A90 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = D81E402B1093A3EE006F0A90 /* Model.graffle */;
 		name = "Model.graffle: 1";
@@ -518,92 +529,6 @@
 	D8E2221F1079838A0086F577 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	D8E222281079838E0086F577 /* access.c */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {890, 43342}}";
-			sepNavSelRange = "{94205, 0}";
-			sepNavVisRange = "{93500, 1290}";
-			sepNavWindowFrame = "{{64, 702}, {1119, 871}}";
-		};
-	};
-	D8E2222F1079838E0086F577 /* attrs.c */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1177, 25012}}";
-			sepNavSelRange = "{40279, 0}";
-			sepNavVisRange = "{39554, 1113}";
-		};
-	};
-	D8E222371079838E0086F577 /* config.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1179, 2145}}";
-			sepNavSelRange = "{2113, 47}";
-			sepNavVisRange = "{1637, 727}";
-		};
-	};
-	D8E222421079838E0086F577 /* localize.c */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1177, 25129}}";
-			sepNavSelRange = "{69029, 0}";
-			sepNavVisRange = "{67668, 1912}";
-			sepNavWindowFrame = "{{304, 18}, {1293, 945}}";
-		};
-	};
-	D8E2225C1079838E0086F577 /* CXMLNode_CreationExtensions.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {938, 1365}}";
-			sepNavSelRange = "{3779, 18}";
-			sepNavVisRange = "{1743, 2178}";
-		};
-	};
-	D8E2225F1079838E0086F577 /* CXMLDocument.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1177, 871}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{1185, 1370}";
-		};
-	};
-	D8E222601079838E0086F577 /* CXMLDocument.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1258, 3094}}";
-			sepNavSelRange = "{5056, 0}";
-			sepNavVisRange = "{4321, 1096}";
-		};
-	};
-	D8E222671079838E0086F577 /* CXMLNode_PrivateExtensions.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {938, 701}}";
-			sepNavSelRange = "{1375, 18}";
-			sepNavVisRange = "{0, 1478}";
-		};
-	};
-	D8E222681079838E0086F577 /* CXMLNode_PrivateExtensions.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1179, 1183}}";
-			sepNavSelRange = "{1473, 0}";
-			sepNavVisRange = "{1346, 283}";
-		};
-	};
-	D8E2226C1079838E0086F577 /* CXMLNode.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {938, 4108}}";
-			sepNavSelRange = "{1675, 18}";
-			sepNavVisRange = "{1242, 1208}";
-		};
-	};
-	D8E2226F1079838E0086F577 /* CTidy.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1356, 3120}}";
-			sepNavSelRange = "{6810, 0}";
-			sepNavVisRange = "{5116, 1447}";
-		};
-	};
-	D8E2229A107983FE0086F577 /* CXMLNode-utils.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1125, 540}}";
-			sepNavSelRange = "{211, 42}";
-			sepNavVisRange = "{0, 749}";
-		};
 	};
 	D8FBF0AF10925AB4007FAF98 /* SynthesizeSingleton.h */ = {
 		uiCtxt = {

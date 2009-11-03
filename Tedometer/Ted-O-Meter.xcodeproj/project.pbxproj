@@ -267,13 +267,13 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D8E974FB10A09B500065EE31 /* MeterViewSizing.h */,
+				D81E4CBA10A09026006F0A90 /* TouchXML */,
+				32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */,
 				D8E974C210A098810065EE31 /* main.m */,
+				D8E974FB10A09B500065EE31 /* MeterViewSizing.h */,
 				D8E974C110A098710065EE31 /* SynthesizeSingleton.h */,
 				D81E4CB810A09026006F0A90 /* CXMLNode-utils.h */,
 				D81E4CB910A09026006F0A90 /* CXMLNode-utils.m */,
-				D81E4CBA10A09026006F0A90 /* TouchXML */,
-				32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";

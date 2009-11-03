@@ -252,10 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				D8E9749910A0974B0065EE31 /* Documentation */,
-				D8E9748910A096F20065EE31 /* Application Delegate */,
 				D8E974AE10A0981F0065EE31 /* Model */,
-				289233A00DB2D0730083E9F9 /* Main View */,
-				281C6CD70DB2D82200F60ACC /* Flipside View */,
+				D8E9754910A09E720065EE31 /* Views */,
+				D8E9748910A096F20065EE31 /* Application Delegate */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -465,6 +464,15 @@
 				D8E974BA10A098520065EE31 /* VoltageMeter.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D8E9754910A09E720065EE31 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				289233A00DB2D0730083E9F9 /* Main View */,
+				281C6CD70DB2D82200F60ACC /* Flipside View */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

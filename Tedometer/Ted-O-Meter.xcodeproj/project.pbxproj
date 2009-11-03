@@ -74,6 +74,23 @@
 		D8FBF0B410925B07007FAF98 /* Meter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FBF0B310925B07007FAF98 /* Meter.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D81E4C9310A08C4E006F0A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA /* libCorePlot-CocoaTouch.a */;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		D81E4C9610A08CA1006F0A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA /* CorePlot-CocoaTouch */;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TedometerAppDelegate.h; sourceTree = "<group>"; };
@@ -107,6 +124,7 @@
 		D81E49F610967578006F0A90 /* CostMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostMeter.m; sourceTree = "<group>"; };
 		D81E4A5210967923006F0A90 /* CarbonMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarbonMeter.h; sourceTree = "<group>"; };
 		D81E4A5310967923006F0A90 /* CarbonMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarbonMeter.m; sourceTree = "<group>"; };
+		D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		D83ECE0410978DEB00C1F5FA /* translucentButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = translucentButton.png; sourceTree = "<group>"; };
 		D86DD457109792D500C5135A /* whiteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButtonPressed.png; sourceTree = "<group>"; };
 		D86DD6F610982BF500C5135A /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
@@ -267,6 +285,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */,
 				D81E40661093B6CF006F0A90 /* Reference */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
@@ -347,6 +366,14 @@
 				D81E4768109622E0006F0A90 /* LICENSES.txt */,
 			);
 			name = Reference;
+			sourceTree = "<group>";
+		};
+		D81E4C8D10A08C4D006F0A90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4C9410A08C4E006F0A90 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D8E222201079838E0086F577 /* TouchXML */ = {
@@ -477,6 +504,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D81E4C9710A08CA1006F0A90 /* PBXTargetDependency */,
 			);
 			name = "TED-O-Meter";
 			productName = Ted5000;
@@ -500,12 +528,28 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D81E4C8D10A08C4D006F0A90 /* Products */;
+					ProjectRef = D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* TED-O-Meter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D81E4C9410A08C4E006F0A90 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = D81E4C9310A08C4E006F0A90 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -588,6 +632,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D81E4C9710A08CA1006F0A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = D81E4C9610A08CA1006F0A90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

@@ -450,16 +450,16 @@
 		D8E974AE10A0981F0065EE31 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D8E974B710A098520065EE31 /* TedometerData.h */,
+				D8E974B810A098520065EE31 /* TedometerData.m */,
+				D8E974B310A098520065EE31 /* Meter.h */,
+				D8E974B410A098520065EE31 /* Meter.m */,
 				D8E974AF10A098520065EE31 /* CarbonMeter.h */,
 				D8E974B010A098520065EE31 /* CarbonMeter.m */,
 				D8E974B110A098520065EE31 /* CostMeter.h */,
 				D8E974B210A098520065EE31 /* CostMeter.m */,
-				D8E974B310A098520065EE31 /* Meter.h */,
-				D8E974B410A098520065EE31 /* Meter.m */,
 				D8E974B510A098520065EE31 /* PowerMeter.h */,
 				D8E974B610A098520065EE31 /* PowerMeter.m */,
-				D8E974B710A098520065EE31 /* TedometerData.h */,
-				D8E974B810A098520065EE31 /* TedometerData.m */,
 				D8E974B910A098520065EE31 /* VoltageMeter.h */,
 				D8E974BA10A098520065EE31 /* VoltageMeter.m */,
 			);

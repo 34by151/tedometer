@@ -8,7 +8,7 @@
 
 #import "Meter.h"
 #import "CXMLNOde-utils.h"
-#import "Tedometer.h"
+#import "MeterViewSizing.h"
 #import "TedometerData.h"
 
 @implementation Meter

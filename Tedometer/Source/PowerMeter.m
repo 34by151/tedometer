@@ -8,6 +8,7 @@
 
 #import "PowerMeter.h"
 #import "TedometerData.h"
+#import "MeterViewSizing.h"
 
 @implementation PowerMeter
 

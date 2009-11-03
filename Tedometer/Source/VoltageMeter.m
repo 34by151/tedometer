@@ -8,6 +8,7 @@
 
 #import "VoltageMeter.h"
 #import "TedometerData.h"
+#import "MeterViewSizing.h"
 
 @implementation VoltageMeter
 

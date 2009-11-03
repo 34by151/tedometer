@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "TouchXML.h"
-#import "Tedometer.h"		// Has constants for meter size in radians; needed to initialize radians/units per tick
 
 
 typedef enum {

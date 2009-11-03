@@ -8,7 +8,7 @@
 
 #import <math.h>
 #import "MeterView.h"
-#import "Tedometer.h"
+#import "MeterViewSizing.h"
 
 @implementation MeterView
 

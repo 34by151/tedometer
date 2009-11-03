@@ -10,6 +10,7 @@
 #import "TouchXML.h"
 #import "CXMLNode-utils.h"
 #import "TedometerData.h"
+#import "MeterViewSizing.h"
 
 @implementation CarbonMeter
 

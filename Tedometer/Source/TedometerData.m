@@ -13,6 +13,7 @@
 #import "VoltageMeter.h"
 #import "SynthesizeSingleton.h"
 #import "CXMLNode-utils.h"
+#import "MeterViewSizing.h"
 
 #define NUM_METERS	4
 

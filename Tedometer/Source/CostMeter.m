@@ -8,6 +8,7 @@
 
 #import "CostMeter.h"
 #import "TedometerData.h"
+#import "MeterViewSizing.h"
 
 
 @implementation CostMeter

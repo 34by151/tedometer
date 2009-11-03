@@ -1,0 +1,727 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TedometerAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754A0DD40C5E005A515E /* FlipsideView.xib */; };
+		280E754E0DD40C5E005A515E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754B0DD40C5E005A515E /* MainView.xib */; };
+		280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754C0DD40C5E005A515E /* MainWindow.xib */; };
+		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
+		289233A60DB2D0840083E9F9 /* FlipsideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A30DB2D0840083E9F9 /* FlipsideView.m */; };
+		289233A70DB2D0840083E9F9 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A50DB2D0840083E9F9 /* MainView.m */; };
+		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
+		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
+		D81E405B1093B434006F0A90 /* PowerMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E405A1093B434006F0A90 /* PowerMeter.m */; };
+		D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E40CF1093E6AF006F0A90 /* TedometerData.m */; };
+		D81E49F710967578006F0A90 /* CostMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E49F610967578006F0A90 /* CostMeter.m */; };
+		D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4A5310967923006F0A90 /* CarbonMeter.m */; };
+		D81E4D0A10A09027006F0A90 /* CXMLNode-utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CB910A09026006F0A90 /* CXMLNode-utils.m */; };
+		D81E4D0B10A09027006F0A90 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CBD10A09026006F0A90 /* CXMLDocument_CreationExtensions.m */; };
+		D81E4D0C10A09027006F0A90 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CBF10A09026006F0A90 /* CXMLNode_CreationExtensions.m */; };
+		D81E4D0D10A09027006F0A90 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CC110A09026006F0A90 /* CXMLDocument.m */; };
+		D81E4D0E10A09027006F0A90 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CC310A09026006F0A90 /* CXMLDocument_PrivateExtensions.m */; };
+		D81E4D0F10A09027006F0A90 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CC510A09026006F0A90 /* CXMLElement.m */; };
+		D81E4D1010A09027006F0A90 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CC710A09026006F0A90 /* CXMLElement_CreationExtensions.m */; };
+		D81E4D1110A09027006F0A90 /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CC910A09026006F0A90 /* CXMLElement_ElementTreeExtensions.m */; };
+		D81E4D1210A09027006F0A90 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CCB10A09026006F0A90 /* CXMLNode.m */; };
+		D81E4D1310A09027006F0A90 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CCD10A09026006F0A90 /* CXMLNode_PrivateExtensions.m */; };
+		D81E4D1410A09027006F0A90 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CCF10A09026006F0A90 /* CXMLNode_XPathExtensions.m */; };
+		D81E4D1510A09027006F0A90 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CD610A09026006F0A90 /* access.c */; };
+		D81E4D1610A09027006F0A90 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CD810A09026006F0A90 /* alloc.c */; };
+		D81E4D1710A09027006F0A90 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CD910A09026006F0A90 /* attrask.c */; };
+		D81E4D1810A09027006F0A90 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CDA10A09026006F0A90 /* attrdict.c */; };
+		D81E4D1910A09027006F0A90 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CDC10A09026006F0A90 /* attrget.c */; };
+		D81E4D1A10A09027006F0A90 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CDD10A09026006F0A90 /* attrs.c */; };
+		D81E4D1B10A09027006F0A90 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CDF10A09026006F0A90 /* buffio.c */; };
+		D81E4D1C10A09027006F0A90 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CE010A09026006F0A90 /* charsets.c */; };
+		D81E4D1D10A09027006F0A90 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CE210A09026006F0A90 /* clean.c */; };
+		D81E4D1E10A09027006F0A90 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CE410A09026006F0A90 /* config.c */; };
+		D81E4D1F10A09027006F0A90 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CE610A09026006F0A90 /* entities.c */; };
+		D81E4D2010A09027006F0A90 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CE810A09026006F0A90 /* fileio.c */; };
+		D81E4D2110A09027006F0A90 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CEB10A09026006F0A90 /* iconvtc.c */; };
+		D81E4D2210A09027006F0A90 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CED10A09026006F0A90 /* istack.c */; };
+		D81E4D2310A09027006F0A90 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CEE10A09026006F0A90 /* lexer.c */; };
+		D81E4D2410A09027006F0A90 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CF010A09026006F0A90 /* localize.c */; };
+		D81E4D2510A09027006F0A90 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CF110A09026006F0A90 /* mappedio.c */; };
+		D81E4D2610A09027006F0A90 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CF410A09026006F0A90 /* parser.c */; };
+		D81E4D2710A09027006F0A90 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CF610A09026006F0A90 /* pprint.c */; };
+		D81E4D2810A09027006F0A90 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CF810A09026006F0A90 /* streamio.c */; };
+		D81E4D2910A09027006F0A90 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CFA10A09026006F0A90 /* tagask.c */; };
+		D81E4D2A10A09027006F0A90 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CFB10A09026006F0A90 /* tags.c */; };
+		D81E4D2B10A09027006F0A90 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CFE10A09026006F0A90 /* tidylib.c */; };
+		D81E4D2C10A09027006F0A90 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4CFF10A09026006F0A90 /* tmbstr.c */; };
+		D81E4D2D10A09027006F0A90 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4D0110A09026006F0A90 /* utf8.c */; };
+		D81E4D2E10A09027006F0A90 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4D0410A09026006F0A90 /* win32tc.c */; };
+		D81E4D2F10A09027006F0A90 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4D0810A09026006F0A90 /* CTidy.m */; };
+		D83ECE0510978DEB00C1F5FA /* translucentButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D83ECE0410978DEB00C1F5FA /* translucentButton.png */; };
+		D86DD6F710982BF500C5135A /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD6F610982BF500C5135A /* whiteButton.png */; };
+		D86DD888109982E400C5135A /* arrow_avg.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD885109982E400C5135A /* arrow_avg.png */; };
+		D86DD889109982E400C5135A /* arrow_low.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD886109982E400C5135A /* arrow_low.png */; };
+		D86DD88A109982E400C5135A /* arrow_peak.png in Resources */ = {isa = PBXBuildFile; fileRef = D86DD887109982E400C5135A /* arrow_peak.png */; };
+		D86DD8D110998D2200C5135A /* VoltageMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = D86DD8D010998D2200C5135A /* VoltageMeter.m */; };
+		D89FD92810852E7E00518895 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89FD92710852E7E00518895 /* MeterView.m */; };
+		D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA0D1085ACB700518895 /* meter_bg_metal.png */; };
+		D89FDA971085C0E800518895 /* meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = D89FDA961085C0E800518895 /* meter_glare.png */; };
+		D8C4938F1097080D003BDC08 /* icon_full.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C4938E1097080D003BDC08 /* icon_full.png */; };
+		D8FBF0B410925B07007FAF98 /* Meter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FBF0B310925B07007FAF98 /* Meter.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D81E4C9310A08C4E006F0A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		D81E4C9610A08CA1006F0A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TedometerAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* TedometerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TedometerAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* TED-O-Meter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TED-O-Meter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
+		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		288765580DF743DE002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		289233A20DB2D0840083E9F9 /* FlipsideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideView.h; path = Classes/FlipsideView.h; sourceTree = "<group>"; };
+		289233A30DB2D0840083E9F9 /* FlipsideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideView.m; path = Classes/FlipsideView.m; sourceTree = "<group>"; };
+		289233A40DB2D0840083E9F9 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = Classes/MainView.h; sourceTree = "<group>"; };
+		289233A50DB2D0840083E9F9 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = Classes/MainView.m; sourceTree = "<group>"; };
+		289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
+		289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
+		289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideViewController.h; path = Classes/FlipsideViewController.h; sourceTree = "<group>"; };
+		289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideViewController.m; path = Classes/FlipsideViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Ted-O-Meter_Prefix.pch"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ted-O-Meter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D81E402B1093A3EE006F0A90 /* Model.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Model.graffle; sourceTree = "<group>"; };
+		D81E402C1093A3EE006F0A90 /* ScratchPad.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ScratchPad.graffle; sourceTree = "<group>"; };
+		D81E40591093B434006F0A90 /* PowerMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerMeter.h; sourceTree = "<group>"; };
+		D81E405A1093B434006F0A90 /* PowerMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerMeter.m; sourceTree = "<group>"; };
+		D81E405E1093B6B4006F0A90 /* LiveData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LiveData.xml; sourceTree = "<group>"; };
+		D81E40CE1093E6AF006F0A90 /* TedometerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TedometerData.h; sourceTree = "<group>"; };
+		D81E40CF1093E6AF006F0A90 /* TedometerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TedometerData.m; sourceTree = "<group>"; };
+		D81E4768109622E0006F0A90 /* LICENSES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSES.txt; sourceTree = "<group>"; };
+		D81E49F510967578006F0A90 /* CostMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostMeter.h; sourceTree = "<group>"; };
+		D81E49F610967578006F0A90 /* CostMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostMeter.m; sourceTree = "<group>"; };
+		D81E4A5210967923006F0A90 /* CarbonMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarbonMeter.h; sourceTree = "<group>"; };
+		D81E4A5310967923006F0A90 /* CarbonMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarbonMeter.m; sourceTree = "<group>"; };
+		D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		D81E4CB810A09026006F0A90 /* CXMLNode-utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CXMLNode-utils.h"; path = "Source/CXMLNode-utils.h"; sourceTree = "<group>"; };
+		D81E4CB910A09026006F0A90 /* CXMLNode-utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CXMLNode-utils.m"; path = "Source/CXMLNode-utils.m"; sourceTree = "<group>"; };
+		D81E4CBC10A09026006F0A90 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
+		D81E4CBD10A09026006F0A90 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
+		D81E4CBE10A09026006F0A90 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
+		D81E4CBF10A09026006F0A90 /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
+		D81E4CC010A09026006F0A90 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		D81E4CC110A09026006F0A90 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		D81E4CC210A09026006F0A90 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		D81E4CC310A09026006F0A90 /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		D81E4CC410A09026006F0A90 /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		D81E4CC510A09026006F0A90 /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		D81E4CC610A09026006F0A90 /* CXMLElement_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_CreationExtensions.h; sourceTree = "<group>"; };
+		D81E4CC710A09026006F0A90 /* CXMLElement_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_CreationExtensions.m; sourceTree = "<group>"; };
+		D81E4CC810A09026006F0A90 /* CXMLElement_ElementTreeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_ElementTreeExtensions.h; sourceTree = "<group>"; };
+		D81E4CC910A09026006F0A90 /* CXMLElement_ElementTreeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_ElementTreeExtensions.m; sourceTree = "<group>"; };
+		D81E4CCA10A09026006F0A90 /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		D81E4CCB10A09026006F0A90 /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		D81E4CCC10A09026006F0A90 /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		D81E4CCD10A09026006F0A90 /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		D81E4CCE10A09026006F0A90 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		D81E4CCF10A09026006F0A90 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		D81E4CD110A09026006F0A90 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
+		D81E4CD210A09026006F0A90 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		D81E4CD310A09026006F0A90 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
+		D81E4CD410A09026006F0A90 /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
+		D81E4CD610A09026006F0A90 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = access.c; sourceTree = "<group>"; };
+		D81E4CD710A09026006F0A90 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = access.h; sourceTree = "<group>"; };
+		D81E4CD810A09026006F0A90 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alloc.c; sourceTree = "<group>"; };
+		D81E4CD910A09026006F0A90 /* attrask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrask.c; sourceTree = "<group>"; };
+		D81E4CDA10A09026006F0A90 /* attrdict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrdict.c; sourceTree = "<group>"; };
+		D81E4CDB10A09026006F0A90 /* attrdict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrdict.h; sourceTree = "<group>"; };
+		D81E4CDC10A09026006F0A90 /* attrget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrget.c; sourceTree = "<group>"; };
+		D81E4CDD10A09026006F0A90 /* attrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrs.c; sourceTree = "<group>"; };
+		D81E4CDE10A09026006F0A90 /* attrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrs.h; sourceTree = "<group>"; };
+		D81E4CDF10A09026006F0A90 /* buffio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffio.c; sourceTree = "<group>"; };
+		D81E4CE010A09026006F0A90 /* charsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = charsets.c; sourceTree = "<group>"; };
+		D81E4CE110A09026006F0A90 /* charsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsets.h; sourceTree = "<group>"; };
+		D81E4CE210A09026006F0A90 /* clean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clean.c; sourceTree = "<group>"; };
+		D81E4CE310A09026006F0A90 /* clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clean.h; sourceTree = "<group>"; };
+		D81E4CE410A09026006F0A90 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config.c; sourceTree = "<group>"; };
+		D81E4CE510A09026006F0A90 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		D81E4CE610A09026006F0A90 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entities.c; sourceTree = "<group>"; };
+		D81E4CE710A09026006F0A90 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entities.h; sourceTree = "<group>"; };
+		D81E4CE810A09026006F0A90 /* fileio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileio.c; sourceTree = "<group>"; };
+		D81E4CE910A09026006F0A90 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileio.h; sourceTree = "<group>"; };
+		D81E4CEA10A09026006F0A90 /* forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forward.h; sourceTree = "<group>"; };
+		D81E4CEB10A09026006F0A90 /* iconvtc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iconvtc.c; sourceTree = "<group>"; };
+		D81E4CEC10A09026006F0A90 /* iconvtc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconvtc.h; sourceTree = "<group>"; };
+		D81E4CED10A09026006F0A90 /* istack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = istack.c; sourceTree = "<group>"; };
+		D81E4CEE10A09026006F0A90 /* lexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lexer.c; sourceTree = "<group>"; };
+		D81E4CEF10A09026006F0A90 /* lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lexer.h; sourceTree = "<group>"; };
+		D81E4CF010A09026006F0A90 /* localize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = localize.c; sourceTree = "<group>"; };
+		D81E4CF110A09026006F0A90 /* mappedio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mappedio.c; sourceTree = "<group>"; };
+		D81E4CF210A09026006F0A90 /* mappedio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mappedio.h; sourceTree = "<group>"; };
+		D81E4CF310A09026006F0A90 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
+		D81E4CF410A09026006F0A90 /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
+		D81E4CF510A09026006F0A90 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		D81E4CF610A09026006F0A90 /* pprint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pprint.c; sourceTree = "<group>"; };
+		D81E4CF710A09026006F0A90 /* pprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pprint.h; sourceTree = "<group>"; };
+		D81E4CF810A09026006F0A90 /* streamio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = streamio.c; sourceTree = "<group>"; };
+		D81E4CF910A09026006F0A90 /* streamio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamio.h; sourceTree = "<group>"; };
+		D81E4CFA10A09026006F0A90 /* tagask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tagask.c; sourceTree = "<group>"; };
+		D81E4CFB10A09026006F0A90 /* tags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tags.c; sourceTree = "<group>"; };
+		D81E4CFC10A09026006F0A90 /* tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tags.h; sourceTree = "<group>"; };
+		D81E4CFD10A09026006F0A90 /* tidy-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tidy-int.h"; sourceTree = "<group>"; };
+		D81E4CFE10A09026006F0A90 /* tidylib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidylib.c; sourceTree = "<group>"; };
+		D81E4CFF10A09026006F0A90 /* tmbstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tmbstr.c; sourceTree = "<group>"; };
+		D81E4D0010A09026006F0A90 /* tmbstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tmbstr.h; sourceTree = "<group>"; };
+		D81E4D0110A09026006F0A90 /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf8.c; sourceTree = "<group>"; };
+		D81E4D0210A09026006F0A90 /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
+		D81E4D0310A09026006F0A90 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		D81E4D0410A09026006F0A90 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = win32tc.c; sourceTree = "<group>"; };
+		D81E4D0510A09026006F0A90 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
+		D81E4D0710A09026006F0A90 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
+		D81E4D0810A09026006F0A90 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
+		D81E4D0910A09026006F0A90 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		D83ECE0410978DEB00C1F5FA /* translucentButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = translucentButton.png; sourceTree = "<group>"; };
+		D86DD457109792D500C5135A /* whiteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButtonPressed.png; sourceTree = "<group>"; };
+		D86DD6F610982BF500C5135A /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		D86DD885109982E400C5135A /* arrow_avg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_avg.png; sourceTree = "<group>"; };
+		D86DD886109982E400C5135A /* arrow_low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_low.png; sourceTree = "<group>"; };
+		D86DD887109982E400C5135A /* arrow_peak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_peak.png; sourceTree = "<group>"; };
+		D86DD8CF10998D2200C5135A /* VoltageMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoltageMeter.h; sourceTree = "<group>"; };
+		D86DD8D010998D2200C5135A /* VoltageMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoltageMeter.m; sourceTree = "<group>"; };
+		D86DDBAB109A4B8000C5135A /* logo_512.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = logo_512.tif; sourceTree = "<group>"; };
+		D86DDBB5109A4C9200C5135A /* icon_full_inset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_full_inset.png; sourceTree = "<group>"; };
+		D89013DF10866A43002F9B8F /* Tedometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tedometer.h; sourceTree = "<group>"; };
+		D890148210868696002F9B8F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D89FD92610852E7E00518895 /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
+		D89FD92710852E7E00518895 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterView.m; sourceTree = "<group>"; };
+		D89FDA0D1085ACB700518895 /* meter_bg_metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_bg_metal.png; sourceTree = "<group>"; };
+		D89FDA961085C0E800518895 /* meter_glare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter_glare.png; sourceTree = "<group>"; };
+		D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CO2ToolbarIcon.png; sourceTree = "<group>"; };
+		D8C4938E1097080D003BDC08 /* icon_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_full.png; sourceTree = "<group>"; };
+		D8FBF0AF10925AB4007FAF98 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		D8FBF0B210925B07007FAF98 /* Meter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meter.h; sourceTree = "<group>"; };
+		D8FBF0B310925B07007FAF98 /* Meter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meter.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* TedometerAppDelegate.h */,
+				1D3623250D0F684500981E51 /* TedometerAppDelegate.m */,
+			);
+			name = "Application Delegate";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* TED-O-Meter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		281C6CD70DB2D82200F60ACC /* Flipside View */ = {
+			isa = PBXGroup;
+			children = (
+				289233A20DB2D0840083E9F9 /* FlipsideView.h */,
+				289233A30DB2D0840083E9F9 /* FlipsideView.m */,
+				289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */,
+				289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */,
+			);
+			name = "Flipside View";
+			sourceTree = "<group>";
+		};
+		289233A00DB2D0730083E9F9 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				D89FD92610852E7E00518895 /* MeterView.h */,
+				D89FD92710852E7E00518895 /* MeterView.m */,
+				289233A40DB2D0840083E9F9 /* MainView.h */,
+				289233A50DB2D0840083E9F9 /* MainView.m */,
+				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
+				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
+				D89013DF10866A43002F9B8F /* Tedometer.h */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */,
+				D81E40661093B6CF006F0A90 /* Reference */,
+				289233A00DB2D0730083E9F9 /* Main View */,
+				281C6CD70DB2D82200F60ACC /* Flipside View */,
+				080E96DDFE201D6D7F000001 /* Application Delegate */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4CB810A09026006F0A90 /* CXMLNode-utils.h */,
+				D81E4CB910A09026006F0A90 /* CXMLNode-utils.m */,
+				D81E4CBA10A09026006F0A90 /* TouchXML */,
+				D8FBF0AF10925AB4007FAF98 /* SynthesizeSingleton.h */,
+				32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				D81E40CE1093E6AF006F0A90 /* TedometerData.h */,
+				D81E40CF1093E6AF006F0A90 /* TedometerData.m */,
+				D8FBF0B210925B07007FAF98 /* Meter.h */,
+				D8FBF0B310925B07007FAF98 /* Meter.m */,
+				D81E40591093B434006F0A90 /* PowerMeter.h */,
+				D81E405A1093B434006F0A90 /* PowerMeter.m */,
+				D81E49F510967578006F0A90 /* CostMeter.h */,
+				D81E49F610967578006F0A90 /* CostMeter.m */,
+				D81E4A5210967923006F0A90 /* CarbonMeter.h */,
+				D81E4A5310967923006F0A90 /* CarbonMeter.m */,
+				D86DD8CF10998D2200C5135A /* VoltageMeter.h */,
+				D86DD8D010998D2200C5135A /* VoltageMeter.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D86DDBAB109A4B8000C5135A /* logo_512.tif */,
+				D86DD885109982E400C5135A /* arrow_avg.png */,
+				D86DD886109982E400C5135A /* arrow_low.png */,
+				D86DD887109982E400C5135A /* arrow_peak.png */,
+				D86DD6F610982BF500C5135A /* whiteButton.png */,
+				D86DD457109792D500C5135A /* whiteButtonPressed.png */,
+				D83ECE0410978DEB00C1F5FA /* translucentButton.png */,
+				D86DDBB5109A4C9200C5135A /* icon_full_inset.png */,
+				D8C4938E1097080D003BDC08 /* icon_full.png */,
+				D8C491AC1096E1CC003BDC08 /* CO2ToolbarIcon.png */,
+				D890148210868696002F9B8F /* icon.png */,
+				D89FDA961085C0E800518895 /* meter_glare.png */,
+				D89FDA0D1085ACB700518895 /* meter_bg_metal.png */,
+				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
+				280E754B0DD40C5E005A515E /* MainView.xib */,
+				280E754C0DD40C5E005A515E /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Ted-O-Meter-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765580DF743DE002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D81E40661093B6CF006F0A90 /* Reference */ = {
+			isa = PBXGroup;
+			children = (
+				D81E402B1093A3EE006F0A90 /* Model.graffle */,
+				D81E402C1093A3EE006F0A90 /* ScratchPad.graffle */,
+				D81E405E1093B6B4006F0A90 /* LiveData.xml */,
+				D81E4768109622E0006F0A90 /* LICENSES.txt */,
+			);
+			name = Reference;
+			sourceTree = "<group>";
+		};
+		D81E4C8D10A08C4D006F0A90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4C9410A08C4E006F0A90 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D81E4CBA10A09026006F0A90 /* TouchXML */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4CBB10A09026006F0A90 /* Creation */,
+				D81E4CC010A09026006F0A90 /* CXMLDocument.h */,
+				D81E4CC110A09026006F0A90 /* CXMLDocument.m */,
+				D81E4CC210A09026006F0A90 /* CXMLDocument_PrivateExtensions.h */,
+				D81E4CC310A09026006F0A90 /* CXMLDocument_PrivateExtensions.m */,
+				D81E4CC410A09026006F0A90 /* CXMLElement.h */,
+				D81E4CC510A09026006F0A90 /* CXMLElement.m */,
+				D81E4CC610A09026006F0A90 /* CXMLElement_CreationExtensions.h */,
+				D81E4CC710A09026006F0A90 /* CXMLElement_CreationExtensions.m */,
+				D81E4CC810A09026006F0A90 /* CXMLElement_ElementTreeExtensions.h */,
+				D81E4CC910A09026006F0A90 /* CXMLElement_ElementTreeExtensions.m */,
+				D81E4CCA10A09026006F0A90 /* CXMLNode.h */,
+				D81E4CCB10A09026006F0A90 /* CXMLNode.m */,
+				D81E4CCC10A09026006F0A90 /* CXMLNode_PrivateExtensions.h */,
+				D81E4CCD10A09026006F0A90 /* CXMLNode_PrivateExtensions.m */,
+				D81E4CCE10A09026006F0A90 /* CXMLNode_XPathExtensions.h */,
+				D81E4CCF10A09026006F0A90 /* CXMLNode_XPathExtensions.m */,
+				D81E4CD010A09026006F0A90 /* include */,
+				D81E4CD510A09026006F0A90 /* src */,
+				D81E4D0610A09026006F0A90 /* Tidy */,
+				D81E4D0910A09026006F0A90 /* TouchXML.h */,
+			);
+			name = TouchXML;
+			path = Source/TouchXML;
+			sourceTree = "<group>";
+		};
+		D81E4CBB10A09026006F0A90 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4CBC10A09026006F0A90 /* CXMLDocument_CreationExtensions.h */,
+				D81E4CBD10A09026006F0A90 /* CXMLDocument_CreationExtensions.m */,
+				D81E4CBE10A09026006F0A90 /* CXMLNode_CreationExtensions.h */,
+				D81E4CBF10A09026006F0A90 /* CXMLNode_CreationExtensions.m */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		D81E4CD010A09026006F0A90 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4CD110A09026006F0A90 /* buffio.h */,
+				D81E4CD210A09026006F0A90 /* platform.h */,
+				D81E4CD310A09026006F0A90 /* tidy.h */,
+				D81E4CD410A09026006F0A90 /* tidyenum.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D81E4CD510A09026006F0A90 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4CD610A09026006F0A90 /* access.c */,
+				D81E4CD710A09026006F0A90 /* access.h */,
+				D81E4CD810A09026006F0A90 /* alloc.c */,
+				D81E4CD910A09026006F0A90 /* attrask.c */,
+				D81E4CDA10A09026006F0A90 /* attrdict.c */,
+				D81E4CDB10A09026006F0A90 /* attrdict.h */,
+				D81E4CDC10A09026006F0A90 /* attrget.c */,
+				D81E4CDD10A09026006F0A90 /* attrs.c */,
+				D81E4CDE10A09026006F0A90 /* attrs.h */,
+				D81E4CDF10A09026006F0A90 /* buffio.c */,
+				D81E4CE010A09026006F0A90 /* charsets.c */,
+				D81E4CE110A09026006F0A90 /* charsets.h */,
+				D81E4CE210A09026006F0A90 /* clean.c */,
+				D81E4CE310A09026006F0A90 /* clean.h */,
+				D81E4CE410A09026006F0A90 /* config.c */,
+				D81E4CE510A09026006F0A90 /* config.h */,
+				D81E4CE610A09026006F0A90 /* entities.c */,
+				D81E4CE710A09026006F0A90 /* entities.h */,
+				D81E4CE810A09026006F0A90 /* fileio.c */,
+				D81E4CE910A09026006F0A90 /* fileio.h */,
+				D81E4CEA10A09026006F0A90 /* forward.h */,
+				D81E4CEB10A09026006F0A90 /* iconvtc.c */,
+				D81E4CEC10A09026006F0A90 /* iconvtc.h */,
+				D81E4CED10A09026006F0A90 /* istack.c */,
+				D81E4CEE10A09026006F0A90 /* lexer.c */,
+				D81E4CEF10A09026006F0A90 /* lexer.h */,
+				D81E4CF010A09026006F0A90 /* localize.c */,
+				D81E4CF110A09026006F0A90 /* mappedio.c */,
+				D81E4CF210A09026006F0A90 /* mappedio.h */,
+				D81E4CF310A09026006F0A90 /* message.h */,
+				D81E4CF410A09026006F0A90 /* parser.c */,
+				D81E4CF510A09026006F0A90 /* parser.h */,
+				D81E4CF610A09026006F0A90 /* pprint.c */,
+				D81E4CF710A09026006F0A90 /* pprint.h */,
+				D81E4CF810A09026006F0A90 /* streamio.c */,
+				D81E4CF910A09026006F0A90 /* streamio.h */,
+				D81E4CFA10A09026006F0A90 /* tagask.c */,
+				D81E4CFB10A09026006F0A90 /* tags.c */,
+				D81E4CFC10A09026006F0A90 /* tags.h */,
+				D81E4CFD10A09026006F0A90 /* tidy-int.h */,
+				D81E4CFE10A09026006F0A90 /* tidylib.c */,
+				D81E4CFF10A09026006F0A90 /* tmbstr.c */,
+				D81E4D0010A09026006F0A90 /* tmbstr.h */,
+				D81E4D0110A09026006F0A90 /* utf8.c */,
+				D81E4D0210A09026006F0A90 /* utf8.h */,
+				D81E4D0310A09026006F0A90 /* version.h */,
+				D81E4D0410A09026006F0A90 /* win32tc.c */,
+				D81E4D0510A09026006F0A90 /* win32tc.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D81E4D0610A09026006F0A90 /* Tidy */ = {
+			isa = PBXGroup;
+			children = (
+				D81E4D0710A09026006F0A90 /* CTidy.h */,
+				D81E4D0810A09026006F0A90 /* CTidy.m */,
+			);
+			path = Tidy;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* TED-O-Meter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TED-O-Meter" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D81E4C9710A08CA1006F0A90 /* PBXTargetDependency */,
+			);
+			name = "TED-O-Meter";
+			productName = Ted5000;
+			productReference = 1D6058910D05DD3D006BFB54 /* TED-O-Meter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ted-O-Meter" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D81E4C8D10A08C4D006F0A90 /* Products */;
+					ProjectRef = D81E4C8C10A08C4D006F0A90 /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* TED-O-Meter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D81E4C9410A08C4E006F0A90 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = D81E4C9310A08C4E006F0A90 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
+				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
+				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
+				D89FDA0E1085ACB700518895 /* meter_bg_metal.png in Resources */,
+				D89FDA971085C0E800518895 /* meter_glare.png in Resources */,
+				D8C4938F1097080D003BDC08 /* icon_full.png in Resources */,
+				D83ECE0510978DEB00C1F5FA /* translucentButton.png in Resources */,
+				D86DD6F710982BF500C5135A /* whiteButton.png in Resources */,
+				D86DD888109982E400C5135A /* arrow_avg.png in Resources */,
+				D86DD889109982E400C5135A /* arrow_low.png in Resources */,
+				D86DD88A109982E400C5135A /* arrow_peak.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* TedometerAppDelegate.m in Sources */,
+				289233A60DB2D0840083E9F9 /* FlipsideView.m in Sources */,
+				289233A70DB2D0840083E9F9 /* MainView.m in Sources */,
+				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
+				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
+				D89FD92810852E7E00518895 /* MeterView.m in Sources */,
+				D8FBF0B410925B07007FAF98 /* Meter.m in Sources */,
+				D81E405B1093B434006F0A90 /* PowerMeter.m in Sources */,
+				D81E40D01093E6AF006F0A90 /* TedometerData.m in Sources */,
+				D81E49F710967578006F0A90 /* CostMeter.m in Sources */,
+				D81E4A5410967923006F0A90 /* CarbonMeter.m in Sources */,
+				D86DD8D110998D2200C5135A /* VoltageMeter.m in Sources */,
+				D81E4D0A10A09027006F0A90 /* CXMLNode-utils.m in Sources */,
+				D81E4D0B10A09027006F0A90 /* CXMLDocument_CreationExtensions.m in Sources */,
+				D81E4D0C10A09027006F0A90 /* CXMLNode_CreationExtensions.m in Sources */,
+				D81E4D0D10A09027006F0A90 /* CXMLDocument.m in Sources */,
+				D81E4D0E10A09027006F0A90 /* CXMLDocument_PrivateExtensions.m in Sources */,
+				D81E4D0F10A09027006F0A90 /* CXMLElement.m in Sources */,
+				D81E4D1010A09027006F0A90 /* CXMLElement_CreationExtensions.m in Sources */,
+				D81E4D1110A09027006F0A90 /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				D81E4D1210A09027006F0A90 /* CXMLNode.m in Sources */,
+				D81E4D1310A09027006F0A90 /* CXMLNode_PrivateExtensions.m in Sources */,
+				D81E4D1410A09027006F0A90 /* CXMLNode_XPathExtensions.m in Sources */,
+				D81E4D1510A09027006F0A90 /* access.c in Sources */,
+				D81E4D1610A09027006F0A90 /* alloc.c in Sources */,
+				D81E4D1710A09027006F0A90 /* attrask.c in Sources */,
+				D81E4D1810A09027006F0A90 /* attrdict.c in Sources */,
+				D81E4D1910A09027006F0A90 /* attrget.c in Sources */,
+				D81E4D1A10A09027006F0A90 /* attrs.c in Sources */,
+				D81E4D1B10A09027006F0A90 /* buffio.c in Sources */,
+				D81E4D1C10A09027006F0A90 /* charsets.c in Sources */,
+				D81E4D1D10A09027006F0A90 /* clean.c in Sources */,
+				D81E4D1E10A09027006F0A90 /* config.c in Sources */,
+				D81E4D1F10A09027006F0A90 /* entities.c in Sources */,
+				D81E4D2010A09027006F0A90 /* fileio.c in Sources */,
+				D81E4D2110A09027006F0A90 /* iconvtc.c in Sources */,
+				D81E4D2210A09027006F0A90 /* istack.c in Sources */,
+				D81E4D2310A09027006F0A90 /* lexer.c in Sources */,
+				D81E4D2410A09027006F0A90 /* localize.c in Sources */,
+				D81E4D2510A09027006F0A90 /* mappedio.c in Sources */,
+				D81E4D2610A09027006F0A90 /* parser.c in Sources */,
+				D81E4D2710A09027006F0A90 /* pprint.c in Sources */,
+				D81E4D2810A09027006F0A90 /* streamio.c in Sources */,
+				D81E4D2910A09027006F0A90 /* tagask.c in Sources */,
+				D81E4D2A10A09027006F0A90 /* tags.c in Sources */,
+				D81E4D2B10A09027006F0A90 /* tidylib.c in Sources */,
+				D81E4D2C10A09027006F0A90 /* tmbstr.c in Sources */,
+				D81E4D2D10A09027006F0A90 /* utf8.c in Sources */,
+				D81E4D2E10A09027006F0A90 /* win32tc.c in Sources */,
+				D81E4D2F10A09027006F0A90 /* CTidy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D81E4C9710A08CA1006F0A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = D81E4C9610A08CA1006F0A90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
+				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
+				PRODUCT_NAME = "TED-O-Meter";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
+				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
+				PRODUCT_NAME = "TED-O-Meter";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nathan Hadfield";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7B6C5EAE-4187-4A36-B33D-71BCA00F43F1";
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TED-O-Meter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ted-O-Meter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

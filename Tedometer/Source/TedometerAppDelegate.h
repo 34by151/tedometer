@@ -19,7 +19,6 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) MainViewController *mainViewController;
 @property (retain) NSOperationQueue *sharedOperationQueue;
-- (void)batteryStateDidChange:(NSNotification *) notification;
 
 @end
 

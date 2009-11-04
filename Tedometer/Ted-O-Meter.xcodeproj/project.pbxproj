@@ -72,7 +72,27 @@
 		D8E974D310A099120065EE31 /* meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E974D010A099120065EE31 /* meter_glare.png */; };
 		D8E974D510A0992F0065EE31 /* translucentButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E974D410A0992F0065EE31 /* translucentButton.png */; };
 		D8E974D710A099380065EE31 /* whiteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E974D610A099380065EE31 /* whiteButtonPressed.png */; };
+		D8E9756C10A143820065EE31 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9756710A143360065EE31 /* libCorePlot-CocoaTouch.a */; };
+		D8E9757310A146890065EE31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9757210A146890065EE31 /* QuartzCore.framework */; };
+		D8E975B010A147E90065EE31 /* history.xml in Resources */ = {isa = PBXBuildFile; fileRef = D8E975AF10A147E90065EE31 /* history.xml */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D8E9756610A143360065EE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8E9755F10A143360065EE31 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA /* libCorePlot-CocoaTouch.a */;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		D8E9756910A143530065EE31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8E9755F10A143360065EE31 /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA /* CorePlot-CocoaTouch */;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -199,6 +219,9 @@
 		D8E974D610A099380065EE31 /* whiteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButtonPressed.png; path = Resources/whiteButtonPressed.png; sourceTree = "<group>"; };
 		D8E974E010A09AB50065EE31 /* Ted-O-Meter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ted-O-Meter-Info.plist"; sourceTree = "<group>"; };
 		D8E974FB10A09B500065EE31 /* MeterViewSizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeterViewSizing.h; path = Source/MeterViewSizing.h; sourceTree = "<group>"; };
+		D8E9755F10A143360065EE31 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "Frameworks/CorePlot/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
+		D8E9757210A146890065EE31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D8E975AF10A147E90065EE31 /* history.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = history.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,9 +229,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E9756C10A143820065EE31 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
+				D8E9757310A146890065EE31 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,9 +320,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8E9755F10A143360065EE31 /* CorePlot-CocoaTouch.xcodeproj */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
+				D8E9757210A146890065EE31 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -432,6 +459,7 @@
 				D8E9749A10A097930065EE31 /* LiveData.xml */,
 				D8E9749B10A097930065EE31 /* Model.graffle */,
 				D8E9749C10A097930065EE31 /* ScratchPad.graffle */,
+				D8E975AF10A147E90065EE31 /* history.xml */,
 			);
 			name = Documentation;
 			sourceTree = "<group>";
@@ -475,6 +503,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		D8E9756010A143360065EE31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8E9756710A143360065EE31 /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -489,6 +525,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D8E9756A10A143530065EE31 /* PBXTargetDependency */,
 			);
 			name = "TED-O-Meter";
 			productName = Ted5000;
@@ -512,12 +549,28 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D8E9756010A143360065EE31 /* Products */;
+					ProjectRef = D8E9755F10A143360065EE31 /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* TED-O-Meter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D8E9756710A143360065EE31 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = D8E9756610A143360065EE31 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -535,6 +588,7 @@
 				D8E974D310A099120065EE31 /* meter_glare.png in Resources */,
 				D8E974D510A0992F0065EE31 /* translucentButton.png in Resources */,
 				D8E974D710A099380065EE31 /* whiteButtonPressed.png in Resources */,
+				D8E975B010A147E90065EE31 /* history.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +655,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D8E9756A10A143530065EE31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = D8E9756910A143530065EE31 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -636,8 +698,15 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				OTHER_LDFLAGS = "-lxml2";
+				HEADER_SEARCH_PATHS = (
+					"Frameworks/CorePlot/**",
+					/usr/include/libxml2,
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+					"-lxml2",
+				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
 			};
@@ -651,8 +720,15 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				OTHER_LDFLAGS = "-lxml2";
+				HEADER_SEARCH_PATHS = (
+					"Frameworks/CorePlot/**",
+					/usr/include/libxml2,
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+					"-lxml2",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7B6C5EAE-4187-4A36-B33D-71BCA00F43F1";
 				SDKROOT = iphoneos3.0;

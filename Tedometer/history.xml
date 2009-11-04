@@ -1,0 +1,118 @@
+<!--
+Q. How much detailed data is stored in TED 5000?
+A. The stored data is exportable to the computer at any time, 
+however, the GATEWAY stores 
+60 minutes of SECONDS, (60 * 60 = 3600) 
+2 days of MINUTE-data, (60 * 24 * 2 = 2880)
+90 days of HOURLY-data, (24 * 90 = 2160)
+24 months of DAILY-data, (24 * 31 = 744)
+and 10 years of MONTHLY-data. (12 * 10 = 120)
+
+http://www.theenergydetective.com/ted-5000-faq.html
+-->
+
+
+<!-- http://192.168.1.102/history/secondhistory.xml?INDEX=0&MTU=0&COUNT=10&u=1 -->
+<History>
+	<SECOND>
+		<MTU>0</MTU>
+		<DATE>11/04/2009 00:07:10</DATE>
+		<POWER>1735</POWER>
+		<COST>14</COST>
+		<VOLTAGE>1212</VOLTAGE>
+	</SECOND>
+	...
+</History>
+
+<!-- http://192.168.1.102/history/minutehistory.xml?MTU=0&COUNT=10&u=1 -->
+<History>
+	<MINUTE>
+		<MTU>0</MTU>
+		<DATE>11/04/2009 00:07:00</DATE>
+		<POWER>1732</POWER>
+		<COST>14</COST>
+		<VOLTAGE>1212</VOLTAGE>
+	</MINUTE>
+	...
+</History>
+
+<!-- http://192.168.1.102/history/hourlyhistory.xml?MTU=0&COUNT=10&u=1 -->
+<History>
+	<HOUR>
+		<MTU>0</MTU>
+		<DATE>11/03/2009 23:00:00</DATE>
+		<POWER>1915</POWER>
+		<COST>15</COST>
+		<VMIN>1206</VMIN>
+		<VMAX>1206</VMAX>
+	</HOUR>
+</History>
+
+<!-- http://192.168.1.102/history/dailyhistory.xml?MTU=0&COUNT=10&u=1 -->
+<History>
+	<DAY>
+		<MTU>0</MTU>
+		<DATE>11/03/2009 00:00:00</DATE>
+		<POWER>48180</POWER>
+		<COST>371</COST>
+		<PMIN>
+			<VAL>1084</VAL>
+			<DATE>17:55</DATE>
+		</PMIN>
+		<PMAX>
+			<VAL>8944</VAL>
+			<DATE>18:19</DATE>
+		</PMAX>
+		<CMIN>
+			<VAL>9</VAL>
+			<DATE>5:16</DATE>
+		</CMIN>
+		<CMAX>
+			<VAL>69</VAL>
+			<DATE>18:19</DATE>
+		</CMAX>
+		<VMIN>
+			<VAL>2353</VAL>
+			<DATE>19:5</DATE>
+		</VMIN>
+		<VMAX>
+			<VAL>2444</VAL>
+			<DATE>2:34</DATE>
+		</VMAX>
+	</DAY>
+</History>
+
+<!-- http://192.168.1.102/history/monthlyhistory.xml?INDEX=0&MTU=0&COUNT=10&u=1 -->
+<History>
+	<MONTH>
+		<MTU>0</MTU>
+		<DATE>09/01/2009 00:00:00</DATE>
+		<POWER>310569</POWER>
+		<COST>2683</COST>
+		<PMIN>
+			<VAL>0</VAL>
+			<DATE>10/2</DATE>
+		</PMIN>
+		<PMAX>
+			<VAL>8848</VAL>
+			<DATE>10/8</DATE>
+		</PMAX>
+		<CMIN>
+			<VAL>0</VAL>
+			<DATE>10/2</DATE>
+		</CMIN>
+		<CMAX>
+			<VAL>68</VAL>
+			<DATE>10/8</DATE>
+		</CMAX>
+		<VMIN>
+			<VAL>2343</VAL>
+			<DATE>10/8</DATE>
+		</VMIN>
+		<VMAX>
+			<VAL>2458</VAL>
+			<DATE>10/6</DATE>
+		</VMAX>
+	</MONTH>
+</History>
+

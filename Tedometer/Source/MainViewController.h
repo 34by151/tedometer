@@ -45,6 +45,7 @@
 	BOOL isShowingTodayStatistics;
 	
 	BOOL hasShownFlipsideThisSession;
+	BOOL hasShownConnectionErrorSinceFlip;
 	
 	BOOL isApplicationInactive;
 }
@@ -69,6 +70,8 @@
 
 - (IBAction)showInfo;
 - (IBAction)refreshData;
+- (IBAction)manualRefresh;
+
 - (void)refreshView;
 - (void) repeatRefresh;
 - (IBAction) activateCostMeter;

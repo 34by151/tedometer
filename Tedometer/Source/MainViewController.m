@@ -170,6 +170,7 @@
 
 	BOOL needsInitialRefresh = ! hasShownFlipsideThisSession;
 	hasShownFlipsideThisSession = YES;
+	hasShownConnectionErrorSinceFlip = NO;
 
 	[TedometerData archiveToDocumentsFolder];
 	
@@ -230,15 +231,36 @@
 	[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: tedometerData.refreshRate];
 }
 
+-(void) showConnectionErrorMsg {
+	@synchronized( self ) {
+		if( ! hasShownConnectionErrorSinceFlip ) {
+			hasShownConnectionErrorSinceFlip = YES;
+			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Unable to load TED Gateway data. Tap the Info icon to check your connection settings." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
+	}
+}
+
 -(void) reloadXmlDocument {
 
-	NSString *urlString = [NSString stringWithFormat:@"http://%@/api/LiveData.xml", tedometerData.gatewayHost];
+	NSString *urlString;
+	if( [@"theenergydetective.com" isEqualToString: [tedometerData.gatewayHost lowercaseString]]
+	   || [@"www.theenergydetective.com" isEqualToString: [tedometerData.gatewayHost lowercaseString]] ) 
+	{
+		urlString = @"http://www.theenergydetective.com/media/5000LiveData.xml";
+	}
+	else 
+		urlString = [NSString stringWithFormat:@"http://%@/api/LiveData.xml", tedometerData.gatewayHost];
+	
     NSURL *url = [NSURL URLWithString: urlString];
 	
 	NSError* error;
 	CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:&error] retain];
 	if( ! newDocument ) {
 		NSLog( @"%@", [error localizedDescription]);
+		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(showConnectionErrorMsg) withObject:self waitUntilDone:NO];
 	}
 	else {
 		@synchronized( self ) {
@@ -255,10 +277,20 @@
 	[activityIndicator stopAnimating];
 }
 
+-(IBAction) manualRefresh {
+	hasShownConnectionErrorSinceFlip = NO;	// show error message if we fail during a manual refresh attempt
+	[self refreshData];
+}
+
 -(IBAction) refreshData {
 
-	if( isApplicationInactive || tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+	if( isApplicationInactive || tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] ) {
+		// don't show the error message if the gateway host is empty and we haven't yet shown the flip side this session,
+		// since we'll be showing them the flip side automatically to let them enter the host.
+		if( hasShownFlipsideThisSession )
+			[self showConnectionErrorMsg];
 		return;
+	}
 	
 	//NSLog(@"Refreshing MainView data..." );
 	[activityIndicator startAnimating];

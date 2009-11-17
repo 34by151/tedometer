@@ -51,7 +51,6 @@
 		D84511CE10B27DB5002BE7D7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D84511CD10B27DB5002BE7D7 /* Reachability.m */; };
 		D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D845122510B31781002BE7D7 /* InternetRequiredView.xib */; };
 		D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */; };
-		D845123D10B31B6A002BE7D7 /* logo_large.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123C10B31B6A002BE7D7 /* logo_large.png */; };
 		D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123E10B31EC2002BE7D7 /* logo_no_internet.png */; };
 		D845127310B328A5002BE7D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D845127210B328A5002BE7D7 /* SystemConfiguration.framework */; };
 		D8E9749210A0971C0065EE31 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */; };
@@ -621,7 +620,6 @@
 				D8E974D710A099380065EE31 /* whiteButtonPressed.png in Resources */,
 				D8E975B010A147E90065EE31 /* history.xml in Resources */,
 				D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */,
-				D845123D10B31B6A002BE7D7 /* logo_large.png in Resources */,
 				D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

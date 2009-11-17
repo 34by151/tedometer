@@ -38,8 +38,8 @@
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
     internetRequiredViewController.view.frame = [UIScreen mainScreen].applicationFrame;
 	
-	[window addSubview:[internetRequiredViewController view]];
 	[window addSubview:[mainViewController view]];
+	[window addSubview:[internetRequiredViewController view]];
 	
 	[self updateInterfaceWithReachability: internetReach];
 
@@ -52,12 +52,12 @@
 {
 	if( curReach == internetReach ) {
 		NetworkStatus netStatus = [curReach currentReachabilityStatus];
-		BOOL connectionRequired = [curReach connectionRequired];
+		//BOOL connectionRequired = [curReach connectionRequired];
 		if( netStatus == NotReachable ) {
-			[window bringSubviewToFront:internetRequiredViewController.view];
+			internetRequiredViewController.view.hidden = NO;
 		}
 		else {
-			[window bringSubviewToFront:mainViewController.view];
+			internetRequiredViewController.view.hidden = YES;
 		}
 	}
 }

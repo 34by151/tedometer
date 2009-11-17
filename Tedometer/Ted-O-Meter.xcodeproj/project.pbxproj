@@ -49,6 +49,11 @@
 		D81E4D2E10A09027006F0A90 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D81E4D0410A09026006F0A90 /* win32tc.c */; };
 		D81E4D2F10A09027006F0A90 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = D81E4D0810A09026006F0A90 /* CTidy.m */; };
 		D84511CE10B27DB5002BE7D7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D84511CD10B27DB5002BE7D7 /* Reachability.m */; };
+		D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D845122510B31781002BE7D7 /* InternetRequiredView.xib */; };
+		D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */; };
+		D845123D10B31B6A002BE7D7 /* logo_large.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123C10B31B6A002BE7D7 /* logo_large.png */; };
+		D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123E10B31EC2002BE7D7 /* logo_no_internet.png */; };
+		D845127310B328A5002BE7D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D845127210B328A5002BE7D7 /* SystemConfiguration.framework */; };
 		D8E9749210A0971C0065EE31 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */; };
 		D8E9749710A097390065EE31 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749410A097390065EE31 /* MainView.m */; };
 		D8E9749810A097390065EE31 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749610A097390065EE31 /* MainViewController.m */; };
@@ -180,6 +185,12 @@
 		D81E4D0910A09026006F0A90 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		D84511CC10B27DB5002BE7D7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Source/Reachability.h; sourceTree = "<group>"; };
 		D84511CD10B27DB5002BE7D7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Source/Reachability.m; sourceTree = "<group>"; };
+		D845122510B31781002BE7D7 /* InternetRequiredView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InternetRequiredView.xib; path = Resources/InternetRequiredView.xib; sourceTree = "<group>"; };
+		D845123810B318EE002BE7D7 /* InternetRequiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetRequiredViewController.h; sourceTree = "<group>"; };
+		D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetRequiredViewController.m; sourceTree = "<group>"; };
+		D845123C10B31B6A002BE7D7 /* logo_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_large.png; path = Resources/logo_large.png; sourceTree = "<group>"; };
+		D845123E10B31EC2002BE7D7 /* logo_no_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_no_internet.png; path = Resources/logo_no_internet.png; sourceTree = "<group>"; };
+		D845127210B328A5002BE7D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D8E9749010A0971C0065EE31 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TedometerAppDelegate.h; path = Source/TedometerAppDelegate.h; sourceTree = "<group>"; };
 		D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TedometerAppDelegate.m; path = Source/TedometerAppDelegate.m; sourceTree = "<group>"; };
 		D8E9749310A097390065EE31 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = Source/MainView.h; sourceTree = "<group>"; };
@@ -237,6 +248,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				D8E9757310A146890065EE31 /* QuartzCore.framework in Frameworks */,
+				D845127310B328A5002BE7D7 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +322,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D845123E10B31EC2002BE7D7 /* logo_no_internet.png */,
+				D845123C10B31B6A002BE7D7 /* logo_large.png */,
 				D8E974E010A09AB50065EE31 /* Ted-O-Meter-Info.plist */,
 				D8E974D610A099380065EE31 /* whiteButtonPressed.png */,
 				D8E974D410A0992F0065EE31 /* translucentButton.png */,
@@ -330,6 +344,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
 				D8E9757210A146890065EE31 /* QuartzCore.framework */,
+				D845127210B328A5002BE7D7 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -449,6 +464,16 @@
 			path = Tidy;
 			sourceTree = "<group>";
 		};
+		D845122810B31793002BE7D7 /* InternetRequired View */ = {
+			isa = PBXGroup;
+			children = (
+				D845122510B31781002BE7D7 /* InternetRequiredView.xib */,
+				D845123810B318EE002BE7D7 /* InternetRequiredViewController.h */,
+				D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */,
+			);
+			name = "InternetRequired View";
+			sourceTree = "<group>";
+		};
 		D8E9748910A096F20065EE31 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,6 +527,7 @@
 		D8E9754910A09E720065EE31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D845122810B31793002BE7D7 /* InternetRequired View */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
 			);
@@ -594,6 +620,9 @@
 				D8E974D510A0992F0065EE31 /* translucentButton.png in Resources */,
 				D8E974D710A099380065EE31 /* whiteButtonPressed.png in Resources */,
 				D8E975B010A147E90065EE31 /* history.xml in Resources */,
+				D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */,
+				D845123D10B31B6A002BE7D7 /* logo_large.png in Resources */,
+				D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +685,7 @@
 				D8E974C010A098520065EE31 /* VoltageMeter.m in Sources */,
 				D8E974C310A098810065EE31 /* main.m in Sources */,
 				D84511CE10B27DB5002BE7D7 /* Reachability.m in Sources */,
+				D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

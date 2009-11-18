@@ -12,7 +12,7 @@
 #import "TouchXML.h"
 #import "TedometerData.h"
 #import "TedometerAppDelegate.h"
-
+#import "InternetRequiredViewController.h"
 @implementation MainViewController
 
 @synthesize avgLabel;
@@ -233,7 +233,9 @@
 
 -(void) showConnectionErrorMsg {
 	@synchronized( self ) {
-		if( ! hasShownConnectionErrorSinceFlip ) {
+		TedometerAppDelegate *delegate = (TedometerAppDelegate*)[[UIApplication sharedApplication] delegate];
+		BOOL isConnectedToInternet = delegate.internetRequiredViewController.view.hidden;
+		if( isConnectedToInternet && ! hasShownConnectionErrorSinceFlip ) {
 			hasShownConnectionErrorSinceFlip = YES;
 			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Unable to load TED Gateway data. Tap the Info icon to check your connection settings." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 			[alert show];

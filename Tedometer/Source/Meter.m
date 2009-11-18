@@ -49,7 +49,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 }
 
 - (NSString*) todayTotalLabel {
-	return @"Total";
+	return [NSString stringWithFormat:@"Since %@", [self timeStringForHour:0 minute:0]];
 }
 
 - (NSString*) todayProjectedLabel {
@@ -69,7 +69,8 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 }
 
 - (NSString*) mtdTotalLabel {
-	return @"Total";
+	TedometerData *tedometerData = [TedometerData sharedTedometerData];
+	return [NSString stringWithFormat:@"Since %@", [self timeStringForMonth:tedometerData.gatewayMonth day:tedometerData.meterReadDate]];
 }
 
 - (NSString*) mtdProjectedLabel {

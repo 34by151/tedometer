@@ -79,7 +79,6 @@
 		D8E974D710A099380065EE31 /* whiteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E974D610A099380065EE31 /* whiteButtonPressed.png */; };
 		D8E9756C10A143820065EE31 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9756710A143360065EE31 /* libCorePlot-CocoaTouch.a */; };
 		D8E9757310A146890065EE31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9757210A146890065EE31 /* QuartzCore.framework */; };
-		D8E975B010A147E90065EE31 /* history.xml in Resources */ = {isa = PBXBuildFile; fileRef = D8E975AF10A147E90065EE31 /* history.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -618,7 +617,6 @@
 				D8E974D310A099120065EE31 /* meter_glare.png in Resources */,
 				D8E974D510A0992F0065EE31 /* translucentButton.png in Resources */,
 				D8E974D710A099380065EE31 /* whiteButtonPressed.png in Resources */,
-				D8E975B010A147E90065EE31 /* history.xml in Resources */,
 				D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */,
 				D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */,
 			);

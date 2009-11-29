@@ -35,6 +35,7 @@
 	UIImageView *avgLabelPointerImage;
 	
 	UIButton *todayMonthToggleButton;
+	UIButton *warningIconButton;
 	
 	BOOL shouldAutoRefresh;
 		
@@ -67,6 +68,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *todayMonthToggleButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) IBOutlet UIImageView *avgLabelPointerImage;
+@property (nonatomic, retain) IBOutlet UIButton *warningIconButton;
+
 
 - (IBAction)showInfo;
 - (IBAction)refreshData;
@@ -81,6 +84,9 @@
 - (IBAction) nextMeter;
 - (IBAction) toggleTodayMonthStatistics;
 - (void) updateIdleTimerState;
+- (void) showWarningIcon;
+- (void) hideWarningIcon;
+	
 
 - (void) applicationWillResignActive: (NSNotification*)notification;
 - (void) applicationDidBecomeActive: (NSNotification*)notification;

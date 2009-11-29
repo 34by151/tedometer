@@ -66,6 +66,11 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	return valueStr;
 }
 
+
+- (NSString*) meterReadingString {
+	return [[self meterStringForInteger:self.now] stringByAppendingString:@"/hr"];
+}
+
 - (NSString *) meterStringForInteger:(NSInteger) value {
 	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:carbonRate*value/100000.0]];
 	return [valueStr stringByAppendingString:@" lbs"];

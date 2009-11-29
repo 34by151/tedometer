@@ -50,6 +50,10 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	return valueStr;
 }
 
+- (NSString*) meterReadingString {
+	return [self meterStringForInteger:self.now];
+}
+
 - (NSString *) meterStringForInteger:(NSInteger) value {
 	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/1000.0]];
 	return [valueStr stringByAppendingString:@" kW"];

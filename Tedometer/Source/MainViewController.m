@@ -32,6 +32,7 @@
 @synthesize toolbar;
 @synthesize todayMonthToggleButton;
 @synthesize avgLabelPointerImage;
+@synthesize warningIconButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -262,7 +263,10 @@
 	if( ! newDocument ) {
 		NSLog( @"%@", [error localizedDescription]);
 		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:YES];
-		[self performSelectorOnMainThread:@selector(showConnectionErrorMsg) withObject:self waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(showWarningIcon) withObject:self waitUntilDone:YES];
+		// nh 11/28/09: Gateway seems to have connection issues periodically. Rather than wait for user to
+		// acknowledge an error message, we simply display a warning icon.
+		//[self performSelectorOnMainThread:@selector(showConnectionErrorMsg) withObject:self waitUntilDone:NO];
 	}
 	else {
 		@synchronized( self ) {
@@ -271,8 +275,17 @@
 			document = newDocument;
 		}
 		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(hideWarningIcon) withObject:self waitUntilDone:NO];
 		[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
 	}
+}
+
+-(void) showWarningIcon {
+	self.warningIconButton.hidden = NO;
+}
+
+-(void) hideWarningIcon {
+	self.warningIconButton.hidden = YES;
 }
 
 -(void) stopActivityIndicator {
@@ -290,11 +303,12 @@
 		// don't show the error message if the gateway host is empty and we haven't yet shown the flip side this session,
 		// since we'll be showing them the flip side automatically to let them enter the host.
 		if( hasShownFlipsideThisSession )
-			[self showConnectionErrorMsg];
+			[self showWarningIcon];
 		return;
 	}
 	
 	//NSLog(@"Refreshing MainView data..." );
+	[self hideWarningIcon];
 	[activityIndicator startAnimating];
 	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
 	[[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
@@ -434,6 +448,7 @@ int buttonCount = 0;
 	[meterView release];
 	[activityIndicator release];
 	[avgLabelPointerImage release];
+	[warningIconButton release];
 	
     [super dealloc];
 	

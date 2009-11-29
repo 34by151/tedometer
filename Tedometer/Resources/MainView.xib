@@ -2,17 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10B504</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
 		<string key="IBDocument.InterfaceBuilderVersion">740</string>
-		<string key="IBDocument.AppKitVersion">1038.2</string>
-		<string key="IBDocument.HIToolboxVersion">437.00</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">62</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="63"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -66,6 +66,28 @@
 							<object class="IBUIView" id="894875800">
 								<reference key="NSNextResponder" ref="614999557"/>
 								<int key="NSvFlags">292</int>
+								<object class="NSMutableArray" key="NSSubviews">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<object class="IBUIImageView" id="601527731">
+										<reference key="NSNextResponder" ref="894875800"/>
+										<int key="NSvFlags">274</int>
+										<string key="NSFrame">{{11, -11}, {236, 302}}</string>
+										<reference key="NSSuperview" ref="894875800"/>
+										<reference key="IBUIBackgroundColor" ref="557351553"/>
+										<bool key="IBUIOpaque">NO</bool>
+										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+										<float key="IBUIAlpha">0.38732394576072693</float>
+										<int key="IBUIContentMode">1</int>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
+											<integer value="260" key="IBUIAccessibilityTraits"/>
+										</object>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">meter_glare.png</string>
+										</object>
+									</object>
+								</object>
 								<string key="NSFrameSize">{257, 257}</string>
 								<reference key="NSSuperview" ref="614999557"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -141,31 +163,12 @@
 							<object class="IBUIActivityIndicatorView" id="541409388">
 								<reference key="NSNextResponder" ref="614999557"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{118, 219}, {20, 20}}</string>
+								<string key="NSFrame">{{119, 219}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="614999557"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<int key="IBUIStyle">2</int>
-							</object>
-							<object class="IBUIImageView" id="601527731">
-								<reference key="NSNextResponder" ref="614999557"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{11, -22}, {236, 302}}</string>
-								<reference key="NSSuperview" ref="614999557"/>
-								<reference key="IBUIBackgroundColor" ref="557351553"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<float key="IBUIAlpha">0.38732394576072693</float>
-								<int key="IBUIContentMode">1</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
-									<integer value="260" key="IBUIAccessibilityTraits"/>
-								</object>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">meter_glare.png</string>
-								</object>
 							</object>
 							<object class="IBUIButton" id="216037687">
 								<reference key="NSNextResponder" ref="614999557"/>
@@ -189,9 +192,33 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="187754591">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
+							</object>
+							<object class="IBUIButton" id="172031835">
+								<reference key="NSNextResponder" ref="614999557"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{92, 210}, {72, 37}}</string>
+								<reference key="NSSuperview" ref="614999557"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
+									<integer value="5" key="IBUIAccessibilityTraits"/>
+								</object>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="271419249"/>
+								<reference key="IBUIHighlightedTitleColor" ref="57401943"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="187754591"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">warning_icon_black.png</string>
 								</object>
 							</object>
 						</object>
@@ -751,6 +778,23 @@
 					</object>
 					<int key="connectionID">184</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">warningIconButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="172031835"/>
+					</object>
+					<int key="connectionID">188</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">showInfo</string>
+						<reference key="source" ref="172031835"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">189</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -801,21 +845,16 @@
 						<reference key="object" ref="614999557"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="601527731"/>
 							<reference ref="223268888"/>
 							<reference ref="987706867"/>
 							<reference ref="894875800"/>
 							<reference ref="346415883"/>
 							<reference ref="216037687"/>
 							<reference ref="541409388"/>
+							<reference ref="172031835"/>
 						</object>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">Meter View</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">63</int>
-						<reference key="object" ref="601527731"/>
-						<reference key="parent" ref="614999557"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">104</int>
@@ -849,6 +888,10 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">124</int>
 						<reference key="object" ref="894875800"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="601527731"/>
+						</object>
 						<reference key="parent" ref="614999557"/>
 						<string key="objectName">Dial and Ticks View</string>
 					</object>
@@ -982,6 +1025,17 @@
 						<reference key="object" ref="748932039"/>
 						<reference key="parent" ref="987535781"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">63</int>
+						<reference key="object" ref="601527731"/>
+						<reference key="parent" ref="894875800"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">187</int>
+						<reference key="object" ref="172031835"/>
+						<reference key="parent" ref="614999557"/>
+						<string key="objectName">Warning Icon Button</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1017,6 +1071,7 @@
 					<string>175.IBPluginDependency</string>
 					<string>180.IBPluginDependency</string>
 					<string>181.IBPluginDependency</string>
+					<string>187.IBPluginDependency</string>
 					<string>34.CustomClassName</string>
 					<string>34.IBEditorWindowLastContentRect</string>
 					<string>34.IBPluginDependency</string>
@@ -1034,6 +1089,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MeterView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1081,7 +1137,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">184</int>
+			<int key="maxID">189</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1145,6 +1201,7 @@
 							<string>toolbar</string>
 							<string>totalLabel</string>
 							<string>totalValue</string>
+							<string>warningIconButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1165,6 +1222,7 @@
 							<string>UIToolbar</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

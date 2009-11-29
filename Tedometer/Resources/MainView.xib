@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="63"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -192,12 +192,12 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="187754591">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="1029641052">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
 							</object>
-							<object class="IBUIButton" id="172031835">
+							<object class="IBUIButton" id="280804054">
 								<reference key="NSNextResponder" ref="614999557"/>
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{92, 210}, {72, 37}}</string>
@@ -215,7 +215,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="187754591"/>
+								<reference key="IBUINormalTitleShadowColor" ref="1029641052"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">warning_icon_black.png</string>
@@ -563,6 +563,29 @@
 							<string key="NSResourceName">arrow_avg.png</string>
 						</object>
 					</object>
+					<object class="IBUILabel" id="321329910">
+						<reference key="NSNextResponder" ref="883825266"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{13, 232}, {113, 30}}</string>
+						<reference key="NSSuperview" ref="883825266"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string type="base64-UTF8" key="IBUIText">a1ZBClBGOgo</string>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">11</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC43NDkwMTk2MjI4IDAuNzQ5MDE5NjIyOCAwLjc0OTAxOTYyMjgAA</bytes>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUINumberOfLines">2</int>
+					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
@@ -782,18 +805,26 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">warningIconButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="172031835"/>
+						<reference key="destination" ref="280804054"/>
 					</object>
 					<int key="connectionID">188</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showInfo</string>
-						<reference key="source" ref="172031835"/>
+						<reference key="source" ref="280804054"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">189</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">infoLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="321329910"/>
+					</object>
+					<int key="connectionID">192</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -837,6 +868,7 @@
 							<reference ref="893225097"/>
 							<reference ref="236060262"/>
 							<reference ref="141671576"/>
+							<reference ref="321329910"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -851,7 +883,7 @@
 							<reference ref="346415883"/>
 							<reference ref="216037687"/>
 							<reference ref="541409388"/>
-							<reference ref="172031835"/>
+							<reference ref="280804054"/>
 						</object>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">Meter View</string>
@@ -1032,9 +1064,15 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">187</int>
-						<reference key="object" ref="172031835"/>
+						<reference key="object" ref="280804054"/>
 						<reference key="parent" ref="614999557"/>
 						<string key="objectName">Warning Icon Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">191</int>
+						<reference key="object" ref="321329910"/>
+						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Info Label</string>
 					</object>
 				</object>
 			</object>
@@ -1072,6 +1110,7 @@
 					<string>180.IBPluginDependency</string>
 					<string>181.IBPluginDependency</string>
 					<string>187.IBPluginDependency</string>
+					<string>191.IBPluginDependency</string>
 					<string>34.CustomClassName</string>
 					<string>34.IBEditorWindowLastContentRect</string>
 					<string>34.IBPluginDependency</string>
@@ -1089,6 +1128,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MeterView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1137,7 +1177,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">189</int>
+			<int key="maxID">192</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1188,6 +1228,7 @@
 							<string>avgLabel</string>
 							<string>avgLabelPointerImage</string>
 							<string>avgValue</string>
+							<string>infoLabel</string>
 							<string>lowLabel</string>
 							<string>lowValue</string>
 							<string>meterLabel</string>
@@ -1208,6 +1249,7 @@
 							<string>UIActivityIndicatorView</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>

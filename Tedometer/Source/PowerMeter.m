@@ -12,8 +12,18 @@
 
 @implementation PowerMeter
 
+@synthesize kva;
+
 - (NSString*) meterTitle {
 	return @"Power";
+}
+
+- (NSString*) infoLabel {
+	NSString *kvaStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:kva/1000.0]];
+	NSString *powerFactorStr = [[self powerFactorFormatter] stringFromNumber: [NSNumber numberWithDouble:(now / (double)kva)]];
+	NSString *label = [NSString stringWithFormat:@"%@ kVA\nPF: %@", kvaStr, powerFactorStr ];
+	//return @"KVA:\nPF:";
+	return label;
 }
 
 - (NSInteger) meterEndMax {
@@ -22,6 +32,17 @@
 
 - (NSInteger) meterEndMin {
 	return (NSInteger) 1000;	// 1
+}
+
+static NSNumberFormatter *powerFactorFormatter;
+- (NSNumberFormatter *)powerFactorFormatter {
+	if( ! powerFactorFormatter ) {
+		powerFactorFormatter = [[NSNumberFormatter alloc] init];
+		[powerFactorFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+		[powerFactorFormatter setMaximumFractionDigits:2];
+		[powerFactorFormatter setMinimumFractionDigits:2];
+	}
+	return powerFactorFormatter;
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;
@@ -94,6 +115,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 													  @"PowerHour",		@"hour",
 													  @"PowerTDY",		@"today",
 													  @"PowerMTD",		@"mtd",
+													  @"KVA",			@"kva",
 													  @"PowerProj",		@"projected",
 													  @"PeakTdy",		@"todayPeakValue",
 													  @"PeakTdyHour",	@"todayPeakHour",

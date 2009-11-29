@@ -30,6 +30,7 @@
 	
 	UILabel *meterLabel;
 	UILabel *meterTitle;
+	UILabel *infoLabel;
 	UIActivityIndicatorView *activityIndicator;
 	
 	UIImageView *avgLabelPointerImage;
@@ -63,6 +64,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *projLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterTitle;
+@property (nonatomic, retain) IBOutlet UILabel *infoLabel;
 @property (nonatomic, retain) IBOutlet MeterView *meterView;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIButton *todayMonthToggleButton;

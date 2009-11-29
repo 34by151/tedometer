@@ -77,6 +77,10 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return @"Est. Month Total";
 }
 
+- (NSString*) infoLabel {
+	return @"";
+}
+
 - (NSInteger) meterEndMax {
 	[self doesNotRecognizeSelector:_cmd];
 	return 0;

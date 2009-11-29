@@ -87,6 +87,7 @@ typedef enum {
 @property(readonly) NSString* mtdPeakLabel;
 @property(readonly) NSString* mtdTotalLabel;
 @property(readonly) NSString* mtdProjectedLabel;
+@property(readonly) NSString* infoLabel;
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;

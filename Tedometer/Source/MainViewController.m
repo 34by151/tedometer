@@ -28,6 +28,7 @@
 @synthesize meterLabel;
 @synthesize meterTitle;
 @synthesize meterView;
+@synthesize infoLabel;
 @synthesize activityIndicator;
 @synthesize toolbar;
 @synthesize todayMonthToggleButton;
@@ -79,6 +80,8 @@
 	 lowValue.text = @"...";
 	 projValue.text = @"";
 	 projLabel.text = @"";
+	 
+	 infoLabel.text = @"";
 	 
 	 meterTitle.text = @"";
 	 
@@ -375,6 +378,8 @@
 				aValueLabel.text = @"";
 			}
 		}
+		
+		infoLabel.text = tedometerData.curMeter.infoLabel;
 		
 						   
 	}

@@ -31,6 +31,10 @@
 	carbonRate = value;
 }
 
+- (NSString*) infoLabel {
+	return @"";
+}
+
 
 - (NSInteger) meterEndMax {
 	return 100 * 100000 / self.carbonRate; 

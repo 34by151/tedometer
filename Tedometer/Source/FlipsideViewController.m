@@ -128,7 +128,6 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 
 - (IBAction)clearConnectionErrorMsg:(id)sender {
 	self.connectionErrorMsg = nil;
-	NSLog( @"clearConnectionErrorMsg");
 	
 	[UIView beginAnimations:@"CloseWarningView" context:NULL];
 	
@@ -157,7 +156,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 }
 
 - (IBAction)backgroundClick:(id)sender {
-	NSLog(@"Background click");
+	//NSLog(@"Background click");
 	
 	[gatewayAddress resignFirstResponder];
 	[username resignFirstResponder];

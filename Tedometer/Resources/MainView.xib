@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="63"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -71,7 +71,7 @@
 									<object class="IBUIImageView" id="601527731">
 										<reference key="NSNextResponder" ref="894875800"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrame">{{11, -11}, {236, 302}}</string>
+										<string key="NSFrame">{{11, -21}, {236, 302}}</string>
 										<reference key="NSSuperview" ref="894875800"/>
 										<reference key="IBUIBackgroundColor" ref="557351553"/>
 										<bool key="IBUIOpaque">NO</bool>
@@ -192,12 +192,12 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="1029641052">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="220537123">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
 							</object>
-							<object class="IBUIButton" id="280804054">
+							<object class="IBUIButton" id="602932323">
 								<reference key="NSNextResponder" ref="614999557"/>
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{92, 210}, {72, 37}}</string>
@@ -215,7 +215,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="1029641052"/>
+								<reference key="IBUINormalTitleShadowColor" ref="220537123"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">warning_icon_black.png</string>
@@ -563,7 +563,7 @@
 							<string key="NSResourceName">arrow_avg.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="321329910">
+					<object class="IBUILabel" id="887071073">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{13, 232}, {113, 30}}</string>
@@ -805,14 +805,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">warningIconButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="280804054"/>
+						<reference key="destination" ref="602932323"/>
 					</object>
 					<int key="connectionID">188</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showInfo</string>
-						<reference key="source" ref="280804054"/>
+						<reference key="source" ref="602932323"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -822,7 +822,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">infoLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="321329910"/>
+						<reference key="destination" ref="887071073"/>
 					</object>
 					<int key="connectionID">192</int>
 				</object>
@@ -868,7 +868,7 @@
 							<reference ref="893225097"/>
 							<reference ref="236060262"/>
 							<reference ref="141671576"/>
-							<reference ref="321329910"/>
+							<reference ref="887071073"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -883,7 +883,7 @@
 							<reference ref="346415883"/>
 							<reference ref="216037687"/>
 							<reference ref="541409388"/>
-							<reference ref="280804054"/>
+							<reference ref="602932323"/>
 						</object>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">Meter View</string>
@@ -1064,13 +1064,13 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">187</int>
-						<reference key="object" ref="280804054"/>
+						<reference key="object" ref="602932323"/>
 						<reference key="parent" ref="614999557"/>
 						<string key="objectName">Warning Icon Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">191</int>
-						<reference key="object" ref="321329910"/>
+						<reference key="object" ref="887071073"/>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">Info Label</string>
 					</object>

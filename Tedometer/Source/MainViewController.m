@@ -13,6 +13,8 @@
 #import "TedometerData.h"
 #import "TedometerAppDelegate.h"
 #import "InternetRequiredViewController.h"
+#import "ASIHTTPRequest.h"
+
 @implementation MainViewController
 
 @synthesize avgLabel;
@@ -34,6 +36,7 @@
 @synthesize todayMonthToggleButton;
 @synthesize avgLabelPointerImage;
 @synthesize warningIconButton;
+@synthesize connectionErrorMsg;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -84,6 +87,7 @@
 	 infoLabel.text = @"";
 	 
 	 meterTitle.text = @"";
+	 connectionErrorMsg = nil;
 	 
 	 shouldAutoRefresh = YES;
 	 [self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 2.0];
@@ -196,6 +200,7 @@
 	
 	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
 	controller.delegate = self;
+	controller.connectionErrorMsg = self.connectionErrorMsg;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:controller animated:YES];	
@@ -235,51 +240,77 @@
 	[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: tedometerData.refreshRate];
 }
 
--(void) showConnectionErrorMsg {
-	@synchronized( self ) {
-		TedometerAppDelegate *delegate = (TedometerAppDelegate*)[[UIApplication sharedApplication] delegate];
-		BOOL isConnectedToInternet = delegate.internetRequiredViewController.view.hidden;
-		if( isConnectedToInternet && ! hasShownConnectionErrorSinceFlip ) {
-			hasShownConnectionErrorSinceFlip = YES;
-			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Unable to load TED Gateway data. Tap the Info icon to check your connection settings." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-			[alert show];
-			[alert release];
-		}
-	}
+-(IBAction) showConnectionErrorMsg {
+	[self showInfo];
+	/*
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:connectionErrorMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+	 */
 }
 
 -(void) reloadXmlDocument {
 
 	NSString *urlString;
+	BOOL usingDemoAccount = NO;
 	if( [@"theenergydetective.com" isEqualToString: [tedometerData.gatewayHost lowercaseString]]
 	   || [@"www.theenergydetective.com" isEqualToString: [tedometerData.gatewayHost lowercaseString]] ) 
 	{
-		urlString = @"http://www.theenergydetective.com/media/5000LiveData.xml";
+		usingDemoAccount = YES;
 	}
+	
+	if( usingDemoAccount )
+		urlString = @"http://www.theenergydetective.com/media/5000LiveData.xml";
 	else 
-		urlString = [NSString stringWithFormat:@"http://%@/api/LiveData.xml", tedometerData.gatewayHost];
+		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", tedometerData.useSSL ? @"https" : @"http", tedometerData.gatewayHost];
 	
     NSURL *url = [NSURL URLWithString: urlString];
 	
-	NSError* error;
-	CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithContentsOfURL:url options:0 error:&error] retain];
-	if( ! newDocument ) {
-		NSLog( @"%@", [error localizedDescription]);
+	NSLog(@"Attempting connection with URL %@", url);
+	BOOL success = NO;
+	
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	[request setUseSessionPersistance:NO];
+	if( ! usingDemoAccount ) {
+		if( tedometerData.useSSL ) 
+			[request setValidatesSecureCertificate:NO];
+		[request setUsername:tedometerData.username];
+		[request setPassword:tedometerData.password];
+	}
+	
+	[request start];
+	NSError *error = [request error];
+	if (!error) {
+		NSString *response = [request responseString];
+		
+		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:response options:0 error:&error] retain];
+		if( newDocument ) {
+			success = YES;
+			self.connectionErrorMsg = nil;
+			@synchronized( self ) {
+				if( document )
+					[document release];
+				document = newDocument;
+			}
+			[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
+			[self performSelectorOnMainThread:@selector(hideWarningIcon) withObject:self waitUntilDone:NO];
+			[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
+		}
+	}
+	
+	if( ! success ) {
+		if( [[error domain] isEqualToString:@"CXMLErrorDomain"] ) {
+			self.connectionErrorMsg = [NSString stringWithFormat:@"Unable to parse data from %@", url];
+		}
+		else {
+			self.connectionErrorMsg = [error localizedDescription];
+		}
+		NSLog( @"%@", self.connectionErrorMsg);
 		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:YES];
 		[self performSelectorOnMainThread:@selector(showWarningIcon) withObject:self waitUntilDone:YES];
 		// nh 11/28/09: Gateway seems to have connection issues periodically. Rather than wait for user to
 		// acknowledge an error message, we simply display a warning icon.
 		//[self performSelectorOnMainThread:@selector(showConnectionErrorMsg) withObject:self waitUntilDone:NO];
-	}
-	else {
-		@synchronized( self ) {
-			if( document )
-				[document release];
-			document = newDocument;
-		}
-		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
-		[self performSelectorOnMainThread:@selector(hideWarningIcon) withObject:self waitUntilDone:NO];
-		[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
 	}
 }
 
@@ -454,6 +485,7 @@ int buttonCount = 0;
 	[activityIndicator release];
 	[avgLabelPointerImage release];
 	[warningIconButton release];
+	[connectionErrorMsg release];
 	
     [super dealloc];
 	

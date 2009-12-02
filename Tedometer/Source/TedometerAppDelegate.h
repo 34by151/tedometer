@@ -7,7 +7,7 @@
 //
 
 #import "TedometerData.h"
-#import "Reachability.h"
+#import "Reachability2.h"
 
 @class MainViewController;
 @class InternetRequiredViewController;
@@ -18,7 +18,7 @@
     InternetRequiredViewController *internetRequiredViewController;
 	NSOperationQueue *sharedOperationQueue;
 	
-    Reachability* internetReach;
+    Reachability2* internetReach;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -26,7 +26,7 @@
 @property (nonatomic, retain) InternetRequiredViewController *internetRequiredViewController;
 @property (retain) NSOperationQueue *sharedOperationQueue;
 
-- (void) updateInterfaceWithReachability: (Reachability*) curReach;
+- (void) updateInterfaceWithReachability: (Reachability2*) curReach;
 - (void) reachabilityChanged: (NSNotification* )note;
 
 @end

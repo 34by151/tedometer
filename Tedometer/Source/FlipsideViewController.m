@@ -16,7 +16,14 @@
 @synthesize refreshRateSlider;
 @synthesize refreshRateLabel;
 @synthesize disableAutolockWhilePluggedIn;
-
+@synthesize connectionErrorMsgLabel;
+@synthesize connectionErrorMsg;
+@synthesize warningView;
+@synthesize settingsView;
+@synthesize scrollView;
+@synthesize useSSL;
+@synthesize username;
+@synthesize password;
 
 // slider range must be 0 to num elts -1 (0-10)
 static NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
@@ -51,13 +58,32 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	tedometerData = [TedometerData sharedTedometerData];
-    self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor]; 
 
 	gatewayAddress.text = tedometerData.gatewayHost;
+	username.text = tedometerData.username;
+	password.text = tedometerData.password;
+	useSSL.on = tedometerData.useSSL;
 	refreshRateSlider.value = secondsToSliderValue( tedometerData.refreshRate );
 	disableAutolockWhilePluggedIn.on = tedometerData.isAutolockDisabledWhilePluggedIn;
+	
 
+	
 	[self updateRefreshRateLabel: refreshRateSlider];
+
+	[scrollView addSubview:settingsView];
+	scrollView.contentSize = settingsView.frame.size;
+	
+	
+	[self.view addSubview:warningView];
+	warningView.frame = CGRectMake( 0, self.view.frame.size.height, self.view.frame.size.width, warningView.frame.size.height );
+
+	if( connectionErrorMsg ) {
+		// Seems we don't get the animation unless we delay a moment
+		[NSTimer scheduledTimerWithTimeInterval:0.75 target:self selector:@selector( showConnectionErrorMsg:) userInfo:nil repeats:NO];
+	}
+		
+	[scrollView flashScrollIndicators];
+	
 }
 
 - (IBAction)updateRefreshRateLabel:(id)sender {	
@@ -87,21 +113,55 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 
 }
 
+- (IBAction)showConnectionErrorMsg:(id)sender {
+
+	connectionErrorMsgLabel.text = connectionErrorMsg;
+
+	[UIView beginAnimations:@"OpenWarningView" context:NULL];
+
+	warningView.frame = CGRectMake( 0, self.view.frame.size.height - warningView.frame.size.height, self.view.frame.size.width, warningView.frame.size.height );
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+	[UIView setAnimationDuration:3.0];
+		
+	[UIView commitAnimations];
+}
+
+- (IBAction)clearConnectionErrorMsg:(id)sender {
+	self.connectionErrorMsg = nil;
+	NSLog( @"clearConnectionErrorMsg");
+	
+	[UIView beginAnimations:@"CloseWarningView" context:NULL];
+	
+	warningView.frame = CGRectMake( 0, self.view.frame.size.height, self.view.frame.size.width, warningView.frame.size.height );
+	[UIView setAnimationDuration:3.0];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+
+	[UIView commitAnimations];
+
+}
 
 - (IBAction)done {
 	tedometerData.gatewayHost = gatewayAddress.text;
 	tedometerData.refreshRate = sliderValueToSeconds( refreshRateSlider.value );
 	tedometerData.isAutolockDisabledWhilePluggedIn = disableAutolockWhilePluggedIn.on;
+	tedometerData.useSSL = useSSL.on;
+	tedometerData.username = username.text;
+	tedometerData.password = password.text;
 	
 	[self.delegate flipsideViewControllerDidFinish:self];	
 }
+
 
 - (IBAction)textFieldDoneEditing:(id)sender {
 	[sender resignFirstResponder];
 }
 
 - (IBAction)backgroundClick:(id)sender {
+	NSLog(@"Background click");
+	
 	[gatewayAddress resignFirstResponder];
+	[username resignFirstResponder];
+	[password resignFirstResponder];
 }
 
 
@@ -123,6 +183,9 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	
+	[warningView removeFromSuperview];
+
 }
 
 
@@ -130,6 +193,13 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	[gatewayAddress release];
 	[refreshRateSlider release];
 	[refreshRateLabel release];	
+	[useSSL release];
+	[username release];
+	[password release];
+	[settingsView release];
+	[scrollView release];
+	[connectionErrorMsgLabel release];
+	[connectionErrorMsg release];
 	[super dealloc];
 }
 

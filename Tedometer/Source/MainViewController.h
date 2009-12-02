@@ -50,6 +50,7 @@
 	BOOL hasShownConnectionErrorSinceFlip;
 	
 	BOOL isApplicationInactive;
+	NSString *connectionErrorMsg;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *avgValue;
@@ -71,6 +72,7 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) IBOutlet UIImageView *avgLabelPointerImage;
 @property (nonatomic, retain) IBOutlet UIButton *warningIconButton;
+@property (nonatomic, retain) NSString *connectionErrorMsg;
 
 
 - (IBAction)showInfo;
@@ -85,6 +87,7 @@
 - (IBAction) activateVoltageMeter;
 - (IBAction) nextMeter;
 - (IBAction) toggleTodayMonthStatistics;
+- (IBAction) showConnectionErrorMsg;
 - (void) updateIdleTimerState;
 - (void) showWarningIcon;
 - (void) hideWarningIcon;

@@ -25,7 +25,7 @@
 	[opQueue release];
 	
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+    internetReach = [[Reachability2 reachabilityForInternetConnection] retain];
 	[internetReach startNotifer];
 	
 	UIViewController *aController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
@@ -48,7 +48,7 @@
 }
 
 
-- (void) updateInterfaceWithReachability: (Reachability*) curReach
+- (void) updateInterfaceWithReachability: (Reachability2*) curReach
 {
 	if( curReach == internetReach ) {
 		NetworkStatus netStatus = [curReach currentReachabilityStatus];
@@ -64,8 +64,8 @@
 
 - (void) reachabilityChanged: (NSNotification* )note
 {
-	Reachability* curReach = [note object];
-	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	Reachability2* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability2 class]]);
 	[self updateInterfaceWithReachability: curReach];
 }
 

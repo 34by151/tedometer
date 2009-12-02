@@ -14,6 +14,9 @@
 	NSArray* meters;
 	NSInteger refreshRate;
 	NSString* gatewayHost;
+	NSString* username;
+	NSString* password;
+	BOOL useSSL;
 	NSInteger curMeterIdx;
 	NSInteger gatewayHour;
 	NSInteger gatewayMinute;
@@ -31,6 +34,8 @@
 @property(readwrite, nonatomic, retain) NSArray* meters;
 @property(readwrite, assign) NSInteger refreshRate;
 @property(readwrite, copy) NSString* gatewayHost;
+@property(readwrite, copy) NSString* username;
+@property(readwrite, copy) NSString* password;
 @property(readwrite, assign) NSInteger gatewayHour;
 @property(readwrite, assign) NSInteger gatewayMinute;
 @property(readwrite, assign) NSInteger gatewayMonth;
@@ -41,6 +46,7 @@
 @property(readwrite, assign) NSInteger meterReadDate;
 @property(readwrite, assign) NSInteger daysLeftInBillingCycle;
 @property(readwrite, assign) BOOL isAutolockDisabledWhilePluggedIn;
+@property(readwrite, assign) BOOL useSSL;
 
 
 //@property(readwrite, assign) NSInteger curMeterIdx;

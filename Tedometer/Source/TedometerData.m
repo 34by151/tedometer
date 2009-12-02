@@ -27,6 +27,9 @@
 @synthesize meters;
 @synthesize refreshRate;
 @synthesize gatewayHost;
+@synthesize username;
+@synthesize password;
+@synthesize useSSL;
 @synthesize gatewayHour;
 @synthesize gatewayMinute;
 @synthesize gatewayMonth;
@@ -185,6 +188,9 @@ NSString* _archiveLocation;
 	[encoder encodeObject:meters forKey:@"meters"];
 	[encoder encodeInteger:refreshRate forKey:@"refreshRate"];
 	[encoder encodeObject:gatewayHost forKey:@"gatewayHost"];
+	[encoder encodeObject:username forKey:@"username"];
+	[encoder encodeObject:password forKey:@"password"];
+	[encoder encodeBool:useSSL forKey:@"useSSL"];
 	[encoder encodeInteger:curMeterIdx forKey:@"curMeterIdx"];
 	[encoder encodeBool:isAutolockDisabledWhilePluggedIn forKey:@"isAutolockDisabledWhilePluggedIn"];
 }
@@ -194,6 +200,9 @@ NSString* _archiveLocation;
 		self.meters = [decoder decodeObjectForKey:@"meters"];
 		self.refreshRate = [decoder decodeIntegerForKey:@"refreshRate"];
 		self.gatewayHost = [decoder decodeObjectForKey:@"gatewayHost"];
+		self.username = [decoder decodeObjectForKey:@"username"];
+		self.password = [decoder decodeObjectForKey:@"password"];
+		self.useSSL = [decoder decodeBoolForKey:@"useSSL"];
 		self.curMeterIdx = [decoder decodeIntegerForKey:@"curMeterIdx"];
 		self.isAutolockDisabledWhilePluggedIn = [decoder decodeBoolForKey:@"isAutolockDisabledWhilePluggedIn"];
 	}

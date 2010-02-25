@@ -17,13 +17,31 @@
 	return @"Cost";
 }
 
-- (NSInteger) meterEndMax {
-	return 100 * 100;	// $100 
+- (NSString*) instantaneousUnit {
+	return @"/h";
 }
 
-- (NSInteger) meterEndMin {
-	return (NSInteger) (0.10 * 100);	// $0.10
+- (NSString*) cumulativeUnit {
+	return @"";
 }
+
+// units are cents
+- (NSInteger) maxUnitsPerTick {
+	return 1000000;
+}
+
+- (NSInteger) minUnitsPerTick {
+	return 1;
+}
+
+- (NSInteger) maxUnitsForOffset {
+	return 100 * self.maxUnitsPerTick;
+}
+
+- (NSInteger) defaultUnitsPerTick {
+	return 10;
+}
+
 
 static NSNumberFormatter *meterStringNumberFormatter;
 - (NSNumberFormatter *)meterStringNumberFormatter {
@@ -104,16 +122,20 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 													  @"MinMTDDay",		@"mtdMinDay",
 													  nil];
 	
-	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Cost.Total" 
-										  andNodesKeyedByProperty:nodesKeyedByProperty];
+	NSString *parentNodePath;
+	if( mtuNumber == 0 ) 
+		parentNodePath = @"Cost.Total";
+	else 
+		parentNodePath = [NSString stringWithFormat: @"Cost.MTU%d", mtuNumber];
+	
+	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
+										   andNodesKeyedByProperty:nodesKeyedByProperty];
 	
 	return isSuccessful;
 }
 
 - (id) init {
 	if( self = [super init] ) {
-		self.radiansPerTick = meterSpan / 10.0;
-		self.unitsPerTick = 10.0;
 	}
 	return self;
 }

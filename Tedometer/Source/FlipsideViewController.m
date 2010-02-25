@@ -70,6 +70,8 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	
 	[self updateRefreshRateLabel: refreshRateSlider];
 
+	settingsView.backgroundColor = [UIColor colorWithWhite:0.15 alpha:1.0];
+;
 	[scrollView addSubview:settingsView];
 	scrollView.contentSize = settingsView.frame.size;
 	
@@ -82,6 +84,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 		[NSTimer scheduledTimerWithTimeInterval:0.75 target:self selector:@selector( showConnectionErrorMsg:) userInfo:nil repeats:NO];
 	}
 		
+	
 	[scrollView flashScrollIndicators];
 	
 }

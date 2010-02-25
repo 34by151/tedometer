@@ -9,15 +9,41 @@
 #import <Foundation/Foundation.h>
 #import "Meter.h"
 
+#define NUM_METER_TYPES		4
+#define NUM_MTUS			5	// 4 MTUs plus a net
+
+typedef enum {
+	kMeterTypePower = 0,
+	kMeterTypeCost,
+	kMeterTypeCarbon,
+	kMeterTypeVoltage
+} MeterType;
+
+typedef enum {
+	kMtuNet = 0,
+	kMtu1,
+	kMtu2,
+	kMtu3,
+	kMtu4
+} MtuType;
+
 @interface TedometerData : NSObject <NSCoding> {
 
-	NSArray* meters;
 	NSInteger refreshRate;
 	NSString* gatewayHost;
 	NSString* username;
 	NSString* password;
 	BOOL useSSL;
-	NSInteger curMeterIdx;
+	BOOL isAutolockDisabledWhilePluggedIn;
+	BOOL hasShownFlipsideThisSession;
+	BOOL isApplicationInactive;
+	BOOL isShowingTodayStatistics;
+	
+	BOOL isLoadingXml;
+	NSString *connectionErrorMsg;
+	
+	NSInteger curMeterTypeIdx;
+	NSInteger curMtuIdx;
 	NSInteger gatewayHour;
 	NSInteger gatewayMinute;
 	NSInteger gatewayMonth;
@@ -27,11 +53,11 @@
 	NSInteger currentRate;
 	NSInteger meterReadDate;
 	NSInteger daysLeftInBillingCycle;
-	BOOL isAutolockDisabledWhilePluggedIn;
-	
+	NSInteger mtuCount;
+	NSMutableArray* mtusArray;			// array of arrays containing mtus
 }
 
-@property(readwrite, nonatomic, retain) NSArray* meters;
+@property(readwrite, nonatomic, retain) NSMutableArray* mtusArray;
 @property(readwrite, assign) NSInteger refreshRate;
 @property(readwrite, copy) NSString* gatewayHost;
 @property(readwrite, copy) NSString* username;
@@ -45,17 +71,30 @@
 @property(readwrite, assign) NSInteger currentRate;
 @property(readwrite, assign) NSInteger meterReadDate;
 @property(readwrite, assign) NSInteger daysLeftInBillingCycle;
+@property(readwrite, assign) NSInteger mtuCount;
+@property(readonly) NSInteger meterCount;
 @property(readwrite, assign) BOOL isAutolockDisabledWhilePluggedIn;
 @property(readwrite, assign) BOOL useSSL;
+@property(readwrite, assign) BOOL hasShownFlipsideThisSession;
+@property(readwrite, assign) BOOL isApplicationInactive;
+@property(readwrite, assign) BOOL isShowingTodayStatistics;
+@property(readwrite, assign) BOOL isLoadingXml;
+@property(readwrite, copy) NSString *connectionErrorMsg;
 
-
-//@property(readwrite, assign) NSInteger curMeterIdx;
+@property(readwrite, assign) NSInteger curMeterTypeIdx;
+@property(readwrite, assign) NSInteger curMtuIdx;
 @property(readonly) Meter* curMeter;
 
 + (TedometerData *) sharedTedometerData;
 
-- (Meter*) nextMeter;
-- (Meter*) prevMeter;
+- (Meter*) nextMtu;
+- (Meter*) prevMtu;
+- (Meter*) nextMeterType;
+- (Meter*) prevMeterType;
+
+- (void) reloadXmlDocumentInBackground;
+- (void) reloadXmlDocument;
+
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 
 - (void) activatePowerMeter;

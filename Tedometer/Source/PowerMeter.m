@@ -18,6 +18,14 @@
 	return @"Power";
 }
 
+- (NSString*) instantaneousUnit {
+	return @" kW";
+}
+
+- (NSString*) cumulativeUnit {
+	return @" kWh";
+}
+
 - (NSString*) infoLabel {
 	NSString *kvaStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:kva/1000.0]];
 	NSString *powerFactorStr = [[self powerFactorFormatter] stringFromNumber: [NSNumber numberWithDouble:(now / (double)kva)]];
@@ -26,12 +34,21 @@
 	return label;
 }
 
-- (NSInteger) meterEndMax {
-	return 100 * 1000;	// 100 
+
+- (NSInteger) maxUnitsPerTick {
+	return 1000000;
 }
 
-- (NSInteger) meterEndMin {
-	return (NSInteger) 1000;	// 1
+- (NSInteger) minUnitsPerTick {
+	return 1;
+}
+
+- (NSInteger) maxUnitsForOffset {
+	return 100 * self.maxUnitsPerTick;
+}
+
+- (NSInteger) defaultUnitsPerTick {
+	return 100;
 }
 
 static NSNumberFormatter *powerFactorFormatter;
@@ -71,13 +88,10 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	return valueStr;
 }
 
-- (NSString*) meterReadingString {
-	return [self meterStringForInteger:self.now];
-}
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
 	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/1000.0]];
-	return [valueStr stringByAppendingString:@" kW"];
+	return valueStr;
 }
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
@@ -131,16 +145,20 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 													  @"MinMTDDay",		@"mtdMinDay",
 													  nil];
 	
-	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Power.Total" 
-									  andNodesKeyedByProperty:nodesKeyedByProperty];
+	NSString *parentNodePath;
+	if( mtuNumber == 0 ) 
+		parentNodePath = @"Power.Total";
+	else 
+		parentNodePath = [NSString stringWithFormat: @"Power.MTU%d", mtuNumber];
+	
+	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
+										   andNodesKeyedByProperty:nodesKeyedByProperty];
 	
 	return isSuccessful;
 }
 
 - (id) init {
 	if( self = [super init] ) {
-		self.radiansPerTick = meterSpan / 10.0;
-		self.unitsPerTick = 500.0;
 	}
 	return self;
 }

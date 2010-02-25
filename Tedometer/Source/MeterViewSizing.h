@@ -8,14 +8,19 @@
  */
 
 // turns off tick labels, leaves "Ted-O-Meter"
-//#define DRAW_FOR_ICON_SCREENSHOT		
+#define DRAW_FOR_ICON_SCREENSHOT			0
+#define DRAW_FOR_DEFAULT_PNG_SCREENSHOT		0
 
 // Meter sizing
-#define meterGap (M_PI * 2/3)
+#define meterGap (M_PI * 0.6)
 #define radOffset (M_PI + (M_PI - meterGap)/2.0)
-#define meterSpan (2*M_PI - meterGap)
-#define touchThresholdAngle (M_PI / 10)
-#define touchThresholdRadius 10
-#define minRadiansPerTick (M_PI / 7)
-#define maxRadiansPerTick (M_PI / 5)
+#define meterSpan (2.0*M_PI - meterGap)
+#define touchThresholdAngle (M_PI / 10.0)
+#define touchThresholdRadius 10.0
+#define minRadiansPerTick (M_PI / 8.0)
+#define maxRadiansPerTick (M_PI / 4.0)
 
+
+// Notifications
+#define kNotificationDidReachStretchLimit	@"DidReachStretchLimit"
+#define kNotificationMtuCountDidChange		@"MtuCountDidChange"

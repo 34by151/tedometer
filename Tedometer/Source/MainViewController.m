@@ -1,223 +1,119 @@
 //
-//  MainViewController.m
-//  Ted5000
+//  MeterViewController.m
+//  Ted-O-Meter
 //
-//  Created by Nathan on 10/4/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
+//  Created by Nathan on 12/24/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
 #import "MainViewController.h"
-#import "MainView.h"
-#import "CXMLNode-utils.h"
-#import "TouchXML.h"
-#import "TedometerData.h"
 #import "TedometerAppDelegate.h"
-#import "InternetRequiredViewController.h"
-#import "ASIHTTPRequest.h"
+#import "MeterViewSizing.h"
+
 
 @implementation MainViewController
 
-@synthesize avgLabel;
-@synthesize avgValue;
-@synthesize peakLabel;
-@synthesize peakValue;
-@synthesize lowLabel;
-@synthesize lowValue;
-@synthesize totalLabel;
-@synthesize totalValue;
-@synthesize projLabel;
-@synthesize projValue;
-@synthesize meterLabel;
-@synthesize meterTitle;
-@synthesize meterView;
-@synthesize infoLabel;
-@synthesize activityIndicator;
+@synthesize pageControl;
+@synthesize scrollView;
+@synthesize meterViewControllers;
 @synthesize toolbar;
-@synthesize todayMonthToggleButton;
-@synthesize avgLabelPointerImage;
-@synthesize warningIconButton;
 @synthesize connectionErrorMsg;
 
+/*
+ // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		document = nil;
     }
     return self;
 }
+*/
 
 
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
-
-	 // wait to start refresh until we've drawn the initial screen, so that we're not
-	 // staring at blackness until the first refresh
-	 
-	 // Add Info Icon to toolbar
-	 UIButton * infoDarkButtonType = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
-	 infoDarkButtonType.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
-	 infoDarkButtonType.backgroundColor = [UIColor clearColor];
-	 [infoDarkButtonType addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-	 UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoDarkButtonType];
-	 
-	 NSMutableArray *toolbarItems = [[NSMutableArray alloc] initWithArray:toolbar.items];
-	 [toolbarItems addObject:infoButton];
-	 toolbar.items = toolbarItems;
-	 [toolbarItems release];
-	 [infoDarkButtonType release];
-	 [infoButton release];
-	 
-	 // Add custom image to Today/Month toggle button
-	 UIImage *buttonImageNormal = [UIImage imageNamed:@"translucentButton.png"]; 
-	 UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0]; 
-	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
-
-	 UIImage *buttonImagePressed = [UIImage imageNamed:@"whiteButton.png"]; 
-	 UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0]; 
-	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
-	 
-	 isShowingTodayStatistics = YES;			// stores toggle state for Today/Month button
-	 
-	 avgValue.text = @"...";
-	 peakValue.text = @"...";
-	 lowValue.text = @"...";
-	 projValue.text = @"";
-	 projLabel.text = @"";
-	 
-	 infoLabel.text = @"";
-	 
-	 meterTitle.text = @"";
-	 connectionErrorMsg = nil;
-	 
-	 shouldAutoRefresh = YES;
-	 [self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 2.0];
-
-	 tedometerData = [TedometerData sharedTedometerData];
-	 hasShownFlipsideThisSession = NO;
-	 isApplicationInactive = NO;
-	 
-	 
-	 [[NSNotificationCenter defaultCenter] addObserver:self
-											  selector:@selector(applicationWillResignActive:)
-												  name:UIApplicationWillResignActiveNotification object:nil];
-
-	 // Enable battery monitoring so we received the above notification
-	 [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-	 [self updateIdleTimerState];
-	 
-	 [[NSNotificationCenter defaultCenter] addObserver:self
-											  selector:@selector(applicationDidBecomeActive:)
-												  name:UIApplicationDidBecomeActiveNotification object:nil];
-	 
-	 
-	 [[NSNotificationCenter defaultCenter] addObserver:self
-											  selector:@selector(batteryStateDidChange:)
-												  name:UIDeviceBatteryStateDidChangeNotification object:nil];
-	 
-	 [self refreshData];
-	 
-	 [super viewDidLoad];
- }
-
-- (void)showAlertMessage:(NSString*) message withTitle:(NSString*)title {
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-}
-
-- (void) updateIdleTimerState {
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
 	
-	UIDevice *device = [UIDevice currentDevice];
-	if( device.batteryState == UIDeviceBatteryStateCharging || device.batteryState == UIDeviceBatteryStateFull ) {
-		
-		// The device is plugged in
-		[UIApplication sharedApplication].idleTimerDisabled = tedometerData.isAutolockDisabledWhilePluggedIn;
-	}
-	else {
-		// The device is unplugged
-		[UIApplication sharedApplication].idleTimerDisabled = NO;	
-	}
-}
-
-- (void)batteryStateDidChange:(NSNotification *) notification {
-	[self updateIdleTimerState];
-}
-
-- (void) applicationWillResignActive: (NSNotification*)notification {
-	isApplicationInactive = YES;
-}
-
-- (void) applicationDidBecomeActive: (NSNotification*)notification {
+	tedometerData = [TedometerData sharedTedometerData];
+	
+	tedometerData.hasShownFlipsideThisSession = NO;
 	isApplicationInactive = NO;
-}
+	connectionErrorMsg = nil;
 
-- (void) viewWillAppear:(BOOL)animated {
-				
-	[super viewWillAppear:animated];
-}
 
-- (void) viewDidAppear:(BOOL)animated {
-	[self refreshView];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(applicationDidBecomeActive:)
+												 name:UIApplicationDidBecomeActiveNotification object:nil];
 	
-	if( tedometerData.refreshRate != -1.0 ) {
-		[self refreshData];
-	}
-	[super viewDidAppear:animated];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(applicationWillResignActive:)
+												 name:UIApplicationWillResignActiveNotification object:nil];
+
+	// Add Info Icon to toolbar
+	UIButton * infoDarkButtonType = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+	infoDarkButtonType.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
+	infoDarkButtonType.backgroundColor = [UIColor clearColor];
+	[infoDarkButtonType addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:infoDarkButtonType];
+	
+	NSMutableArray *toolbarItems = [[NSMutableArray alloc] initWithArray:toolbar.items];
+	[toolbarItems addObject:infoButton];
+	toolbar.items = toolbarItems;
+	[toolbarItems release];
+	[infoDarkButtonType release];
+	[infoButton release];
+	
+	
+	// view controllers are created lazily
+    // in the meantime, load the array with placeholders which will be replaced on demand
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    for (unsigned i = 0; i < kNumberOfPages; i++) {
+        [controllers addObject:[NSNull null]];
+    }
+    self.meterViewControllers = controllers;
+    [controllers release];
+	
+    // a page is the width of the scroll view
+	
+    scrollView.pagingEnabled = YES;
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * tedometerData.meterCount, scrollView.frame.size.height);
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.scrollsToTop = NO;
+    scrollView.delegate = self;
+	
+    pageControl.numberOfPages = tedometerData.meterCount;
+    pageControl.currentPage = 0;
+	
+	
+    // pages are created on demand
+    // load the visible page
+    // load the page on either side to avoid flashes when the user starts scrolling
+    [self loadScrollViewWithPage:0];
+    [self loadScrollViewWithPage:1];
+	
+	if( tedometerData.refreshRate == -1.0 )
+		[self performSelector:@selector(refreshData) withObject:nil afterDelay: 0.5];
+	else
+		[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 0.5];
+
+#if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_DEFAULT_PNG_SCREENSHOT
+	pageControl.hidden = YES;
+#endif
+	
+	
+	// register for mtuCount changes
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mtuCountDidChange:) name:kNotificationMtuCountDidChange object:tedometerData];
+    [super viewDidLoad];
 }
+
 
 /*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
-
-
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
-
-	BOOL needsInitialRefresh = ! hasShownFlipsideThisSession;
-	hasShownFlipsideThisSession = YES;
-	hasShownConnectionErrorSinceFlip = NO;
-
-	[TedometerData archiveToDocumentsFolder];
-	
-	[self updateIdleTimerState];
-	
-	[self dismissModalViewControllerAnimated:YES];
-
-	if( needsInitialRefresh || tedometerData.refreshRate != -1.0 )
-		[self refreshData];
-	
-	shouldAutoRefresh = YES;
-	
-	
-	// refresh will get called in viewDidAppear:
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-
-- (IBAction)showInfo {    
-	
-	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-	controller.delegate = self;
-	controller.connectionErrorMsg = self.connectionErrorMsg;
-	
-	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];	
-	[controller release];
-	shouldAutoRefresh = NO;
-
-}
-
-
-
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
+*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -227,268 +123,235 @@
 }
 
 - (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
 	
 	[UIDevice currentDevice].batteryMonitoringEnabled = NO;
 
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+}
+
+
+
+- (void)dealloc {
+	[pageControl release];
+	[scrollView release];
+	[meterViewControllers release];
+	[toolbar release];
+	[connectionErrorMsg release];
+
+    [super dealloc];
 }
 
 -(void) repeatRefresh {
-	if( shouldAutoRefresh && tedometerData.refreshRate != -1.0 )
-		[self refreshData];
+	[self refreshData];
 	[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: tedometerData.refreshRate];
 }
 
--(IBAction) showConnectionErrorMsg {
-	[self showInfo];
-	/*
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:connectionErrorMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-	 */
-}
-
--(void) reloadXmlDocument {
-
-	NSString *urlString;
-	BOOL usingDemoAccount = NO;
-	if( [@"theenergydetective.com" isEqualToString: [tedometerData.gatewayHost lowercaseString]]
-	   || [@"www.theenergydetective.com" isEqualToString: [tedometerData.gatewayHost lowercaseString]] ) 
-	{
-		usingDemoAccount = YES;
-	}
-	
-	if( usingDemoAccount )
-		urlString = @"http://www.theenergydetective.com/media/5000LiveData.xml";
-	else 
-		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", tedometerData.useSSL ? @"https" : @"http", tedometerData.gatewayHost];
-	
-    NSURL *url = [NSURL URLWithString: urlString];
-	
-	NSLog(@"Attempting connection with URL %@", url);
-	BOOL success = NO;
-	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setUseSessionPersistance:NO];
-	if( ! usingDemoAccount ) {
-		if( tedometerData.useSSL ) 
-			[request setValidatesSecureCertificate:NO];
-		[request setUsername:tedometerData.username];
-		[request setPassword:tedometerData.password];
-	}
-	
-	[request start];
-	NSError *error = [request error];
-	if (!error) {
-		NSString *response = [request responseString];
-		
-		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:response options:0 error:&error] retain];
-		if( newDocument ) {
-			success = YES;
-			self.connectionErrorMsg = nil;
-			@synchronized( self ) {
-				if( document )
-					[document release];
-				document = newDocument;
-			}
-			[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
-			[self performSelectorOnMainThread:@selector(hideWarningIcon) withObject:self waitUntilDone:NO];
-			[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
-		}
-	}
-	
-	if( ! success ) {
-		if( [[error domain] isEqualToString:@"CXMLErrorDomain"] ) {
-			self.connectionErrorMsg = [NSString stringWithFormat:@"Unable to parse data from %@", url];
-		}
-		else {
-			self.connectionErrorMsg = [error localizedDescription];
-		}
-		NSLog( @"%@", self.connectionErrorMsg);
-		[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:YES];
-		[self performSelectorOnMainThread:@selector(showWarningIcon) withObject:self waitUntilDone:YES];
-		// nh 11/28/09: Gateway seems to have connection issues periodically. Rather than wait for user to
-		// acknowledge an error message, we simply display a warning icon.
-		//[self performSelectorOnMainThread:@selector(showConnectionErrorMsg) withObject:self waitUntilDone:NO];
-	}
-}
-
--(void) showWarningIcon {
-	self.warningIconButton.hidden = NO;
-}
-
--(void) hideWarningIcon {
-	self.warningIconButton.hidden = YES;
-}
-
--(void) stopActivityIndicator {
-	[activityIndicator stopAnimating];
-}
-
--(IBAction) manualRefresh {
-	hasShownConnectionErrorSinceFlip = NO;	// show error message if we fail during a manual refresh attempt
-	[self refreshData];
-}
 
 -(IBAction) refreshData {
-
-	if( isApplicationInactive || tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] ) {
-		// don't show the error message if the gateway host is empty and we haven't yet shown the flip side this session,
-		// since we'll be showing them the flip side automatically to let them enter the host.
-		if( hasShownFlipsideThisSession )
-			[self showWarningIcon];
-		return;
-	}
-	
-	//NSLog(@"Refreshing MainView data..." );
-	[self hideWarningIcon];
-	[activityIndicator startAnimating];
-	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
-	[[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
-	[op release];
+	[tedometerData reloadXmlDocumentInBackground];
 }
 
--(void) refreshView {
-		
-	BOOL isSuccessful = NO;
 
-#ifndef DRAW_FOR_ICON_SCREENSHOT
+
+#pragma mark -
+#pragma mark IB Actions
+
+- (IBAction)showInfo {    
+
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(repeatRefresh) object:nil];
+
+	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
+	controller.delegate = self;
+	controller.connectionErrorMsg = tedometerData.connectionErrorMsg;
 	
-	if( ! hasShownFlipsideThisSession && (tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""]) ) {
-		[self showInfo];
-	}
+	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:controller animated:YES];	
+	[controller release];
 	
-	@synchronized( self ) {
-		if( document ) 
-			isSuccessful = [tedometerData refreshDataFromXmlDocument:document];
-	}
-	if( isSuccessful ) {
-
-		meterTitle.text = [tedometerData.curMeter.meterTitle uppercaseString];
-		meterLabel.text =  tedometerData.curMeter.meterReadingString;
-		meterView.meterValue = tedometerData.curMeter.now;
-
-		NSArray* detailLabels = [NSArray arrayWithObjects:lowLabel, avgLabel, peakLabel, totalLabel, projLabel, nil];
-		NSArray* detailValueLabels = [NSArray arrayWithObjects: lowValue, avgValue, peakValue, totalValue, projValue, nil];
-		NSArray* meterValueProperties;
-		NSArray* meterLabelProperties;
-		
-		if( isShowingTodayStatistics ) {
-			meterLabelProperties = [NSArray arrayWithObjects:@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"todayProjectedLabel", nil];
-			meterValueProperties = [NSArray arrayWithObjects:@"todayMinValue", @"todayAverage", @"todayPeakValue", @"today", @"", nil];
-		}
-		else {
-			meterLabelProperties = [NSArray arrayWithObjects:@"mtdLowLabel", @"mtdAverageLabel", @"mtdPeakLabel", @"mtdTotalLabel", @"mtdProjectedLabel", nil];
-			meterValueProperties = [NSArray arrayWithObjects:@"mtdMinValue", @"monthAverage", @"mtdPeakValue", @"mtd", @"projected", nil];
-		}
-		
-		for( NSInteger i = 0; i < [detailLabels count]; ++i ) {
-			NSString* aMeterLabelProperty = [meterLabelProperties objectAtIndex:i];
-			NSString* aMeterLabelString = [tedometerData.curMeter valueForKey:aMeterLabelProperty];
-			
-			UILabel* aLabel = [detailLabels objectAtIndex:i];
-			UILabel* aValueLabel = [detailValueLabels objectAtIndex:i];
-			
-			if( ! [aMeterLabelString isEqualToString:@""] ) {
-				aLabel.text = aMeterLabelString;
-				NSString* aMeterValueProperty = [meterValueProperties objectAtIndex:i];
-				if( ! [aMeterValueProperty isEqualToString:@""] ) {
-					NSNumber* aValue = [tedometerData.curMeter valueForKey:aMeterValueProperty];
-					if( aValue == nil )
-						aValueLabel.text = @"";
-					else
-						aValueLabel.text = [tedometerData.curMeter meterStringForInteger: [aValue integerValue]];
-				}
-				else {
-					aValueLabel.text = @"";
-				}
-			}
-			else {
-				aLabel.text = @"";
-				aValueLabel.text = @"";
-			}
-		}
-		
-		infoLabel.text = tedometerData.curMeter.infoLabel;
-		
-						   
-	}
-	else {
-		// render the meter with the dial on 0
-		meterView.meterValue = 0;
-	}
-
-	// Hide the average pointer image if we don't support averages
-	[avgLabelPointerImage setHidden:[avgLabel.text isEqualToString:@""]];
-
-#endif
-	[meterView setNeedsDisplay];
 	
 }
-
-int buttonCount = 0;
-- (IBAction) toggleTodayMonthStatistics {
-	isShowingTodayStatistics = ! isShowingTodayStatistics;
-	NSString* buttonLabel = isShowingTodayStatistics ? @"Today" : @"This Month";
-	self.meterView.isShowingTodayStatistics = isShowingTodayStatistics;
-	[self.todayMonthToggleButton setTitle:buttonLabel forState:UIControlStateNormal];
-	[self refreshView];
-}
-
 
 - (IBAction) activateCostMeter {
 	[tedometerData activateCostMeter];
-	[self refreshView];
 }
 
 - (IBAction) activatePowerMeter {
 	[tedometerData activatePowerMeter];
-	[self refreshView];
 }
 
 - (IBAction) activateCarbonMeter {
 	[tedometerData activateCarbonMeter];
-	[self refreshView];
 }
 
 - (IBAction) activateVoltageMeter {
 	[tedometerData activateVoltageMeter];
-	[self refreshView];
 }
 
-- (IBAction)nextMeter {
-	[tedometerData nextMeter];
-	[self refreshView];
+
+#pragma mark -
+#pragma mark Flipside View
+- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
+
+	BOOL needsInitialRefresh = ! tedometerData.hasShownFlipsideThisSession;
+	
+	tedometerData.hasShownFlipsideThisSession = YES;
+	
+	[TedometerData archiveToDocumentsFolder];
+	
+	[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] updateIdleTimerState];
+	
+	[self dismissModalViewControllerAnimated:YES];
+	
+//	if( needsInitialRefresh || tedometerData.refreshRate != -1.0 )
+//		[self refreshData];
+	
+	//shouldAutoRefresh = YES;
+	
+	if( tedometerData.refreshRate == -1.0 ) {
+		if( needsInitialRefresh )
+			[self refreshData];
+	}
+	else
+		[self repeatRefresh];
+	
+	
+	// refresh will get called in viewDidAppear:
 }
-	 
-	 
-- (void)dealloc {
-	if( document )
-		[document release];
+
+#pragma mark -
+#pragma mark Inactivity Monitoring
+
+- (void) applicationWillResignActive: (NSNotification*)notification {
+	isApplicationInactive = YES;
+}
+
+- (void) applicationDidBecomeActive: (NSNotification*)notification {
+	isApplicationInactive = NO;
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate
+
+- (void)loadScrollViewWithPage:(int)page {
+    if (page < 0) return;
+    if (page >= kNumberOfPages) return;
 	
-	[avgValue release];
-	[avgLabel release];
-	[peakValue release];
-	[peakLabel release];
-	[lowValue release];
-	[lowLabel release];
-	[totalValue release];
-	[totalLabel release];
-	[projValue release];
-	[projLabel release];
-	[meterLabel release];
-	[meterTitle release];
-	[toolbar release];
-	[todayMonthToggleButton release];
-	[meterView release];
-	[activityIndicator release];
-	[avgLabelPointerImage release];
-	[warningIconButton release];
-	[connectionErrorMsg release];
+    // replace the placeholder if necessary
+    MeterViewController *controller = [meterViewControllers objectAtIndex:page];
+    if ((NSNull *)controller == [NSNull null]) {
+		
+		NSInteger mtuNumber = page;
+
+		NSMutableArray *mtuMeters = [tedometerData.mtusArray objectAtIndex:mtuNumber];
+		
+        controller = [[MeterViewController alloc] initWithMainViewController:self
+																  powerMeter:[mtuMeters objectAtIndex:kMeterTypePower] 
+																   costMeter:[mtuMeters objectAtIndex:kMeterTypeCost] 
+																 carbonMeter:[mtuMeters objectAtIndex:kMeterTypeCarbon]
+																voltageMeter:[mtuMeters objectAtIndex:kMeterTypeVoltage]];
+		
+		if( page == 0 ) //page % 2 == 0 )
+			controller.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+		else
+			controller.view.backgroundColor = [UIColor colorWithWhite:0.23 alpha:1.0];
+
+			
+        [meterViewControllers replaceObjectAtIndex:page withObject:controller];
+        [controller release];
+    }
 	
-    [super dealloc];
+    // add the controller's view to the scroll view
+    if (nil == controller.view.superview) {
+        CGRect frame = scrollView.frame;
+        frame.origin.x = frame.size.width * page;
+        //frame.origin.y = 0;
+        controller.view.frame = frame;
+        [scrollView addSubview:controller.view];
+		[self updateMeterVisibility];
+    }
 	
+	[controller stopDialEdit];
+	[controller refreshView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+	
+    // We don't want a "feedback loop" between the UIPageControl and the scroll delegate in
+    // which a scroll event generated from the user hitting the page control triggers updates from
+    // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
+    if (! pageControlUsed) {
+		// Switch the indicator when more than 50% of the previous/next page is visible
+		CGFloat pageWidth = scrollView.frame.size.width;
+		int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+		pageControl.currentPage = page;
+		
+		// load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+		[self loadScrollViewWithPage:page - 1];
+		[self loadScrollViewWithPage:page];
+		[self loadScrollViewWithPage:page + 1];
+		// A possible optimization would be to unload the views+controllers which are no longer visible
+	}
+	
+}
+
+// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)aScrollView {
+    pageControlUsed = NO;
+}
+
+- (IBAction)changePage:(id)sender {
+    int page = pageControl.currentPage;
+	
+    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+    [self loadScrollViewWithPage:page - 1];
+    [self loadScrollViewWithPage:page];
+    [self loadScrollViewWithPage:page + 1];
+	
+    // update the scroll view to the appropriate page
+    CGRect frame = scrollView.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
+    pageControlUsed = YES;
+}
+
+- (void) updateMeterVisibility;
+{
+	for( int i=0; i < kNumberOfPages; ++i ) {
+		MeterViewController* controller = [meterViewControllers objectAtIndex:i];
+		if( (NSNull *)controller != [NSNull null] ) {
+			BOOL isHidden = (i >= tedometerData.meterCount);
+			controller.view.hidden = isHidden;
+		}
+	}
+}
+
+- (void) mtuCountDidChange:(NSNotification*)notification;
+{
+	NSInteger newMtuCount = tedometerData.mtuCount;
+	
+	// if there's only one mtu, we only show the net meter
+	if( newMtuCount <= 1 ) {
+		if( pageControl.currentPage > 0 ) {
+			pageControl.currentPage = 0;
+			[self changePage:self];
+		}
+		pageControl.numberOfPages = 1;
+	}
+	else {
+		if( pageControl.currentPage + 1 > tedometerData.meterCount ) {
+			pageControl.currentPage = 0;
+		}
+		pageControl.numberOfPages = tedometerData.meterCount;
+		[self changePage:self];
+		pageControlUsed = NO;
+	}
+	
+	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * tedometerData.meterCount, scrollView.frame.size.height);
+	[self updateMeterVisibility];
+
 }
 
 @end

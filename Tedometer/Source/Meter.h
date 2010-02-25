@@ -20,6 +20,9 @@ typedef enum {
 
 @interface Meter : NSObject <NSCoding> {
 	
+	NSInteger mtuNumber;	// 0 if net meter
+	NSArray *mtuMeters;		// nil if isNetMeter == NO
+	
 	NSInteger now;
 	NSInteger hour;
 	NSInteger today;
@@ -42,9 +45,13 @@ typedef enum {
 
 	double radiansPerTick;
 	double unitsPerTick;
+	double zeroAngle;
 	
 	MeterValueType meterValueType;
 }
+
+@property(readonly) BOOL isNetMeter;
+@property(readonly) NSInteger mtuNumber;
 
 @property(readwrite, assign) NSInteger now;
 @property(readwrite, assign) NSInteger hour;
@@ -65,11 +72,14 @@ typedef enum {
 @property(readwrite, assign) NSInteger mtdMinDay;
 @property(readwrite, assign) double radiansPerTick;
 @property(readwrite, assign) double unitsPerTick;
-@property(readonly) NSInteger meterEndMax;
-@property(readonly) NSInteger meterEndMin;
+@property(readwrite, assign) double zeroAngle;
+@property(readonly) NSInteger maxUnitsPerTick;
+@property(readonly) NSInteger minUnitsPerTick;
+@property(readonly) NSInteger defaultUnitsPerTick;
+@property(readonly) NSInteger maxUnitsForOffset;
 @property(readwrite, assign) MeterValueType meterValueType;
 @property(readonly) NSString* meterTitle;
-@property(readonly) NSString* meterReadingString;
+@property(readonly) NSString* meterTitleWithMtuNumber;
 @property(readonly) NSString* todayPeakTimeString;
 @property(readonly) NSString* todayMinTimeString;
 @property(readonly) NSString* mtdPeakTimeString;
@@ -89,6 +99,8 @@ typedef enum {
 @property(readonly) NSString* mtdProjectedLabel;
 @property(readonly) NSString* infoLabel;
 
+- (id) initWithMtuNumber:(NSInteger)mtuNum;
+- (id) initNetMeterWithMtuMeters: (NSArray*)meters;
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;
 - (id) initWithCoder:(NSCoder*)decoder;
@@ -97,5 +109,8 @@ typedef enum {
 - (NSString *) meterStringForInteger:(NSInteger) value; 
 - (NSString *) timeStringForHour:(NSInteger)anHour minute:(NSInteger)aMinute;
 - (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay;
+
+- (NSString*) instantaneousUnit;
+- (NSString*) cumulativeUnit;
 
 @end

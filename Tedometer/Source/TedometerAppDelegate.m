@@ -9,6 +9,8 @@
 #import "TedometerAppDelegate.h"
 #import "MainViewController.h"
 #import "InternetRequiredViewController.h"
+#import "FlurryAPI.h"
+#import "TedometerData.h"
 
 @implementation TedometerAppDelegate
 
@@ -18,7 +20,14 @@
 @synthesize internetRequiredViewController;
 @synthesize sharedOperationQueue;
 
+void uncaughtExceptionHandler(NSException *exception);
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	NSLog(@"Starting Flurry session...");
+	[FlurryAPI startSession:@"A6AVHF5HAWY7768ADRVZ"];
+	NSLog(@"Finished Flurry session initiation.");
 
 	NSOperationQueue *opQueue = [[NSOperationQueue alloc] init];
 	self.sharedOperationQueue = opQueue;
@@ -28,12 +37,24 @@
     internetReach = [[Reachability2 reachabilityForInternetConnection] retain];
 	[internetReach startNotifer];
 	
+	
+	// Enable battery monitoring so we received power chnage notifications
+	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(batteryStateDidChange:)
+												 name:UIDeviceBatteryStateDidChangeNotification object:nil];
+	// initialize with current settings
+	[self updateIdleTimerState];
+	
+	
 	UIViewController *aController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
 	self.mainViewController = (MainViewController*) aController;
 	[aController release];
 
 	aController = [[InternetRequiredViewController alloc] initWithNibName:@"InternetRequiredView" bundle:nil];	
 	self.internetRequiredViewController = (InternetRequiredViewController *) aController;
+	[aController release];
 
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
     internetRequiredViewController.view.frame = [UIScreen mainScreen].applicationFrame;
@@ -48,6 +69,26 @@
 }
 
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+	[TedometerData archiveToDocumentsFolder];
+}
+
+- (void)dealloc {
+	[mainViewController release];
+	[internetRequiredViewController release];
+	[internetReach release];
+    [window release];
+	self.sharedOperationQueue = nil;
+	
+    [super dealloc];
+}
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
+#pragma mark -
+#pragma mark Internet Reachability
 - (void) updateInterfaceWithReachability: (Reachability2*) curReach
 {
 	if( curReach == internetReach ) {
@@ -70,23 +111,27 @@
 }
 
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-	[TedometerData archiveToDocumentsFolder];
-}
--(void) applicationWillResignActive:(UIApplication *) application {
-	//NSLog( @"applicationWillResignActive" );
+
+#pragma mark -
+#pragma mark Battery State
+- (void) updateIdleTimerState {
+	
+	UIDevice *device = [UIDevice currentDevice];
+	if( device.batteryState == UIDeviceBatteryStateCharging || device.batteryState == UIDeviceBatteryStateFull ) {
+		
+		// The device is plugged in
+		[UIApplication sharedApplication].idleTimerDisabled = [TedometerData sharedTedometerData].isAutolockDisabledWhilePluggedIn;
+	}
+	else {
+		// The device is unplugged
+		[UIApplication sharedApplication].idleTimerDisabled = NO;	
+	}
 }
 
--(void) applicationDidBecomeActive:(UIApplication *)application {
-	//NSLog( @"applicationDidBecomeActive"  );
+- (void)batteryStateDidChange:(NSNotification *) notification {
+	[self updateIdleTimerState];
 }
 
-- (void)dealloc {
-	[mainViewController release];
-	[internetRequiredViewController release];
-	[internetReach release];
-    [window release];
-    [super dealloc];
-}
+
 
 @end

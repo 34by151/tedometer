@@ -19,6 +19,13 @@
 	return @"CO2";
 }
 
+- (NSString*) instantaneousUnit {
+	return @"lbs/h";
+}
+
+- (NSString*) cumulativeUnit {
+	return @"lbs";
+}
 
 - (NSInteger) carbonRate {
 	if( carbonRate == 0 )
@@ -35,14 +42,24 @@
 	return @"";
 }
 
+// units are 
 
-- (NSInteger) meterEndMax {
-	return 100 * 100000 / self.carbonRate; 
+- (NSInteger) maxUnitsPerTick {
+	return 10000000;
 }
 
-- (NSInteger) meterEndMin {
-	return 1 * 100000 / self.carbonRate;	
+- (NSInteger) minUnitsPerTick {
+	return 1;
 }
+
+- (NSInteger) maxUnitsForOffset {
+	return 10 * self.maxUnitsPerTick;
+}
+
+- (NSInteger) defaultUnitsPerTick {
+	return 10000;
+}
+
 
 static NSNumberFormatter *meterStringNumberFormatter;
 - (NSNumberFormatter *)meterStringNumberFormatter {
@@ -71,13 +88,9 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 }
 
 
-- (NSString*) meterReadingString {
-	return [[self meterStringForInteger:self.now] stringByAppendingString:@"/hr"];
-}
-
 - (NSString *) meterStringForInteger:(NSInteger) value {
 	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:carbonRate*value/100000.0]];
-	return [valueStr stringByAppendingString:@" lbs"];
+	return valueStr;
 }
 
 
@@ -95,8 +108,6 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 - (id) init {
 	if( self = [super init] ) {
 		self.carbonRate = 524;	// initial default taken from http://www.pge.com/myhome/environment/calculator/assumptions.shtml
-		self.radiansPerTick = meterSpan / 10.0;
-		self.unitsPerTick = 100.0;
 	}
 	return self;
 }

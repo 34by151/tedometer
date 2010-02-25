@@ -17,6 +17,14 @@
 	return @"Voltage";
 }
 
+- (NSString*) instantaneousUnit {
+	return @"V";
+}
+
+- (NSString*) cumulativeUnit {
+	return @"";
+}
+
 - (NSString*) todayTotalLabel {
 	return @"";
 }
@@ -37,17 +45,20 @@
 	return @"";
 }
 
-
-- (NSInteger) meterEndMax {
-	return 1000 * 10;
+- (NSInteger) maxUnitsPerTick {
+	return 1000000;
 }
 
-- (NSInteger) meterEndMin {
-	return 10 * 10;	
+- (NSInteger) minUnitsPerTick {
+	return 1;
 }
 
-- (NSString*) meterReadingString {
-	return [self meterStringForInteger:self.now];
+- (NSInteger) defaultUnitsPerTick {
+	return 1;
+}
+
+- (NSInteger) maxUnitsForOffset {
+	return 10 * self.maxUnitsPerTick;
 }
 
 static NSNumberFormatter *meterStringNumberFormatter;
@@ -78,7 +89,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
 	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/10.0]];
-	return [valueStr stringByAppendingString:@" V"];
+	return valueStr;
 }
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
@@ -123,8 +134,13 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 										  @"LowVoltageMTDDateMonth",		@"mtdMinMonth",
 										  @"LowVoltageMTDDateDay",			@"mtdMinDay",
 										  nil];
+	NSString *parentNodePath;
+	if( mtuNumber == 0 ) 
+		parentNodePath = @"Voltage.Total";
+	else 
+		parentNodePath = [NSString stringWithFormat: @"Voltage.MTU%d", mtuNumber];
 	
-	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Voltage.Total" 
+	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];
 	
 	return isSuccessful;
@@ -132,8 +148,6 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 
 - (id) init {
 	if( self = [super init] ) {
-		self.radiansPerTick = meterSpan / 10.0;
-		self.unitsPerTick = 500.0;
 	}
 	return self;
 }

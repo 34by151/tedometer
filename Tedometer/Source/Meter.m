@@ -13,6 +13,7 @@
 
 @implementation Meter
 
+@synthesize mtuNumber;
 @synthesize now;
 @synthesize hour;
 @synthesize today;
@@ -33,8 +34,15 @@
 @synthesize meterValueType;
 @synthesize radiansPerTick;
 @synthesize unitsPerTick;
+@synthesize zeroAngle;
 
 static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+
+- (BOOL) isNetMeter {
+	return mtuNumber == 0;
+}
+
 
 - (NSString*) todayLowLabel {
 	return [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString];
@@ -81,18 +89,34 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return @"";
 }
 
-- (NSInteger) meterEndMax {
+- (NSInteger) maxUnitsPerTick {
 	[self doesNotRecognizeSelector:_cmd];
 	return 0;
 }
 
-- (NSInteger) meterEndMin {
+- (NSInteger) minUnitsPerTick {
 	[self doesNotRecognizeSelector:_cmd];
 	return 0;
 }
 
-- (NSString*) meterReadingString {
-	return [[self meterStringForInteger:self.now] stringByAppendingString:@"/hr"];
+- (NSInteger) defaultUnitsPerTick {
+	[self doesNotRecognizeSelector:_cmd];
+	return 0;
+}
+
+- (NSInteger) maxUnitsForOffset {
+	[self doesNotRecognizeSelector:_cmd];
+	return 0;
+}
+
+- (NSString*) instantaneousUnit {
+	[self doesNotRecognizeSelector:_cmd];
+	return nil;
+}
+
+- (NSString*) cumulativeUnit {
+	[self doesNotRecognizeSelector:_cmd];
+	return nil;
 }
 
 - (NSInteger) todayAverage {
@@ -117,6 +141,17 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return numTicks * unitsPerTick;
 }
 
+- (NSString*) meterTitleWithMtuNumber {
+	NSString *title;
+	if( [self mtuNumber] == 0 ) {
+		title = [NSString stringWithFormat:@"Net %@", self.meterTitle];
+	}
+	else {
+		title = [NSString stringWithFormat:@"MTU%d %@", self.mtuNumber, self.meterTitle];
+	}
+
+	return title;
+}
 - (NSString*) meterTitle {
 	[self doesNotRecognizeSelector:_cmd];
 	return nil;
@@ -150,19 +185,63 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 
 static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", @"May", @"Jun", @"July", @"August", @"September", @"October", @"November", @"December"};
 - (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay {
-	return [NSString stringWithFormat:@"%@ %i", [monthStrings[aMonth-1] substringToIndex:3], aDay];
+	NSString *timeString;
+	if( aMonth == 0 )
+		timeString = @"N/A";
+	else
+		timeString = [NSString stringWithFormat:@"%@ %i", [monthStrings[aMonth-1] substringToIndex:3], aDay];
+
+	return timeString;
 }
 
 - (void) encodeWithCoder:(NSCoder*)encoder {
+	[encoder encodeInteger:mtuNumber forKey:@"mtuNumber"];
+	if( mtuNumber == 0 ) {
+		[encoder encodeObject:mtuMeters forKey:@"mtuMeters"];
+	}
 	[encoder encodeDouble:radiansPerTick forKey:@"radiansPerTick"];
 	[encoder encodeDouble:unitsPerTick forKey:@"unitsPerTick"];
+	[encoder encodeDouble:zeroAngle forKey:@"zeroAngle"];
 	[encoder encodeInteger:meterValueType forKey:@"meterValueType"];
 }
 
+
+- (id) init {
+	if( self = [super init] ) {
+		self.radiansPerTick = 0;
+		self.unitsPerTick = 0;
+	}
+	return self;
+}
+- (id) initWithMtuNumber:(NSInteger)mtuNum {
+	if( self = [super init] ) {
+		mtuNumber = mtuNum;
+	}
+	return self;
+}
+
+- (id) initNetMeterWithMtuMeters: (NSArray*)meters {
+	if( self = [super init] ) {
+		mtuNumber = 0;
+		mtuMeters = [meters copy];
+	}
+	return self;
+}
+
+
 - (id) initWithCoder:(NSCoder*)decoder {
 	if (self = [super init]) {
+		if( ! [decoder containsValueForKey:@"mtuNumber"] ) 
+			mtuNumber = 1;
+		else
+			mtuNumber = [decoder decodeIntegerForKey:@"mtuNumber"];
+		
+		if( mtuNumber == 0 ) {
+			mtuMeters = [[decoder decodeObjectForKey:@"mtuMeters"] retain];
+		}
 		self.radiansPerTick = [decoder decodeDoubleForKey:@"radiansPerTick"];
 		self.unitsPerTick = [decoder decodeDoubleForKey:@"unitsPerTick"];
+		self.zeroAngle = [decoder decodeDoubleForKey:@"zeroAngle"];
 		self.meterValueType = [decoder decodeIntegerForKey:@"meterValueType"];
 	}
 	return self;
@@ -197,6 +276,9 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 
 
 -(void)dealloc {
+	if( mtuNumber == 0 ) {
+		[mtuMeters release];
+	}
 	[super dealloc];
 }
 

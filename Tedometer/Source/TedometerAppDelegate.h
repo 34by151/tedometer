@@ -26,8 +26,10 @@
 @property (nonatomic, retain) InternetRequiredViewController *internetRequiredViewController;
 @property (retain) NSOperationQueue *sharedOperationQueue;
 
+- (void) batteryStateDidChange:(NSNotification *) notification;
 - (void) updateInterfaceWithReachability: (Reachability2*) curReach;
 - (void) reachabilityChanged: (NSNotification* )note;
+- (void) updateIdleTimerState;
 
 @end
 

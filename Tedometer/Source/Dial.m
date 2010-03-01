@@ -40,7 +40,7 @@
 		
 		curMeter = [aMeter retain];
 		
-		NSLog(@"Dial.setCurMeter: aMeter.radiansPerTick = %f, aMeter.unitsPerTick = %f", aMeter.radiansPerTick, aMeter.unitsPerTick );
+		DLog(@"Dial.setCurMeter: aMeter.radiansPerTick = %f, aMeter.unitsPerTick = %f", aMeter.radiansPerTick, aMeter.unitsPerTick );
 		
 		// voltage meter doesn't share the same scale
 		if( oldMeter && ! [oldMeter isMemberOfClass:[VoltageMeter class]] && ! [aMeter isMemberOfClass:[VoltageMeter class]] ) {

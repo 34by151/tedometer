@@ -16,6 +16,7 @@
 #import "MeterViewSizing.h"
 #import "TedometerAppDelegate.h"
 #import "ASIHTTPRequest.h"
+#import "log.h"
 
 #define kPowerMeterIdx		0
 #define kCostMeterIdx		1
@@ -384,7 +385,7 @@ NSString* _archiveLocation;
 	
     NSURL *url = [NSURL URLWithString: urlString];
 	
-	NSLog(@"Attempting connection with URL %@", url);
+	ALog(@"Attempting connection with URL %@", url);
 	BOOL success = NO;
 	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -420,7 +421,7 @@ NSString* _archiveLocation;
 		else {
 			self.connectionErrorMsg = [error localizedDescription];
 		}
-		NSLog( @"%@", self.connectionErrorMsg);
+		ALog( @"%@", self.connectionErrorMsg);
 		//[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:YES];
 		//[self performSelectorOnMainThread:@selector(showWarningIcon) withObject:self waitUntilDone:YES];
 	}
@@ -468,7 +469,7 @@ NSString* _archiveLocation;
 		
 		for( NSArray *mtuArray in mtusArray ) {
 			for( Meter *aMeter in mtuArray ) {
-				NSLog(@"Refreshing data for meter %@ MTU%d...", [aMeter meterTitle], [aMeter mtuNumber]);
+				DLog(@"Refreshing data for meter %@ MTU%d...", [aMeter meterTitle], [aMeter mtuNumber]);
 				isSuccessful = [aMeter refreshDataFromXmlDocument:document];
 				if( ! isSuccessful )
 					break;
@@ -496,7 +497,7 @@ NSString* _archiveLocation;
 	for( NSString* pathElement in [parentNodePath componentsSeparatedByString:@"."] ) {
 		parentNode = [parentNode childNamed:pathElement];
 		if( parentNode == nil ) {
-			NSLog( @"Could not find node named '%@' in path '%@'.", pathElement, parentNodePath );
+			DLog( @"Could not find node named '%@' in path '%@'.", pathElement, parentNodePath );
 			break;
 		}
 	}
@@ -508,7 +509,7 @@ NSString* _archiveLocation;
 			CXMLNode *aNode = [parentNode childNamed:aNodeName];
 			NSInteger aValue;
 			if( aNode == nil ) {
-				NSLog(@"Could not find node named '%@' at path '%@'. Defaulting to 0.", aNodeName, parentNodePath);
+				DLog(@"Could not find node named '%@' at path '%@'. Defaulting to 0.", aNodeName, parentNodePath);
 				aValue = 0;
 			}
 			else {

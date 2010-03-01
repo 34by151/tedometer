@@ -159,7 +159,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 }
 
 - (IBAction)backgroundClick:(id)sender {
-	//NSLog(@"Background click");
+	//DLog(@"Background click");
 	
 	[gatewayAddress resignFirstResponder];
 	[username resignFirstResponder];

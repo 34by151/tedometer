@@ -144,7 +144,10 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 - (NSString*) meterTitleWithMtuNumber {
 	NSString *title;
 	if( [self mtuNumber] == 0 ) {
-		title = [NSString stringWithFormat:@"Net %@", self.meterTitle];
+		if( [[TedometerData sharedTedometerData] mtuCount] <= 1 )
+			title = self.meterTitle;
+		else
+			title = [NSString stringWithFormat:@"Net %@", self.meterTitle];
 	}
 	else {
 		title = [NSString stringWithFormat:@"MTU%d %@", self.mtuNumber, self.meterTitle];

@@ -171,16 +171,24 @@ typedef struct __DialDrawingContext {
 }
 
 
-- (void) updateTedometerData {
-	[curMeter setRadiansPerTick:dial.radiansPerTick];
-	[curMeter setUnitsPerTick:dial.unitsPerTick];
+- (void) showHelpMessage {
+	NSString *helpMsg = @"Drag the dial to move the origin. Pinch and stretch to adjust the scale.";
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:helpMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alertView show];
+	[alertView release];
 }
 
 -(void) startDialEdit {
+	tedometerData.isDialBeingEdited = YES;
 	isEditMode = YES;
 	initialDistanceBetweenTouches = 0;
 	isBeingTouchedBeforeEditMode = NO;
 	stopDialEditButton.hidden = NO;
+	
+	if( ! tedometerData.hasDisplayedDialEditHelpMessage ) {
+		tedometerData.hasDisplayedDialEditHelpMessage = YES;
+		[self performSelector:@selector(showHelpMessage) withObject:self afterDelay:0.5];
+	}
 	[self setNeedsDisplay];
 }
 
@@ -188,6 +196,7 @@ typedef struct __DialDrawingContext {
 	isEditMode = NO;
 	stopDialEditButton.hidden = YES;
 	[self setNeedsDisplay];
+	tedometerData.isDialBeingEdited = NO;
 }
 
 - (void)dealloc {
@@ -235,40 +244,6 @@ typedef struct __DialDrawingContext {
 	else {
 		dial.isBeingTouched = YES;
 	}
-	/*
-
-		NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(compareAddress:)];
-		UITouch *first = [sortedTouches objectAtIndex:0];
-		UITouch *second = [touches count] > 1 ? nil : [sortedTouches objectAtIndex:1];
-
-		initialDistanceBetweenPinchTouches = distanceBetweenPoints( [first locationInView:self], [second locationInView:self] );
-
-		double radiansFromStartAngleToLocation = [self radiansFromMeterStartAngleToViewPoint: location];
-		BOOL isWithinMeterSpan = radiansFromStartAngleToLocation < meterSpan;
-		BOOL isWithinMeterRadius = locationPolar.x < [self meterRadius] + 20;
-		if(  isWithinMeterSpan && isWithinMeterRadius ) {
-			dial.isBeingDragged = YES;
-			touchAngleWhenTouchesBegan = radiansFromStartAngleToLocation;
-			numTouchRevolutionsWhileDragging = 0;
-			radiansDragged = 0;
-			radiansDraggedWhenHitUpperBound = 0;
-			radiansDraggedwhenHitLowerBound = 0;
-			[self setNeedsDisplay];
-		}
-		
-	if( [touches count] > 1 ) {
-		NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(compareAddress:)];
-		UITouch *first = [sortedTouches objectAtIndex:0];
-		UITouch *second = [sortedTouches objectAtIndex:1];
-	}
-	else {
-		UITouch *touch = [touches anyObject];
-		
-		CGPoint location = [touch locationInView:self];
-		CGPoint locationPolar = [self polarCoordFromViewPoint:location];
-		
-	}
-	 */
 	
 }
 
@@ -318,56 +293,6 @@ typedef struct __DialDrawingContext {
 			double newZeroOffset = radiansFromTopToZeroAtTouchesBegan - radiansFromTopToZeroNow;
 			dial.deltaZeroAngle = newZeroOffset;
 			
-			/*
-			
-			
-			double deltaRadians = distanceBetweenTouches / (2.0 * [self meterRadius]) * M_PI * 0.5 * dial.radiansPerTick 
-			
-			
-			double firstAngle = [self radiansFromMeterBottomAngleToViewPoint:[first locationInView:self]];
-			double prevFirstAngle = [self radiansFromMeterBottomAngleToViewPoint:[first previousLocationInView:self]];
-			
-			double secondAngle = [self radiansFromMeterBottomAngleToViewPoint:[second locationInView:self]];
-			double prevSecondAngle = [self radiansFromMeterBottomAngleToViewPoint:[second previousLocationInView:self]];
-
-			double angleBetweenPinchTouches = ABS(firstAngle - secondAngle);
-			
-			if (initialAngleBetweenPinchTouches == 0) { 
-				initialAngleBetweenPinchTouches = angleBetweenPinchTouches;
-				initialPivotAngle = pivotAngle;
-				initialZeroAngle = dial.zeroAngle;
-			}
-
-			double newPivotAngle = (firstAngle + secondAngle) / 2.0;
-			double prevPivotAngle = pivotAngle;
-			
-			if( ABS( newPivotAngle - prevPivotAngle ) > (3.0/4.0*M_PI) ) {
-				NSLog(@"FLIPPED!");
-				// pivot angle suddenly flipped; means a touch crossed the origin--flip it back
-				if( newPivotAngle > prevPivotAngle )
-					newPivotAngle -= M_PI;
-				else
-					newPivotAngle += M_PI;
-			}
-			
-			pivotAngle = newPivotAngle;
-
-			firstTouchAngle = firstAngle;
-			secondTouchAngle = secondAngle;
-			
-			//pivotAngle = initialPivotAngle;
-			
-			double radianDelta = angleBetweenPinchTouches - initialAngleBetweenPinchTouches;
-			dial.deltaRadiansPerTick = radianDelta;
-			//NSLog( @"DialView.touchesMoved: radianDelta = %f", radianDelta ); 
-
-			// Adjust zero offset so that midpoint of touches remains at constant angle
-			double initialAngleBetweenPivotAndZero = initialPivotAngle - initialZeroAngle;
-			double angleBetweenPivotAndZero = initialAngleBetweenPivotAndZero * angleBetweenPinchTouches / initialAngleBetweenPinchTouches;
-			double angleBetweenInitialPivotAndZero = angleBetweenPivotAndZero + (initialPivotAngle - pivotAngle);
-			dial.deltaZeroAngle =  (angleBetweenInitialPivotAndZero - initialAngleBetweenPivotAndZero); 
-			NSLog( @"dial.deltaZeroAngle = %f", dial.deltaZeroAngle );
-			*/
 			[self setNeedsDisplay];
 			
 		}
@@ -440,56 +365,7 @@ typedef struct __DialDrawingContext {
 	
 	[dial updateBaseValues];
 	[self setNeedsDisplay];
-	
-	/*
-	 
-	if( [touches count] > 1 ) {
-		if( dial.isBeingPinched ) {
-			dial.isBeingPinched = NO;
-			[dial updateBaseValues];
-			[self setNeedsDisplay];
-		}
-	}
-	else {
-	
-		if( dial.isBeingDragged ) {
-			dial.isBeingDragged = NO;
 
-			while( dial.radiansPerTick < minRadiansPerTick ) {
-				//dial.radiansPerTick *= 2.0;
-				//dial.unitsPerTick *= 2.0;
-			}
-			
-			while( dial.radiansPerTick > maxRadiansPerTick ) {
-				//dial.radiansPerTick /= 2.0;
-				//dial.unitsPerTick /= 2.0;
-			}
-			
-			int numAnimationFrames = 10;
-			int numWholeTicks = dial.numTicks;
-			double curSpan = numWholeTicks * dial.radiansPerTick;
-			resizeGapBeforeAnimation = meterSpan - curSpan;
-			
-			if( resizeGapBeforeAnimation == 0 ) {
-				[self updateTedometerData];
-			}
-			else {
-				//isResizeAnimationInProgress = YES;
-				animationRadianIncrement = (meterSpan - curSpan) / (double) numWholeTicks / (double) numAnimationFrames;
-				
-				for( int i=0; i < numAnimationFrames; ++i ) {
-					NSTimeInterval scheduledTime = i * 0.3/numAnimationFrames;	// animation within half a second
-					[NSTimer scheduledTimerWithTimeInterval:scheduledTime target:self selector:@selector(setNeedsDisplay) userInfo:nil repeats:NO];
-				}
-				
-
-			}
-			
-			[dial updateBaseValues];
-			[self setNeedsDisplay];
-		}
-	}
-	 */
 }
 
 

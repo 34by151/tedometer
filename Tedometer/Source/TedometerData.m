@@ -47,6 +47,8 @@
 @synthesize connectionErrorMsg;
 @synthesize isApplicationInactive;
 @synthesize isShowingTodayStatistics;
+@synthesize hasDisplayedDialEditHelpMessage;
+@synthesize isDialBeingEdited;
 
 // ----------------------------------------------------------------------
 // From http://www.cocoadev.com/index.pl?SingletonDesignPattern
@@ -271,6 +273,23 @@ NSString* _archiveLocation;
 	self.curMeterTypeIdx = kVoltageMeterIdx;
 }
 
+- (NSInteger) billingCycleStartMonth {
+	
+	// LiveData.xml provides the gateway day and month and billing cycle end day, but not the
+	// current billing cycle start month. To derive it, we check whether the current day
+	// is before the billing cycle end day, and if so, rewind one month.
+	
+	int month = self.gatewayMonth;
+	
+	int curDay = self.gatewayDayOfMonth;
+	if( month != 0 && curDay != 0 && curDay < self.meterReadDate ) {
+		month -= 1;
+		if( month == 0 )
+			month = 12;
+	}
+	
+	return month;
+}
 
 - (void) encodeWithCoder:(NSCoder*)encoder {
 	[encoder encodeObject:mtusArray forKey:@"mtusArray"];
@@ -283,6 +302,7 @@ NSString* _archiveLocation;
 	[encoder encodeInteger:curMtuIdx forKey:@"curMtuIdx"];
 	[encoder encodeBool:isShowingTodayStatistics forKey:@"isShowingTodayStatistics"];
 	[encoder encodeBool:isAutolockDisabledWhilePluggedIn forKey:@"isAutolockDisabledWhilePluggedIn"];
+	[encoder encodeInteger:hasDisplayedDialEditHelpMessage forKey:@"hasDisplayedDialEditHelpMessage"];
 }
 
 - (id) initWithCoder:(NSCoder*)decoder {
@@ -297,6 +317,7 @@ NSString* _archiveLocation;
 		curMtuIdx = [decoder decodeIntegerForKey:@"curMtuIdx"];
 		self.isShowingTodayStatistics = [decoder decodeBoolForKey:@"isShowingTodayStatistics"];
 		self.isAutolockDisabledWhilePluggedIn = [decoder decodeBoolForKey:@"isAutolockDisabledWhilePluggedIn"];
+		self.hasDisplayedDialEditHelpMessage = [decoder decodeIntegerForKey:@"hasDisplayedDialEditHelpMessage"];
 	}
 	return self;
 }
@@ -340,6 +361,11 @@ NSString* _archiveLocation;
 }
 
 -(void) reloadXmlDocumentInBackground {
+	
+	if( self.isDialBeingEdited ) {
+		// aggressively reloading (e.g., every 2 seconds) while the dial is being edited seems to crash the app
+		return;
+	}
 	
 	if( self.isApplicationInactive || self.gatewayHost == nil || [self.gatewayHost isEqualToString:@""] ) {
 		// don't show the error message if the gateway host is empty and we haven't yet shown the flip side this session,

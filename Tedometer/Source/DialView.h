@@ -48,7 +48,6 @@
 @property (nonatomic, retain) Meter *curMeter;
 @property (nonatomic, retain) UIButton *stopDialEditButton;
 
--(void) updateTedometerData;
 -(void) startDialEdit;
 -(void) stopDialEdit;
 

@@ -38,6 +38,9 @@ typedef enum {
 	BOOL hasShownFlipsideThisSession;
 	BOOL isApplicationInactive;
 	BOOL isShowingTodayStatistics;
+	BOOL isDialBeingEdited;				// don't reload data while dial is being edited; seems to crash the app
+	
+	BOOL hasDisplayedDialEditHelpMessage;
 	
 	BOOL isLoadingXml;
 	NSString *connectionErrorMsg;
@@ -57,6 +60,7 @@ typedef enum {
 	NSMutableArray* mtusArray;			// array of arrays containing mtus
 }
 
+@property(readwrite, assign) BOOL isDialBeingEdited;
 @property(readwrite, nonatomic, retain) NSMutableArray* mtusArray;
 @property(readwrite, assign) NSInteger refreshRate;
 @property(readwrite, copy) NSString* gatewayHost;
@@ -71,6 +75,7 @@ typedef enum {
 @property(readwrite, assign) NSInteger currentRate;
 @property(readwrite, assign) NSInteger meterReadDate;
 @property(readwrite, assign) NSInteger daysLeftInBillingCycle;
+@property(readonly) NSInteger billingCycleStartMonth;
 @property(readwrite, assign) NSInteger mtuCount;
 @property(readonly) NSInteger meterCount;
 @property(readwrite, assign) BOOL isAutolockDisabledWhilePluggedIn;
@@ -80,6 +85,7 @@ typedef enum {
 @property(readwrite, assign) BOOL isShowingTodayStatistics;
 @property(readwrite, assign) BOOL isLoadingXml;
 @property(readwrite, copy) NSString *connectionErrorMsg;
+@property(readwrite, assign) BOOL hasDisplayedDialEditHelpMessage;
 
 @property(readwrite, assign) NSInteger curMeterTypeIdx;
 @property(readwrite, assign) NSInteger curMtuIdx;

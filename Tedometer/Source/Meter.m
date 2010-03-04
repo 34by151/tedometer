@@ -78,7 +78,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 
 - (NSString*) mtdTotalLabel {
 	TedometerData *tedometerData = [TedometerData sharedTedometerData];
-	return [NSString stringWithFormat:@"Since %@", [self timeStringForMonth:tedometerData.gatewayMonth day:tedometerData.meterReadDate]];
+	return [NSString stringWithFormat:@"Since %@", [self timeStringForMonth:tedometerData.billingCycleStartMonth day:tedometerData.meterReadDate]];
 }
 
 - (NSString*) mtdProjectedLabel {

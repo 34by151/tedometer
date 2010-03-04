@@ -17,7 +17,6 @@
 @synthesize scrollView;
 @synthesize meterViewControllers;
 @synthesize toolbar;
-@synthesize connectionErrorMsg;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -36,7 +35,7 @@
 	tedometerData = [TedometerData sharedTedometerData];
 	
 	isApplicationInactive = NO;
-	connectionErrorMsg = nil;
+	hasShownFlipsideViewThisSession = NO;
 
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -102,6 +101,10 @@
 	
 	// register for mtuCount changes
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mtuCountDidChange:) name:kNotificationMtuCountDidChange object:tedometerData];
+
+	// Observe TedometerData.isLoadingXml changes in order to check if we need to show the flipsideView
+	[tedometerData addObserver:self forKeyPath:@"isLoadingXml" options:0 context:nil];
+
     [super viewDidLoad];
 }
 
@@ -136,7 +139,6 @@
 	[scrollView release];
 	[meterViewControllers release];
 	[toolbar release];
-	[connectionErrorMsg release];
 
     [super dealloc];
 }
@@ -149,19 +151,24 @@
 
 -(IBAction) refreshData {
 	[tedometerData reloadXmlDocumentInBackground];
-	if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession ) {
-			
-		// if the gateway host is empty and we haven't shown the flipside this session,
-		// don't show an error message; just let them provide the settings
-		if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
-			tedometerData.connectionErrorMsg = nil;
-		
-		[self showInfo];
-	}
 }
 
 
-
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	
+	if( [@"isLoadingXml" isEqualToString: keyPath] && ! tedometerData.isLoadingXml ) {
+		if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession && ! hasShownFlipsideViewThisSession ) {
+			
+			// if the gateway host is empty and we haven't shown the flipside this session,
+			// don't show an error message; just let them provide the settings
+			if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+				tedometerData.connectionErrorMsg = nil;
+			
+			[self showInfo];
+		}
+	}
+	
+}
 #pragma mark -
 #pragma mark IB Actions
 
@@ -177,7 +184,7 @@
 	[self presentModalViewController:controller animated:YES];	
 	[controller release];
 	
-	
+	hasShownFlipsideViewThisSession = YES;
 }
 
 - (IBAction) activateCostMeter {

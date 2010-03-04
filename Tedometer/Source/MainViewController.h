@@ -21,7 +21,8 @@
 	TedometerData *tedometerData;
 	
 	BOOL shouldAutoRefresh;
-	
+	BOOL hasShownFlipsideViewThisSession;
+
 	MeterViewController* currentMeterViewController;
 
 	NSMutableArray *meterViewControllers;
@@ -29,7 +30,6 @@
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
 
-	NSString *connectionErrorMsg;
 
 }
 
@@ -37,7 +37,6 @@
 @property(nonatomic, retain) IBOutlet UIPageControl* pageControl;
 @property(nonatomic, retain) NSMutableArray *meterViewControllers;
 @property(nonatomic, retain) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) NSString *connectionErrorMsg;
 
 - (IBAction) showInfo;
 - (IBAction) refreshData;

@@ -178,16 +178,18 @@
 	//NSLog(@"Observing change to key %@", keyPath );
 	self.dialView.curMeter = self.curMeter;
 	
-	if( tedometerData.isLoadingXml ) {
-		[activityIndicator startAnimating];
-		self.warningIconButton.hidden = YES;
+	if( [@"isLoadingXml" isEqualToString: keyPath] ) {
+		if( tedometerData.isLoadingXml ) {
+			[activityIndicator startAnimating];
+			self.warningIconButton.hidden = YES;
+		}
+		else {
+			[activityIndicator stopAnimating];
+			if( tedometerData.connectionErrorMsg )
+				self.warningIconButton.hidden = NO;
+		}
 	}
-	else {
-		[activityIndicator stopAnimating];
-		if( tedometerData.connectionErrorMsg )
-			self.warningIconButton.hidden = NO;
-	}
-	
+		
 	[self refreshView];
 }
 

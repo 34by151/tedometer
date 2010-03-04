@@ -10,6 +10,7 @@
 #import "CXMLNOde-utils.h"
 #import "MeterViewSizing.h"
 #import "TedometerData.h"
+#import "FlurryAPI.h"
 
 @implementation Meter
 
@@ -188,11 +189,17 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 
 static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", @"May", @"Jun", @"July", @"August", @"September", @"October", @"November", @"December"};
 - (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay {
-	NSString *timeString;
-	if( aMonth == 0 )
-		timeString = @"N/A";
-	else
-		timeString = [NSString stringWithFormat:@"%@ %i", [monthStrings[aMonth-1] substringToIndex:3], aDay];
+	NSString *timeString = @"N/A";
+	if( aMonth >= 1 && aMonth <= 12 ) {
+		@try {
+			timeString = [NSString stringWithFormat:@"%@ %i", [monthStrings[aMonth-1] substringToIndex:3], aDay];
+		}
+		@catch( NSException *exception ) {
+			NSString *msg = [NSString stringWithFormat: @"%@ in %s: aMonth=%d, aDay = %d", [exception name], __PRETTY_FUNCTION__, aMonth, aDay ];
+			[FlurryAPI logError: [exception name] message:msg exception:exception];
+			timeString = @"N/A";
+		}
+	}
 
 	return timeString;
 }

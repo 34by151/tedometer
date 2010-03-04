@@ -35,7 +35,6 @@
 	
 	tedometerData = [TedometerData sharedTedometerData];
 	
-	tedometerData.hasShownFlipsideThisSession = NO;
 	isApplicationInactive = NO;
 	connectionErrorMsg = nil;
 
@@ -150,6 +149,15 @@
 
 -(IBAction) refreshData {
 	[tedometerData reloadXmlDocumentInBackground];
+	if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession ) {
+			
+		// if the gateway host is empty and we haven't shown the flipside this session,
+		// don't show an error message; just let them provide the settings
+		if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+			tedometerData.connectionErrorMsg = nil;
+		
+		[self showInfo];
+	}
 }
 
 
@@ -193,9 +201,9 @@
 #pragma mark Flipside View
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
 
-	BOOL needsInitialRefresh = ! tedometerData.hasShownFlipsideThisSession;
+	BOOL needsInitialRefresh = ! tedometerData.hasEstablishedSuccessfulConnectionThisSession;
 	
-	tedometerData.hasShownFlipsideThisSession = YES;
+	tedometerData.hasEstablishedSuccessfulConnectionThisSession = YES;
 	
 	[TedometerData archiveToDocumentsFolder];
 	

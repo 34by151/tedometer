@@ -17,12 +17,17 @@
 #import "TedometerAppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "log.h"
+#import "FlurryAPI.h"
 
 #define kPowerMeterIdx		0
 #define kCostMeterIdx		1
 #define kCarbonMeterIdx 	2
 #define kVoltageMeterIdx	3
 
+@interface TedometerData()
+- (void) clearIsLoadingXmlFlag;
+@end
+	
 @implementation TedometerData
 
 @synthesize mtusArray;
@@ -42,7 +47,7 @@
 @synthesize daysLeftInBillingCycle;
 @synthesize isAutolockDisabledWhilePluggedIn;
 @synthesize curMtuIdx;
-@synthesize hasShownFlipsideThisSession;
+@synthesize hasEstablishedSuccessfulConnectionThisSession;
 @synthesize isLoadingXml;
 @synthesize connectionErrorMsg;
 @synthesize isApplicationInactive;
@@ -151,6 +156,7 @@ static TedometerData *sharedTedometerData = nil;
 				
 				self.isLoadingXml = NO;
 				self.connectionErrorMsg = nil;
+				self.hasEstablishedSuccessfulConnectionThisSession = NO;
 
 				sharedTedometerData = self;
             }
@@ -362,17 +368,19 @@ NSString* _archiveLocation;
 
 -(void) reloadXmlDocumentInBackground {
 	
+	self.connectionErrorMsg = nil;
+	
 	if( self.isDialBeingEdited ) {
 		// aggressively reloading (e.g., every 2 seconds) while the dial is being edited seems to crash the app
 		return;
 	}
-	
-	if( self.isApplicationInactive || self.gatewayHost == nil || [self.gatewayHost isEqualToString:@""] ) {
-		// don't show the error message if the gateway host is empty and we haven't yet shown the flip side this session,
-		// since we'll be showing them the flip side automatically to let them enter the host.
-		if( self.hasShownFlipsideThisSession ) {
-			//[self showWarningIcon];
-		}
+	else if( self.isApplicationInactive ) {
+		return;
+	}
+	else if( self.gatewayHost == nil || [self.gatewayHost isEqualToString:@""] ) {
+		// Don't display the error message if we haven't shown the flipside this session;
+		// we'll show the flipside automatically for them to provide it.
+		self.connectionErrorMsg = @"No gateway address provided";
 		return;
 	}
 	
@@ -388,7 +396,9 @@ NSString* _archiveLocation;
 
 -(void) reloadXmlDocument {
 	
-	NSLog(@"Reloading XML Document..." );
+	DLog(@"Reloading XML Document..." );
+	
+	self.connectionErrorMsg = nil;
 	
 	NSString *urlString;
 	BOOL usingDemoAccount = NO;
@@ -434,6 +444,8 @@ NSString* _archiveLocation;
 			self.connectionErrorMsg = nil;
 			[self refreshDataFromXmlDocument: newDocument];
 			
+			self.hasEstablishedSuccessfulConnectionThisSession = YES;
+			
 			//[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
 			//[self performSelectorOnMainThread:@selector(hideWarningIcon) withObject:self waitUntilDone:NO];
 			//[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
@@ -453,10 +465,20 @@ NSString* _archiveLocation;
 	}
 	
 	// NOTE: Since this method runs in a separate thread, may need to set this with a separate method, invoked with performSelectorOnMainThread:
-	self.isLoadingXml = NO;
-	
+	// This causes an EXC_BAD_ACCESS for some reason
+	// [self performSelectorOnMainThread:@selector(clearIsLoadingXmlFlag) withObject:nil waitUntilDone:NO];
+	[self clearIsLoadingXmlFlag];
 }
 
+- (void) clearIsLoadingXmlFlag {
+	@try {
+		self.isLoadingXml = NO;
+	}
+	@catch( NSException *exception ) {
+		NSString *msg = [NSString stringWithFormat: @"%@ in %s", [exception name], __PRETTY_FUNCTION__ ];
+		[FlurryAPI logError: [exception name] message:msg exception:exception];
+	}
+}
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
 

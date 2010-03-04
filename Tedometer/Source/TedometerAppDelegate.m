@@ -11,6 +11,7 @@
 #import "InternetRequiredViewController.h"
 #import "FlurryAPI.h"
 #import "TedometerData.h"
+#import "L0SolicitReviewController.h"
 
 @implementation TedometerAppDelegate
 
@@ -44,6 +45,7 @@ void uncaughtExceptionHandler(NSException *exception);
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(batteryStateDidChange:)
 												 name:UIDeviceBatteryStateDidChangeNotification object:nil];
+	
 	// initialize with current settings
 	[self updateIdleTimerState];
 	
@@ -65,9 +67,10 @@ void uncaughtExceptionHandler(NSException *exception);
 	[self updateInterfaceWithReachability: internetReach];
 
     [window makeKeyAndVisible];
+	
+	[L0SolicitReviewController solicit];		// Invitation to the review the app
 
 }
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[TedometerData archiveToDocumentsFolder];

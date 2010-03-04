@@ -35,7 +35,7 @@ typedef enum {
 	NSString* password;
 	BOOL useSSL;
 	BOOL isAutolockDisabledWhilePluggedIn;
-	BOOL hasShownFlipsideThisSession;
+	BOOL hasEstablishedSuccessfulConnectionThisSession;
 	BOOL isApplicationInactive;
 	BOOL isShowingTodayStatistics;
 	BOOL isDialBeingEdited;				// don't reload data while dial is being edited; seems to crash the app
@@ -80,7 +80,7 @@ typedef enum {
 @property(readonly) NSInteger meterCount;
 @property(readwrite, assign) BOOL isAutolockDisabledWhilePluggedIn;
 @property(readwrite, assign) BOOL useSSL;
-@property(readwrite, assign) BOOL hasShownFlipsideThisSession;
+@property(readwrite, assign) BOOL hasEstablishedSuccessfulConnectionThisSession;
 @property(readwrite, assign) BOOL isApplicationInactive;
 @property(readwrite, assign) BOOL isShowingTodayStatistics;
 @property(readwrite, assign) BOOL isLoadingXml;

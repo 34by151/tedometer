@@ -172,7 +172,7 @@ typedef struct __DialDrawingContext {
 
 
 - (void) showHelpMessage {
-	NSString *helpMsg = @"Drag the dial to move the origin. Pinch and stretch to adjust the scale.";
+	NSString *helpMsg = @"Drag the dial to adjust the origin. Pinch and stretch to adjust the scale.";
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:helpMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alertView show];
 	[alertView release];
@@ -187,7 +187,7 @@ typedef struct __DialDrawingContext {
 	
 	if( ! tedometerData.hasDisplayedDialEditHelpMessage ) {
 		tedometerData.hasDisplayedDialEditHelpMessage = YES;
-		[self performSelector:@selector(showHelpMessage) withObject:self afterDelay:0.5];
+		[self performSelector:@selector(showHelpMessage) withObject:self afterDelay:0.1];
 	}
 	[self setNeedsDisplay];
 }

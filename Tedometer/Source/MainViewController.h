@@ -22,6 +22,7 @@
 	
 	BOOL shouldAutoRefresh;
 	BOOL hasShownFlipsideViewThisSession;
+	BOOL hasInitializedSinceFirstSuccessfulConnection;
 
 	MeterViewController* currentMeterViewController;
 
@@ -54,5 +55,6 @@
 - (void)loadScrollViewWithPage:(int)page;
 - (void) mtuCountDidChange:(NSNotification*)notification;
 - (void) updateMeterVisibility;
+- (void) switchToPage:(NSInteger)pageNumber;
 
 @end

@@ -102,7 +102,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	 </Power>
 	 */
 	
-	NSDictionary* nodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+	NSDictionary* nodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys: 
 													  @"CostNow",		@"now",
 													  @"CostHour",		@"hour",
 													  @"CostTDY",		@"today",
@@ -130,6 +130,26 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	
 	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];
+	
+	[nodesKeyedByProperty release];
+	
+	if( self.isNetMeter ) {
+		
+		// Fix peak/min for net meter
+		NSDictionary *netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+														 @"PeakTdy",		@"todayPeakValue",
+														 @"MinTdy",			@"todayMinValue",
+														 @"PeakMTD",		@"mtdPeakValue",
+														 @"MinMTD",			@"mtdMinValue",
+														 nil];
+		
+		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+															intoObject:self 
+												   withParentMeterNode:@"Cost" 
+											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty usingAggregationOp:kAggregationOpSum];
+		
+		[netMeterFixNodesKeyedByProperty release];
+	}
 	
 	return isSuccessful;
 }

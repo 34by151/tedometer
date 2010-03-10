@@ -27,6 +27,12 @@ typedef enum {
 	kMtu4
 } MtuType;
 
+typedef enum {
+	kAggregationOpSum = 0,
+	kAggregationOpMin,
+	kAggregationOpMax
+} AggregationOp;
+
 @interface TedometerData : NSObject <NSCoding> {
 
 	NSInteger refreshRate;
@@ -41,6 +47,8 @@ typedef enum {
 	BOOL isDialBeingEdited;				// don't reload data while dial is being edited; seems to crash the app
 	
 	BOOL hasDisplayedDialEditHelpMessage;
+	
+	BOOL isPatchingAggregationDataSelected;
 	
 	BOOL isLoadingXml;
 	NSString *connectionErrorMsg;
@@ -60,6 +68,7 @@ typedef enum {
 	NSMutableArray* mtusArray;			// array of arrays containing mtus
 }
 
+@property(readwrite, assign) BOOL isPatchingAggregationDataSelected;
 @property(readwrite, assign) BOOL isDialBeingEdited;
 @property(readwrite, nonatomic, retain) NSMutableArray* mtusArray;
 @property(readwrite, assign) NSInteger refreshRate;
@@ -116,5 +125,12 @@ typedef enum {
 + (BOOL) archiveToDocumentsFolder;
 + (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object 
 		withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)propertiesKeyedByNodeDict;
++ (BOOL) fixNetMeterValuesFromXmlDocument:(CXMLDocument*) document 
+							   intoObject:(Meter*) meterObject 
+					  withParentMeterNode:(NSString*)parentNode 
+				  andNodesKeyedByProperty:(NSDictionary*)netMeterFixNodesKeyedByProperty 
+							 usingAggregationOp:(AggregationOp)aggregationOp;
+
++ (CXMLNode *) nodeInXmlDocument:(CXMLDocument *)document atPath:(NSString*)nodePath;
 
 @end

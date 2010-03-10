@@ -51,7 +51,13 @@
 	UIButton *todayMonthToggleButton;
 	UIButton *warningIconButton;
 	UIButton *stopDialEditButton;
-	
+
+	UIView *parentDialView;
+	UIImageView *dialShadowView;
+	UIImageView *dialShadowThinView;
+	UIImageView *dialHaloView;
+	UIImageView *glareView;
+
 	BOOL shouldAutoRefresh;
 	
 	TedometerData *tedometerData;
@@ -65,6 +71,11 @@
 @property (nonatomic, retain) Meter* carbonMeter;
 @property (nonatomic, retain) Meter* voltageMeter;
 
+@property (nonatomic, retain) IBOutlet UIView *parentDialView;
+@property (nonatomic, retain) IBOutlet UIImageView *dialShadowView;
+@property (nonatomic, retain) IBOutlet UIImageView *dialShadowThinView;
+@property (nonatomic, retain) IBOutlet UIImageView *dialHaloView;
+@property (nonatomic, retain) IBOutlet UIImageView *glareView;
 @property (nonatomic, retain) IBOutlet UILabel *avgValue;
 @property (nonatomic, retain) IBOutlet UILabel *avgValueUnit;
 @property (nonatomic, retain) IBOutlet UILabel *avgLabel;
@@ -98,5 +109,10 @@
 - (IBAction) stopDialEdit;
 
 - (void) refreshView;
+
+-(void)documentLoadWillBegin:(NSNotification*)notification;
+-(void)documentLoadDidFinish:(NSNotification*)notification;
+-(void)documentLoadDidFail:(NSNotification*)notification;
+
 	
 @end

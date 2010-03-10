@@ -11,6 +11,8 @@
 #import "MeterViewSizing.h"
 #import "log.h"
 
+#define defNumTicks 10
+
 // Hidden methods
 @interface Dial ()
 -(void) normalizeRadiansAndUnitsPerTick;
@@ -34,6 +36,23 @@
 	return self;
 }
 
+-(void) refreshFromMeter {
+	baseRadiansPerTick = curMeter.radiansPerTick;
+	unitsPerTick = curMeter.unitsPerTick;
+	baseZeroAngle = curMeter.zeroAngle;
+
+	if( baseRadiansPerTick == 0 )
+		baseRadiansPerTick = meterSpan / defNumTicks;
+	
+	if( unitsPerTick == 0 || isnan( unitsPerTick ) ) {
+		if( curMeter.now > 0 )
+			unitsPerTick = (curMeter.now * 3.0) / defNumTicks;
+		else
+			unitsPerTick = curMeter.defaultUnitsPerTick;
+	}
+	
+}
+
 -(void) setCurMeter:(Meter*)aMeter {
 	if( curMeter != aMeter ) {
 		Meter *oldMeter = curMeter;
@@ -45,17 +64,16 @@
 		// voltage meter doesn't share the same scale
 		if( oldMeter && ! [oldMeter isMemberOfClass:[VoltageMeter class]] && ! [aMeter isMemberOfClass:[VoltageMeter class]] ) {
 			
-			if( oldMeter.now > 0 ) {
+			if( oldMeter.now != 0 ) {
 				// using current radiansPerTick and meter position, calculate new unitsPerTick
 				aMeter.radiansPerTick = oldMeter.radiansPerTick;
 				aMeter.unitsPerTick = oldMeter.now == 0 ? 0 : aMeter.now * (oldMeter.currentMaxMeterValue / (double) oldMeter.now) * (aMeter.radiansPerTick / (double) meterSpan);
 				aMeter.zeroAngle = oldMeter.zeroAngle;
 			} 
 		}
+
+		[self refreshFromMeter];
 		
-		baseRadiansPerTick = aMeter.radiansPerTick;
-		unitsPerTick = aMeter.unitsPerTick;
-		baseZeroAngle = aMeter.zeroAngle;
 		pivotValueForPinching = 0;
 		deltaRadiansPerTick = 0;
 		deltaZeroAngle = 0;
@@ -65,17 +83,6 @@
 		isAtStretchLimit = NO;
 		isAtOffsetLimit = NO;
 
-		int defNumTicks = 10;
-		if( baseRadiansPerTick == 0 )
-			baseRadiansPerTick = meterSpan / defNumTicks;
-		
-		if( unitsPerTick == 0 || isnan( unitsPerTick ) ) {
-			if( aMeter.now > 0 )
-				unitsPerTick = (aMeter.now * 3.0) / defNumTicks;
-			else
-				unitsPerTick = aMeter.defaultUnitsPerTick;
-		}
-		
 		[oldMeter release];
 		
 	}

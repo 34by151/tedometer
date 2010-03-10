@@ -41,16 +41,28 @@
 	
 	SystemSoundID limitReachedSoundId;
 	SystemSoundID clickSoundId;
+	SystemSoundID pushInSoundId;
+	SystemSoundID pushOutSoundId;
 	
 	double lastOffsetDragClickAngle;
+	
+	UIView *parentDialView;
+	UIImageView *parentDialShadowView;
+	UIImageView *parentDialShadowThinView;
+	UIImageView *parentDialHaloView;
+	UIImageView *parentGlareView;
 }
 
+@property (nonatomic, retain) UIImageView *parentDialShadowView;
+@property (nonatomic, retain) UIImageView *parentDialShadowThinView;
+@property (nonatomic, retain) UIImageView *parentDialHaloView;
+@property (nonatomic, retain) UIImageView *parentGlareView;
+@property (nonatomic, retain) UIView *parentDialView;
 @property (nonatomic, retain) Meter *curMeter;
 @property (nonatomic, retain) UIButton *stopDialEditButton;
 
--(void) startDialEdit;
 -(void) stopDialEdit;
-
+-(void) startDialEdit;
 
 
 @end

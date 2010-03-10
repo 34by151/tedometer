@@ -15,6 +15,7 @@
 #import "InternetRequiredViewController.h"
 #import "MainViewController.h"
 #import "MeterViewSizing.h"
+#import "log.h"
 
 @implementation MeterViewController
 
@@ -47,6 +48,11 @@
 @synthesize warningIconButton;
 @synthesize mainViewController;
 @synthesize stopDialEditButton;
+@synthesize parentDialView;
+@synthesize dialShadowView;
+@synthesize dialShadowThinView;
+@synthesize dialHaloView;
+@synthesize glareView;
 
 - (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter {
 	if (self = [super initWithNibName:@"MeterView" bundle:nil]) {
@@ -67,24 +73,35 @@
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
 	 // staring at blackness until the first refresh
 	 
+	 self.dialView.parentDialView = self.parentDialView;
+	 self.dialView.parentDialShadowView = self.dialShadowView;
+	 self.dialView.parentDialShadowThinView = self.dialShadowThinView;
+	 self.dialView.parentDialHaloView = self.dialHaloView;
+	 self.dialView.parentGlareView = self.glareView;
+	 
+	 self.dialHaloView.hidden = YES;
+	 self.dialHaloView.alpha = 0;
+	 self.dialShadowThinView.hidden = YES;
+
 #if DRAW_FOR_ICON_SCREENSHOT
 	 meterLabel.center = CGPointMake( meterLabel.center.x + 2, meterLabel.center.y - 8 );
 	 todayMonthToggleButton.hidden = YES;
 	 meterLabel.text = @"3.036 kW";
-#else
+#endif
+
 	 // Add custom image to Today/Month toggle button
 	 UIImage *buttonImageNormal = [UIImage imageNamed:@"panelButtonInset.png"]; 
-	 UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:13 topCapHeight:0]; 
+	 UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:16 topCapHeight:0]; 
 	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
 
 	 UIImage *buttonImagePressed = [UIImage imageNamed:@"panelButtonInsetSelected.png"]; 
-	 UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:13 topCapHeight:0]; 
+	 UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:16 topCapHeight:0]; 
 	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
-#endif
 	 
 #if DRAW_FOR_DEFAULT_PNG_SCREENSHOT
-	 meterLabel.center = CGPointMake( meterLabel.center.x + 2, meterLabel.center.y - 8 );
-	 meterLabel.text = @"Ted-O-Meter"; 
+	 todayMonthToggleButton.hidden = NO;
+	 meterLabel.center = CGPointMake( meterLabel.center.x -3, meterLabel.center.y );
+	 meterLabel.text = @"TED-O-Meter"; 
 #endif
 	 
 	 avgValue.text = @"...";
@@ -107,11 +124,14 @@
 	 tedometerData = [TedometerData sharedTedometerData];
 	 [tedometerData addObserver:self forKeyPath:@"curMeterTypeIdx" options:0 context:nil];
 	 [tedometerData addObserver:self forKeyPath:@"isShowingTodayStatistics" options:0 context:nil];
-	 [tedometerData addObserver:self forKeyPath:@"connectionErrorMsg" options:0 context:nil];
-	 [tedometerData addObserver:self forKeyPath:@"isLoadingXml" options:0 context:nil];
 	 
 	 self.dialView.stopDialEditButton = self.stopDialEditButton;
 	 
+	 // register for connection notifications
+	 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentLoadWillBegin:) name:kNotificationDocumentReloadWillBegin object:tedometerData];
+	 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentLoadDidFinish:) name:kNotificationDocumentReloadDidFinish object:tedometerData];
+	 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentLoadDidFail:) name:kNotificationConnectionFailure object:tedometerData];
+
 	 //[self refreshData];
 	 
 	 [super viewDidLoad];
@@ -173,27 +193,32 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(void)documentLoadWillBegin:(NSNotification*)notification;
+{
+	[activityIndicator startAnimating];
+	self.warningIconButton.hidden = YES;
+}
+
+-(void)documentLoadDidFinish:(NSNotification*)notification;
+{
+	[activityIndicator stopAnimating];
+	self.dialView.curMeter = self.curMeter;
+	[self refreshView];
+}
+
+-(void)documentLoadDidFail:(NSNotification*)notification;
+{
+	self.warningIconButton.hidden = NO;
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	//NSLog(@"Observing change to key %@", keyPath );
+	//DLog(@"Observing change to key %@", keyPath );
 	self.dialView.curMeter = self.curMeter;
-	
-	if( [@"isLoadingXml" isEqualToString: keyPath] ) {
-		if( tedometerData.isLoadingXml ) {
-			[activityIndicator startAnimating];
-			self.warningIconButton.hidden = YES;
-		}
-		else {
-			[activityIndicator stopAnimating];
-			if( tedometerData.connectionErrorMsg )
-				self.warningIconButton.hidden = NO;
-		}
-	}
-		
 	[self refreshView];
 }
 
 -(Meter*) curMeter {
+	//DLog("tedometerData.curMeterTypeIdx = %d", tedometerData.curMeterTypeIdx);
 	switch( tedometerData.curMeterTypeIdx ) {
 		case kMeterTypeCost: return self.costMeter;
 		case kMeterTypePower: return self.powerMeter;

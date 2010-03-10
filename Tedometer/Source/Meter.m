@@ -123,17 +123,28 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 - (NSInteger) todayAverage {
 	TedometerData *tedometerData = [TedometerData sharedTedometerData];
 	double hoursSoFar = (tedometerData.gatewayHour + tedometerData.gatewayMinute/60.0);
-	return hoursSoFar == 0 ? 0 : self.today / hoursSoFar;
+	return hoursSoFar == 0 ? 0 : (NSInteger) (0.5 + self.today / hoursSoFar);
 }
 
 - (NSInteger) monthAverage {
 	TedometerData *tedometerData = [TedometerData sharedTedometerData];
 	
-	NSInteger fullDaysThisMonth = daysInMonths[ tedometerData.gatewayMonth - 1 ];
-	NSInteger fullDaysSoFar = MAX(0, fullDaysThisMonth - tedometerData.daysLeftInBillingCycle);
-	NSInteger hoursSoFar = fullDaysSoFar * 24 + tedometerData.gatewayHour;
+	NSInteger fullDays;
+	if( tedometerData.gatewayDayOfMonth >= tedometerData.meterReadDate ) {
+		fullDays = tedometerData.gatewayDayOfMonth - tedometerData.meterReadDate;
+	}
+	else {
+		NSInteger lastMonth = tedometerData.gatewayMonth - 1;
+		if( lastMonth < 0 )
+			return 0;
+		
+		if( lastMonth == 0 )
+			lastMonth = 12;
+		fullDays = tedometerData.gatewayDayOfMonth + (daysInMonths[lastMonth-1] - tedometerData.meterReadDate);
+	}
 	
-	return hoursSoFar == 0 ? 0 : self.mtd / hoursSoFar;
+	double hoursSoFar = fullDays * 24 + tedometerData.gatewayHour + tedometerData.gatewayMinute / 60.0;
+	return hoursSoFar == 0 ? 0 : (NSInteger) (0.5 + self.mtd / hoursSoFar);
 }
 
 

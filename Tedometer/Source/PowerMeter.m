@@ -124,7 +124,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	 </Power>
 	 */
 	
-	NSDictionary* nodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+	NSDictionary* nodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys: 
 													  @"PowerNow",		@"now",
 													  @"PowerHour",		@"hour",
 													  @"PowerTDY",		@"today",
@@ -146,13 +146,32 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 													  nil];
 	
 	NSString *parentNodePath;
-	if( mtuNumber == 0 ) 
+	if( self.isNetMeter ) 
 		parentNodePath = @"Power.Total";
 	else 
 		parentNodePath = [NSString stringWithFormat: @"Power.MTU%d", mtuNumber];
 	
 	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];
+	[nodesKeyedByProperty release];
+	
+	if( self.isNetMeter ) {
+		
+		// Fix peak/min for net meter
+		NSDictionary *netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+											 @"PeakTdy",		@"todayPeakValue",
+											 @"MinTdy",			@"todayMinValue",
+											 @"PeakMTD",		@"mtdPeakValue",
+											 @"MinMTD",			@"mtdMinValue",
+											 nil];
+		
+		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+															intoObject:self 
+												   withParentMeterNode:@"Power" 
+											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty usingAggregationOp:kAggregationOpSum];
+
+		[netMeterFixNodesKeyedByProperty release];
+	}
 	
 	return isSuccessful;
 }

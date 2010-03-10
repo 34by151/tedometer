@@ -9,7 +9,15 @@
 #import "MainViewController.h"
 #import "TedometerAppDelegate.h"
 #import "MeterViewSizing.h"
+#import "log.h"
 
+
+@interface MainViewController ()
+-(void)documentReloadDidFinish:(NSNotification*)notification;
+-(void) connectionDidFail:(NSNotification*)notification;
+-(void) mtuCountDidChange:(NSNotification*)notification;
+
+@end
 
 @implementation MainViewController
 
@@ -36,6 +44,7 @@
 	
 	isApplicationInactive = NO;
 	hasShownFlipsideViewThisSession = NO;
+	hasInitializedSinceFirstSuccessfulConnection = NO;
 
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -81,33 +90,40 @@
 	
     pageControl.numberOfPages = tedometerData.meterCount;
     pageControl.currentPage = 0;
-	
-	
-    // pages are created on demand
-    // load the visible page
-    // load the page on either side to avoid flashes when the user starts scrolling
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
-	
-	if( tedometerData.refreshRate == -1.0 )
-		[self performSelector:@selector(refreshData) withObject:nil afterDelay: 0.5];
-	else
-		[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 0.5];
 
 #if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_DEFAULT_PNG_SCREENSHOT
 	pageControl.hidden = YES;
 #endif
 	
-	
+	// pages are created on demand
+    // load the visible page
+    // load the page on either side to avoid flashes when the user starts scrolling
+    [self loadScrollViewWithPage:0];
+    [self loadScrollViewWithPage:1];
+		
 	// register for mtuCount changes
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mtuCountDidChange:) name:kNotificationMtuCountDidChange object:tedometerData];
+	
+	// register for connection failures
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionDidFail:) name:kNotificationConnectionFailure object:tedometerData];
 
-	// Observe TedometerData.isLoadingXml changes in order to check if we need to show the flipsideView
-	[tedometerData addObserver:self forKeyPath:@"isLoadingXml" options:0 context:nil];
+	// register for document reloads, so that on startup we can return to the MTU we were on in our last session
+	// nh 3/8/10: Not working for some reason
+	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentReloadDidFinish:) name:kNotificationDocumentReloadDidFinish object:tedometerData];
+
+	if( tedometerData.refreshRate == -1.0 )
+		[self performSelector:@selector(refreshData) withObject:nil afterDelay: 0.1];
+	else
+		[self performSelector:@selector(repeatRefresh) withObject:nil afterDelay: 0.1];
 
     [super viewDidLoad];
 }
 
+
+- (void) viewDidAppear:(BOOL)animated {
+	
+	[super viewDidAppear:animated];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -153,22 +169,6 @@
 	[tedometerData reloadXmlDocumentInBackground];
 }
 
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	
-	if( [@"isLoadingXml" isEqualToString: keyPath] && ! tedometerData.isLoadingXml ) {
-		if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession && ! hasShownFlipsideViewThisSession ) {
-			
-			// if the gateway host is empty and we haven't shown the flipside this session,
-			// don't show an error message; just let them provide the settings
-			if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
-				tedometerData.connectionErrorMsg = nil;
-			
-			[self showInfo];
-		}
-	}
-	
-}
 #pragma mark -
 #pragma mark IB Actions
 
@@ -327,9 +327,21 @@
     CGRect frame = scrollView.frame;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
+	DLog(@"Switching frame to origin at %f", frame.origin.x);
     [scrollView scrollRectToVisible:frame animated:YES];
+	
+	// nh 3/8/10: The following seems to work as well as the scrollRecToVisible method.
+	// Was trying to figure out a way to solve hte problem of this method not scrolling
+	// the view when invoked from the 
+	//CGPoint offsetPoint = CGPointMake( frame.size.width*page, 0 );
+	//[scrollView setContentOffset: offsetPoint animated: YES];
+	
     // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
-    pageControlUsed = YES;
+    pageControlUsed = NO;
+	//[scrollView setNeedsDisplay];
+	//[scrollView setNeedsLayout];
+	//[self.view setNeedsLayout];
+	//[self.view setNeedsDisplay];
 }
 
 - (void) updateMeterVisibility;
@@ -342,6 +354,20 @@
 		}
 	}
 }
+
+- (void) switchToPage:(NSInteger)pageNumber {
+	DLog(@"pageNumber = %d mtuCount = %d", pageNumber, tedometerData.meterCount);
+	if( pageNumber < 0 || pageNumber >= tedometerData.meterCount ) {
+		pageNumber = 0;
+	}
+	pageControl.currentPage = 1; //pageNumber;
+	//[self performSelector:@selector(changePage:) withObject:self afterDelay:1.5];
+	[self changePage:self];
+	pageControlUsed = NO;
+}
+
+#pragma mark -
+#pragma mark Notification handlers
 
 - (void) mtuCountDidChange:(NSNotification*)notification;
 {
@@ -360,13 +386,41 @@
 			pageControl.currentPage = 0;
 		}
 		pageControl.numberOfPages = tedometerData.meterCount;
+		
 		[self changePage:self];
 		pageControlUsed = NO;
 	}
 	
 	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * tedometerData.meterCount, scrollView.frame.size.height);
+	
 	[self updateMeterVisibility];
 
 }
 
+-(void)documentReloadDidFinish:(NSNotification*)notification;
+{
+	if( tedometerData.hasEstablishedSuccessfulConnectionThisSession ) {
+		if( ! hasInitializedSinceFirstSuccessfulConnection ) {
+			hasInitializedSinceFirstSuccessfulConnection = YES;
+			[self switchToPage:tedometerData.curMtuIdx];
+		}
+	}
+		
+	[self switchToPage:tedometerData.curMtuIdx];	// This isn't working, for some reason
+
+}
+
+- (void) connectionDidFail:(NSNotification*)notification;
+{
+	if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession && ! hasShownFlipsideViewThisSession ) {
+		
+		// if the gateway host is empty and we haven't shown the flipside this session,
+		// don't show an error message; just let them provide the settings
+		if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+			tedometerData.connectionErrorMsg = nil;
+		
+		[self showInfo];
+	}
+	
+}
 @end

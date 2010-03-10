@@ -48,12 +48,25 @@ typedef struct __DialDrawingContext {
 -(double) radiansFromMeterBottomAngleToViewPoint:(CGPoint)point;
 -(void) playLimitReachedSound; 
 -(void) didReachStretchLimit:(NSNotification*) notification;
+-(void) loadSystemSound:(NSString*)soundFilename soundId:(SystemSoundID*)soundId;
+-(void) changeStateToTouched;
+-(void) changeStateToEditMode;
+-(void) changeStateToDefault;
+
 @end
 
 
 @implementation DialView
 
+static UIColor *labelColor;
+static UIFont *labelFont;
+
 @synthesize stopDialEditButton;
+@synthesize parentDialView;
+@synthesize parentDialShadowView;
+@synthesize parentDialShadowThinView;
+@synthesize parentDialHaloView;
+@synthesize parentGlareView;
 
 #pragma mark -
 #pragma mark Public methods
@@ -72,6 +85,12 @@ typedef struct __DialDrawingContext {
 
 - (void)awakeFromNib {
 
+	if( ! labelColor )
+		labelColor = [[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0] retain];
+	
+	if( ! labelFont )
+		labelFont = [[UIFont fontWithName:@"Helvetica" size:10.0] retain];
+
 #if DRAW_FOR_ICON_SCREENSHOT
 	drawForIconScreenshot = YES;
 #else
@@ -87,25 +106,25 @@ typedef struct __DialDrawingContext {
 	[self setMultipleTouchEnabled: YES];
 
 	// Loads sounds
-	NSString *path = [NSString stringWithFormat:@"%@/%@",
-					  [[NSBundle mainBundle] resourcePath],
-					  @"metallic_blip.caf"];
-	NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
-	AudioServicesCreateSystemSoundID((CFURLRef)filePath, &limitReachedSoundId);
-	
-	path = [NSString stringWithFormat:@"%@/%@",
-					  [[NSBundle mainBundle] resourcePath],
-					  @"click.caf"];
-	filePath = [NSURL fileURLWithPath:path isDirectory:NO];
-	AudioServicesCreateSystemSoundID((CFURLRef)filePath, &clickSoundId);
-	//AudioServicesPlaySystemSound(limitReachedSoundId);
-	//AudioServicesPlaySystemSound(clickSoundId);
+	[self loadSystemSound:@"metallic_blip.caf" soundId:&limitReachedSoundId];
+	//[self loadSystemSound:@"push_in.caf" soundId:&pushInSoundId];
+	//[self loadSystemSound:@"push_out.caf" soundId:&pushOutSoundId];
+	//[self loadSystemSound:@"click.caf" soundId:&clickSoundId];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReachStretchLimit:) name:kNotificationDidReachStretchLimit object:dial];
 }
 
 //- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 //}
+
+- (void) loadSystemSound:(NSString*)soundFilename soundId:(SystemSoundID*)soundId;
+{
+	NSString *path = [NSString stringWithFormat:@"%@/%@",
+					  [[NSBundle mainBundle] resourcePath],
+					  soundFilename];
+	NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
+	AudioServicesCreateSystemSoundID((CFURLRef)filePath, soundId);
+}
 
 - (void) setCurMeter:(Meter*)aMeter {
 	
@@ -132,6 +151,8 @@ typedef struct __DialDrawingContext {
 
 
 - (void)drawRect:(CGRect)rect {
+	
+	//NSAutoreleasePool *autoReleasePool = [[NSAutoreleasePool alloc] init];
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -161,14 +182,16 @@ typedef struct __DialDrawingContext {
 
 	[self drawArrow:&dialContext];
 	
-	if( isEditMode || isBeingTouchedBeforeEditMode )
-		[self drawEditModeGlow:&dialContext];
+	//if( isEditMode || isBeingTouchedBeforeEditMode )
+	//	[self drawEditModeGlow:&dialContext];
 	
 	
 	if( isEditMode && dial.isAtStretchLimit )
 		[self drawLimitReachedGlow:&dialContext];
 
+	//[autoReleasePool drain];
 }
+
 
 
 - (void) showHelpMessage {
@@ -179,24 +202,11 @@ typedef struct __DialDrawingContext {
 }
 
 -(void) startDialEdit {
-	tedometerData.isDialBeingEdited = YES;
-	isEditMode = YES;
-	initialDistanceBetweenTouches = 0;
-	isBeingTouchedBeforeEditMode = NO;
-	stopDialEditButton.hidden = NO;
-	
-	if( ! tedometerData.hasDisplayedDialEditHelpMessage ) {
-		tedometerData.hasDisplayedDialEditHelpMessage = YES;
-		[self performSelector:@selector(showHelpMessage) withObject:self afterDelay:0.1];
-	}
-	[self setNeedsDisplay];
+	[self changeStateToEditMode];
 }
 
 -(void) stopDialEdit {
-	isEditMode = NO;
-	stopDialEditButton.hidden = YES;
-	[self setNeedsDisplay];
-	tedometerData.isDialBeingEdited = NO;
+	[self changeStateToDefault];
 }
 
 - (void)dealloc {
@@ -231,18 +241,35 @@ typedef struct __DialDrawingContext {
 	
 	//DLog(@"touches count = %d", [touches count]);
 
-	touchesBeganDate = [[NSDate date] retain];
-
-	initialDistanceBetweenTouches = 0;
-	lastOffsetDragClickAngle = 0;
-
+	// if not yet in edit mode, make sure touches are inside meter
+	// (we don't require them to be in the meter if we're in edit mode
+	// so that there is more surface area for pinching/stretching)
+	BOOL isTouchInsideMeter = NO;
+	
 	if( ! isEditMode ) {
-		isBeingTouchedBeforeEditMode = YES;
-		[self performSelector:@selector(startDialEdit) withObject:nil afterDelay:0.7];
-		[self setNeedsDisplay];
+		for( UITouch *aTouch in touches ) {
+			CGPoint polarLocation = [self polarCoordFromViewPoint:[aTouch locationInView:self]];
+			if( polarLocation.x <= [self meterRadius] ) {
+				isTouchInsideMeter = YES;
+				break;
+			}
+		}
 	}
-	else {
-		dial.isBeingTouched = YES;
+	
+	if( isEditMode || isTouchInsideMeter ) {
+		
+		touchesBeganDate = [[NSDate date] retain];
+
+		initialDistanceBetweenTouches = 0;
+		lastOffsetDragClickAngle = 0;
+
+		if( ! isEditMode ) {
+			[self changeStateToTouched];
+			[self performSelector:@selector(startDialEdit) withObject:nil afterDelay:0.7];
+		}
+		else {
+			dial.isBeingTouched = YES;
+		}
 	}
 	
 }
@@ -256,9 +283,6 @@ typedef struct __DialDrawingContext {
 			
 			isBeingPinched = YES;
 			
-			// TODO: Use center point between touches as fixed point on meter
-			// OR use current dial location as fixed point;
-			// adjust offset so that fixed point remains at same angle.
 			NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(compareAddress:)];
 			UITouch *first = [sortedTouches objectAtIndex:0];
 			UITouch *second = [sortedTouches objectAtIndex:1];
@@ -279,7 +303,6 @@ typedef struct __DialDrawingContext {
 			
 			// Move zeroAngle so that stretching pivots about top of dial
 			
-			// TODO: There is a jump in the zero angle when movement begns. What's causing it?
 			//DLog(@"UnitsPerTick: %f", dial.unitsPerTick );
 			double radiansFromTopToZeroAtTouchesBegan = meterSpan / 2.0 - dial.baseZeroAngle;
 			double unitsPerRadianAtTouchesBegan = dial.unitsPerTick / dial.baseRadiansPerTick;
@@ -324,17 +347,6 @@ typedef struct __DialDrawingContext {
 				
 				dial.deltaZeroAngle += radianDelta;
 				
-				/* nh 2/25/10 Click noise seems a bit over the top
-				double radiansMovedSinceLastClick = ABS(dial.deltaZeroAngle - lastOffsetDragClickAngle);
-				double clickDelta = M_PI / 20.0;
-				if( radiansMovedSinceLastClick > clickDelta ) {
-					while( radiansMovedSinceLastClick > clickDelta ) {
-						AudioServicesPlaySystemSound(clickSoundId);
-						radiansMovedSinceLastClick -= clickDelta;
-					}
-					lastOffsetDragClickAngle = dial.deltaZeroAngle;
-				}
-				*/
 				
 				[self setNeedsDisplay];
 			}
@@ -351,12 +363,15 @@ typedef struct __DialDrawingContext {
 	isBeingPinched = NO;
 
 	initialDistanceBetweenTouches = 0;
-	
+
 	isBeingTouchedBeforeEditMode = NO;
 	
 	if( ! isEditMode ) {
+		
+		[self changeStateToDefault];
 		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(startDialEdit) object:nil];
 	}
+
 	
 	dial.isBeingTouched = NO;
 	
@@ -375,6 +390,82 @@ typedef struct __DialDrawingContext {
 # pragma mark -
 # pragma mark Hidden methods
 
+
+# pragma mark -
+# pragma mark State change methods
+-(void) changeStateToTouched {
+	parentDialShadowView.hidden = YES;
+	parentDialShadowThinView.hidden = NO;
+	parentGlareView.transform = CGAffineTransformMakeScale(1.02, 1.05);
+
+	parentDialHaloView.hidden = NO;
+	parentDialHaloView.alpha = 0;
+	
+	isBeingTouchedBeforeEditMode = YES;
+	parentDialView.transform = CGAffineTransformMakeScale(0.99, 0.99);
+
+	[self setNeedsDisplay];
+}
+
+-(void) changeStateToEditMode {
+	parentDialShadowView.hidden = YES;
+	parentDialShadowThinView.hidden = YES;
+	stopDialEditButton.hidden = NO;
+	stopDialEditButton.alpha = 0;
+	
+	parentDialHaloView.transform = CGAffineTransformMakeScale(0.96,0.96);
+
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.25];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+	parentDialView.transform = CGAffineTransformMakeScale(0.94, 0.94);
+	parentGlareView.transform = CGAffineTransformMakeScale(0.95,0.95);
+	parentGlareView.alpha = 0.25;
+	parentDialHaloView.alpha = 0.9;
+	stopDialEditButton.alpha = 1.0;
+	[UIView commitAnimations];
+
+	tedometerData.isDialBeingEdited = YES;
+	isEditMode = YES;
+	
+	initialDistanceBetweenTouches = 0;
+	isBeingTouchedBeforeEditMode = NO;
+	
+	//parentDialView.transform = CGAffineTransformMakeScale(0.99, 0.99);
+	
+	if( ! tedometerData.hasDisplayedDialEditHelpMessage ) {
+		tedometerData.hasDisplayedDialEditHelpMessage = YES;
+		[self performSelector:@selector(showHelpMessage) withObject:self afterDelay:0.1];
+	}
+	
+	[self setNeedsDisplay];
+}
+
+-(void) changeStateToDefault {
+	parentDialShadowView.hidden = NO;
+	parentDialShadowThinView.hidden = YES;
+	stopDialEditButton.hidden = YES;
+	
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration: isEditMode ? 0.35 : 0.1];
+	[UIView setAnimationCurve: isEditMode ? UIViewAnimationCurveEaseInOut : UIViewAnimationCurveEaseOut];
+	parentDialHaloView.alpha = 0;
+	//parentDialHaloView.transform = CGAffineTransformMakeScale(0.9, 0.9);
+	parentGlareView.alpha = 0.39;
+	parentGlareView.transform = CGAffineTransformMakeScale(1,1);
+	parentDialView.transform = CGAffineTransformMakeScale(1,1);
+	[UIView commitAnimations];
+	
+	
+	//AudioServicesPlaySystemSound(pushInSoundId);
+	
+	isEditMode = NO;
+	tedometerData.isDialBeingEdited = NO;
+	
+	[self setNeedsDisplay];
+}
+
+# pragma mark -
 # pragma mark Dial drawing methods
 
 /**
@@ -424,6 +515,8 @@ typedef struct __DialDrawingContext {
 	
 	return pPolar;
 }
+
+
 
 -(void) drawArrow:(DialDrawingContext*) dialContext {
 	float dialAngle;
@@ -579,8 +672,8 @@ typedef struct __DialDrawingContext {
 	if( dial.normalizedRadiansPerTick == 0 )
 		return;
 	
-	UIFont *font = [UIFont fontWithName:@"Helvetica" size:10.0];
-	UIColor *textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
+	UIFont *font = labelFont; //[UIFont fontWithName:@"Helvetica" size:10.0];
+	UIColor *textColor = labelColor; //[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
 	[textColor set];
 
 	CGContextSetRGBStrokeColor(dialContext->context, 0.35, 0.35, 0.35, 1.0);
@@ -671,7 +764,7 @@ typedef struct __DialDrawingContext {
 	double arcStartRadian = radOffset - meterSpan + arcRadians;
 	double arcEndRadian = radOffset - meterSpan;
 	double arcStartThickness = 1;
-	double arcEndThickness = dialContext->tickLength * 5 / 5.0;
+	double arcEndThickness = dialContext->tickLength;
 	double arcAlphaStartVal = 0.0;
 	double arcAlphaEndVal = 0.9;
 	
@@ -719,7 +812,7 @@ typedef struct __DialDrawingContext {
 
 -(void) drawEditModeGlow:(DialDrawingContext*) dialContext {
 	
-	CGContextSetRGBStrokeColor(dialContext->context, 1.0, 1.0, 1.0, isBeingTouchedBeforeEditMode ? 0.4 : 1.0);
+	CGContextSetRGBStrokeColor(dialContext->context, 1.0, 1.0, 1.0, isBeingTouchedBeforeEditMode ? 0.0 : 1.0);
 	CGContextSetLineWidth(dialContext->context, isBeingTouchedBeforeEditMode ? 1.5 : 2.0);
 	CGContextSetShadowWithColor( dialContext->context, CGSizeMake( 0, 0 ), 10.0, [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0].CGColor );
 	//CGContextAddArc( dialContext->context, 0, 0, dialContext->meterRadius - 10, 0.0, 2*M_PI, 0 ); 

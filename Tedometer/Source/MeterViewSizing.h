@@ -7,6 +7,8 @@
  *
  */
 
+#import "log.h"
+
 // turns off tick labels, leaves "Ted-O-Meter"
 #define DRAW_FOR_ICON_SCREENSHOT			0
 #define DRAW_FOR_DEFAULT_PNG_SCREENSHOT		0
@@ -22,5 +24,8 @@
 
 
 // Notifications
-#define kNotificationDidReachStretchLimit	@"DidReachStretchLimit"
-#define kNotificationMtuCountDidChange		@"MtuCountDidChange"
+#define kNotificationDidReachStretchLimit		@"DidReachStretchLimit"
+#define kNotificationMtuCountDidChange			@"MtuCountDidChange"
+#define kNotificationConnectionFailure			@"ConnectionFailure"
+#define kNotificationDocumentReloadWillBegin	@"DocumentReloadWillBegin"
+#define kNotificationDocumentReloadDidFinish	@"DocumentReloadDidFinish"

@@ -6,6 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+//#define USE_TEST_DATA	0
+
 #import "TedometerData.h"
 #import "PowerMeter.h"
 #import "CostMeter.h"
@@ -29,6 +31,8 @@
 @end
 	
 @implementation TedometerData
+
+
 
 @synthesize mtusArray;
 @synthesize refreshRate;
@@ -54,6 +58,7 @@
 @synthesize isShowingTodayStatistics;
 @synthesize hasDisplayedDialEditHelpMessage;
 @synthesize isDialBeingEdited;
+@synthesize isPatchingAggregationDataSelected;
 
 // ----------------------------------------------------------------------
 // From http://www.cocoadev.com/index.pl?SingletonDesignPattern
@@ -92,6 +97,7 @@ static TedometerData *sharedTedometerData = nil;
                 // custom initialization here
 				
 				TedometerData *tedometerData = [TedometerData unarchiveFromDocumentsFolder];
+				DLog( "tedometerData.curMeterTypeIdx = %d", tedometerData.curMeterTypeIdx );
 				
 				if( tedometerData ) {
 					[self release];
@@ -183,29 +189,6 @@ static TedometerData *sharedTedometerData = nil;
 
 
 - (void) setCurMeterTypeIdx:(NSInteger) value {
-	// Adjust radians & units per meter of other meters based
-	// on ratiox of now values of both meters (assume linear relationship).
-	// If now value is 0, do not change (use defaults)
-	
-	
-	//Meter *currentMeter = [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
-	//Meter *newMeter = [[mtusArray objectAtIndex: value] objectAtIndex:curMtuIdx];
-	
-	/*
-	// voltage meter doesn't share the same scale
-	if( curMeterTypeIdx != kVoltageMeterIdx && value != kVoltageMeterIdx && newMeter.now > 0 && currentMeter.now > 0 ) {
-
-		// using current radiansPerTick and meter position, calculate new unitsPerTick
-		newMeter.radiansPerTick = currentMeter.radiansPerTick;
-		if( currentMeter.now == 0.0 ) {
-			newMeter.unitsPerTick = [newMeter meterEndMin] / 10.0;
-			newMeter.radiansPerTick = meterSpan / [newMeter meterEndMin] / newMeter.unitsPerTick;
-			
-		}
-		else
-			newMeter.unitsPerTick = newMeter.now * (currentMeter.currentMaxMeterValue / (double) currentMeter.now) * (newMeter.radiansPerTick / (double) meterSpan);
-	}
-	 */
 	curMeterTypeIdx = value;
 }
 
@@ -304,11 +287,12 @@ NSString* _archiveLocation;
 	[encoder encodeObject:username forKey:@"username"];
 	[encoder encodeObject:password forKey:@"password"];
 	[encoder encodeBool:useSSL forKey:@"useSSL"];
-	[encoder encodeInteger:curMeterTypeIdx forKey:@"curMeterTypeTypeIdx"];
+	[encoder encodeInteger:curMeterTypeIdx forKey:@"curMeterTypeIdx"];
 	[encoder encodeInteger:curMtuIdx forKey:@"curMtuIdx"];
 	[encoder encodeBool:isShowingTodayStatistics forKey:@"isShowingTodayStatistics"];
 	[encoder encodeBool:isAutolockDisabledWhilePluggedIn forKey:@"isAutolockDisabledWhilePluggedIn"];
 	[encoder encodeInteger:hasDisplayedDialEditHelpMessage forKey:@"hasDisplayedDialEditHelpMessage"];
+	[encoder encodeBool:isPatchingAggregationDataSelected forKey:@"isPatchingAggregationDataSelected"];
 }
 
 - (id) initWithCoder:(NSCoder*)decoder {
@@ -324,6 +308,7 @@ NSString* _archiveLocation;
 		self.isShowingTodayStatistics = [decoder decodeBoolForKey:@"isShowingTodayStatistics"];
 		self.isAutolockDisabledWhilePluggedIn = [decoder decodeBoolForKey:@"isAutolockDisabledWhilePluggedIn"];
 		self.hasDisplayedDialEditHelpMessage = [decoder decodeIntegerForKey:@"hasDisplayedDialEditHelpMessage"];
+		self.isPatchingAggregationDataSelected = [decoder decodeBoolForKey:@"isPatchingAggregationDataSelected"];
 	}
 	return self;
 }
@@ -380,26 +365,29 @@ NSString* _archiveLocation;
 	else if( self.gatewayHost == nil || [self.gatewayHost isEqualToString:@""] ) {
 		// Don't display the error message if we haven't shown the flipside this session;
 		// we'll show the flipside automatically for them to provide it.
+		
 		self.connectionErrorMsg = @"No gateway address provided";
+		[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
 		return;
 	}
 	
-	//NSLog(@"Refreshing MainView data..." );
-	//[self hideWarningIcon];
-	//[activityIndicator startAnimating];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadWillBegin object:self];
+
+	self.isLoadingXml = YES;
+	self.connectionErrorMsg = nil;
+	
 	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
 	[[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
 	[op release];
-	self.isLoadingXml = YES;
 }
 
 
 -(void) reloadXmlDocument {
 	
 	DLog(@"Reloading XML Document..." );
-	
-	self.connectionErrorMsg = nil;
-	
+
+	NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init]; 
+
 	NSString *urlString;
 	BOOL usingDemoAccount = NO;
 	if( [@"theenergydetective.com" isEqualToString: [self.gatewayHost lowercaseString]]
@@ -413,11 +401,13 @@ NSString* _archiveLocation;
 	else 
 		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", self.useSSL ? @"https" : @"http", self.gatewayHost];
 	
+#if USE_TEST_DATA
 	///////////////////
 	// OVERRIDE FOR TESTING
-	//urlString = @"http://crush.hadfieldfamily.com/ted5000/LiveDataTest.xml";
-	//usingDemoAccount = YES;
+	urlString = @"http://crush.hadfieldfamily.com/ted5000/LiveDataTest.xml";
+	usingDemoAccount = YES;
 	///////////////////
+#endif
 	
     NSURL *url = [NSURL URLWithString: urlString];
 	
@@ -446,9 +436,6 @@ NSString* _archiveLocation;
 			
 			self.hasEstablishedSuccessfulConnectionThisSession = YES;
 			
-			//[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:NO];
-			//[self performSelectorOnMainThread:@selector(hideWarningIcon) withObject:self waitUntilDone:NO];
-			//[self performSelectorOnMainThread:@selector(refreshView) withObject:self waitUntilDone:NO];
 		}
 	}
 	
@@ -460,17 +447,23 @@ NSString* _archiveLocation;
 			self.connectionErrorMsg = [error localizedDescription];
 		}
 		ALog( @"%@", self.connectionErrorMsg);
-		//[self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:YES];
-		//[self performSelectorOnMainThread:@selector(showWarningIcon) withObject:self waitUntilDone:YES];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
+
 	}
-	
-	// NOTE: Since this method runs in a separate thread, may need to set this with a separate method, invoked with performSelectorOnMainThread:
-	// This causes an EXC_BAD_ACCESS for some reason
-	// [self performSelectorOnMainThread:@selector(clearIsLoadingXmlFlag) withObject:nil waitUntilDone:NO];
 	[self clearIsLoadingXmlFlag];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadDidFinish object:self];
+	
+	[autoreleasePool drain];
+
 }
 
 - (void) clearIsLoadingXmlFlag {
+	
+	// In 2.0, when we were observing isLoadingXml in the MeterViewController, self.isLoadingXml = NO 
+	// seemed to cause exceptions at times. This method is an attempt to catch and ignore (but note) those
+	// exceptions, since they aren't really fatal.
+	//
+	// Now that we use notifications instead, this property isn't used. Keeping it in case it becomes useful.
 	@try {
 		self.isLoadingXml = NO;
 	}
@@ -537,19 +530,25 @@ NSString* _archiveLocation;
 	[super dealloc];
 }
 
-+ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict {
-	
-	BOOL isSuccessful = NO; 
-	
-	CXMLNode *parentNode = [document rootElement];
-	for( NSString* pathElement in [parentNodePath componentsSeparatedByString:@"."] ) {
-		parentNode = [parentNode childNamed:pathElement];
-		if( parentNode == nil ) {
-			DLog( @"Could not find node named '%@' in path '%@'.", pathElement, parentNodePath );
++ (CXMLNode *) nodeInXmlDocument:(CXMLDocument *)document atPath:(NSString*)nodePath {
+
+	CXMLNode *node = [document rootElement];
+	for( NSString* pathElement in [nodePath componentsSeparatedByString:@"."] ) {
+		node = [node childNamed:pathElement];
+		if( node == nil ) {
+			DLog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
 			break;
 		}
 	}
+	return node;
+}
+
++ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict {
 	
+	BOOL isSuccessful = NO; 
+
+	CXMLNode *parentNode = [TedometerData nodeInXmlDocument:document atPath:parentNodePath];
+
 	if( parentNode ) {
 		isSuccessful = YES;
 		for( NSString *aPropertyName in [nodesKeyedByPropertyDict allKeys] ) {
@@ -573,5 +572,72 @@ NSString* _archiveLocation;
 	return isSuccessful;
 }
 
+
++ (BOOL) fixNetMeterValuesFromXmlDocument:(CXMLDocument*) document 
+							   intoObject:(Meter*) meterObject 
+					  withParentMeterNode:(NSString*)parentNode 
+				  andNodesKeyedByProperty:(NSDictionary*)netMeterFixNodesKeyedByProperty 
+							 usingAggregationOp:(AggregationOp)aggregationOp
+{
+	BOOL isSuccessful = YES;
+	
+	
+	int mtuCount = [TedometerData sharedTedometerData].mtuCount;
+	if( [TedometerData sharedTedometerData].isPatchingAggregationDataSelected && mtuCount > 1 ) {
+		
+		NSMutableDictionary *mtuTotalsKeyedByProperty = [[NSMutableDictionary alloc] initWithCapacity: [netMeterFixNodesKeyedByProperty allKeys].count];
+		
+		for( NSInteger i=0; i < mtuCount; ++i ) {
+			NSString *mtuNodePath = [NSString stringWithFormat:@"%@.MTU%d", parentNode, i+1];
+			CXMLNode *mtuNode = [TedometerData nodeInXmlDocument:document atPath:mtuNodePath];
+			if( ! mtuNode ) {
+				isSuccessful = NO;
+				continue;
+			}
+			
+			for( NSString *aPropertyName in [netMeterFixNodesKeyedByProperty allKeys] ) {
+				NSString *aNodeName = [netMeterFixNodesKeyedByProperty objectForKey:aPropertyName];
+				CXMLNode *aNode = [mtuNode childNamed:aNodeName];
+				NSInteger aValue;
+				if( aNode == nil ) {
+					DLog(@"No node found at %@.%@", mtuNodePath, aNodeName );
+				}
+				if( aNode != nil ) {
+					aValue = [[aNode stringValue] integerValue];
+
+					NSNumber *prevValueObject = [mtuTotalsKeyedByProperty objectForKey:aPropertyName];
+					if( prevValueObject ) {
+						NSInteger prevValue = [prevValueObject integerValue];
+						switch( aggregationOp ) {
+							case kAggregationOpSum: aValue += prevValue; break;
+							case kAggregationOpMax: aValue = MAX( aValue, prevValue ); break;
+							case kAggregationOpMin: aValue = MIN( aValue, prevValue ); break;
+							default: {
+								NSException *e = [NSException exceptionWithName:@"UnrecognizedArgumentException" reason:[NSString stringWithFormat:@"Unrecognized AggregationOp: %d", aggregationOp] userInfo:nil];
+								[e raise];
+							}
+						}
+					}
+					
+					prevValueObject = [[NSNumber alloc] initWithInteger:aValue];
+					[mtuTotalsKeyedByProperty setValue:prevValueObject forKey:aPropertyName];
+					[prevValueObject release];
+				}
+				
+			}
+		}
+	
+		for( NSString *aPropertyName in [netMeterFixNodesKeyedByProperty allKeys] ) {
+			NSNumber *prevValueObject = [mtuTotalsKeyedByProperty objectForKey:aPropertyName];
+			if( prevValueObject ) {
+				[meterObject setValue:prevValueObject forKey:aPropertyName];
+			}
+		}
+		
+		[mtuTotalsKeyedByProperty release];
+	}
+
+	return isSuccessful;
+}
 
 @end

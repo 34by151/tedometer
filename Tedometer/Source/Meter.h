@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TouchXML.h"
 
-
 typedef enum {
 	kMeterValueTypeNow,
 	kMeterValueTypeHour,

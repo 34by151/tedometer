@@ -26,6 +26,7 @@
 	UITextField *password;
 	UISwitch *useSSL;
 	NSString *connectionErrorMsg;
+	UISwitch *patchAggregationData;
 }
 
 @property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
@@ -40,6 +41,7 @@
 @property (nonatomic, retain) IBOutlet UISwitch *useSSL;
 @property (nonatomic, retain) IBOutlet UITextField *username;
 @property (nonatomic, retain) IBOutlet UITextField *password;
+@property (nonatomic, retain) IBOutlet UISwitch *patchAggregationData;
 @property (nonatomic, copy) NSString *connectionErrorMsg;
 
 
@@ -48,6 +50,7 @@
 - (IBAction)textFieldDoneEditing:(id)sender;
 - (IBAction)backgroundClick:(id)sender;
 - (IBAction)updateRefreshRateLabel:(id)sender;
+- (IBAction)showConnectionErrorMsg:(id)sender;
 - (IBAction)clearConnectionErrorMsg:(id)sender;
 @end
 

@@ -119,7 +119,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	 </Power>
 	 */
 	
-	NSDictionary* nodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
+	NSDictionary* nodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys: 
 										  @"VoltageNow",					@"now",
 										  @"HighVoltageToday",				@"todayPeakValue",
 										  @"HighVoltageTodayTimeHour",		@"todayPeakHour",
@@ -142,6 +142,38 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	
 	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];
+	
+	[nodesKeyedByProperty release];
+	
+	if( self.isNetMeter ) {
+		
+		// Fix peak/min for net meter
+		NSDictionary *netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+														 @"HighVoltageToday",		@"todayPeakValue",
+														 @"PeakVoltageMTD",			@"mtdPeakValue",
+														 nil];
+		
+		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+															intoObject:self 
+												   withParentMeterNode:@"Voltage" 
+											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 
+													usingAggregationOp:kAggregationOpMax];
+		
+		[netMeterFixNodesKeyedByProperty release];
+
+		netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+														 @"LowVoltageToday",		@"todayMinValue",
+														 @"PeaVoltageMTD",			@"mtdMinValue",
+														 nil];
+		
+		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+															intoObject:self 
+												   withParentMeterNode:@"Voltage" 
+											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 
+													usingAggregationOp:kAggregationOpMin];
+		
+	}
+	
 	
 	return isSuccessful;
 }

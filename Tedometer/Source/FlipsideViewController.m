@@ -24,6 +24,7 @@
 @synthesize useSSL;
 @synthesize username;
 @synthesize password;
+@synthesize patchAggregationData;
 
 // slider range must be 0 to num elts -1 (0-10)
 static NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
@@ -65,13 +66,14 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	useSSL.on = tedometerData.useSSL;
 	refreshRateSlider.value = secondsToSliderValue( tedometerData.refreshRate );
 	disableAutolockWhilePluggedIn.on = tedometerData.isAutolockDisabledWhilePluggedIn;
+	patchAggregationData.on = tedometerData.isPatchingAggregationDataSelected;
 	
 
 	
 	[self updateRefreshRateLabel: refreshRateSlider];
 
 	settingsView.backgroundColor = [UIColor colorWithWhite:0.15 alpha:1.0];
-;
+
 	[scrollView addSubview:settingsView];
 	scrollView.contentSize = settingsView.frame.size;
 	
@@ -79,14 +81,15 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	[self.view addSubview:warningView];
 	warningView.frame = CGRectMake( 0, self.view.frame.size.height, self.view.frame.size.width, warningView.frame.size.height );
 
+	
+}
+
+- (void) viewDidAppear:(BOOL) animated {
 	if( connectionErrorMsg ) {
-		// Seems we don't get the animation unless we delay a moment
-		[NSTimer scheduledTimerWithTimeInterval:0.75 target:self selector:@selector( showConnectionErrorMsg:) userInfo:nil repeats:NO];
+		[self showConnectionErrorMsg:nil];
 	}
-		
 	
 	[scrollView flashScrollIndicators];
-	
 }
 
 - (IBAction)updateRefreshRateLabel:(id)sender {	
@@ -149,6 +152,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	tedometerData.useSSL = useSSL.on;
 	tedometerData.username = username.text;
 	tedometerData.password = password.text;
+	tedometerData.isPatchingAggregationDataSelected = patchAggregationData.on;
 	
 	[self.delegate flipsideViewControllerDidFinish:self];	
 }
@@ -192,6 +196,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 
 
 - (void)dealloc {
+	[patchAggregationData release];
 	[gatewayAddress release];
 	[refreshRateSlider release];
 	[refreshRateLabel release];	

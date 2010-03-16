@@ -67,6 +67,7 @@ static UIFont *labelFont;
 @synthesize parentDialShadowThinView;
 @synthesize parentDialHaloView;
 @synthesize parentGlareView;
+@synthesize parentDimmerView;
 
 #pragma mark -
 #pragma mark Public methods
@@ -107,7 +108,7 @@ static UIFont *labelFont;
 
 	// Loads sounds
 	[self loadSystemSound:@"metallic_blip.caf" soundId:&limitReachedSoundId];
-	//[self loadSystemSound:@"push_in.caf" soundId:&pushInSoundId];
+	[self loadSystemSound:@"push_in.caf" soundId:&pushInSoundId];
 	//[self loadSystemSound:@"push_out.caf" soundId:&pushOutSoundId];
 	//[self loadSystemSound:@"click.caf" soundId:&clickSoundId];
 	
@@ -265,7 +266,7 @@ static UIFont *labelFont;
 
 		if( ! isEditMode ) {
 			[self changeStateToTouched];
-			[self performSelector:@selector(startDialEdit) withObject:nil afterDelay:0.7];
+			[self performSelector:@selector(startDialEdit) withObject:nil afterDelay:0.65];
 		}
 		else {
 			dial.isBeingTouched = YES;
@@ -347,6 +348,12 @@ static UIFont *labelFont;
 				
 				dial.deltaZeroAngle += radianDelta;
 				
+				if( ABS( dial.deltaZeroAngle - lastOffsetDragClickAngle) > 10/180.0 * M_PI ) {
+					// When played on iPhone, timing of sound is uneven; disabled for now
+					//AudioServicesPlaySystemSound(clickSoundId);
+					lastOffsetDragClickAngle = dial.deltaZeroAngle;
+				}
+				
 				
 				[self setNeedsDisplay];
 			}
@@ -396,7 +403,8 @@ static UIFont *labelFont;
 -(void) changeStateToTouched {
 	parentDialShadowView.hidden = YES;
 	parentDialShadowThinView.hidden = NO;
-	parentGlareView.transform = CGAffineTransformMakeScale(1.02, 1.05);
+	//parentGlareView.transform = CGAffineTransformMakeScale(0.99, 0.99);
+	parentGlareView.alpha = 0.3;
 
 	parentDialHaloView.hidden = NO;
 	parentDialHaloView.alpha = 0;
@@ -413,17 +421,32 @@ static UIFont *labelFont;
 	stopDialEditButton.hidden = NO;
 	stopDialEditButton.alpha = 0;
 	
-	parentDialHaloView.transform = CGAffineTransformMakeScale(0.96,0.96);
+	parentDialHaloView.transform = CGAffineTransformMakeScale(0.99,0.99);
+	parentDialHaloView.alpha = 1.0;
+	parentDimmerView.alpha = 0.15;
+	parentDimmerView.transform = CGAffineTransformMakeScale(1.01, 1.01);
 
+	float scale;
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.25];
+	[UIView setAnimationDuration:0.15];
+	scale = 0.94;
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-	parentDialView.transform = CGAffineTransformMakeScale(0.94, 0.94);
-	parentGlareView.transform = CGAffineTransformMakeScale(0.95,0.95);
+	parentDialView.transform = CGAffineTransformMakeScale(scale, scale);
+	//parentGlareView.transform = CGAffineTransformMakeScale(scale, scale);
 	parentGlareView.alpha = 0.25;
-	parentDialHaloView.alpha = 0.9;
 	stopDialEditButton.alpha = 1.0;
 	[UIView commitAnimations];
+
+	// do a little pop back out animation, to give the effect of locking in
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.15];
+	scale = 0.955;
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+	parentDialView.transform = CGAffineTransformMakeScale(scale, scale);
+	//parentGlareView.transform = CGAffineTransformMakeScale(scale, scale);
+	[UIView commitAnimations];
+	
+	AudioServicesPlaySystemSound(pushInSoundId);
 
 	tedometerData.isDialBeingEdited = YES;
 	isEditMode = YES;
@@ -445,19 +468,47 @@ static UIFont *labelFont;
 	parentDialShadowView.hidden = NO;
 	parentDialShadowThinView.hidden = YES;
 	stopDialEditButton.hidden = YES;
-	
-	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration: isEditMode ? 0.35 : 0.1];
-	[UIView setAnimationCurve: isEditMode ? UIViewAnimationCurveEaseInOut : UIViewAnimationCurveEaseOut];
-	parentDialHaloView.alpha = 0;
-	//parentDialHaloView.transform = CGAffineTransformMakeScale(0.9, 0.9);
-	parentGlareView.alpha = 0.39;
-	parentGlareView.transform = CGAffineTransformMakeScale(1,1);
-	parentDialView.transform = CGAffineTransformMakeScale(1,1);
-	[UIView commitAnimations];
-	
-	
-	//AudioServicesPlaySystemSound(pushInSoundId);
+	parentDimmerView.alpha = 0;
+
+
+	float scale;
+	// pop out then back in
+	if( ! isEditMode ) {
+		scale = 1.0;
+		parentDialHaloView.alpha = 0;
+		parentGlareView.alpha = 0.39;
+		//parentGlareView.transform = CGAffineTransformMakeScale(scale,scale);
+		parentDialView.transform = CGAffineTransformMakeScale(scale,scale);
+		
+	}
+	else {
+		AudioServicesPlaySystemSound(pushInSoundId);
+		scale = 0.92;
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration: 0.35];
+		[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+		//parentGlareView.transform = CGAffineTransformMakeScale(scale,scale);
+		parentDialView.transform = CGAffineTransformMakeScale(scale,scale);
+		parentDialHaloView.alpha = 0;
+		[UIView commitAnimations];
+		
+		scale = 1.035;
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration: 0.35];
+		[UIView setAnimationCurve: UIViewAnimationCurveEaseIn];
+		//parentGlareView.transform = CGAffineTransformMakeScale(scale,scale);
+		parentDialView.transform = CGAffineTransformMakeScale(scale,scale);
+		[UIView commitAnimations];
+		
+		scale = 1.0;
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration: 0.2];
+		[UIView setAnimationCurve: UIViewAnimationCurveEaseOut];
+		//parentGlareView.transform = CGAffineTransformMakeScale(scale,scale);
+		parentDialView.transform = CGAffineTransformMakeScale(scale,scale);
+		parentGlareView.alpha = 0.39;
+		[UIView commitAnimations];
+	}
 	
 	isEditMode = NO;
 	tedometerData.isDialBeingEdited = NO;
@@ -598,7 +649,7 @@ static UIFont *labelFont;
 		
 	}
 	
-	if( [dial isValueVisible:avgValue] ) {
+	if( [self.curMeter isAverageSupported] && [dial isValueVisible:avgValue] ) {
 		avgAngle = [dial angleForValue:avgValue];
 		if( peakValue > 0 && ABS(peakAngle - avgAngle) < overlapOffset )
 			avgAngle = peakAngle + overlapOffset;

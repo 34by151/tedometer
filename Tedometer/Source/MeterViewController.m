@@ -53,6 +53,7 @@
 @synthesize dialShadowThinView;
 @synthesize dialHaloView;
 @synthesize glareView;
+@synthesize dimmerView;
 
 - (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter {
 	if (self = [super initWithNibName:@"MeterView" bundle:nil]) {
@@ -78,10 +79,12 @@
 	 self.dialView.parentDialShadowThinView = self.dialShadowThinView;
 	 self.dialView.parentDialHaloView = self.dialHaloView;
 	 self.dialView.parentGlareView = self.glareView;
+	 self.dialView.parentDimmerView = self.dimmerView;
 	 
 	 self.dialHaloView.hidden = YES;
 	 self.dialHaloView.alpha = 0;
 	 self.dialShadowThinView.hidden = YES;
+	 self.dimmerView.alpha = 0;
 
 #if DRAW_FOR_ICON_SCREENSHOT
 	 meterLabel.center = CGPointMake( meterLabel.center.x + 2, meterLabel.center.y - 8 );

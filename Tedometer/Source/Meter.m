@@ -120,6 +120,11 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return nil;
 }
 
+- (BOOL) isAverageSupported;
+{
+	return YES;
+}
+
 - (NSInteger) todayAverage {
 	TedometerData *tedometerData = [TedometerData sharedTedometerData];
 	double hoursSoFar = (tedometerData.gatewayHour + tedometerData.gatewayMinute/60.0);

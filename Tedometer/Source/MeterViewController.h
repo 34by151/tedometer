@@ -57,6 +57,7 @@
 	UIImageView *dialShadowThinView;
 	UIImageView *dialHaloView;
 	UIImageView *glareView;
+	UIImageView *dimmerView;
 
 	BOOL shouldAutoRefresh;
 	
@@ -76,6 +77,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *dialShadowThinView;
 @property (nonatomic, retain) IBOutlet UIImageView *dialHaloView;
 @property (nonatomic, retain) IBOutlet UIImageView *glareView;
+@property (nonatomic, retain) IBOutlet UIImageView *dimmerView;
 @property (nonatomic, retain) IBOutlet UILabel *avgValue;
 @property (nonatomic, retain) IBOutlet UILabel *avgValueUnit;
 @property (nonatomic, retain) IBOutlet UILabel *avgLabel;

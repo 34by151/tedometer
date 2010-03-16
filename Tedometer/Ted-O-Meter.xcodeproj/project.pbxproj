@@ -52,6 +52,7 @@
 		D832231E114627D400DF3C13 /* meter_bg_metal_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D832231D114627D400DF3C13 /* meter_bg_metal_shadow.png */; };
 		D832232B11462ADE00DF3C13 /* meter_bg_metal_halo.png in Resources */ = {isa = PBXBuildFile; fileRef = D832232911462ADE00DF3C13 /* meter_bg_metal_halo.png */; };
 		D832232C11462ADE00DF3C13 /* meter_bg_metal_shadow_thin.png in Resources */ = {isa = PBXBuildFile; fileRef = D832232A11462ADE00DF3C13 /* meter_bg_metal_shadow_thin.png */; };
+		D8322705114ED8B200DF3C13 /* meter_bg_metal_dimmer.png in Resources */ = {isa = PBXBuildFile; fileRef = D8322704114ED8B200DF3C13 /* meter_bg_metal_dimmer.png */; };
 		D834618E10C5F42B00EDF14F /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D834618110C5F42B00EDF14F /* ASIAuthenticationDialog.m */; };
 		D834618F10C5F42B00EDF14F /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D834618310C5F42B00EDF14F /* ASIFormDataRequest.m */; };
 		D834619010C5F42B00EDF14F /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D834618510C5F42B00EDF14F /* ASIHTTPRequest.m */; };
@@ -85,6 +86,7 @@
 		D8C681DF10E4702900DBF9E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C681DD10E4702900DBF9E3 /* MainViewController.m */; };
 		D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C681DE10E4702900DBF9E3 /* MainView.xib */; };
 		D8C8940E110E67FE00AD511D /* PartiallyTouchSensitiveScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C8940D110E67FE00AD511D /* PartiallyTouchSensitiveScrollView.m */; };
+		D8E0D4DC114E975D00AF0F1B /* push_in.caf in Resources */ = {isa = PBXBuildFile; fileRef = D83222FC11461B5900DF3C13 /* push_in.caf */; };
 		D8E479AD112402AC006F7C23 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E479AC112402AC006F7C23 /* Default.png */; };
 		D8E9749210A0971C0065EE31 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */; };
 		D8E9749710A097390065EE31 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749410A097390065EE31 /* MainView.m */; };
@@ -218,6 +220,7 @@
 		D832231D114627D400DF3C13 /* meter_bg_metal_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter_bg_metal_shadow.png; path = Resources/meter_bg_metal_shadow.png; sourceTree = "<group>"; };
 		D832232911462ADE00DF3C13 /* meter_bg_metal_halo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter_bg_metal_halo.png; path = Resources/meter_bg_metal_halo.png; sourceTree = "<group>"; };
 		D832232A11462ADE00DF3C13 /* meter_bg_metal_shadow_thin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter_bg_metal_shadow_thin.png; path = Resources/meter_bg_metal_shadow_thin.png; sourceTree = "<group>"; };
+		D8322704114ED8B200DF3C13 /* meter_bg_metal_dimmer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter_bg_metal_dimmer.png; path = Resources/meter_bg_metal_dimmer.png; sourceTree = "<group>"; };
 		D834618010C5F42B00EDF14F /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		D834618110C5F42B00EDF14F /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		D834618210C5F42B00EDF14F /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -698,6 +701,7 @@
 		D8E974AA10A097DB0065EE31 /* Dial View */ = {
 			isa = PBXGroup;
 			children = (
+				D8322704114ED8B200DF3C13 /* meter_bg_metal_dimmer.png */,
 				D832232911462ADE00DF3C13 /* meter_bg_metal_halo.png */,
 				D832232A11462ADE00DF3C13 /* meter_bg_metal_shadow_thin.png */,
 				D832231D114627D400DF3C13 /* meter_bg_metal_shadow.png */,
@@ -838,6 +842,8 @@
 				D832231E114627D400DF3C13 /* meter_bg_metal_shadow.png in Resources */,
 				D832232B11462ADE00DF3C13 /* meter_bg_metal_halo.png in Resources */,
 				D832232C11462ADE00DF3C13 /* meter_bg_metal_shadow_thin.png in Resources */,
+				D8E0D4DC114E975D00AF0F1B /* push_in.caf in Resources */,
+				D8322705114ED8B200DF3C13 /* meter_bg_metal_dimmer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

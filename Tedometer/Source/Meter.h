@@ -108,6 +108,7 @@ typedef enum {
 - (NSString *) meterStringForInteger:(NSInteger) value; 
 - (NSString *) timeStringForHour:(NSInteger)anHour minute:(NSInteger)aMinute;
 - (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay;
+- (BOOL) isAverageSupported;
 
 - (NSString*) instantaneousUnit;
 - (NSString*) cumulativeUnit;

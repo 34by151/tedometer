@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="124"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -76,7 +76,7 @@
 					<object class="IBUIImageView" id="934247612">
 						<reference key="NSNextResponder" ref="883825266"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{37, 6}, {245, 245}}</string>
+						<string key="NSFrame">{{36.5, 5.5}, {245, 245}}</string>
 						<reference key="NSSuperview" ref="883825266"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="539370875">
 							<int key="NSColorSpace">3</int>
@@ -139,6 +139,21 @@
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">meter_bg_metal.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="138260632">
+								<reference key="NSNextResponder" ref="614999557"/>
+								<int key="NSvFlags">301</int>
+								<string key="NSFrame">{{37, 7.5}, {245, 245}}</string>
+								<reference key="NSSuperview" ref="614999557"/>
+								<reference key="IBUIBackgroundColor" ref="539370875"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentMode">1</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">meter_bg_metal_dimmer.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="346415883">
@@ -937,6 +952,14 @@
 					</object>
 					<int key="connectionID">220</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dimmerView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="138260632"/>
+					</object>
+					<int key="connectionID">222</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1001,6 +1024,7 @@
 							<reference ref="223268888"/>
 							<reference ref="311396711"/>
 							<reference ref="840936716"/>
+							<reference ref="138260632"/>
 						</object>
 						<reference key="parent" ref="883825266"/>
 						<string key="objectName">Dial View</string>
@@ -1177,6 +1201,11 @@
 						<reference key="object" ref="934247612"/>
 						<reference key="parent" ref="883825266"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">221</int>
+						<reference key="object" ref="138260632"/>
+						<reference key="parent" ref="614999557"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1212,6 +1241,7 @@
 					<string>214.IBPluginDependency</string>
 					<string>216.IBPluginDependency</string>
 					<string>217.IBPluginDependency</string>
+					<string>221.IBPluginDependency</string>
 					<string>34.CustomClassName</string>
 					<string>34.IBEditorWindowLastContentRect</string>
 					<string>34.IBPluginDependency</string>
@@ -1229,6 +1259,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>DialView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1276,7 +1307,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">220</int>
+			<int key="maxID">222</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1330,6 +1361,7 @@
 							<string>dialShadowThinView</string>
 							<string>dialShadowView</string>
 							<string>dialView</string>
+							<string>dimmerView</string>
 							<string>glareView</string>
 							<string>infoLabel</string>
 							<string>lowLabel</string>
@@ -1362,6 +1394,7 @@
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>DialView</string>
+							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>

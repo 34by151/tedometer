@@ -59,6 +59,8 @@
 	UIImageView *glareView;
 	UIImageView *dimmerView;
 
+	UISegmentedControl *todayMonthSegmentedControl;
+
 	BOOL shouldAutoRefresh;
 	
 	TedometerData *tedometerData;
@@ -72,6 +74,7 @@
 @property (nonatomic, retain) Meter* carbonMeter;
 @property (nonatomic, retain) Meter* voltageMeter;
 
+@property (nonatomic, retain) IBOutlet UISegmentedControl *todayMonthSegmentedControl;
 @property (nonatomic, retain) IBOutlet UIView *parentDialView;
 @property (nonatomic, retain) IBOutlet UIImageView *dialShadowView;
 @property (nonatomic, retain) IBOutlet UIImageView *dialShadowThinView;

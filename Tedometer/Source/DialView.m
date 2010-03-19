@@ -423,7 +423,7 @@ static UIFont *labelFont;
 	
 	parentDialHaloView.transform = CGAffineTransformMakeScale(0.99,0.99);
 	parentDialHaloView.alpha = 1.0;
-	parentDimmerView.alpha = 0.15;
+	parentDimmerView.alpha = 0.25;
 	parentDimmerView.transform = CGAffineTransformMakeScale(1.01, 1.01);
 
 	float scale;
@@ -433,14 +433,14 @@ static UIFont *labelFont;
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
 	parentDialView.transform = CGAffineTransformMakeScale(scale, scale);
 	//parentGlareView.transform = CGAffineTransformMakeScale(scale, scale);
-	parentGlareView.alpha = 0.25;
+	parentGlareView.alpha = 0.2;
 	stopDialEditButton.alpha = 1.0;
 	[UIView commitAnimations];
 
 	// do a little pop back out animation, to give the effect of locking in
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.15];
-	scale = 0.955;
+	scale = 0.945;
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
 	parentDialView.transform = CGAffineTransformMakeScale(scale, scale);
 	//parentGlareView.transform = CGAffineTransformMakeScale(scale, scale);

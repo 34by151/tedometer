@@ -17,6 +17,9 @@
 #import "MeterViewSizing.h"
 #import "log.h"
 
+#define kSegmentedControlToday 0
+#define kSegmentedControlMonth 1
+
 @implementation MeterViewController
 
 @synthesize powerMeter;
@@ -54,6 +57,8 @@
 @synthesize dialHaloView;
 @synthesize glareView;
 @synthesize dimmerView;
+@synthesize todayMonthSegmentedControl;
+
 
 - (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter {
 	if (self = [super initWithNibName:@"MeterView" bundle:nil]) {
@@ -74,6 +79,8 @@
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
 	 // staring at blackness until the first refresh
 	 
+	 tedometerData = [TedometerData sharedTedometerData];
+
 	 self.dialView.parentDialView = self.parentDialView;
 	 self.dialView.parentDialShadowView = self.dialShadowView;
 	 self.dialView.parentDialShadowThinView = self.dialShadowThinView;
@@ -92,6 +99,7 @@
 	 meterLabel.text = @"3.036 kW";
 #endif
 
+	 /*
 	 // Add custom image to Today/Month toggle button
 	 UIImage *buttonImageNormal = [UIImage imageNamed:@"panelButtonInset.png"]; 
 	 UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:16 topCapHeight:0]; 
@@ -100,6 +108,9 @@
 	 UIImage *buttonImagePressed = [UIImage imageNamed:@"panelButtonInsetSelected.png"]; 
 	 UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:16 topCapHeight:0]; 
 	 [todayMonthToggleButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
+	  */
+	 
+	 todayMonthSegmentedControl.selectedSegmentIndex = tedometerData.isShowingTodayStatistics ? 0 : 1;
 	 
 #if DRAW_FOR_DEFAULT_PNG_SCREENSHOT
 	 todayMonthToggleButton.hidden = NO;
@@ -124,7 +135,6 @@
 	 
 	 shouldAutoRefresh = YES;
 
-	 tedometerData = [TedometerData sharedTedometerData];
 	 [tedometerData addObserver:self forKeyPath:@"curMeterTypeIdx" options:0 context:nil];
 	 [tedometerData addObserver:self forKeyPath:@"isShowingTodayStatistics" options:0 context:nil];
 	 
@@ -316,7 +326,9 @@
 
 int buttonCount = 0;
 - (IBAction) toggleTodayMonthStatistics {
-	tedometerData.isShowingTodayStatistics = ! tedometerData.isShowingTodayStatistics;
+	
+	tedometerData.isShowingTodayStatistics = (todayMonthSegmentedControl.selectedSegmentIndex == kSegmentedControlToday);
+	//tedometerData.isShowingTodayStatistics = ! tedometerData.isShowingTodayStatistics;
 	[self refreshView];
 }
 

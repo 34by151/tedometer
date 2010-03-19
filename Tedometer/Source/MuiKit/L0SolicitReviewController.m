@@ -149,7 +149,10 @@
 
 - (void) alertView:(UIAlertView*) alert clickedButtonAtIndex:(NSInteger) buttonIndex {
 	// Redirect to the Store.
-	if (buttonIndex != alert.cancelButtonIndex && self.applicationAppStoreURL) {
+	if( buttonIndex == alert.cancelButtonIndex ) {
+		[FlurryAPI logEvent:@"Rejected review invitation"];
+	}
+	else if (buttonIndex != alert.cancelButtonIndex && self.applicationAppStoreURL) {
 		// nh 3/4/10: Record the review invitation
 		[FlurryAPI logEvent:@"Accepted review invitation"];
 

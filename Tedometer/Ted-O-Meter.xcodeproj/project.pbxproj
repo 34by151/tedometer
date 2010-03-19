@@ -80,8 +80,6 @@
 		D88D3B2C11416FDB001007F1 /* metallic_blip.caf in Resources */ = {isa = PBXBuildFile; fileRef = D88D39C91136F50F001007F1 /* metallic_blip.caf */; };
 		D890424210F3DEAA00212963 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D890424110F3DEAA00212963 /* MeterView.m */; };
 		D892C3A61112F70500D157D2 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D892C3A51112F70500D157D2 /* SettingsView.m */; };
-		D8BE623511186402006496BB /* panelButtonInset.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BE623411186402006496BB /* panelButtonInset.png */; };
-		D8BE623811186470006496BB /* panelButtonInsetSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BE623711186470006496BB /* panelButtonInsetSelected.png */; };
 		D8C56CF010CE74210041B368 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C56CEF10CE74210041B368 /* CoreLocation.framework */; };
 		D8C681DF10E4702900DBF9E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C681DD10E4702900DBF9E3 /* MainViewController.m */; };
 		D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C681DE10E4702900DBF9E3 /* MainView.xib */; };
@@ -832,8 +830,6 @@
 				D834643F10C6EE0700EDF14F /* white_gradient.png in Resources */,
 				D83B275C10C99221003CCDCD /* LiveDataSolar3.xml in Resources */,
 				D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */,
-				D8BE623511186402006496BB /* panelButtonInset.png in Resources */,
-				D8BE623811186470006496BB /* panelButtonInsetSelected.png in Resources */,
 				D8ED1CBD111D2DDB0046C457 /* icon_full_green_gloss.png in Resources */,
 				D8679954112133D700F865E5 /* close_button.png in Resources */,
 				D8E479AD112402AC006F7C23 /* Default.png in Resources */,

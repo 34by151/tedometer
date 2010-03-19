@@ -52,6 +52,7 @@
 	UIImageView *parentDialHaloView;
 	UIImageView *parentGlareView;
 	UIImageView *parentDimmerView;
+	
 }
 
 @property (nonatomic, retain) UIImageView *parentDialShadowView;

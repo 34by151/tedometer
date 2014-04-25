@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="xJE-MS-nk9">
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" id="xJE-MS-nk9">
                     <rect key="frame" x="0.0" y="406" width="320" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <connections>

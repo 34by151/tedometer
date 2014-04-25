@@ -23,8 +23,8 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="xJE-MS-nk9">
-                    <rect key="frame" x="0.0" y="401" width="320" height="37"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="0.0" y="406" width="320" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <connections>
                         <action selector="changePage:" destination="-1" eventType="valueChanged" id="RqA-Y0-ucB"/>
                     </connections>
@@ -33,12 +33,12 @@
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem width="40" style="plain" systemItem="refresh" id="11">
+                        <barButtonItem style="plain" systemItem="refresh" id="11">
                             <connections>
                                 <action selector="refreshData" destination="-1" id="22"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="7"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="DgL-5V-Sbp"/>
                         <barButtonItem title="kW" width="40" style="plain" id="6">
                             <connections>
                                 <action selector="activatePowerMeter" destination="-1" id="17"/>
@@ -64,8 +64,7 @@
                 </toolbar>
             </subviews>
             <color key="tintColor" red="0.28561111589999999" green="0.32333333330000003" blue="0.28561111589999999" alpha="1" colorSpace="deviceRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
 </document>

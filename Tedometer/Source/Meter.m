@@ -167,7 +167,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 			title = [NSString stringWithFormat:@"Net %@", self.meterTitle];
 	}
 	else {
-		title = [NSString stringWithFormat:@"MTU%d %@", self.mtuNumber, self.meterTitle];
+		title = [NSString stringWithFormat:@"MTU%ld %@", (long)self.mtuNumber, self.meterTitle];
 	}
 
 	return title;
@@ -200,7 +200,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 		anHour -= 12;
 	if( anHour == 0 )
 		anHour = 12;
-	return [NSString stringWithFormat:@"%i:%02i%@", anHour, aMinute, amPmStr];
+	return [NSString stringWithFormat:@"%ld:%02ld%@", (long) anHour, (long) aMinute, amPmStr];
 }
 
 static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", @"May", @"Jun", @"July", @"August", @"September", @"October", @"November", @"December"};
@@ -208,10 +208,10 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 	NSString *timeString = @"N/A";
 	if( aMonth >= 1 && aMonth <= 12 ) {
 		@try {
-			timeString = [NSString stringWithFormat:@"%@ %i", [monthStrings[aMonth-1] substringToIndex:3], aDay];
+			timeString = [NSString stringWithFormat:@"%@ %ld", [monthStrings[aMonth-1] substringToIndex:3], (long) aDay];
 		}
 		@catch( NSException *exception ) {
-			NSString *msg = [NSString stringWithFormat: @"%@ in %s: aMonth=%d, aDay = %d", [exception name], __PRETTY_FUNCTION__, aMonth, aDay ];
+			NSString *msg = [NSString stringWithFormat: @"%@ in %s: aMonth=%ld, aDay = %ld", [exception name], __PRETTY_FUNCTION__, (long) aMonth, (long) aDay ];
 			[Flurry logError: [exception name] message:msg exception:exception];
 			timeString = @"N/A";
 		}
@@ -287,11 +287,11 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 }
 
 - (NSString *) tickLabelStringForInteger:(NSInteger) value  {
-	return [NSString stringWithFormat:@"%0i", value];
+	return [NSString stringWithFormat:@"%0ld", (long)value];
 }
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
-	return [NSString stringWithFormat:@"%0i", value];
+	return [NSString stringWithFormat:@"%0ld", (long)value];
 }
 
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {

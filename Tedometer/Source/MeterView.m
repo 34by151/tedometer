@@ -11,6 +11,7 @@
 
 @implementation MeterView
 
+
 -(void) drawRect:(CGRect)rect {
 	
 	if( ! hasDrawnBackground ) {

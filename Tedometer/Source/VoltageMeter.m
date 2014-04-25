@@ -143,7 +143,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	if( mtuNumber == 0 ) 
 		parentNodePath = @"Voltage.Total";
 	else 
-		parentNodePath = [NSString stringWithFormat: @"Voltage.MTU%d", mtuNumber];
+		parentNodePath = [NSString stringWithFormat: @"Voltage.MTU%ld", (long)mtuNumber];
 	
 	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];

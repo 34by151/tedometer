@@ -127,7 +127,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 		refreshRateLabel.text = label;
 	}
 	else {
-		NSString* label = [[NSString alloc] initWithFormat:@"%i %@", labelValue, unit, nil];
+		NSString* label = [[NSString alloc] initWithFormat:@"%ld %@", (long) labelValue, unit, nil];
 		refreshRateLabel.text = label;
 		[label release];
 	}

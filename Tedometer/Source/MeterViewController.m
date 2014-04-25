@@ -69,6 +69,7 @@
 		self.carbonMeter = aCarbonMeter;
 		self.voltageMeter = aVoltageMeter;
 		self.dialView.curMeter = self.curMeter;
+
 	}
 	return self;
 }
@@ -83,6 +84,7 @@
  - (void)viewDidLoad {
 
      self.navigationBar.delegate = self;        // handle positionForBar: so that nav bar extends to top of status bar
+
 
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
 	 // staring at blackness until the first refresh
@@ -153,6 +155,12 @@
 
 	 //[self refreshData];
 	 
+     // move dial down a bit if on 4" display
+     if( IS_IPHONE_5 ) {
+         UIView *dialGroupView = self.parentDialView.superview;
+         dialGroupView.frame = CGRectMake( dialGroupView.frame.origin.x, dialGroupView.frame.origin.y+20, dialGroupView.frame.size.width, dialGroupView.frame.size.height);
+     }
+     
 	 [super viewDidLoad];
  }
 

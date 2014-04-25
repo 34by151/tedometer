@@ -126,7 +126,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	if( mtuNumber == 0 ) 
 		parentNodePath = @"Cost.Total";
 	else 
-		parentNodePath = [NSString stringWithFormat: @"Cost.MTU%d", mtuNumber];
+		parentNodePath = [NSString stringWithFormat: @"Cost.MTU%ld", (long)mtuNumber];
 	
 	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];

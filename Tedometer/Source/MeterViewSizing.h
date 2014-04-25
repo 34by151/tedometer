@@ -15,7 +15,7 @@
 
 // Test data
 #define USE_TEST_DATA                       0
-#define TEST_DATA_URL                       @"http://crush.hadfieldfamily.com/ted5000/LiveDataTest.xml
+#define TEST_DATA_URL                       @"http://crush.hadfieldfamily.com/ted5000/LiveDataTest.xml"
 
 // Meter sizing
 #define meterGap (M_PI * 0.6)
@@ -26,6 +26,11 @@
 #define minRadiansPerTick (M_PI / 8.0)
 #define maxRadiansPerTick (M_PI / 4.0)
 
+// Device detection
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_5 (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 568.0)
+#define IS_RETINA ([[UIScreen mainScreen] scale] == 2.0)
 
 // Notifications
 #define kNotificationDidReachStretchLimit		@"DidReachStretchLimit"

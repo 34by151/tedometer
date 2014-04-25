@@ -70,7 +70,7 @@
 		// Finds the number of launches, likewise.
 		id o = [ud objectForKey:kL0SolicitReviewNumberOfLaunchesDefault];
 		if ([o respondsToSelector:@selector(integerValue)]) {
-			int i = [o integerValue];
+			long i = [o integerValue];
 			if (i >= 0) self.numberOfLaunches = i;
 		}
 		
@@ -121,7 +121,7 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:kL0SolicitReviewControllerDidFinishNotification object:self];
 	}
 	
-	NSDate* oneWeekSinceLaunch = [self.firstLaunchDate addTimeInterval: (7 * 24 * 60 * 60 /* one week */)];
+	NSDate* oneWeekSinceLaunch = [self.firstLaunchDate dateByAddingTimeInterval: (7 * 24 * 60 * 60 /* one week */)];
 	if ([(NSDate*)[NSDate date] compare:oneWeekSinceLaunch] == NSOrderedDescending)
 		[self showAlert];
 	else

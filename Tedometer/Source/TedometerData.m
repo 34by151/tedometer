@@ -97,7 +97,7 @@ static TedometerData *sharedTedometerData = nil;
                 // custom initialization here
 				
 				TedometerData *tedometerData = [TedometerData unarchiveFromDocumentsFolder];
-				DLog( "tedometerData.curMeterTypeIdx = %d", tedometerData.curMeterTypeIdx );
+				DLog( @"tedometerData.curMeterTypeIdx = %ld", (long)tedometerData.curMeterTypeIdx );
 				
 				if( tedometerData ) {
 					[self release];
@@ -175,7 +175,7 @@ static TedometerData *sharedTedometerData = nil;
 
 - (id)retain { return self; }
 
-- (unsigned)retainCount { return UINT_MAX; }
+- (unsigned int)retainCount { return UINT_MAX; }
 
 - (oneway void)release {}
 
@@ -242,7 +242,7 @@ NSString* _archiveLocation;
 
 - (Meter*) curMeter {
 	Meter *meter = [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
-	NSLog(@"curMeter = %@ MTU%d", [meter meterTitle], [meter mtuNumber] );
+	NSLog(@"curMeter = %@ MTU%ld", [meter meterTitle], (long)[meter mtuNumber] );
 	return meter;
 }
 
@@ -268,9 +268,9 @@ NSString* _archiveLocation;
 	// current billing cycle start month. To derive it, we check whether the current day
 	// is before the billing cycle end day, and if so, rewind one month.
 	
-	int month = self.gatewayMonth;
+	long month = self.gatewayMonth;
 	
-	int curDay = self.gatewayDayOfMonth;
+	long curDay = self.gatewayDayOfMonth;
 	if( month != 0 && curDay != 0 && curDay < self.meterReadDate ) {
 		month -= 1;
 		if( month == 0 )
@@ -519,7 +519,7 @@ NSString* _archiveLocation;
 		
 		for( NSArray *mtuArray in mtusArray ) {
 			for( Meter *aMeter in mtuArray ) {
-				DLog(@"Refreshing data for meter %@ MTU%d...", [aMeter meterTitle], [aMeter mtuNumber]);
+				DLog(@"Refreshing data for meter %@ MTU%ld...", [aMeter meterTitle], (long)[aMeter mtuNumber]);
 				isSuccessful = [aMeter refreshDataFromXmlDocument:document];
 				if( ! isSuccessful )
 					break;
@@ -591,7 +591,7 @@ NSString* _archiveLocation;
 	BOOL isSuccessful = YES;
 	
 	
-	int mtuCount = [TedometerData sharedTedometerData].mtuCount;
+	long mtuCount = [TedometerData sharedTedometerData].mtuCount;
 	if( [TedometerData sharedTedometerData].isPatchingAggregationDataSelected && mtuCount > 1 ) {
 		
 		NSMutableDictionary *mtuTotalsKeyedByProperty = [[NSMutableDictionary alloc] initWithCapacity: [netMeterFixNodesKeyedByProperty allKeys].count];

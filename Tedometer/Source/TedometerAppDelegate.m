@@ -63,8 +63,8 @@ void uncaughtExceptionHandler(NSException *exception);
 	self.internetRequiredViewController = (InternetRequiredViewController *) aController;
 	[aController release];
 
-    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-    internetRequiredViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+    mainViewController.view.frame = [UIScreen mainScreen].bounds; //applicationFrame;
+    internetRequiredViewController.view.frame = [UIScreen mainScreen].bounds; //applicationFrame;
 	
 	[window addSubview:[mainViewController view]];
 	[window addSubview:[internetRequiredViewController view]];

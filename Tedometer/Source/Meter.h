@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "TouchXML.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, MeterValueType) {
 	kMeterValueTypeNow,
 	kMeterValueTypeHour,
 	kMeterValueTypeToday,
 	kMeterValueTypeMtd,
 	kMeterValueTypeProjected
-} MeterValueType;
+};
 
 @interface Meter : NSObject <NSCoding> {
 	

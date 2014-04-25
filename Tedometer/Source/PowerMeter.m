@@ -155,7 +155,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	if( self.isNetMeter ) 
 		parentNodePath = @"Power.Total";
 	else 
-		parentNodePath = [NSString stringWithFormat: @"Power.MTU%d", mtuNumber];
+		parentNodePath = [NSString stringWithFormat: @"Power.MTU%ld", (long)mtuNumber];
 	
 	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];

@@ -18,9 +18,9 @@
         </customObject>
         <window clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" visibleAtLaunch="YES" id="2">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="tintColor" red="0.28561111589999999" green="0.32333333330000003" blue="0.28561111589999999" alpha="1" colorSpace="deviceRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </window>
     </objects>

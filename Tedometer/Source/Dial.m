@@ -161,7 +161,7 @@
 	}
 	
 	if( normalizedUnitsPerTick > self.curMeter.maxUnitsPerTick ) {
-		DLog( @"unitsPerTick %f exceeds MAX of %d...", normalizedUnitsPerTick, self.curMeter.maxUnitsPerTick );
+		DLog( @"unitsPerTick %f exceeds MAX of %ld...", normalizedUnitsPerTick, (long)self.curMeter.maxUnitsPerTick );
 		normalizedUnitsPerTick = self.curMeter.maxUnitsPerTick;
 		//normalizedUnitsPerTick = savedNormalizedUnitsPerTick;
 		normalizedRadiansPerTick = savedNormalizedRadiansPerTick;
@@ -171,7 +171,7 @@
 	}
 	
 	else if( normalizedUnitsPerTick < self.curMeter.minUnitsPerTick ) {
-		DLog( @"unitsPerTick %f exceeds MIN of %d...", normalizedUnitsPerTick, self.curMeter.minUnitsPerTick );
+		DLog( @"unitsPerTick %f exceeds MIN of %ld...", normalizedUnitsPerTick, (long)self.curMeter.minUnitsPerTick );
 		normalizedUnitsPerTick = self.curMeter.minUnitsPerTick;
 		//normalizedUnitsPerTick = savedNormalizedUnitsPerTick;
 		normalizedRadiansPerTick = savedNormalizedRadiansPerTick;

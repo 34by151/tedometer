@@ -250,7 +250,7 @@
 #pragma mark -
 #pragma mark UIScrollViewDelegate
 
-- (void)loadScrollViewWithPage:(int)page {
+- (void)loadScrollViewWithPage:(long)page {
     if (page < 0) return;
     if (page >= kNumberOfPages) return;
 	
@@ -318,7 +318,7 @@
 }
 
 - (IBAction)changePage:(id)sender {
-    int page = pageControl.currentPage;
+    long page = pageControl.currentPage;
 	
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     [self loadScrollViewWithPage:page - 1];
@@ -358,7 +358,7 @@
 }
 
 - (void) switchToPage:(NSInteger)pageNumber {
-	DLog(@"pageNumber = %d mtuCount = %d", pageNumber, tedometerData.meterCount);
+	DLog(@"pageNumber = %ld mtuCount = %ld", (long)pageNumber, (long)tedometerData.meterCount);
 	if( pageNumber < 0 || pageNumber >= tedometerData.meterCount ) {
 		pageNumber = 0;
 	}

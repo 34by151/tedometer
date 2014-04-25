@@ -52,7 +52,7 @@
 
 - (IBAction)changePage:(id)sender;
 
-- (void)loadScrollViewWithPage:(int)page;
+- (void)loadScrollViewWithPage:(long)page;
 - (void) mtuCountDidChange:(NSNotification*)notification;
 - (void) updateMeterVisibility;
 - (void) switchToPage:(NSInteger)pageNumber;

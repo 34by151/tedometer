@@ -57,7 +57,7 @@
                 </toolbar>
                 <pageControl opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" id="13">
                     <rect key="frame" x="31" y="385" width="263" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <action selector="changePage:" destination="-1" eventType="touchUpInside" id="21"/>

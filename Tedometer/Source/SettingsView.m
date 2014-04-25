@@ -10,21 +10,20 @@
 
 
 @implementation SettingsView
-
 -(void) drawRect:(CGRect)rect {
 	
-	self.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-
+	self.backgroundColor = [UIColor blackColor];
+    
 	CGContextRef currentContext = UIGraphicsGetCurrentContext();
 	
 	CGGradientRef gradient;
 	CGColorSpaceRef rgbColorspace;
 	size_t num_locations = 2;
 	CGFloat locations[2] = { 0.0, 1.00 };
-	CGFloat components[8] = { 
+	CGFloat components[8] = {
 		0.8, 1.0, 0.80, 0.40,  	// Start color
 		0.8, 1.0, 0.80, 0.15 	// End color
-	}; 
+	};
 	rgbColorspace = CGColorSpaceCreateDeviceRGB();
 	gradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
 	
@@ -41,7 +40,7 @@
 	CGContextDrawRadialGradient( currentContext,gradient, startCenter, startRadius, endCenter, endRadius, kCGGradientDrawsAfterEndLocation );
 	
 	CGGradientRelease( gradient );
-	CGColorSpaceRelease(rgbColorspace); 
+	CGColorSpaceRelease(rgbColorspace);
 }
 
 @end

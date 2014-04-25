@@ -10,7 +10,7 @@
 #import "CXMLNOde-utils.h"
 #import "MeterViewSizing.h"
 #import "TedometerData.h"
-#import "FlurryAPI.h"
+#import "Flurry.h"
 
 @implementation Meter
 
@@ -212,7 +212,7 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 		}
 		@catch( NSException *exception ) {
 			NSString *msg = [NSString stringWithFormat: @"%@ in %s: aMonth=%d, aDay = %d", [exception name], __PRETTY_FUNCTION__, aMonth, aDay ];
-			[FlurryAPI logError: [exception name] message:msg exception:exception];
+			[Flurry logError: [exception name] message:msg exception:exception];
 			timeString = @"N/A";
 		}
 	}

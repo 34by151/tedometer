@@ -19,10 +19,8 @@
 }
 
 
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
 
-}
+
 
 
 - (void)dealloc {

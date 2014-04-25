@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>205D3B3A-11C0-429B-9354-8302D1969AE1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Ted-O-Meter</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C09F3E58-B885-4A98-8D9B-0433ACBB9D63</key>
+		<string>https://code.google.com/p/tedometer/</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tedometer/Ted-O-Meter.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C09F3E58-B885-4A98-8D9B-0433ACBB9D63</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://code.google.com/p/tedometer/</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C09F3E58-B885-4A98-8D9B-0433ACBB9D63</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C09F3E58-B885-4A98-8D9B-0433ACBB9D63</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tedometer</string>
+		</dict>
+	</array>
+</dict>
+</plist>

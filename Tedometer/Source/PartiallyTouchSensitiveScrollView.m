@@ -7,7 +7,7 @@
 //
 
 #import "PartiallyTouchSensitiveScrollView.h"
-#import "DialView.h";
+#import "DialView.h"
 
 @implementation PartiallyTouchSensitiveScrollView
 

@@ -48,7 +48,6 @@
 	
 	UIImageView *avgLabelPointerImage;
 	
-	UIButton *todayMonthToggleButton;
 	UIButton *warningIconButton;
 	UIButton *stopDialEditButton;
 
@@ -59,6 +58,7 @@
 	UIImageView *glareView;
 	UIImageView *dimmerView;
 
+    UINavigationBar *navigationBar;
 	UISegmentedControl *todayMonthSegmentedControl;
 
 	BOOL shouldAutoRefresh;
@@ -74,6 +74,7 @@
 @property (nonatomic, retain) Meter* carbonMeter;
 @property (nonatomic, retain) Meter* voltageMeter;
 
+@property (nonatomic, retain) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *todayMonthSegmentedControl;
 @property (nonatomic, retain) IBOutlet UIView *parentDialView;
 @property (nonatomic, retain) IBOutlet UIImageView *dialShadowView;
@@ -100,7 +101,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *meterTitle;
 @property (nonatomic, retain) IBOutlet UILabel *infoLabel;
 @property (nonatomic, retain) IBOutlet DialView *dialView;
-@property (nonatomic, retain) IBOutlet UIButton *todayMonthToggleButton;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) IBOutlet UIImageView *avgLabelPointerImage;
 @property (nonatomic, retain) IBOutlet UIButton *warningIconButton;

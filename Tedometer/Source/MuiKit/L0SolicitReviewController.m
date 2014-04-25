@@ -20,7 +20,7 @@
 
 #import "L0SolicitReviewController.h"
 #import "UIAlertView+L0Alert.h"
-#import "FlurryAPI.h"
+#import "Flurry.h"
 
 // The number of launches before we solicit the user for a review.
 #define kL0SolicitReviewNumberofLaunchesBeforeSoliciting (5)
@@ -150,11 +150,11 @@
 - (void) alertView:(UIAlertView*) alert clickedButtonAtIndex:(NSInteger) buttonIndex {
 	// Redirect to the Store.
 	if( buttonIndex == alert.cancelButtonIndex ) {
-		[FlurryAPI logEvent:@"Rejected review invitation"];
+		[Flurry logEvent:@"Rejected review invitation"];
 	}
 	else if (buttonIndex != alert.cancelButtonIndex && self.applicationAppStoreURL) {
 		// nh 3/4/10: Record the review invitation
-		[FlurryAPI logEvent:@"Accepted review invitation"];
+		[Flurry logEvent:@"Accepted review invitation"];
 
 		[[UIApplication sharedApplication] openURL:self.applicationAppStoreURL];
 	}

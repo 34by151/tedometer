@@ -19,7 +19,7 @@
 #import "TedometerAppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "log.h"
-#import "FlurryAPI.h"
+#import "Flurry.h"
 
 #define kPowerMeterIdx		0
 #define kCostMeterIdx		1
@@ -177,7 +177,7 @@ static TedometerData *sharedTedometerData = nil;
 
 - (unsigned)retainCount { return UINT_MAX; }
 
-- (void)release {}
+- (oneway void)release {}
 
 - (id)autorelease { return self; }
 // ----------------------------------------------------------------------
@@ -415,7 +415,7 @@ NSString* _archiveLocation;
 	BOOL success = NO;
 	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setUseSessionPersistance:NO];
+	[request setUseSessionPersistence:NO];
 	if( ! usingDemoAccount ) {
 		if( self.useSSL ) 
 			[request setValidatesSecureCertificate:NO];
@@ -469,7 +469,7 @@ NSString* _archiveLocation;
 	}
 	@catch( NSException *exception ) {
 		NSString *msg = [NSString stringWithFormat: @"%@ in %s", [exception name], __PRETTY_FUNCTION__ ];
-		[FlurryAPI logError: [exception name] message:msg exception:exception];
+		[Flurry logError: [exception name] message:msg exception:exception];
 	}
 }
 

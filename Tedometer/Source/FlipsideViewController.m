@@ -25,6 +25,7 @@
 @synthesize username;
 @synthesize password;
 @synthesize patchAggregationData;
+@synthesize navigationBar;
 
 // slider range must be 0 to num elts -1 (0-10)
 static NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
@@ -55,9 +56,20 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 
 	return seconds; 
 }
-	
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    // needed in order to make the nav bar stretch to the top of the status bar
+    return UIBarPositionTopAttached;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationBar.delegate = self;
+
+    //navigationController.view = settingsView;
+    //self.view = navigationController.view;
+    
 	tedometerData = [TedometerData sharedTedometerData];
 
 	gatewayAddress.text = tedometerData.gatewayHost;
@@ -72,19 +84,22 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	
 	[self updateRefreshRateLabel: refreshRateSlider];
 
-	settingsView.backgroundColor = [UIColor colorWithWhite:0.15 alpha:1.0];
+	//settingsView.backgroundColor = [UIColor colorWithWhite:0.15 alpha:1.0];
 
 	[scrollView addSubview:settingsView];
 	scrollView.contentSize = settingsView.frame.size;
-	
-	
-	[self.view addSubview:warningView];
-	warningView.frame = CGRectMake( 0, self.view.frame.size.height, self.view.frame.size.width, warningView.frame.size.height );
 
-	
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    // Have to calculate location of warningView frame after viewDidLoad, since coordinates
+    // of other views will not have been determined until after viewDidLoad finishes.
+    warningView.frame = CGRectMake( 0, self.view.frame.size.height, self.view.frame.size.width, warningView.frame.size.height );
+	[self.view addSubview:warningView];
 }
 
 - (void) viewDidAppear:(BOOL) animated {
+
 	if( connectionErrorMsg ) {
 		[self showConnectionErrorMsg:nil];
 	}

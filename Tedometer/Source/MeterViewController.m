@@ -19,6 +19,7 @@
 
 #define kSegmentedControlToday 0
 #define kSegmentedControlMonth 1
+#define kValueLabelsToggleView 1000
 
 @implementation MeterViewController
 
@@ -46,7 +47,6 @@
 @synthesize dialView;
 @synthesize infoLabel;
 @synthesize activityIndicator;
-@synthesize todayMonthToggleButton;
 @synthesize avgLabelPointerImage;
 @synthesize warningIconButton;
 @synthesize mainViewController;
@@ -58,6 +58,7 @@
 @synthesize glareView;
 @synthesize dimmerView;
 @synthesize todayMonthSegmentedControl;
+@synthesize navigationBar;
 
 
 - (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter {
@@ -72,9 +73,16 @@
 	return self;
 }
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    // needed in order to make the nav bar stretch to the top of the status bar
+    return UIBarPositionTopAttached;
+}
+
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
  - (void)viewDidLoad {
+
+     self.navigationBar.delegate = self;        // handle positionForBar: so that nav bar extends to top of status bar
 
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
 	 // staring at blackness until the first refresh
@@ -163,6 +171,7 @@
 	[super viewWillAppear:animated];
 }
 
+
 - (void) viewDidAppear:(BOOL)animated {
 	/*
 	if( tedometerData.refreshRate != -1.0 ) {
@@ -245,7 +254,7 @@
 		
 #if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_DEFAULT_PNG_SCREENSHOT
 #else
-	if( ! tedometerData.connectionErrorMsg ) {
+	if( true || ! tedometerData.connectionErrorMsg ) {
 
 		meterTitle.text = [self.curMeter.meterTitleWithMtuNumber uppercaseString];
 		meterLabel.text =  [NSString stringWithFormat:@"%@%@", [self.curMeter meterStringForInteger: self.curMeter.now], self.curMeter.instantaneousUnit];
@@ -258,7 +267,7 @@
 		NSArray* meterUnitProperties;
 		
 		if( tedometerData.isShowingTodayStatistics ) {
-			meterLabelProperties = [NSArray arrayWithObjects:@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"mtdProjectedLabel", nil];
+			meterLabelProperties = [NSArray arrayWithObjects:@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"todayProjectedLabel", nil];
 			meterValueProperties = [NSArray arrayWithObjects:@"todayMinValue", @"todayAverage", @"todayPeakValue", @"today", @"projected", nil];
 		}
 		else {
@@ -313,9 +322,6 @@
 	// Hide the average pointer image if we don't support averages
 	[avgLabelPointerImage setHidden:[avgLabel.text isEqualToString:@""]];
 
-	NSString* buttonLabel = tedometerData.isShowingTodayStatistics ? @"Today" : @"This Month";
-	[self.todayMonthToggleButton setTitle:buttonLabel forState:UIControlStateNormal];
-
 #endif
 	[dialView setNeedsDisplay];
 	
@@ -327,8 +333,14 @@
 int buttonCount = 0;
 - (IBAction) toggleTodayMonthStatistics {
 	
-	tedometerData.isShowingTodayStatistics = (todayMonthSegmentedControl.selectedSegmentIndex == kSegmentedControlToday);
-	//tedometerData.isShowingTodayStatistics = ! tedometerData.isShowingTodayStatistics;
+//    if( [[sender tag] == kValueLabelsToggleView] ) {
+        tedometerData.isShowingTodayStatistics = ! tedometerData.isShowingTodayStatistics;
+//    }
+//    else {
+//        tedometerData.isShowingTodayStatistics = (todayMonthSegmentedControl.selectedSegmentIndex == kSegmentedControlToday);
+//    }
+    
+    [todayMonthSegmentedControl setSelectedSegmentIndex: tedometerData.isShowingTodayStatistics ? 0 : 1 ];
 	[self refreshView];
 }
 
@@ -364,7 +376,6 @@ int buttonCount = 0;
 	[projLabel release];
 	[meterLabel release];
 	[meterTitle release];
-	[todayMonthToggleButton release];
 	[dialView release];
 	[activityIndicator release];
 	[avgLabelPointerImage release];

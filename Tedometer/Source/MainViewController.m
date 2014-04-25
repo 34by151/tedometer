@@ -181,7 +181,8 @@
 	controller.connectionErrorMsg = tedometerData.connectionErrorMsg;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];	
+    [self presentViewController:controller animated:YES completion:nil];
+	//[self presentModalViewController:controller animated:YES];
 	[controller release];
 	
 	hasShownFlipsideViewThisSession = YES;
@@ -216,7 +217,8 @@
 	
 	[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] updateIdleTimerState];
 	
-	[self dismissModalViewControllerAnimated:YES];
+//	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 	
 //	if( needsInitialRefresh || tedometerData.refreshRate != -1.0 )
 //		[self refreshData];

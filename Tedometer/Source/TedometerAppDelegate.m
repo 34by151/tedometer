@@ -9,7 +9,7 @@
 #import "TedometerAppDelegate.h"
 #import "MainViewController.h"
 #import "InternetRequiredViewController.h"
-#import "FlurryAPI.h"
+#import "Flurry.h"
 #import "TedometerData.h"
 #import "L0SolicitReviewController.h"
 
@@ -25,18 +25,23 @@ void uncaughtExceptionHandler(NSException *exception);
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    // nh 4/23/14: Flurry exception handling advises removing uncaught-exception handlers
+    // NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	NSLog(@"Starting Flurry session...");
-	[FlurryAPI startSession:@"A6AVHF5HAWY7768ADRVZ"];
-	NSLog(@"Finished Flurry session initiation.");
+    //note: iOS only allows one crash reporting tool per app; if using another, set to: NO
+    [Flurry setCrashReportingEnabled:YES];
+    
+    // Replace YOUR_API_KEY with the api key in the downloaded package
+    [Flurry startSession:@"A6AVHF5HAWY7768ADRVZ"];
+  	NSLog(@"Finished Flurry session initiation.");
 
 	NSOperationQueue *opQueue = [[NSOperationQueue alloc] init];
 	self.sharedOperationQueue = opQueue;
 	[opQueue release];
 	
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    internetReach = [[Reachability2 reachabilityForInternetConnection] retain];
-	[internetReach startNotifer];
+    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+	[internetReach startNotifier];
 	
 	
 	// Enable battery monitoring so we received power chnage notifications
@@ -87,12 +92,12 @@ void uncaughtExceptionHandler(NSException *exception);
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 #pragma mark -
 #pragma mark Internet Reachability
-- (void) updateInterfaceWithReachability: (Reachability2*) curReach
+- (void) updateInterfaceWithReachability: (Reachability*) curReach
 {
 	if( curReach == internetReach ) {
 		NetworkStatus netStatus = [curReach currentReachabilityStatus];
@@ -108,8 +113,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) reachabilityChanged: (NSNotification* )note
 {
-	Reachability2* curReach = [note object];
-	NSParameterAssert([curReach isKindOfClass: [Reachability2 class]]);
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
 	[self updateInterfaceWithReachability: curReach];
 }
 

@@ -703,13 +703,13 @@ static UIFont *labelFont;
 	double curRad = dial.zeroAngle + tickNumber * dial.normalizedRadiansPerTick;
 	double labelValue = tickNumber * dial.normalizedUnitsPerTick;
 	NSString *label = [self.curMeter tickLabelStringForInteger: labelValue];
-	CGSize labelSize = [label sizeWithFont: font];
+    CGSize labelSize = [label sizeWithAttributes: @{NSFontAttributeName:font}];
 	double angle = radOffset - curRad;
 	double labelCenterRadius = (dialContext->meterRadius - dialContext->edgeWidth - dialContext->tickLength - labelGap);
 	labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
 	double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
 	double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
-	[label drawAtPoint:CGPointMake(x1,-y1) withFont:font];
+	[label drawAtPoint:CGPointMake(x1,-y1) withAttributes:@{NSFontAttributeName:font}];
 	
 	//NSLog(@"DialView.drawTickLabels: drawing label %@ for tick %d", label, tickNumber);
 	

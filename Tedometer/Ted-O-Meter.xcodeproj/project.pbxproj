@@ -79,6 +79,7 @@
 		D8C681DF10E4702900DBF9E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C681DD10E4702900DBF9E3 /* MainViewController.m */; };
 		D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C681DE10E4702900DBF9E3 /* MainView.xib */; };
 		D8C8940E110E67FE00AD511D /* PartiallyTouchSensitiveScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C8940D110E67FE00AD511D /* PartiallyTouchSensitiveScrollView.m */; };
+		D8CB7C49190A20D1000D3D97 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = D8CB7C48190A20D1000D3D97 /* Data */; };
 		D8E0D4DC114E975D00AF0F1B /* push_in.caf in Resources */ = {isa = PBXBuildFile; fileRef = D83222FC11461B5900DF3C13 /* push_in.caf */; };
 		D8E479AD112402AC006F7C23 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E479AC112402AC006F7C23 /* Default.png */; };
 		D8E9749210A0971C0065EE31 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */; };
@@ -254,6 +255,7 @@
 		D8C681DE10E4702900DBF9E3 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainView.xib; path = Source/MainView.xib; sourceTree = "<group>"; };
 		D8C8940C110E67FE00AD511D /* PartiallyTouchSensitiveScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartiallyTouchSensitiveScrollView.h; path = Source/PartiallyTouchSensitiveScrollView.h; sourceTree = "<group>"; };
 		D8C8940D110E67FE00AD511D /* PartiallyTouchSensitiveScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartiallyTouchSensitiveScrollView.m; path = Source/PartiallyTouchSensitiveScrollView.m; sourceTree = "<group>"; };
+		D8CB7C48190A20D1000D3D97 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = Resources/Data; sourceTree = "<group>"; };
 		D8E479AC112402AC006F7C23 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D8E9749010A0971C0065EE31 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TedometerAppDelegate.h; path = Source/TedometerAppDelegate.h; sourceTree = "<group>"; };
 		D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TedometerAppDelegate.m; path = Source/TedometerAppDelegate.m; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8CB7C48190A20D1000D3D97 /* Data */,
 				D8EE261919084D8900D29479 /* Images.xcassets */,
 				D88D39C71136F50F001007F1 /* Sounds */,
 				D868338111400DF10065B3A8 /* L0SolicitReview.alert */,
@@ -806,6 +809,7 @@
 			files = (
 				D8E974A710A097C20065EE31 /* FlipsideView.xib in Resources */,
 				D8E974A910A097D00065EE31 /* MeterView.xib in Resources */,
+				D8CB7C49190A20D1000D3D97 /* Data in Resources */,
 				D8E974CD10A098F00065EE31 /* MainWindow.xib in Resources */,
 				D8E974D210A099120065EE31 /* meter_bg_metal.png in Resources */,
 				D8E974D310A099120065EE31 /* meter_glare.png in Resources */,

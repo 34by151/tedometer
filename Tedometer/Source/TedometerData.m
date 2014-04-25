@@ -396,39 +396,48 @@ NSString* _archiveLocation;
 		usingDemoAccount = YES;
 	}
 	
-	if( usingDemoAccount )
+	if( usingDemoAccount ) {
 		urlString = @"http://www.theenergydetective.com/media/5000LiveData.xml";
-	else 
+    }
+	else {
 		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", self.useSSL ? @"https" : @"http", self.gatewayHost];
+    }
+
+    BOOL success = NO;
+    NSError *error = nil;
+    NSString *responseContent = nil;
 	
-#if USE_TEST_DATA
-	///////////////////
-	// OVERRIDE FOR TESTING
-	urlString = @"http://crush.hadfieldfamily.com/ted5000/LiveDataTest.xml";
-	usingDemoAccount = YES;
-	///////////////////
-#endif
+    if( [self.gatewayHost hasPrefix:@"Data/"] ) {
+        // Use test data
+        urlString = [self.gatewayHost stringByAppendingString: @".xml"];    // used for error reporting (below)
+        NSString *path = [[NSBundle mainBundle] pathForResource:self.gatewayHost ofType:@"xml"];
+        responseContent = [NSString stringWithContentsOfFile: path encoding:NSUTF8StringEncoding error: &error];
+    }
+    else {
 	
-    NSURL *url = [NSURL URLWithString: urlString];
-	
-	ALog(@"Attempting connection with URL %@", url);
-	BOOL success = NO;
-	
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setUseSessionPersistence:NO];
-	if( ! usingDemoAccount ) {
-		if( self.useSSL ) 
-			[request setValidatesSecureCertificate:NO];
-		[request setUsername:self.username];
-		[request setPassword:self.password];
-	}
-	
-	[request start];
-	NSError *error = [request error];
-	if (!error) {
-		NSString *response = [request responseString];
+        NSURL *url = [NSURL URLWithString: urlString];
+        
+        ALog(@"Attempting connection with URL %@", url);
+        
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        [request setUseSessionPersistence:NO];
+        if( ! usingDemoAccount ) {
+            if( self.useSSL ) 
+                [request setValidatesSecureCertificate:NO];
+            [request setUsername:self.username];
+            [request setPassword:self.password];
+        }
+        
+        [request start];
+        error = [request error];
+        if (!error) {
+            responseContent = [request responseString];
+        }
+    }
+    
+    if( !error ) {
 		
-		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:response options:0 error:&error] retain];
+		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:responseContent options:0 error:&error] retain];
 		if( newDocument ) {
 			success = YES;
 			self.connectionErrorMsg = nil;
@@ -441,7 +450,7 @@ NSString* _archiveLocation;
 	
 	if( ! success ) {
 		if( [[error domain] isEqualToString:@"CXMLErrorDomain"] ) {
-			self.connectionErrorMsg = [NSString stringWithFormat:@"Unable to parse data from %@", url];
+			self.connectionErrorMsg = [NSString stringWithFormat:@"Unable to parse data from %@", urlString];
 		}
 		else {
 			self.connectionErrorMsg = [error localizedDescription];

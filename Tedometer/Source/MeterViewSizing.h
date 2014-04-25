@@ -13,6 +13,10 @@
 #define DRAW_FOR_ICON_SCREENSHOT			0
 #define DRAW_FOR_DEFAULT_PNG_SCREENSHOT		0
 
+// Test data
+#define USE_TEST_DATA                       0
+#define TEST_DATA_URL                       @"http://crush.hadfieldfamily.com/ted5000/LiveDataTest.xml
+
 // Meter sizing
 #define meterGap (M_PI * 0.6)
 #define radOffset (M_PI + (M_PI - meterGap)/2.0)

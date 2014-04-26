@@ -175,7 +175,7 @@ static TedometerData *sharedTedometerData = nil;
 
 - (id)retain { return self; }
 
-- (unsigned int)retainCount { return UINT_MAX; }
+- (NSUInteger)retainCount { return UINT_MAX; }
 
 - (oneway void)release {}
 
@@ -597,7 +597,7 @@ NSString* _archiveLocation;
 		NSMutableDictionary *mtuTotalsKeyedByProperty = [[NSMutableDictionary alloc] initWithCapacity: [netMeterFixNodesKeyedByProperty allKeys].count];
 		
 		for( NSInteger i=0; i < mtuCount; ++i ) {
-			NSString *mtuNodePath = [NSString stringWithFormat:@"%@.MTU%d", parentNode, i+1];
+			NSString *mtuNodePath = [NSString stringWithFormat:@"%@.MTU%ld", parentNode, (long)i+1];
 			CXMLNode *mtuNode = [TedometerData nodeInXmlDocument:document atPath:mtuNodePath];
 			if( ! mtuNode ) {
 				isSuccessful = NO;

@@ -37,7 +37,7 @@ const NSString* kL0AlertIconName = @"L0AlertIconName";
 
 + (id) alertWithContentsOfDictionary:(NSDictionary*) dict name:(NSString*) name bundle:(NSBundle*) bundle {
 	
-	L0Log(@"%@, %@, %@", name, bundle, dict);
+//	L0Log(@"%@, %@, %@", name, bundle, dict);
 	
 	NSArray* buttons = [dict objectForKey:kL0AlertButtons];
 	if (buttons && ![buttons isKindOfClass:[NSArray class]])

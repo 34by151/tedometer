@@ -182,10 +182,9 @@
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:controller animated:YES completion:nil];
-	//[self presentModalViewController:controller animated:YES];
+    hasShownFlipsideViewThisSession = YES;
+    
 	[controller release];
-	
-	hasShownFlipsideViewThisSession = YES;
 }
 
 - (IBAction) activateCostMeter {
@@ -226,6 +225,11 @@
 	//shouldAutoRefresh = YES;
 	
 	if( tedometerData.refreshRate == -1.0 ) {
+        // nh 4/26/14: Can't remember why we're only refreshing after leaving the info panel
+        // if we haven't yet had a successful connection? If we changed the host, SSL, etc.,
+        // wouldn't we want to refresh that automatically?
+        // Perhaps so that we don't refresh if all they did was view the settings, but
+        // didn't change anything? Thinking this must be the reason.
 		if( needsInitialRefresh )
 			[self refreshData];
 	}
@@ -373,56 +377,64 @@
 
 - (void) mtuCountDidChange:(NSNotification*)notification;
 {
-	NSInteger newMtuCount = tedometerData.mtuCount;
-	
-	// if there's only one mtu, we only show the net meter
-	if( newMtuCount <= 1 ) {
-		if( pageControl.currentPage > 0 ) {
-			pageControl.currentPage = 0;
-			[self changePage:self];
-		}
-		pageControl.numberOfPages = 1;
-	}
-	else {
-		if( pageControl.currentPage + 1 > tedometerData.meterCount ) {
-			pageControl.currentPage = 0;
-		}
-		pageControl.numberOfPages = tedometerData.meterCount;
-		
-		[self changePage:self];
-		pageControlUsed = NO;
-	}
-	
-	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * tedometerData.meterCount, scrollView.frame.size.height);
-	
-	[self updateMeterVisibility];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSInteger newMtuCount = tedometerData.mtuCount;
+
+        // if there's only one mtu, we only show the net meter
+        if( newMtuCount <= 1 ) {
+            if( pageControl.currentPage > 0 ) {
+                pageControl.currentPage = 0;
+                [self changePage:self];
+            }
+            pageControl.numberOfPages = 1;
+        }
+        else {
+            if( pageControl.currentPage + 1 > tedometerData.meterCount ) {
+                pageControl.currentPage = 0;
+            }
+            pageControl.numberOfPages = tedometerData.meterCount;
+            
+            [self changePage:self];
+            pageControlUsed = NO;
+        }
+        
+        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * tedometerData.meterCount, scrollView.frame.size.height);
+        
+        [self updateMeterVisibility];
+    });
 
 }
 
 -(void)documentReloadDidFinish:(NSNotification*)notification;
 {
-	if( tedometerData.hasEstablishedSuccessfulConnectionThisSession ) {
-		if( ! hasInitializedSinceFirstSuccessfulConnection ) {
-			hasInitializedSinceFirstSuccessfulConnection = YES;
-			[self switchToPage:tedometerData.curMtuIdx];
-		}
-	}
-		
-	[self switchToPage:tedometerData.curMtuIdx];	// This isn't working, for some reason
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        if( tedometerData.hasEstablishedSuccessfulConnectionThisSession ) {
+            if( ! hasInitializedSinceFirstSuccessfulConnection ) {
+                hasInitializedSinceFirstSuccessfulConnection = YES;
+                [self switchToPage:tedometerData.curMtuIdx];
+            }
+        }
+            
+        [self switchToPage:tedometerData.curMtuIdx];	// This isn't working, for some reason
+    });
 
 }
 
 - (void) connectionDidFail:(NSNotification*)notification;
 {
-	if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession && ! hasShownFlipsideViewThisSession ) {
-		
-		// if the gateway host is empty and we haven't shown the flipside this session,
-		// don't show an error message; just let them provide the settings
-		if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
-			tedometerData.connectionErrorMsg = nil;
-		
-		[self showInfo];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession && ! hasShownFlipsideViewThisSession ) {
+            
+            // if the gateway host is empty and we haven't shown the flipside this session,
+            // don't show an error message; just let them provide the settings
+            if( tedometerData.gatewayHost == nil || [tedometerData.gatewayHost isEqualToString:@""] )
+                tedometerData.connectionErrorMsg = nil;
+            
+            [self showInfo];
+        }
+    });
 	
 }
 @end

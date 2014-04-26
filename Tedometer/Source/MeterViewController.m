@@ -223,15 +223,22 @@
 
 -(void)documentLoadWillBegin:(NSNotification*)notification;
 {
-	[activityIndicator startAnimating];
-	self.warningIconButton.hidden = YES;
+    DLog( @"Received documentLoadWillBegin notification -- will begin animating activity indicator..." );
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //some UI methods ej
+        self.warningIconButton.hidden = YES;
+        [activityIndicator startAnimating];
+    });
 }
 
 -(void)documentLoadDidFinish:(NSNotification*)notification;
 {
-	[activityIndicator stopAnimating];
-	self.dialView.curMeter = self.curMeter;
-	[self refreshView];
+    DLog( @"Received documentLoadDidFinish notification -- will stop animating activity indicator..." );
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [activityIndicator stopAnimating];
+        self.dialView.curMeter = self.curMeter;
+        [self refreshView];
+    });
 }
 
 -(void)documentLoadDidFail:(NSNotification*)notification;
@@ -241,8 +248,10 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	//DLog(@"Observing change to key %@", keyPath );
-	self.dialView.curMeter = self.curMeter;
-	[self refreshView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.dialView.curMeter = self.curMeter;
+        [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:FALSE];
+    });
 }
 
 -(Meter*) curMeter {

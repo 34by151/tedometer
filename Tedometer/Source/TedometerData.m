@@ -461,7 +461,7 @@ NSString* _archiveLocation;
 	}
 	[self clearIsLoadingXmlFlag];
 	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadDidFinish object:self];
-	
+	DLog( "Finished loading XML document." );
 	[autoreleasePool drain];
 
 }

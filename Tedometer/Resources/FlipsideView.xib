@@ -148,8 +148,8 @@
                     <rect key="frame" x="20" y="654" width="280" height="61"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <string key="text">The Energy Detective is a real-time 
-home electricity monitor. 
+                    <string key="text">For information about 
+The Energy Detective, visit
 http://theenergydetective.com</string>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
@@ -210,6 +210,7 @@ http://theenergydetective.com</string>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </switch>
             </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
         </view>
         <view clearsContextBeforeDrawing="NO" contentMode="redraw" id="40" customClass="FlipsideView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>

@@ -243,7 +243,9 @@
 
 -(void)documentLoadDidFail:(NSNotification*)notification;
 {
-	self.warningIconButton.hidden = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.warningIconButton.hidden = NO;
+    });
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

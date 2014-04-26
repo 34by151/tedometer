@@ -121,7 +121,7 @@
 	 
 	 todayMonthSegmentedControl.selectedSegmentIndex = tedometerData.isShowingTodayStatistics ? 0 : 1;
 	 
-#if DRAW_FOR_DEFAULT_PNG_SCREENSHOT
+#if DRAW_FOR_LAUNCH_IMAGE
 	 meterLabel.center = CGPointMake( meterLabel.center.x -3, meterLabel.center.y );
 	 meterLabel.text = @"TED-O-Meter"; 
 #endif
@@ -267,7 +267,7 @@
 
 -(void) refreshView {
 		
-#if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_DEFAULT_PNG_SCREENSHOT
+#if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_LAUNCH_IMAGE
 #else
 	if( true || ! tedometerData.connectionErrorMsg ) {
 

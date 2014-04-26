@@ -11,7 +11,7 @@
 
 // turns off tick labels, leaves "Ted-O-Meter"
 #define DRAW_FOR_ICON_SCREENSHOT			0
-#define DRAW_FOR_DEFAULT_PNG_SCREENSHOT		0
+#define DRAW_FOR_LAUNCH_IMAGE               0
 
 // Test data
 #define USE_TEST_DATA                       0

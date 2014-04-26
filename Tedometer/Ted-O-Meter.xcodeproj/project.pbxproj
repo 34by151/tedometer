@@ -354,12 +354,12 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D8E974FB10A09B500065EE31 /* MeterViewSizing.h */,
 				D8CB7C4A190AD4BB000D3D97 /* TouchXML */,
 				D868338011400DF10065B3A8 /* MuiKit */,
 				D834617F10C5F42B00EDF14F /* ASIHTTPRequest */,
 				32CA4F630368D1EE00C91783 /* Ted-O-Meter_Prefix.pch */,
 				D8E974C210A098810065EE31 /* main.m */,
-				D8E974FB10A09B500065EE31 /* MeterViewSizing.h */,
 				D8E974C110A098710065EE31 /* SynthesizeSingleton.h */,
 				D81E4CB810A09026006F0A90 /* CXMLNode-utils.h */,
 				D81E4CB910A09026006F0A90 /* CXMLNode-utils.m */,

@@ -173,7 +173,7 @@ static UIFont *labelFont;
 	
 	[self drawDangerArc:&dialContext];
 
-#if ! DRAW_FOR_DEFAULT_PNG_SCREENSHOT
+#if ! DRAW_FOR_LAUNCH_IMAGE
 	[self drawTicks:&dialContext];
 #endif
 
@@ -572,11 +572,11 @@ static UIFont *labelFont;
 -(void) drawArrow:(DialDrawingContext*) dialContext {
 	float dialAngle;
 	if( drawForIconScreenshot ) {
-		dialAngle = M_PI - M_PI/3.0;
+		dialAngle = radOffset; //M_PI / 2;
 		
-#if	DRAW_FOR_DEFAULT_PNG_SCREENSHOT
-		dialAngle = radOffset;
-#endif
+//#if	DRAW_FOR_LAUNCH_IMAGE
+//		dialAngle = radOffset;
+//#endif
 		
 	}
 	else
@@ -594,7 +594,7 @@ static UIFont *labelFont;
 	float centerOffset = -30.0;
 	float largeEndWidth = 1.0;
 	
-	double arrowLength = 0.78 * dialContext->meterRadius;
+	double arrowLength = 0.79 * dialContext->meterRadius;
 	
 	CGContextSetLineCap( dialContext->context, kCGLineCapRound );
 	CGContextSetLineWidth(dialContext->context, 3.0);

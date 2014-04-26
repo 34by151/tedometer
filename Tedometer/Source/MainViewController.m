@@ -91,7 +91,7 @@
     pageControl.numberOfPages = tedometerData.meterCount;
     pageControl.currentPage = 0;
 
-#if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_DEFAULT_PNG_SCREENSHOT
+#if DRAW_FOR_ICON_SCREENSHOT || DRAW_FOR_LAUNCH_IMAGE
 	pageControl.hidden = YES;
 #endif
 	

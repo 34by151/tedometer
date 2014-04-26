@@ -65,25 +65,25 @@
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Refresh interval: " lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" id="54">
-                    <rect key="frame" x="21" y="352" width="73" height="38"/>
+                    <rect key="frame" x="21" y="369" width="73" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Auto-lock disabling while plugged in:" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" id="85">
-                    <rect key="frame" x="21" y="418" width="158" height="56"/>
+                    <rect key="frame" x="21" y="421" width="158" height="56"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Apply correction for low/peak net values:" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" id="5Uw-hP-z05">
                     <rect key="frame" x="21" y="481" width="175" height="56"/>
@@ -92,7 +92,7 @@
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="2 seconds" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="56">
                     <rect key="frame" x="178" y="352" width="123" height="21"/>
@@ -101,7 +101,7 @@
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="192.168.x.x:80" minimumFontSize="12" clearButtonMode="whileEditing" id="47">
                     <rect key="frame" x="21" y="121" width="280" height="31"/>
@@ -122,7 +122,7 @@
                     </connections>
                 </slider>
                 <switch opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="84">
-                    <rect key="frame" x="222" y="430" width="51" height="31"/>
+                    <rect key="frame" x="222" y="433" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                 </switch>
@@ -133,7 +133,7 @@
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Corrects for bugs in LiveData.xml that occur when using multiple MTUs. (Experimental.) " lineBreakMode="wordWrap" numberOfLines="3" minimumFontSize="10" id="140">
                     <rect key="frame" x="21" y="524" width="280" height="52"/>
@@ -142,7 +142,7 @@
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" minimumFontSize="10" id="89">
                     <rect key="frame" x="20" y="654" width="280" height="61"/>
@@ -154,7 +154,7 @@ http://theenergydetective.com</string>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <switch opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="102" userLabel="Use SSL">
                     <rect key="frame" x="222" y="271" width="51" height="31"/>
@@ -167,7 +167,7 @@ http://theenergydetective.com</string>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Username:" lineBreakMode="tailTruncation" minimumFontSize="10" id="104">
                     <rect key="frame" x="21" y="179" width="84" height="21"/>
@@ -176,7 +176,7 @@ http://theenergydetective.com</string>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(Optional)" minimumFontSize="17" clearButtonMode="whileEditing" id="105" userLabel="Username">
                     <rect key="frame" x="113" y="176" width="188" height="31"/>
@@ -194,7 +194,7 @@ http://theenergydetective.com</string>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" red="0.2037916685" green="0.22333333329999999" blue="0.2037916685" alpha="1" colorSpace="deviceRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(Optional)" minimumFontSize="17" clearButtonMode="whileEditing" id="107" userLabel="Password">
                     <rect key="frame" x="113" y="215" width="188" height="31"/>

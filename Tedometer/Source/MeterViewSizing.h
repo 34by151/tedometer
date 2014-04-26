@@ -10,8 +10,8 @@
 #import "log.h"
 
 // turns off tick labels, leaves "Ted-O-Meter"
-#define DRAW_FOR_ICON_SCREENSHOT			0
-#define DRAW_FOR_LAUNCH_IMAGE               0
+#define DRAW_FOR_ICON_SCREENSHOT			1
+#define DRAW_FOR_LAUNCH_IMAGE               1
 
 // Test data
 #define USE_TEST_DATA                       0

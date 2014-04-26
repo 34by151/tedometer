@@ -145,7 +145,6 @@
 		D868338311400DF10065B3A8 /* L0SolicitReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L0SolicitReviewController.m; sourceTree = "<group>"; };
 		D868338611400E220065B3A8 /* UIAlertView+L0Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+L0Alert.h"; sourceTree = "<group>"; };
 		D868338711400E220065B3A8 /* UIAlertView+L0Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+L0Alert.m"; sourceTree = "<group>"; };
-		D88ACFB1113735D300D2E6B8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = Resources/Entitlements.plist; sourceTree = "<group>"; };
 		D88D39C81136F50F001007F1 /* click.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.caf; sourceTree = "<group>"; };
 		D88D39C91136F50F001007F1 /* metallic_blip.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metallic_blip.caf; sourceTree = "<group>"; };
 		D88D39D61136F947001007F1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -404,7 +403,6 @@
 				D8E974C610A098CD0065EE31 /* arrow_peak.png */,
 				D8E974CA10A098E20065EE31 /* icon_full.png */,
 				D8E479AC112402AC006F7C23 /* Default.png */,
-				D88ACFB1113735D300D2E6B8 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -808,13 +806,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
 				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flurry",
 				);
 				PRODUCT_NAME = "TED-O-Meter";
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -825,13 +822,13 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
 				INFOPLIST_FILE = "Ted-O-Meter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flurry",
@@ -864,7 +861,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "3067F60A-A31D-4CFF-A7DA-A6B3AAAE011D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3067F60A-A31D-4CFF-A7DA-A6B3AAAE011D";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -872,7 +870,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nathan Hadfield";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -886,7 +885,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "580EAC3A-89A3-42EF-A4A0-909B75B8E379";
+				PROVISIONING_PROFILE = "3067F60A-A31D-4CFF-A7DA-A6B3AAAE011D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3067F60A-A31D-4CFF-A7DA-A6B3AAAE011D";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

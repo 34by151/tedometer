@@ -87,7 +87,7 @@ static UIFont *labelFont;
 - (void)awakeFromNib {
 
 	if( ! labelColor )
-		labelColor = [[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0] retain];
+		labelColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.4] retain];
 	
 	if( ! labelFont )
 		labelFont = [[UIFont fontWithName:@"Helvetica" size:10.0] retain];
@@ -587,15 +587,17 @@ static UIFont *labelFont;
 	CGContextRotateCTM(dialContext->context, dialAngle);
 	
 	CGContextSetRGBStrokeColor(dialContext->context, 1.0, 0.2, 0.2, 1.0);
-	CGContextSetShadow( dialContext->context, CGSizeMake( 0, -2.5 ), 4 );
+    
+    CGContextSetShadowWithColor( dialContext->context, CGSizeMake( 0, 2.5 ), 3, [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3].CGColor );
+//	CGContextSetShadow( dialContext->context, CGSizeMake( 0, 3.5 ), 2 );
 	
-	float centerOffset = -3.0;
-	float largeEndWidth = 6.0;
+	float centerOffset = -30.0;
+	float largeEndWidth = 1.0;
 	
-	double arrowLength = dialContext->meterRadius - 53;
+	double arrowLength = 0.78 * dialContext->meterRadius;
 	
 	CGContextSetLineCap( dialContext->context, kCGLineCapRound );
-	CGContextSetLineWidth(dialContext->context, 10.0);
+	CGContextSetLineWidth(dialContext->context, 3.0);
 	CGContextMoveToPoint( dialContext->context, centerOffset, largeEndWidth / 2.0 );
 	CGContextAddLineToPoint( dialContext->context, arrowLength, 0 );
 	CGContextMoveToPoint( dialContext->context, centerOffset, -largeEndWidth / 2.0 );
@@ -675,7 +677,7 @@ static UIFont *labelFont;
 	
 	CGContextRotateCTM(context, angle);
 	
-	CGContextSetShadow( context, CGSizeMake( 0, -1 ), 1 );
+	CGContextSetShadow( context, CGSizeMake( 0, 1 ), 1 );
 	CGContextSetLineWidth( context, 0 );
 	CGContextMoveToPoint( context, radius, width / 2.0 );
 	CGContextAddLineToPoint( context, radius - width / 2.0, 0 );
@@ -709,7 +711,11 @@ static UIFont *labelFont;
 	labelCenterRadius -= distanceFromCenterToEdgeOfRectAtAngle( labelSize, angle );
 	double x1 = labelCenterRadius * cos( angle ) - labelSize.width / 2.0;
 	double y1 = labelCenterRadius * sin( angle ) + labelSize.height / 2.0;
-	[label drawAtPoint:CGPointMake(x1,-y1) withAttributes:@{NSFontAttributeName:font}];
+	[label drawAtPoint:CGPointMake(x1,-y1) withAttributes:@{
+                                                            NSFontAttributeName:font,
+                                                            NSStrokeColorAttributeName: labelColor,
+                                                            NSForegroundColorAttributeName: labelColor
+                                                            }];
 	
 	//NSLog(@"DialView.drawTickLabels: drawing label %@ for tick %d", label, tickNumber);
 	

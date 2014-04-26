@@ -103,7 +103,7 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <view clearsContextBeforeDrawing="NO" contentMode="center" id="124" userLabel="Dial and Ticks View" customClass="DialView">
-                                            <rect key="frame" x="0.0" y="4" width="320" height="251"/>
+                                            <rect key="frame" x="0.0" y="5.5" width="320" height="251"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.38732394576072693" contentMode="scaleAspectFit" image="meter_glare.png" id="63">

@@ -184,6 +184,9 @@
     [self presentViewController:controller animated:YES completion:nil];
     hasShownFlipsideViewThisSession = YES;
     
+    // Note: flipsideViewControllerDidFinish: selector in this class
+    // is called from FlipsideViewController when the Done button is selected.
+    
 	[controller release];
 }
 

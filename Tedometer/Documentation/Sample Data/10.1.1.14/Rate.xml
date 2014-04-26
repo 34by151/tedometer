@@ -1,0 +1,16 @@
+<Rate>
+    <Time>1396200812</Time>
+    <Value>8350</Value>
+    <Tier>0</Tier>
+    <TOU>0</TOU>
+    <MeterReadDate>10</MeterReadDate>
+    <DaysLeft>10</DaysLeft>
+    <PlanType>1</PlanType>
+    <TOUDesc></TOUDesc>
+
+    <DemandCharge>
+        <InUse>FALSE</InUse>
+        <Power>0</Power>
+        <Cost>0</Cost>
+    </DemandCharge>
+</Rate>

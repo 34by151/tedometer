@@ -1,0 +1,165 @@
+<SystemSettings>
+    <NumberMTU>3</NumberMTU>
+    <NumberSpyder>3</NumberSpyder>
+
+    <DemoMode>0</DemoMode>
+    <NumberDisplay>1</NumberDisplay>
+    <DateTime>
+        <UseServer>1</UseServer>
+        <ServerAddress>pool.ntp.org</ServerAddress>
+        <UseDLST>1</UseDLST>
+        <InDLST>1</InDLST>
+        <TimeZone>-5</TimeZone>
+    </DateTime>
+
+    <ZipCode>8344</ZipCode>
+    <WxUseLatLon>0</WxUseLatLon>
+    <WxLat>3282</WxLat>
+    <WxLon>-7986</WxLon>
+    <Configuration>
+        <SystemType>1</SystemType>
+        <MTUType1>0</MTUType1>
+        <MTUType2>0</MTUType2>
+        <MTUType3>2</MTUType3>
+        <MTUType4>0</MTUType4>
+    </Configuration>
+
+    <USNAP>
+        <USNAPType1>1</USNAPType1>
+        <USNAPType2>0</USNAPType2>
+    </USNAP>
+
+    <MTUPollingDelay>2</MTUPollingDelay>
+
+    <MTUs>
+        <MTU>
+            <MTUNumber>1</MTUNumber>
+            <MTUID>130417</MTUID>
+            <MTUDescription>Panel A</MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>1</UseTCP>
+            <MTUIP>192.168.123.125</MTUIP>
+        </MTU>
+        <MTU>
+            <MTUNumber>2</MTUNumber>
+            <MTUID>130155</MTUID>
+            <MTUDescription>Panel B</MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>1</UseTCP>
+            <MTUIP>192.168.123.126</MTUIP>
+        </MTU>
+        <MTU>
+            <MTUNumber>3</MTUNumber>
+            <MTUID>130F15</MTUID>
+            <MTUDescription>Solar</MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>1</UseTCP>
+            <MTUIP>192.168.123.127</MTUIP>
+        </MTU>
+        <MTU>
+            <MTUNumber>4</MTUNumber>
+            <MTUID>000000</MTUID>
+            <MTUDescription></MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>0</UseTCP>
+            <MTUIP>0.0.0.0</MTUIP>
+        </MTU>
+
+        <PEUAT>10</PEUAT>
+        <PVAT>10</PVAT>
+
+    </MTUs>
+
+    <Gateway>
+        <GatewayID>260233</GatewayID>
+        <GatewayDescription>VCN</GatewayDescription>
+    </Gateway>
+
+
+    <Displays>
+        <DisplaySettings>
+            <BacklightUnderPower>60</BacklightUnderPower>
+            <BacklightUnderBattery>50</BacklightUnderBattery>
+            <BacklightTimer>60</BacklightTimer>
+            <ScrollTimer>5</ScrollTimer>
+            <SleepTimer>120</SleepTimer>
+            <RealTimeUseScreen>TRUE</RealTimeUseScreen>
+            <RecentUsageScreen>TRUE</RecentUsageScreen>
+            <MonthToDateScreen>TRUE</MonthToDateScreen>
+            <MonthlyProjectionScreen>TRUE</MonthlyProjectionScreen>
+            <VoltageScreen>TRUE</VoltageScreen>
+            <KWDetailScreen>TRUE</KWDetailScreen>
+            <SpendingDetailTdyScreen>TRUE</SpendingDetailTdyScreen>
+            <CO2TodayScreen>TRUE</CO2TodayScreen>
+            <MultiPanel1Screen>TRUE</MultiPanel1Screen>
+            <MultiPanel2Screen>TRUE</MultiPanel2Screen>
+            <Contrast>33</Contrast>
+        </DisplaySettings>
+
+        <Display>
+            <DisplayNumber>1</DisplayNumber>
+            <DisplayID>306B9C</DisplayID>
+            <DisplayDescription>WD1</DisplayDescription>
+        </Display>
+        <Display>
+            <DisplayNumber>2</DisplayNumber>
+            <DisplayID>000000</DisplayID>
+            <DisplayDescription></DisplayDescription>
+        </Display>
+        <Display>
+            <DisplayNumber>3</DisplayNumber>
+            <DisplayID>01736D</DisplayID>
+            <DisplayDescription>p.comcast.net</DisplayDescription>
+        </Display>
+        <Display>
+            <DisplayNumber>4</DisplayNumber>
+            <DisplayID>6E6574</DisplayID>
+            <DisplayDescription></DisplayDescription>
+        </Display>
+
+
+    </Displays>
+
+
+    <Thermostats>
+        <NumberIPT>0</NumberIPT>
+        <Thermostat>
+            <IPTNumber>1</IPTNumber>
+            <IPTAddress>0.0.0.0</IPTAddress>
+            <IPTDescription></IPTDescription>
+            <RTAType>0</RTAType>
+        </Thermostat>
+        <Thermostat>
+            <IPTNumber>2</IPTNumber>
+            <IPTAddress>0.0.0.0</IPTAddress>
+            <IPTDescription></IPTDescription>
+            <RTAType>0</RTAType>
+        </Thermostat>
+        <StatRefresh>5</StatRefresh>
+    </Thermostats>
+
+    <CarbonCost>155</CarbonCost>
+
+    <NetworkSettings>
+        <UseDHCP>1</UseDHCP>
+        <IPAddress>192.168.123.120</IPAddress>
+        <SubnetMask>255.255.255.0</SubnetMask>
+        <GatewayAddress>192.168.123.254</GatewayAddress>
+        <PrimaryDNSServer>192.168.123.254</PrimaryDNSServer>
+        <SecondaryDNSServer>0.0.0.0</SecondaryDNSServer>
+        <NetBiosName>TED6000        </NetBiosName>
+        <HTTPPort>80</HTTPPort>
+        <HTTPSPort>443</HTTPSPort>
+
+    </NetworkSettings>
+
+    <Username>mancuj1</Username>
+    <PasswordAll>1</PasswordAll>
+    <PasswordConf>1</PasswordConf>
+    <ThirdPartyActivated>0</ThirdPartyActivated>
+
+</SystemSettings>

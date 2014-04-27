@@ -428,7 +428,7 @@ NSString* _archiveLocation;
             [request setPassword:self.password];
         }
         
-        [request start];
+        [request startSynchronous];
         error = [request error];
         if (!error) {
             responseContent = [request responseString];

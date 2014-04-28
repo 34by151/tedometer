@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface MeterView : UIView {
-	BOOL hasDrawnBackground;
 }
 
 

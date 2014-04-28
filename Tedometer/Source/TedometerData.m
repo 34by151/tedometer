@@ -389,15 +389,15 @@ NSString* _archiveLocation;
 	NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init]; 
 
 	NSString *urlString;
+    // Apple requires a demo account for testing -- just use the Google Code GIT repository for now.
 	BOOL usingDemoAccount = NO;
-	if( [@"theenergydetective.com" isEqualToString: [self.gatewayHost lowercaseString]]
-	   || [@"www.theenergydetective.com" isEqualToString: [self.gatewayHost lowercaseString]] ) 
+	if( [@"tedometer.googlecode.com" isEqualToString: [self.gatewayHost lowercaseString]] )
 	{
 		usingDemoAccount = YES;
 	}
 	
 	if( usingDemoAccount ) {
-		urlString = @"http://www.theenergydetective.com/media/5000LiveData.xml";
+		urlString = [NSString stringWithFormat:@"%@://tedometer.googlecode.com/git/Tedometer/Resources/Data/5000/1.xml", self.useSSL ? @"https" : @"http"];
     }
 	else {
 		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", self.useSSL ? @"https" : @"http", self.gatewayHost];

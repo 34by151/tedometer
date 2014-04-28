@@ -21,15 +21,13 @@
 		D834619110C5F42B00EDF14F /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D834618710C5F42B00EDF14F /* ASIInputStream.m */; };
 		D834619210C5F42B00EDF14F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D834618910C5F42B00EDF14F /* ASINetworkQueue.m */; };
 		D834619810C5F45300EDF14F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D834619710C5F45300EDF14F /* CFNetwork.framework */; };
-		D83461FF10C6585A00EDF14F /* warning_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D851C1DB10C1FEA40041F3DE /* warning_icon.png */; };
-		D834638310C6C2EB00EDF14F /* erase_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D834638210C6C2EB00EDF14F /* erase_icon.png */; };
-		D834643F10C6EE0700EDF14F /* white_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = D834643E10C6EE0700EDF14F /* white_gradient.png */; };
 		D83B275C10C99221003CCDCD /* LiveDataSolar3.xml in Resources */ = {isa = PBXBuildFile; fileRef = D83B275B10C99221003CCDCD /* LiveDataSolar3.xml */; };
 		D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D845122510B31781002BE7D7 /* InternetRequiredView.xib */; };
 		D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */; };
 		D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123E10B31EC2002BE7D7 /* logo_no_internet.png */; };
 		D845127310B328A5002BE7D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D845127210B328A5002BE7D7 /* SystemConfiguration.framework */; };
 		D851C24210C250F90041F3DE /* warning_icon_black.png in Resources */ = {isa = PBXBuildFile; fileRef = D851C24110C250F90041F3DE /* warning_icon_black.png */; };
+		D8643388190E1CCB00A036C1 /* logo_no_internet_orig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8643387190E1CCB00A036C1 /* logo_no_internet_orig@2x.png */; };
 		D8679954112133D700F865E5 /* close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D8679953112133D700F865E5 /* close_button.png */; };
 		D868338411400DF10065B3A8 /* L0SolicitReview.alert in Resources */ = {isa = PBXBuildFile; fileRef = D868338111400DF10065B3A8 /* L0SolicitReview.alert */; };
 		D868338511400DF10065B3A8 /* L0SolicitReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D868338311400DF10065B3A8 /* L0SolicitReviewController.m */; };
@@ -63,10 +61,8 @@
 		D8CB7C81190B01AB000D3D97 /* meter_bg_metal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CB7C7A190B01AB000D3D97 /* meter_bg_metal@2x.png */; };
 		D8CB7C82190B01AB000D3D97 /* meter_glare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CB7C7B190B01AB000D3D97 /* meter_glare@2x.png */; };
 		D8CB7C83190B01AB000D3D97 /* warning_icon_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CB7C7C190B01AB000D3D97 /* warning_icon_black@2x.png */; };
-		D8CB7C84190B01AB000D3D97 /* warning_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CB7C7D190B01AB000D3D97 /* warning_icon@2x.png */; };
 		D8CB7C86190B023F000D3D97 /* meter_bg_metal_dimmer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8CB7C85190B023F000D3D97 /* meter_bg_metal_dimmer@2x.png */; };
 		D8E0D4DC114E975D00AF0F1B /* push_in.caf in Resources */ = {isa = PBXBuildFile; fileRef = D83222FC11461B5900DF3C13 /* push_in.caf */; };
-		D8E479AD112402AC006F7C23 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E479AC112402AC006F7C23 /* Default.png */; };
 		D8E9749210A0971C0065EE31 /* TedometerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */; };
 		D8E9749710A097390065EE31 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749410A097390065EE31 /* MainView.m */; };
 		D8E9749810A097390065EE31 /* MeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E9749610A097390065EE31 /* MeterViewController.m */; };
@@ -86,7 +82,6 @@
 		D8E974D210A099120065EE31 /* meter_bg_metal.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E974CF10A099120065EE31 /* meter_bg_metal.png */; };
 		D8E974D310A099120065EE31 /* meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E974D010A099120065EE31 /* meter_glare.png */; };
 		D8E9757310A146890065EE31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E9757210A146890065EE31 /* QuartzCore.framework */; };
-		D8ED1CBD111D2DDB0046C457 /* icon_full_green_gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = D8ED1CBC111D2DDB0046C457 /* icon_full_green_gloss.png */; };
 		D8ED1D5C111F729A0046C457 /* Dial.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED1D5B111F729A0046C457 /* Dial.m */; };
 		D8ED1DC9112095EF0046C457 /* geometry_utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED1DC8112095EF0046C457 /* geometry_utils.m */; };
 		D8ED1E871120BA830046C457 /* UITouch+TouchSorting.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ED1E861120BA830046C457 /* UITouch+TouchSorting.m */; };
@@ -125,19 +120,16 @@
 		D834618810C5F42B00EDF14F /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
 		D834618910C5F42B00EDF14F /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		D834619710C5F45300EDF14F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		D834638210C6C2EB00EDF14F /* erase_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = erase_icon.png; path = Resources/erase_icon.png; sourceTree = "<group>"; };
-		D834643E10C6EE0700EDF14F /* white_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white_gradient.png; path = Resources/white_gradient.png; sourceTree = "<group>"; };
 		D83B272610C8FFA7003CCDCD /* LiveDataSolar1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar1.xml; path = Documentation/Design/LiveDataSolar1.xml; sourceTree = "<group>"; };
 		D83B272A10C9001F003CCDCD /* LiveDataSolar2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar2.xml; path = Documentation/Design/LiveDataSolar2.xml; sourceTree = "<group>"; };
 		D83B275B10C99221003CCDCD /* LiveDataSolar3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar3.xml; path = Documentation/Design/LiveDataSolar3.xml; sourceTree = "<group>"; };
 		D845122510B31781002BE7D7 /* InternetRequiredView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InternetRequiredView.xib; path = Resources/InternetRequiredView.xib; sourceTree = "<group>"; };
 		D845123810B318EE002BE7D7 /* InternetRequiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetRequiredViewController.h; sourceTree = "<group>"; };
 		D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetRequiredViewController.m; sourceTree = "<group>"; };
-		D845123C10B31B6A002BE7D7 /* logo_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_large.png; path = Resources/logo_large.png; sourceTree = "<group>"; };
 		D845123E10B31EC2002BE7D7 /* logo_no_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_no_internet.png; path = Resources/logo_no_internet.png; sourceTree = "<group>"; };
 		D845127210B328A5002BE7D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		D851C1DB10C1FEA40041F3DE /* warning_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = warning_icon.png; path = Resources/warning_icon.png; sourceTree = "<group>"; };
 		D851C24110C250F90041F3DE /* warning_icon_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = warning_icon_black.png; path = Resources/warning_icon_black.png; sourceTree = "<group>"; };
+		D8643387190E1CCB00A036C1 /* logo_no_internet_orig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_no_internet_orig@2x.png"; path = "Resources/logo_no_internet_orig@2x.png"; sourceTree = "<group>"; };
 		D867991D112120F100F865E5 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = Source/log.h; sourceTree = "<group>"; };
 		D8679953112133D700F865E5 /* close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close_button.png; path = Resources/close_button.png; sourceTree = "<group>"; };
 		D868338111400DF10065B3A8 /* L0SolicitReview.alert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = L0SolicitReview.alert; path = Source/MuiKit/L0SolicitReview.alert; sourceTree = "<group>"; };
@@ -152,11 +144,6 @@
 		D890424110F3DEAA00212963 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeterView.m; path = Source/MeterView.m; sourceTree = "<group>"; };
 		D892C3A41112F70500D157D2 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsView.h; path = Source/SettingsView.h; sourceTree = "<group>"; };
 		D892C3A51112F70500D157D2 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsView.m; path = Source/SettingsView.m; sourceTree = "<group>"; };
-		D892C3FB111300E200D157D2 /* panelButtonSquareSmallSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panelButtonSquareSmallSelected.png; path = Resources/panelButtonSquareSmallSelected.png; sourceTree = "<group>"; };
-		D892C3FC111300E200D157D2 /* panelButtonSquareSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panelButtonSquareSmall.png; path = Resources/panelButtonSquareSmall.png; sourceTree = "<group>"; };
-		D892C50211135EEE00D157D2 /* logo_512.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = logo_512.tif; path = Resources/logo_512.tif; sourceTree = "<group>"; };
-		D8BE623411186402006496BB /* panelButtonInset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panelButtonInset.png; path = Resources/panelButtonInset.png; sourceTree = "<group>"; };
-		D8BE623711186470006496BB /* panelButtonInsetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panelButtonInsetSelected.png; path = Resources/panelButtonInsetSelected.png; sourceTree = "<group>"; };
 		D8C56CEF10CE74210041B368 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8C56CF910D076DE0041B368 /* SolarAnalysis.numbers */ = {isa = PBXFileReference; lastKnownFileType = file; name = SolarAnalysis.numbers; path = Documentation/Design/SolarAnalysis.numbers; sourceTree = "<group>"; };
 		D8C681DC10E4702900DBF9E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Source/MainViewController.h; sourceTree = "<group>"; };
@@ -199,9 +186,7 @@
 		D8CB7C7A190B01AB000D3D97 /* meter_bg_metal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meter_bg_metal@2x.png"; path = "Resources/meter_bg_metal@2x.png"; sourceTree = "<group>"; };
 		D8CB7C7B190B01AB000D3D97 /* meter_glare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meter_glare@2x.png"; path = "Resources/meter_glare@2x.png"; sourceTree = "<group>"; };
 		D8CB7C7C190B01AB000D3D97 /* warning_icon_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning_icon_black@2x.png"; path = "Resources/warning_icon_black@2x.png"; sourceTree = "<group>"; };
-		D8CB7C7D190B01AB000D3D97 /* warning_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning_icon@2x.png"; path = "Resources/warning_icon@2x.png"; sourceTree = "<group>"; };
 		D8CB7C85190B023F000D3D97 /* meter_bg_metal_dimmer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meter_bg_metal_dimmer@2x.png"; path = "Resources/meter_bg_metal_dimmer@2x.png"; sourceTree = "<group>"; };
-		D8E479AC112402AC006F7C23 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D8E9749010A0971C0065EE31 /* TedometerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TedometerAppDelegate.h; path = Source/TedometerAppDelegate.h; sourceTree = "<group>"; };
 		D8E9749110A0971C0065EE31 /* TedometerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TedometerAppDelegate.m; path = Source/TedometerAppDelegate.m; sourceTree = "<group>"; };
 		D8E9749310A097390065EE31 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = Source/MainView.h; sourceTree = "<group>"; };
@@ -233,21 +218,13 @@
 		D8E974BA10A098520065EE31 /* VoltageMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoltageMeter.m; path = Source/VoltageMeter.m; sourceTree = "<group>"; };
 		D8E974C110A098710065EE31 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = Source/SynthesizeSingleton.h; sourceTree = "<group>"; };
 		D8E974C210A098810065EE31 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
-		D8E974C410A098CD0065EE31 /* arrow_avg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_avg.png; path = Resources/arrow_avg.png; sourceTree = "<group>"; };
-		D8E974C510A098CD0065EE31 /* arrow_low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_low.png; path = Resources/arrow_low.png; sourceTree = "<group>"; };
-		D8E974C610A098CD0065EE31 /* arrow_peak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_peak.png; path = Resources/arrow_peak.png; sourceTree = "<group>"; };
-		D8E974CA10A098E20065EE31 /* icon_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_full.png; path = Resources/icon_full.png; sourceTree = "<group>"; };
 		D8E974CC10A098F00065EE31 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		D8E974CF10A099120065EE31 /* meter_bg_metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter_bg_metal.png; path = Resources/meter_bg_metal.png; sourceTree = "<group>"; };
 		D8E974D010A099120065EE31 /* meter_glare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meter_glare.png; path = Resources/meter_glare.png; sourceTree = "<group>"; };
-		D8E974D410A0992F0065EE31 /* translucentButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = translucentButton.png; path = Resources/translucentButton.png; sourceTree = "<group>"; };
-		D8E974D610A099380065EE31 /* whiteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButtonPressed.png; path = Resources/whiteButtonPressed.png; sourceTree = "<group>"; };
 		D8E974E010A09AB50065EE31 /* Ted-O-Meter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ted-O-Meter-Info.plist"; sourceTree = "<group>"; };
 		D8E974FB10A09B500065EE31 /* MeterViewSizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeterViewSizing.h; path = Source/MeterViewSizing.h; sourceTree = "<group>"; };
 		D8E9757210A146890065EE31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8E975AF10A147E90065EE31 /* history.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = history.xml; sourceTree = "<group>"; };
-		D8ED1C62111CEE0C0046C457 /* icon_full_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_full_green.png; path = Resources/icon_full_green.png; sourceTree = "<group>"; };
-		D8ED1CBC111D2DDB0046C457 /* icon_full_green_gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_full_green_gloss.png; path = Resources/icon_full_green_gloss.png; sourceTree = "<group>"; };
 		D8ED1D5A111F729A0046C457 /* Dial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dial.h; path = Source/Dial.h; sourceTree = "<group>"; };
 		D8ED1D5B111F729A0046C457 /* Dial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Dial.m; path = Source/Dial.m; sourceTree = "<group>"; };
 		D8ED1DC7112095EF0046C457 /* geometry_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geometry_utils.h; path = Source/geometry_utils.h; sourceTree = "<group>"; };
@@ -381,28 +358,10 @@
 				D8679953112133D700F865E5 /* close_button.png */,
 				D8CB7C75190AFD0E000D3D97 /* close_button@2x.png */,
 				D8E974E010A09AB50065EE31 /* Ted-O-Meter-Info.plist */,
-				D8ED1CBC111D2DDB0046C457 /* icon_full_green_gloss.png */,
-				D8ED1C62111CEE0C0046C457 /* icon_full_green.png */,
-				D8BE623711186470006496BB /* panelButtonInsetSelected.png */,
-				D8BE623411186402006496BB /* panelButtonInset.png */,
-				D892C50211135EEE00D157D2 /* logo_512.tif */,
-				D892C3FB111300E200D157D2 /* panelButtonSquareSmallSelected.png */,
-				D892C3FC111300E200D157D2 /* panelButtonSquareSmall.png */,
-				D834643E10C6EE0700EDF14F /* white_gradient.png */,
-				D834638210C6C2EB00EDF14F /* erase_icon.png */,
 				D851C24110C250F90041F3DE /* warning_icon_black.png */,
 				D8CB7C7C190B01AB000D3D97 /* warning_icon_black@2x.png */,
-				D851C1DB10C1FEA40041F3DE /* warning_icon.png */,
-				D8CB7C7D190B01AB000D3D97 /* warning_icon@2x.png */,
 				D845123E10B31EC2002BE7D7 /* logo_no_internet.png */,
-				D845123C10B31B6A002BE7D7 /* logo_large.png */,
-				D8E974D610A099380065EE31 /* whiteButtonPressed.png */,
-				D8E974D410A0992F0065EE31 /* translucentButton.png */,
-				D8E974C410A098CD0065EE31 /* arrow_avg.png */,
-				D8E974C510A098CD0065EE31 /* arrow_low.png */,
-				D8E974C610A098CD0065EE31 /* arrow_peak.png */,
-				D8E974CA10A098E20065EE31 /* icon_full.png */,
-				D8E479AC112402AC006F7C23 /* Default.png */,
+				D8643387190E1CCB00A036C1 /* logo_no_internet_orig@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -706,17 +665,13 @@
 				D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */,
 				D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */,
 				D851C24210C250F90041F3DE /* warning_icon_black.png in Resources */,
-				D83461FF10C6585A00EDF14F /* warning_icon.png in Resources */,
+				D8643388190E1CCB00A036C1 /* logo_no_internet_orig@2x.png in Resources */,
 				D8CB7C7E190B01AB000D3D97 /* meter_bg_metal_halo@2x.png in Resources */,
 				D8EE261A19084D8900D29479 /* Images.xcassets in Resources */,
-				D834638310C6C2EB00EDF14F /* erase_icon.png in Resources */,
-				D834643F10C6EE0700EDF14F /* white_gradient.png in Resources */,
 				D83B275C10C99221003CCDCD /* LiveDataSolar3.xml in Resources */,
 				D8CB7C83190B01AB000D3D97 /* warning_icon_black@2x.png in Resources */,
 				D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */,
-				D8ED1CBD111D2DDB0046C457 /* icon_full_green_gloss.png in Resources */,
 				D8679954112133D700F865E5 /* close_button.png in Resources */,
-				D8E479AD112402AC006F7C23 /* Default.png in Resources */,
 				D868338411400DF10065B3A8 /* L0SolicitReview.alert in Resources */,
 				D88D3B2C11416FDB001007F1 /* metallic_blip.caf in Resources */,
 				D832231E114627D400DF3C13 /* meter_bg_metal_shadow.png in Resources */,
@@ -726,7 +681,6 @@
 				D8CB7C7F190B01AB000D3D97 /* meter_bg_metal_shadow_thin@2x.png in Resources */,
 				D8CB7C82190B01AB000D3D97 /* meter_glare@2x.png in Resources */,
 				D832232C11462ADE00DF3C13 /* meter_bg_metal_shadow_thin.png in Resources */,
-				D8CB7C84190B01AB000D3D97 /* warning_icon@2x.png in Resources */,
 				D8CB7C86190B023F000D3D97 /* meter_bg_metal_dimmer@2x.png in Resources */,
 				D8E0D4DC114E975D00AF0F1B /* push_in.caf in Resources */,
 				D8322705114ED8B200DF3C13 /* meter_bg_metal_dimmer.png in Resources */,
@@ -835,6 +789,7 @@
 				);
 				PRODUCT_NAME = "TED-O-Meter";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33A5F0FB-EACD-4A3C-8411-5486A8CA87F0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

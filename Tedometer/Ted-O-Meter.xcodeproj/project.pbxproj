@@ -26,6 +26,7 @@
 		D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */; };
 		D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123E10B31EC2002BE7D7 /* logo_no_internet.png */; };
 		D845127310B328A5002BE7D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D845127210B328A5002BE7D7 /* SystemConfiguration.framework */; };
+		D84BA508191023A1003066E3 /* DataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D84BA507191023A1003066E3 /* DataLoader.m */; };
 		D851C24210C250F90041F3DE /* warning_icon_black.png in Resources */ = {isa = PBXBuildFile; fileRef = D851C24110C250F90041F3DE /* warning_icon_black.png */; };
 		D8643388190E1CCB00A036C1 /* logo_no_internet_orig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8643387190E1CCB00A036C1 /* logo_no_internet_orig@2x.png */; };
 		D8679954112133D700F865E5 /* close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D8679953112133D700F865E5 /* close_button.png */; };
@@ -36,6 +37,7 @@
 		D88D3B2C11416FDB001007F1 /* metallic_blip.caf in Resources */ = {isa = PBXBuildFile; fileRef = D88D39C91136F50F001007F1 /* metallic_blip.caf */; };
 		D890424210F3DEAA00212963 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D890424110F3DEAA00212963 /* MeterView.m */; };
 		D892C3A61112F70500D157D2 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D892C3A51112F70500D157D2 /* SettingsView.m */; };
+		D89DFACD191919E50030C1FE /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D89DFACC191919E50030C1FE /* UICKeyChainStore.m */; };
 		D8C56CF010CE74210041B368 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C56CEF10CE74210041B368 /* CoreLocation.framework */; };
 		D8C681DF10E4702900DBF9E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C681DD10E4702900DBF9E3 /* MainViewController.m */; };
 		D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C681DE10E4702900DBF9E3 /* MainView.xib */; };
@@ -128,6 +130,8 @@
 		D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetRequiredViewController.m; sourceTree = "<group>"; };
 		D845123E10B31EC2002BE7D7 /* logo_no_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_no_internet.png; path = Resources/logo_no_internet.png; sourceTree = "<group>"; };
 		D845127210B328A5002BE7D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D84BA506191023A1003066E3 /* DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataLoader.h; path = Source/DataLoader.h; sourceTree = "<group>"; };
+		D84BA507191023A1003066E3 /* DataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataLoader.m; path = Source/DataLoader.m; sourceTree = "<group>"; };
 		D851C24110C250F90041F3DE /* warning_icon_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = warning_icon_black.png; path = Resources/warning_icon_black.png; sourceTree = "<group>"; };
 		D8643387190E1CCB00A036C1 /* logo_no_internet_orig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_no_internet_orig@2x.png"; path = "Resources/logo_no_internet_orig@2x.png"; sourceTree = "<group>"; };
 		D867991D112120F100F865E5 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = Source/log.h; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 		D890424110F3DEAA00212963 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeterView.m; path = Source/MeterView.m; sourceTree = "<group>"; };
 		D892C3A41112F70500D157D2 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsView.h; path = Source/SettingsView.h; sourceTree = "<group>"; };
 		D892C3A51112F70500D157D2 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsView.m; path = Source/SettingsView.m; sourceTree = "<group>"; };
+		D89DFACB191919E50030C1FE /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Source/UICKeyChainStore.h; sourceTree = "<group>"; };
+		D89DFACC191919E50030C1FE /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Source/UICKeyChainStore.m; sourceTree = "<group>"; };
 		D8C56CEF10CE74210041B368 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8C56CF910D076DE0041B368 /* SolarAnalysis.numbers */ = {isa = PBXFileReference; lastKnownFileType = file; name = SolarAnalysis.numbers; path = Documentation/Design/SolarAnalysis.numbers; sourceTree = "<group>"; };
 		D8C681DC10E4702900DBF9E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Source/MainViewController.h; sourceTree = "<group>"; };
@@ -331,6 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				D8E974FB10A09B500065EE31 /* MeterViewSizing.h */,
+				D89DFACB191919E50030C1FE /* UICKeyChainStore.h */,
+				D89DFACC191919E50030C1FE /* UICKeyChainStore.m */,
 				D8CB7C4A190AD4BB000D3D97 /* TouchXML */,
 				D868338011400DF10065B3A8 /* MuiKit */,
 				D834617F10C5F42B00EDF14F /* ASIHTTPRequest */,
@@ -572,6 +580,8 @@
 				D8E974B610A098520065EE31 /* PowerMeter.m */,
 				D8E974B910A098520065EE31 /* VoltageMeter.h */,
 				D8E974BA10A098520065EE31 /* VoltageMeter.m */,
+				D84BA506191023A1003066E3 /* DataLoader.h */,
+				D84BA507191023A1003066E3 /* DataLoader.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -698,6 +708,8 @@
 				D8CB7C74190AD4BB000D3D97 /* CTidy.m in Sources */,
 				D8EE26261908560F00D29479 /* ASIDataDecompressor.m in Sources */,
 				D8EE26271908560F00D29479 /* ASIDownloadCache.m in Sources */,
+				D84BA508191023A1003066E3 /* DataLoader.m in Sources */,
+				D89DFACD191919E50030C1FE /* UICKeyChainStore.m in Sources */,
 				D8EE26251908560F00D29479 /* ASIDataCompressor.m in Sources */,
 				D8E9749210A0971C0065EE31 /* TedometerAppDelegate.m in Sources */,
 				D8E9749710A097390065EE31 /* MainView.m in Sources */,
@@ -752,6 +764,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -776,6 +789,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
 				COPY_PHASE_STRIP = YES;

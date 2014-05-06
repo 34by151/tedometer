@@ -26,6 +26,8 @@
 #define kCarbonMeterIdx 	2
 #define kVoltageMeterIdx	3
 
+#define kUnusedArchiveEntryValue @"<unused>"
+
 @interface TedometerData()
 - (void) clearIsLoadingXmlFlag;
 @end
@@ -56,9 +58,11 @@
 @synthesize connectionErrorMsg;
 @synthesize isApplicationInactive;
 @synthesize isShowingTodayStatistics;
+@synthesize detectedHardwareType;
 @synthesize hasDisplayedDialEditHelpMessage;
 @synthesize isDialBeingEdited;
 @synthesize isPatchingAggregationDataSelected;
+
 
 // ----------------------------------------------------------------------
 // From http://www.cocoadev.com/index.pl?SingletonDesignPattern
@@ -95,7 +99,7 @@ static TedometerData *sharedTedometerData = nil;
             if (self = [super init]) {
 				
                 // custom initialization here
-				
+				            
 				TedometerData *tedometerData = [TedometerData unarchiveFromDocumentsFolder];
 				DLog( @"tedometerData.curMeterTypeIdx = %ld", (long)tedometerData.curMeterTypeIdx );
 				
@@ -207,14 +211,26 @@ NSString* _archiveLocation;
 							
 + (TedometerData *) unarchiveFromDocumentsFolder {
 	TedometerData *tedometerData = [NSKeyedUnarchiver unarchiveObjectWithFile:[TedometerData archiveLocation]];
+
+    if( tedometerData.username && ! [tedometerData.username isEqualToString:kUnusedArchiveEntryValue] ) {
+        // upgrading from version that didn't store username/password in keychain
+        [UICKeyChainStore setString:tedometerData.username forKey:@"username"];
+        [UICKeyChainStore setString:tedometerData.password forKey:@"password"];
+    }
+    tedometerData.username = [UICKeyChainStore stringForKey:@"username"];
+    tedometerData.password = [UICKeyChainStore stringForKey:@"password"];
 	return tedometerData;
 
 }	
 
 + (BOOL) archiveToDocumentsFolder {
 	BOOL result = NO;
-	if( sharedTedometerData )
+	if( sharedTedometerData ) {
+
+        [UICKeyChainStore setString:sharedTedometerData.username forKey:@"username"];
+        [UICKeyChainStore setString:sharedTedometerData.password forKey:@"password"];
 		result = [NSKeyedArchiver archiveRootObject:sharedTedometerData toFile:[TedometerData archiveLocation]];
+    }
 	return result;
 }
 
@@ -284,8 +300,9 @@ NSString* _archiveLocation;
 	[encoder encodeObject:mtusArray forKey:@"mtusArray"];
 	[encoder encodeInteger:refreshRate forKey:@"refreshRate"];
 	[encoder encodeObject:gatewayHost forKey:@"gatewayHost"];
-	[encoder encodeObject:username forKey:@"username"];
-	[encoder encodeObject:password forKey:@"password"];
+    // we used to encode username and password here, so blank them out just in case
+	[encoder encodeObject:kUnusedArchiveEntryValue forKey:@"username"];
+	[encoder encodeObject:kUnusedArchiveEntryValue forKey:@"password"];
 	[encoder encodeBool:useSSL forKey:@"useSSL"];
 	[encoder encodeInteger:curMeterTypeIdx forKey:@"curMeterTypeIdx"];
 	[encoder encodeInteger:curMtuIdx forKey:@"curMtuIdx"];
@@ -293,6 +310,7 @@ NSString* _archiveLocation;
 	[encoder encodeBool:isAutolockDisabledWhilePluggedIn forKey:@"isAutolockDisabledWhilePluggedIn"];
 	[encoder encodeInteger:hasDisplayedDialEditHelpMessage forKey:@"hasDisplayedDialEditHelpMessage"];
 	[encoder encodeBool:isPatchingAggregationDataSelected forKey:@"isPatchingAggregationDataSelected"];
+    [encoder encodeInteger:detectedHardwareType forKey:@"detectedHardwareType"];
 }
 
 - (id) initWithCoder:(NSCoder*)decoder {
@@ -300,8 +318,15 @@ NSString* _archiveLocation;
 		self.mtusArray = [decoder decodeObjectForKey:@"mtusArray"];
 		self.refreshRate = [decoder decodeIntegerForKey:@"refreshRate"];
 		self.gatewayHost = [decoder decodeObjectForKey:@"gatewayHost"];
+
+        // Here we unarchive entries for username and password, so that we can use them
+        // if upgrading from a version that didn't store them in the keychain.
+        // If we HAVE already upgraded, these entries will be set to @"<unused>".
+        // The calling method (unarchiveFromDocumentFolder:) will take care of
+        // initiating them from the Keychain.
 		self.username = [decoder decodeObjectForKey:@"username"];
 		self.password = [decoder decodeObjectForKey:@"password"];
+
 		self.useSSL = [decoder decodeBoolForKey:@"useSSL"];
 		curMeterTypeIdx = [decoder decodeIntegerForKey:@"curMeterTypeIdx"];
 		curMtuIdx = [decoder decodeIntegerForKey:@"curMtuIdx"];
@@ -309,6 +334,7 @@ NSString* _archiveLocation;
 		self.isAutolockDisabledWhilePluggedIn = [decoder decodeBoolForKey:@"isAutolockDisabledWhilePluggedIn"];
 		self.hasDisplayedDialEditHelpMessage = [decoder decodeIntegerForKey:@"hasDisplayedDialEditHelpMessage"];
 		self.isPatchingAggregationDataSelected = [decoder decodeBoolForKey:@"isPatchingAggregationDataSelected"];
+        self.detectedHardwareType = [decoder decodeIntegerForKey:@"detectedHardwareType"];
 	}
 	return self;
 }
@@ -535,7 +561,6 @@ NSString* _archiveLocation;
 	self.mtusArray = nil;
 	if( gatewayHost )
 		[gatewayHost release];
-	
 	[super dealloc];
 }
 

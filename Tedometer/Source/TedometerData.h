@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Meter.h"
+#import "UICKeyChainStore.h"
+@import Security;
 
 #define NUM_METER_TYPES		4
 #define NUM_MTUS			5	// 4 MTUs plus a net
@@ -35,6 +37,8 @@ typedef enum {
 
 @interface TedometerData : NSObject <NSCoding> {
 
+//    KeychainItemWrapper *keychain;
+    
 	NSInteger refreshRate;
 	NSString* gatewayHost;
 	NSString* username;
@@ -45,6 +49,7 @@ typedef enum {
 	BOOL isApplicationInactive;
 	BOOL isShowingTodayStatistics;
 	BOOL isDialBeingEdited;				// don't reload data while dial is being edited; seems to crash the app
+    NSInteger detectedHardwareType;
 	
 	BOOL hasDisplayedDialEditHelpMessage;
 	
@@ -92,6 +97,7 @@ typedef enum {
 @property(readwrite, assign) BOOL hasEstablishedSuccessfulConnectionThisSession;
 @property(readwrite, assign) BOOL isApplicationInactive;
 @property(readwrite, assign) BOOL isShowingTodayStatistics;
+@property(readwrite, assign) NSInteger detectedHardwareType;
 @property(readwrite, assign) BOOL isLoadingXml;
 @property(readwrite, copy) NSString *connectionErrorMsg;
 @property(readwrite, assign) BOOL hasDisplayedDialEditHelpMessage;
@@ -99,6 +105,7 @@ typedef enum {
 @property(readwrite, assign) NSInteger curMeterTypeIdx;
 @property(readwrite, assign) NSInteger curMtuIdx;
 @property(readonly) Meter* curMeter;
+
 
 + (TedometerData *) sharedTedometerData;
 

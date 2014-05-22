@@ -591,8 +591,8 @@ static UIFont *labelFont;
     CGContextSetShadowWithColor( dialContext->context, CGSizeMake( 0, 2.5 ), 3, [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3].CGColor );
 //	CGContextSetShadow( dialContext->context, CGSizeMake( 0, 3.5 ), 2 );
 	
-	float centerOffset = -30.0;
-	float largeEndWidth = 1.0;
+	float centerOffset = -27.0;
+	float largeEndWidth = 2;
 	
 	double arrowLength = 0.79 * dialContext->meterRadius;
 	

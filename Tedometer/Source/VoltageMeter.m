@@ -7,7 +7,7 @@
 //
 
 #import "VoltageMeter.h"
-#import "TedometerData.h"
+#import "TED5000DataLoader.h"
 #import "MeterViewSizing.h"
 
 @implementation VoltageMeter
@@ -145,7 +145,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	else 
 		parentNodePath = [NSString stringWithFormat: @"Voltage.MTU%ld", (long)mtuNumber];
 	
-	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
+	isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];
 	
 	[nodesKeyedByProperty release];
@@ -158,7 +158,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 														 @"PeakVoltageMTD",			@"mtdPeakValue",
 														 nil];
 		
-		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
 															intoObject:self 
 												   withParentMeterNode:@"Voltage" 
 											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 
@@ -171,7 +171,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 														 @"PeaVoltageMTD",			@"mtdMinValue",
 														 nil];
 		
-		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
 															intoObject:self 
 												   withParentMeterNode:@"Voltage" 
 											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 

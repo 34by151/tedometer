@@ -38,6 +38,7 @@
 		D890424210F3DEAA00212963 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D890424110F3DEAA00212963 /* MeterView.m */; };
 		D892C3A61112F70500D157D2 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D892C3A51112F70500D157D2 /* SettingsView.m */; };
 		D89DFACD191919E50030C1FE /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D89DFACC191919E50030C1FE /* UICKeyChainStore.m */; };
+		D8A2DFDD1927CC5E0071621A /* TED5000DataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2DFDC1927CC5E0071621A /* TED5000DataLoader.m */; };
 		D8C56CF010CE74210041B368 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C56CEF10CE74210041B368 /* CoreLocation.framework */; };
 		D8C681DF10E4702900DBF9E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C681DD10E4702900DBF9E3 /* MainViewController.m */; };
 		D8C681E010E4702900DBF9E3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C681DE10E4702900DBF9E3 /* MainView.xib */; };
@@ -150,6 +151,8 @@
 		D892C3A51112F70500D157D2 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsView.m; path = Source/SettingsView.m; sourceTree = "<group>"; };
 		D89DFACB191919E50030C1FE /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Source/UICKeyChainStore.h; sourceTree = "<group>"; };
 		D89DFACC191919E50030C1FE /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Source/UICKeyChainStore.m; sourceTree = "<group>"; };
+		D8A2DFDB1927CC5E0071621A /* TED5000DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TED5000DataLoader.h; path = Source/TED5000DataLoader.h; sourceTree = "<group>"; };
+		D8A2DFDC1927CC5E0071621A /* TED5000DataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TED5000DataLoader.m; path = Source/TED5000DataLoader.m; sourceTree = "<group>"; };
 		D8C56CEF10CE74210041B368 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D8C56CF910D076DE0041B368 /* SolarAnalysis.numbers */ = {isa = PBXFileReference; lastKnownFileType = file; name = SolarAnalysis.numbers; path = Documentation/Design/SolarAnalysis.numbers; sourceTree = "<group>"; };
 		D8C681DC10E4702900DBF9E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Source/MainViewController.h; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 				D8E974BA10A098520065EE31 /* VoltageMeter.m */,
 				D84BA506191023A1003066E3 /* DataLoader.h */,
 				D84BA507191023A1003066E3 /* DataLoader.m */,
+				D8A2DFDB1927CC5E0071621A /* TED5000DataLoader.h */,
+				D8A2DFDC1927CC5E0071621A /* TED5000DataLoader.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				D8E974BC10A098520065EE31 /* CostMeter.m in Sources */,
 				D8E974BD10A098520065EE31 /* Meter.m in Sources */,
 				D8E974BE10A098520065EE31 /* PowerMeter.m in Sources */,
+				D8A2DFDD1927CC5E0071621A /* TED5000DataLoader.m in Sources */,
 				D8CB7C70190AD4BB000D3D97 /* CXMLNamespaceNode.m in Sources */,
 				D8E974BF10A098520065EE31 /* TedometerData.m in Sources */,
 				D8CB7C6E190AD4BB000D3D97 /* CXMLElement_CreationExtensions.m in Sources */,

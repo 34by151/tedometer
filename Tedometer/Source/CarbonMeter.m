@@ -9,7 +9,7 @@
 #import "CarbonMeter.h"
 #import "TouchXML.h"
 #import "CXMLNode-utils.h"
-#import "TedometerData.h"
+#import "TED5000DataLoader.h"
 #import "MeterViewSizing.h"
 
 @implementation CarbonMeter
@@ -98,7 +98,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	
 	BOOL isSuccessful = [super refreshDataFromXmlDocument:document]; 
 	if( isSuccessful ) {
-		isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Utility" 
+		isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Utility"
 											  andNodesKeyedByProperty:[NSDictionary dictionaryWithObject:@"CarbonRate" forKey:@"carbonRate"]];
 	}
 	

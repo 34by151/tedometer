@@ -7,7 +7,7 @@
 //
 
 #import "PowerMeter.h"
-#import "TedometerData.h"
+#import "TED5000DataLoader.h"
 #import "MeterViewSizing.h"
 
 @implementation PowerMeter
@@ -157,7 +157,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	else 
 		parentNodePath = [NSString stringWithFormat: @"Power.MTU%ld", (long)mtuNumber];
 	
-	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
+	isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:parentNodePath 
 										   andNodesKeyedByProperty:nodesKeyedByProperty];
 	[nodesKeyedByProperty release];
 	
@@ -171,7 +171,7 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 											 @"MinMTD",			@"mtdMinValue",
 											 nil];
 		
-		isSuccessful = [TedometerData fixNetMeterValuesFromXmlDocument:document 
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
 															intoObject:self 
 												   withParentMeterNode:@"Power" 
 											   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty usingAggregationOp:kAggregationOpSum];

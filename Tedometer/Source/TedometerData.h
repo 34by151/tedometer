@@ -35,6 +35,12 @@ typedef enum {
 	kAggregationOpMax
 } AggregationOp;
 
+typedef enum {
+    kHardwareTypeUnknown = 0,
+    kHardwareTypeTED5000,
+    kHardwareTypeTED6000
+} HardwareType;
+
 @interface TedometerData : NSObject <NSCoding> {
 
 //    KeychainItemWrapper *keychain;
@@ -55,7 +61,6 @@ typedef enum {
 	
 	BOOL isPatchingAggregationDataSelected;
 	
-	BOOL isLoadingXml;
 	NSString *connectionErrorMsg;
 	
 	NSInteger curMeterTypeIdx;
@@ -98,7 +103,6 @@ typedef enum {
 @property(readwrite, assign) BOOL isApplicationInactive;
 @property(readwrite, assign) BOOL isShowingTodayStatistics;
 @property(readwrite, assign) NSInteger detectedHardwareType;
-@property(readwrite, assign) BOOL isLoadingXml;
 @property(readwrite, copy) NSString *connectionErrorMsg;
 @property(readwrite, assign) BOOL hasDisplayedDialEditHelpMessage;
 
@@ -117,8 +121,6 @@ typedef enum {
 - (void) reloadXmlDocumentInBackground;
 - (void) reloadXmlDocument;
 
-- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
-
 - (void) activatePowerMeter;
 - (void) activateCostMeter;
 - (void) activateCarbonMeter;
@@ -127,17 +129,10 @@ typedef enum {
 - (void) encodeWithCoder:(NSCoder*)encoder;
 - (id) initWithCoder:(NSCoder*)decoder;
 
+- (BOOL) isUsingDemoAccount;
+
 + (NSString*)archiveLocation;
 + (TedometerData *) unarchiveFromDocumentsFolder;
 + (BOOL) archiveToDocumentsFolder;
-+ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object 
-		withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)propertiesKeyedByNodeDict;
-+ (BOOL) fixNetMeterValuesFromXmlDocument:(CXMLDocument*) document 
-							   intoObject:(Meter*) meterObject 
-					  withParentMeterNode:(NSString*)parentNode 
-				  andNodesKeyedByProperty:(NSDictionary*)netMeterFixNodesKeyedByProperty 
-							 usingAggregationOp:(AggregationOp)aggregationOp;
-
-+ (CXMLNode *) nodeInXmlDocument:(CXMLDocument *)document atPath:(NSString*)nodePath;
 
 @end

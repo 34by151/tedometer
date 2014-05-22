@@ -9,6 +9,7 @@
 //#define USE_TEST_DATA	0
 
 #import "TedometerData.h"
+#import "DataLoader.h"
 #import "PowerMeter.h"
 #import "CostMeter.h"
 #import "CarbonMeter.h"
@@ -20,6 +21,9 @@
 #import "ASIHTTPRequest.h"
 #import "log.h"
 #import "Flurry.h"
+#import "TED5000DataLoader.h"
+#import "CXMLNode-utils.h"
+
 
 #define kPowerMeterIdx		0
 #define kCostMeterIdx		1
@@ -29,12 +33,9 @@
 #define kUnusedArchiveEntryValue @"<unused>"
 
 @interface TedometerData()
-- (void) clearIsLoadingXmlFlag;
 @end
 	
 @implementation TedometerData
-
-
 
 @synthesize mtusArray;
 @synthesize refreshRate;
@@ -54,7 +55,6 @@
 @synthesize isAutolockDisabledWhilePluggedIn;
 @synthesize curMtuIdx;
 @synthesize hasEstablishedSuccessfulConnectionThisSession;
-@synthesize isLoadingXml;
 @synthesize connectionErrorMsg;
 @synthesize isApplicationInactive;
 @synthesize isShowingTodayStatistics;
@@ -80,12 +80,12 @@ static TedometerData *sharedTedometerData = nil;
     return sharedTedometerData;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
++ (id)alloc
 {
     Class myClass = [self class];
     @synchronized(myClass) {
         if (sharedTedometerData == nil) {
-            return [super allocWithZone:zone];
+            return [super alloc];
         }
     }
     return sharedTedometerData;
@@ -164,7 +164,6 @@ static TedometerData *sharedTedometerData = nil;
 				if( self.refreshRate == 0 )
 					self.refreshRate = 10;
 				
-				self.isLoadingXml = NO;
 				self.connectionErrorMsg = nil;
 				self.hasEstablishedSuccessfulConnectionThisSession = NO;
 
@@ -399,7 +398,6 @@ NSString* _archiveLocation;
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadWillBegin object:self];
 
-	self.isLoadingXml = YES;
 	self.connectionErrorMsg = nil;
 	
 	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
@@ -412,150 +410,49 @@ NSString* _archiveLocation;
 	
 	DLog(@"Reloading XML Document..." );
 
-	NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init]; 
-
-	NSString *urlString;
-    // Apple requires a demo account for testing -- just use the Google Code GIT repository for now.
-	BOOL usingDemoAccount = NO;
-	if( [@"tedometer.googlecode.com" isEqualToString: [self.gatewayHost lowercaseString]] )
-	{
-		usingDemoAccount = YES;
-	}
-	
-	if( usingDemoAccount ) {
-		urlString = [NSString stringWithFormat:@"%@://tedometer.googlecode.com/git/Tedometer/Resources/Data/5000/1.xml", self.useSSL ? @"https" : @"http"];
-    }
-	else {
-		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", self.useSSL ? @"https" : @"http", self.gatewayHost];
-    }
+    // TODO: Detect hardware type only if currently unknown or hardware failure occurs;
+    // persist to storage or only for duration of app running?
+    
+    self.detectedHardwareType = [DataLoader detectHardwareTypeWithSettingsInTedometerData: self];
+    
+	NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
 
     BOOL success = NO;
     NSError *error = nil;
-    NSString *responseContent = nil;
-	
-    if( [self.gatewayHost hasPrefix:@"Data/"] ) {
-        // Use test data
-        urlString = [self.gatewayHost stringByAppendingString: @".xml"];    // used for error reporting (below)
-        NSString *path = [[NSBundle mainBundle] pathForResource:self.gatewayHost ofType:@"xml"];
-        responseContent = [NSString stringWithContentsOfFile: path encoding:NSUTF8StringEncoding error: &error];
-    }
-    else {
-	
-        NSURL *url = [NSURL URLWithString: urlString];
-        
-        ALog(@"Attempting connection with URL %@", url);
-        
-        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-        [request setUseSessionPersistence:NO];
-        if( ! usingDemoAccount ) {
-            if( self.useSSL ) 
-                [request setValidatesSecureCertificate:NO];
-            [request setUsername:self.username];
-            [request setPassword:self.password];
-        }
-        
-        [request startSynchronous];
-        error = [request error];
-        if (!error) {
-            responseContent = [request responseString];
-        }
+
+    if( self.detectedHardwareType == kHardwareTypeTED5000 ) {
+        TED5000DataLoader *dataLoader = [[TED5000DataLoader alloc] init];
+        success = [dataLoader reload:self error:&error ];
+        [dataLoader release];
     }
     
-    if( !error ) {
-		
-		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:responseContent options:0 error:&error] retain];
-		if( newDocument ) {
-			success = YES;
+    if( success ) {
 			self.connectionErrorMsg = nil;
-			[self refreshDataFromXmlDocument: newDocument];
-			
 			self.hasEstablishedSuccessfulConnectionThisSession = YES;
-			
-		}
 	}
-	
-	if( ! success ) {
-		if( [[error domain] isEqualToString:@"CXMLErrorDomain"] ) {
-			self.connectionErrorMsg = [NSString stringWithFormat:@"Unable to parse data from %@", urlString];
-		}
-		else {
+    else {
+        if( error ) {
 			self.connectionErrorMsg = [error localizedDescription];
 		}
+		else {
+            if( self.detectedHardwareType == kHardwareTypeUnknown ) {
+                self.connectionErrorMsg = @"Unrecognized gateway";
+            }
+            else {
+                self.connectionErrorMsg = @"Failed to load gateway data";
+            }
+		}
+        
 		ALog( @"%@", self.connectionErrorMsg);
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
 
 	}
-	[self clearIsLoadingXmlFlag];
 	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadDidFinish object:self];
 	DLog( "Finished loading XML document." );
 	[autoreleasePool drain];
 
 }
 
-- (void) clearIsLoadingXmlFlag {
-	
-	// In 2.0, when we were observing isLoadingXml in the MeterViewController, self.isLoadingXml = NO 
-	// seemed to cause exceptions at times. This method is an attempt to catch and ignore (but note) those
-	// exceptions, since they aren't really fatal.
-	//
-	// Now that we use notifications instead, this property isn't used. Keeping it in case it becomes useful.
-	@try {
-		self.isLoadingXml = NO;
-	}
-	@catch( NSException *exception ) {
-		NSString *msg = [NSString stringWithFormat: @"%@ in %s", [exception name], __PRETTY_FUNCTION__ ];
-		[Flurry logError: [exception name] message:msg exception:exception];
-	}
-}
-
-- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
-
-	BOOL isSuccessful = NO;
-
-	NSDictionary* gatewayTimeNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
-										   @"Hour", @"gatewayHour", 
-										   @"Minute", @"gatewayMinute", 
-										   @"Month", @"gatewayMonth", 
-										   @"Day", @"gatewayDayOfMonth", 
-										   @"Year", @"gatewayYear", 
-										   nil];
-	isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"GatewayTime" 
-										  andNodesKeyedByProperty:gatewayTimeNodesKeyedByProperty];
-
-	if( isSuccessful ) {
-		NSDictionary* utilityNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
-														 @"CarbonRate", @"carbonRate", 
-														 @"CurrentRate", @"currentRate", 
-														 @"MeterReadDate", @"meterReadDate", 
-														 @"DaysLeftInBillingCycle", @"daysLeftInBillingCycle", 
-														 nil];
-		isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Utility" 
-										   andNodesKeyedByProperty:utilityNodesKeyedByProperty];
-	}
-	
-	if( isSuccessful ) {
-		NSDictionary* systemNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys: 
-													 @"NumberMTU", @"mtuCount", 
-													 nil];
-		isSuccessful = [TedometerData loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"System" 
-											   andNodesKeyedByProperty:systemNodesKeyedByProperty];
-	}
-	
-	if( isSuccessful ) {
-		
-		for( NSArray *mtuArray in mtusArray ) {
-			for( Meter *aMeter in mtuArray ) {
-				DLog(@"Refreshing data for meter %@ MTU%ld...", [aMeter meterTitle], (long)[aMeter mtuNumber]);
-				isSuccessful = [aMeter refreshDataFromXmlDocument:document];
-				if( ! isSuccessful )
-					break;
-			}
-			if( ! isSuccessful )
-				break;
-		}
-	}
-	return isSuccessful;
-}
 
 - (void) dealloc {
 	self.mtusArray = nil;
@@ -564,114 +461,15 @@ NSString* _archiveLocation;
 	[super dealloc];
 }
 
-+ (CXMLNode *) nodeInXmlDocument:(CXMLDocument *)document atPath:(NSString*)nodePath {
 
-	CXMLNode *node = [document rootElement];
-	for( NSString* pathElement in [nodePath componentsSeparatedByString:@"."] ) {
-		node = [node childNamed:pathElement];
-		if( node == nil ) {
-			DLog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
-			break;
-		}
-	}
-	return node;
-}
-
-+ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict {
-	
-	BOOL isSuccessful = NO; 
-
-	CXMLNode *parentNode = [TedometerData nodeInXmlDocument:document atPath:parentNodePath];
-
-	if( parentNode ) {
-		isSuccessful = YES;
-		for( NSString *aPropertyName in [nodesKeyedByPropertyDict allKeys] ) {
-			NSString *aNodeName = [nodesKeyedByPropertyDict objectForKey:aPropertyName];
-			CXMLNode *aNode = [parentNode childNamed:aNodeName];
-			NSInteger aValue;
-			if( aNode == nil ) {
-				DLog(@"Could not find node named '%@' at path '%@'. Defaulting to 0.", aNodeName, parentNodePath);
-				aValue = 0;
-			}
-			else {
-				aValue = [[aNode stringValue] integerValue];
-			}
-			
-			NSNumber *aNumberObject = [[NSNumber alloc] initWithInteger:aValue];
-			[object setValue:aNumberObject forKey:aPropertyName];
-			[aNumberObject release];
-		}
-	}
-	
-	return isSuccessful;
-}
-
-
-+ (BOOL) fixNetMeterValuesFromXmlDocument:(CXMLDocument*) document 
-							   intoObject:(Meter*) meterObject 
-					  withParentMeterNode:(NSString*)parentNode 
-				  andNodesKeyedByProperty:(NSDictionary*)netMeterFixNodesKeyedByProperty 
-							 usingAggregationOp:(AggregationOp)aggregationOp
+-(BOOL)isUsingDemoAccount;
 {
-	BOOL isSuccessful = YES;
-	
-	
-	long mtuCount = [TedometerData sharedTedometerData].mtuCount;
-	if( [TedometerData sharedTedometerData].isPatchingAggregationDataSelected && mtuCount > 1 ) {
-		
-		NSMutableDictionary *mtuTotalsKeyedByProperty = [[NSMutableDictionary alloc] initWithCapacity: [netMeterFixNodesKeyedByProperty allKeys].count];
-		
-		for( NSInteger i=0; i < mtuCount; ++i ) {
-			NSString *mtuNodePath = [NSString stringWithFormat:@"%@.MTU%ld", parentNode, (long)i+1];
-			CXMLNode *mtuNode = [TedometerData nodeInXmlDocument:document atPath:mtuNodePath];
-			if( ! mtuNode ) {
-				isSuccessful = NO;
-				continue;
-			}
-			
-			for( NSString *aPropertyName in [netMeterFixNodesKeyedByProperty allKeys] ) {
-				NSString *aNodeName = [netMeterFixNodesKeyedByProperty objectForKey:aPropertyName];
-				CXMLNode *aNode = [mtuNode childNamed:aNodeName];
-				NSInteger aValue;
-				if( aNode == nil ) {
-					DLog(@"No node found at %@.%@", mtuNodePath, aNodeName );
-				}
-				if( aNode != nil ) {
-					aValue = [[aNode stringValue] integerValue];
-
-					NSNumber *prevValueObject = [mtuTotalsKeyedByProperty objectForKey:aPropertyName];
-					if( prevValueObject ) {
-						NSInteger prevValue = [prevValueObject integerValue];
-						switch( aggregationOp ) {
-							case kAggregationOpSum: aValue += prevValue; break;
-							case kAggregationOpMax: aValue = MAX( aValue, prevValue ); break;
-							case kAggregationOpMin: aValue = MIN( aValue, prevValue ); break;
-							default: {
-								NSException *e = [NSException exceptionWithName:@"UnrecognizedArgumentException" reason:[NSString stringWithFormat:@"Unrecognized AggregationOp: %d", aggregationOp] userInfo:nil];
-								[e raise];
-							}
-						}
-					}
-					
-					prevValueObject = [[NSNumber alloc] initWithInteger:aValue];
-					[mtuTotalsKeyedByProperty setValue:prevValueObject forKey:aPropertyName];
-					[prevValueObject release];
-				}
-				
-			}
-		}
-	
-		for( NSString *aPropertyName in [netMeterFixNodesKeyedByProperty allKeys] ) {
-			NSNumber *prevValueObject = [mtuTotalsKeyedByProperty objectForKey:aPropertyName];
-			if( prevValueObject ) {
-				[meterObject setValue:prevValueObject forKey:aPropertyName];
-			}
-		}
-		
-		[mtuTotalsKeyedByProperty release];
-	}
-
-	return isSuccessful;
+    BOOL usingDemoAccount = NO;
+    if( [@"tedometer.googlecode.com" isEqualToString: [self.gatewayHost lowercaseString]] ) {
+        usingDemoAccount = YES;
+    }
+    return usingDemoAccount;
 }
+
 
 @end

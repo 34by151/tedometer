@@ -94,16 +94,6 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 }
 
 
-- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
-	
-	BOOL isSuccessful = [super refreshDataFromXmlDocument:document]; 
-	if( isSuccessful ) {
-		isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:self withParentNodePath:@"Utility"
-											  andNodesKeyedByProperty:[NSDictionary dictionaryWithObject:@"CarbonRate" forKey:@"carbonRate"]];
-	}
-	
-	return isSuccessful;
-}
 
 - (id) init {
 	if( self = [super init] ) {

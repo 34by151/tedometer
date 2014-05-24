@@ -18,6 +18,5 @@
                      withParentMeterNode:(NSString*)parentNode
                  andNodesKeyedByProperty:(NSDictionary*)netMeterFixNodesKeyedByProperty
                       usingAggregationOp:(AggregationOp)aggregationOp;
-+ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict;
 
 @end

@@ -100,7 +100,6 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 
 - (id) initWithMtuNumber:(NSInteger)mtuNum;
 - (id) initNetMeterWithMtuMeters: (NSArray*)meters;
-- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
 - (void) encodeWithCoder:(NSCoder*)encoder;
 - (id) initWithCoder:(NSCoder*)decoder;
 - (NSInteger) valueForMeterValueType:(MeterValueType)unitType;

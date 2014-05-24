@@ -294,13 +294,6 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 	return [NSString stringWithFormat:@"%0ld", (long)value];
 }
 
-- (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document {
-	
-	[self doesNotRecognizeSelector:_cmd];
-	return NO;
-}
-
-
 -(void)dealloc {
 	if( mtuNumber == 0 ) {
 		[mtuMeters release];

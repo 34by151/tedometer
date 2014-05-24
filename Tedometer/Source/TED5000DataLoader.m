@@ -10,11 +10,21 @@
 #import "ASIHTTPRequest.h"
 #import "log.h"
 #import "CXMLNode-utils.h"
+#import "CXMLDocument+utils.h"
+#import "VoltageMeter.h"
+#import "CarbonMeter.h"
+#import "CostMeter.h"
+#import "PowerMeter.h"
 
 // private
 @interface DataLoader()
 - (BOOL)refreshTedometerData:(TedometerData *)tedometerData fromXmlDocument:(CXMLDocument *)document;
 - (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document;
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoVoltageMeter:(VoltageMeter *)meter;
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoCostMeter:(CostMeter*)meter;
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoCarbonMeter:(CarbonMeter*)meter;
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoPowerMeter:(PowerMeter*)meter;
+
 @end
 
 @implementation TED5000DataLoader
@@ -120,7 +130,7 @@
                                                      @"Day", @"gatewayDayOfMonth",
                                                      @"Year", @"gatewayYear",
                                                      nil];
-	isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:tedometerData withParentNodePath:@"GatewayTime"
+	isSuccessful = [document loadIntegerValuesIntoObject:tedometerData withParentNodePath:@"GatewayTime"
                                            andNodesKeyedByProperty:gatewayTimeNodesKeyedByProperty];
     
 	if( isSuccessful ) {
@@ -130,7 +140,7 @@
                                                      @"MeterReadDate", @"meterReadDate",
                                                      @"DaysLeftInBillingCycle", @"daysLeftInBillingCycle",
                                                      nil];
-		isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:tedometerData withParentNodePath:@"Utility"
+		isSuccessful = [document loadIntegerValuesIntoObject:tedometerData withParentNodePath:@"Utility"
                                                andNodesKeyedByProperty:utilityNodesKeyedByProperty];
 	}
 	
@@ -138,7 +148,7 @@
 		NSDictionary* systemNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys:
                                                     @"NumberMTU", @"mtuCount",
                                                     nil];
-		isSuccessful = [TED5000DataLoader loadIntegerValuesFromXmlDocument:document intoObject:tedometerData withParentNodePath:@"System"
+		isSuccessful = [document loadIntegerValuesIntoObject:tedometerData withParentNodePath:@"System"
 											   andNodesKeyedByProperty:systemNodesKeyedByProperty];
 	}
 	
@@ -147,7 +157,23 @@
 		for( NSArray *mtuArray in tedometerData.mtusArray ) {
 			for( Meter *aMeter in mtuArray ) {
 				DLog(@"Refreshing data for meter %@ MTU%ld...", [aMeter meterTitle], (long)[aMeter mtuNumber]);
-				isSuccessful = [aMeter refreshDataFromXmlDocument:document];
+                if( [aMeter isMemberOfClass: [VoltageMeter class]] ) {
+                    isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoVoltageMeter:(VoltageMeter*)aMeter];
+                }
+                else if( [aMeter isMemberOfClass: [CarbonMeter class]] ) {
+                    isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoCarbonMeter:(CarbonMeter*)aMeter];
+                }
+                else if( [aMeter isMemberOfClass: [PowerMeter class]] ) {
+                    isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoPowerMeter:(PowerMeter*)aMeter];
+                }
+                else if( [aMeter isMemberOfClass: [CostMeter class]] ) {
+                    isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoCostMeter:(CostMeter*)aMeter];
+                }
+                else {
+                    ALog(@"ERROR: Unrecognized meter type %@", [[aMeter class] description]);
+                    isSuccessful = FALSE;
+                }
+                
 				if( ! isSuccessful )
 					break;
 			}
@@ -155,48 +181,6 @@
 				break;
 		}
 	}
-	return isSuccessful;
-}
-
-+ (CXMLNode *) nodeInXmlDocument:(CXMLDocument *)document atPath:(NSString*)nodePath {
-    
-	CXMLNode *node = [document rootElement];
-	for( NSString* pathElement in [nodePath componentsSeparatedByString:@"."] ) {
-		node = [node childNamed:pathElement];
-		if( node == nil ) {
-			DLog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
-			break;
-		}
-	}
-	return node;
-}
-
-+ (BOOL)loadIntegerValuesFromXmlDocument:(CXMLDocument *)document intoObject:(NSObject*) object withParentNodePath:(NSString*)parentNodePath andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict {
-	
-	BOOL isSuccessful = NO;
-    
-	CXMLNode *parentNode = [TED5000DataLoader nodeInXmlDocument:document atPath:parentNodePath];
-    
-	if( parentNode ) {
-		isSuccessful = YES;
-		for( NSString *aPropertyName in [nodesKeyedByPropertyDict allKeys] ) {
-			NSString *aNodeName = [nodesKeyedByPropertyDict objectForKey:aPropertyName];
-			CXMLNode *aNode = [parentNode childNamed:aNodeName];
-			NSInteger aValue;
-			if( aNode == nil ) {
-				DLog(@"Could not find node named '%@' at path '%@'. Defaulting to 0.", aNodeName, parentNodePath);
-				aValue = 0;
-			}
-			else {
-				aValue = [[aNode stringValue] integerValue];
-			}
-			
-			NSNumber *aNumberObject = [[NSNumber alloc] initWithInteger:aValue];
-			[object setValue:aNumberObject forKey:aPropertyName];
-			[aNumberObject release];
-		}
-	}
-	
 	return isSuccessful;
 }
 
@@ -217,7 +201,7 @@
 		
 		for( NSInteger i=0; i < mtuCount; ++i ) {
 			NSString *mtuNodePath = [NSString stringWithFormat:@"%@.MTU%ld", parentNode, (long)i+1];
-			CXMLNode *mtuNode = [TED5000DataLoader nodeInXmlDocument:document atPath:mtuNodePath];
+			CXMLNode *mtuNode = [document nodeAtPath:mtuNodePath];
 			if( ! mtuNode ) {
 				isSuccessful = NO;
 				continue;
@@ -265,6 +249,271 @@
 		[mtuTotalsKeyedByProperty release];
 	}
     
+	return isSuccessful;
+}
+
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoVoltageMeter: (VoltageMeter *) meter;
+{
+	
+	BOOL isSuccessful = NO;
+	
+	/*
+	 <Voltage>
+	 <Total>
+	 <VoltageNow>1221</VoltageNow>
+	 <LowVoltageHour>1221</LowVoltageHour>
+	 <LowVoltageToday>1213</LowVoltageToday>
+	 <LowVoltageTodayTimeHour>0</LowVoltageTodayTimeHour>
+	 <LowVoltageTodayTimeMin>8</LowVoltageTodayTimeMin>
+	 <HighVoltageHour>1223</HighVoltageHour>
+	 <HighVoltageToday>1223</HighVoltageToday>
+	 <HighVoltageTodayTimeHour>2</HighVoltageTodayTimeHour>
+	 <HighVoltageTodayTimeMin>16</HighVoltageTodayTimeMin>
+	 <LowVoltageMTD>1076</LowVoltageMTD>
+	 <LowVoltageMTDDateMonth>10</LowVoltageMTDDateMonth>
+	 <LowVoltageMTDDateDay>15</LowVoltageMTDDateDay>
+	 <HighVoltageMTD>1230</HighVoltageMTD>
+	 <HighVoltageMTDDateMonth>10</HighVoltageMTDDateMonth>
+	 <HighVoltageMTDDateDay>22</HighVoltageMTDDateDay>
+	 </Total>
+	 ...
+	 </Power>
+	 */
+	
+	NSDictionary* nodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+										  @"VoltageNow",					@"now",
+										  @"HighVoltageToday",				@"todayPeakValue",
+										  @"HighVoltageTodayTimeHour",		@"todayPeakHour",
+										  @"HighVoltageTodayTimeMin", 		@"todayPeakMinute",
+										  @"LowVoltageToday",				@"todayMinValue",
+										  @"LowVoltageTodayTimeHour",		@"todayMinHour",
+										  @"LowVoltageTodayTimeMin",		@"todayMinMinute",
+										  @"HighVoltageMTD",				@"mtdPeakValue",
+										  @"HighVoltageMTDDateMonth",		@"mtdPeakMonth",
+										  @"HighVoltageMTDDateDay",			@"mtdPeakDay",
+										  @"LowVoltageMTD",					@"mtdMinValue",
+										  @"LowVoltageMTDDateMonth",		@"mtdMinMonth",
+										  @"LowVoltageMTDDateDay",			@"mtdMinDay",
+										  nil];
+	NSString *parentNodePath;
+	if( meter.mtuNumber == 0 )
+		parentNodePath = @"Voltage.Total";
+	else
+		parentNodePath = [NSString stringWithFormat: @"Voltage.MTU%ld", (long)meter.mtuNumber];
+	
+	isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:parentNodePath
+                                 andNodesKeyedByProperty:nodesKeyedByProperty];
+	
+	[nodesKeyedByProperty release];
+	
+	if( meter.isNetMeter ) {
+		
+		// Fix peak/min for net meter
+		NSDictionary *netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+														 @"HighVoltageToday",		@"todayPeakValue",
+														 @"PeakVoltageMTD",			@"mtdPeakValue",
+														 nil];
+		
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
+                                                                intoObject:meter
+                                                       withParentMeterNode:@"Voltage"
+                                                   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty
+                                                        usingAggregationOp:kAggregationOpMax];
+		
+		[netMeterFixNodesKeyedByProperty release];
+        
+		netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                           @"LowVoltageToday",		@"todayMinValue",
+                                           @"PeaVoltageMTD",			@"mtdMinValue",
+                                           nil];
+		
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
+                                                                intoObject:meter
+                                                       withParentMeterNode:@"Voltage" 
+                                                   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 
+                                                        usingAggregationOp:kAggregationOpMin];
+		
+	}
+	
+	
+	return isSuccessful;
+}
+
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoCostMeter:(CostMeter*)meter {
+	
+	BOOL isSuccessful = NO;
+	
+	/*
+	 <Cost>
+	 <Total>
+	 <CostNow>13</CostNow>
+	 <CostHour>13</CostHour>
+	 <CostTDY>250</CostTDY>
+	 <CostMTD>6632</CostMTD>
+	 <CostProj>13219</CostProj>
+	 <PeakTdy>95</PeakTdy>
+	 <PeakMTD>95</PeakMTD>
+	 <PeakTdyHour>0</PeakTdyHour>
+	 <PeakTdyMin>27</PeakTdyMin>
+	 <PeakMTDMonth>10</PeakMTDMonth>
+	 <PeakMTDDay>24</PeakMTDDay>
+	 
+	 <MinTdy>8</MinTdy>
+	 <MinMTD>8</MinMTD>
+	 <MinTdyHour>1</MinTdyHour>
+	 <MinTdyMin>31</MinTdyMin>
+	 <MinMTDMonth>10</MinMTDMonth>
+	 <MinMTDDay>14</MinMTDDay>
+	 </Total>
+	 ...
+	 </Power>
+	 */
+	
+	NSDictionary* nodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                          @"CostNow",		@"now",
+                                          @"CostHour",		@"hour",
+                                          @"CostTDY",		@"today",
+                                          @"CostMTD",		@"mtd",
+                                          @"CostProj",		@"projected",
+                                          @"PeakTdy",		@"todayPeakValue",
+                                          @"PeakTdyHour",	@"todayPeakHour",
+                                          @"PeakTdyMin",	@"todayPeakMinute",
+                                          @"MinTdy",		@"todayMinValue",
+                                          @"MinTdyHour",	@"todayMinHour",
+                                          @"MinTdyMin",		@"todayMinMinute",
+                                          @"PeakMTD",		@"mtdPeakValue",
+                                          @"PeakMTDMonth",	@"mtdPeakMonth",
+                                          @"PeakMTDDay",	@"mtdPeakDay",
+                                          @"MinMTD",		@"mtdMinValue",
+                                          @"MinMTDMonth",	@"mtdMinMonth",
+                                          @"MinMTDDay",		@"mtdMinDay",
+                                          nil];
+	
+	NSString *parentNodePath;
+	if( meter.mtuNumber == 0 )
+		parentNodePath = @"Cost.Total";
+	else
+		parentNodePath = [NSString stringWithFormat: @"Cost.MTU%ld", (long)meter.mtuNumber];
+	
+	isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:parentNodePath
+                                               andNodesKeyedByProperty:nodesKeyedByProperty];
+	
+	[nodesKeyedByProperty release];
+	
+	if( meter.isNetMeter ) {
+		
+		// Fix peak/min for net meter
+		NSDictionary *netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+														 @"PeakTdy",		@"todayPeakValue",
+														 @"MinTdy",			@"todayMinValue",
+														 @"PeakMTD",		@"mtdPeakValue",
+														 @"MinMTD",			@"mtdMinValue",
+														 nil];
+		
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
+                                                                intoObject:meter
+                                                       withParentMeterNode:@"Cost" 
+                                                   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty usingAggregationOp:kAggregationOpSum];
+		
+		[netMeterFixNodesKeyedByProperty release];
+	}
+	
+	return isSuccessful;
+}
+
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoCarbonMeter:(CarbonMeter*)meter;
+{
+	
+	BOOL isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoPowerMeter:meter];
+	if( isSuccessful ) {
+		isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:@"Utility"
+                                     andNodesKeyedByProperty:[NSDictionary dictionaryWithObject:@"CarbonRate" forKey:@"carbonRate"]];
+	}
+	
+	return isSuccessful;
+}
+
++ (BOOL)refreshDataFromXmlDocument:(CXMLDocument *)document intoPowerMeter:(PowerMeter*)meter;
+{
+	
+	BOOL isSuccessful = NO;
+	
+	/*
+	 <Power>
+	 <Total>
+	 <PowerNow>1570</PowerNow>
+	 <PowerHour>1682</PowerHour>
+	 <PowerTDY>32581</PowerTDY>
+	 <PowerMTD>824305</PowerMTD>
+	 <PowerProj>1681897</PowerProj>
+	 <KVA>1863</KVA>
+	 <PeakTdy>12265</PeakTdy>
+	 <PeakMTD>12265</PeakMTD>
+	 <PeakTdyHour>9</PeakTdyHour>
+	 <PeakTdyMin>40</PeakTdyMin>
+	 <PeakMTDMonth>10</PeakMTDMonth>
+	 <PeakMTDDay>24</PeakMTDDay>
+	 <MinTdy>1005</MinTdy>
+	 <MinMTD>0</MinMTD>
+	 <MinTdyHour>1</MinTdyHour>
+	 <MinTdyMin>42</MinTdyMin>
+	 <MinMTDMonth>10</MinMTDMonth>
+	 <MinMTDDay>14</MinMTDDay>
+	 </Total>
+	 ...
+	 </Power>
+	 */
+	
+	NSDictionary* nodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                          @"PowerNow",		@"now",
+                                          @"PowerHour",		@"hour",
+                                          @"PowerTDY",		@"today",
+                                          @"PowerMTD",		@"mtd",
+                                          @"KVA",			@"kva",
+                                          @"PowerProj",		@"projected",
+                                          @"PeakTdy",		@"todayPeakValue",
+                                          @"PeakTdyHour",	@"todayPeakHour",
+                                          @"PeakTdyMin",	@"todayPeakMinute",
+                                          @"MinTdy",		@"todayMinValue",
+                                          @"MinTdyHour",	@"todayMinHour",
+                                          @"MinTdyMin",		@"todayMinMinute",
+                                          @"PeakMTD",		@"mtdPeakValue",
+                                          @"PeakMTDMonth",	@"mtdPeakMonth",
+                                          @"PeakMTDDay",	@"mtdPeakDay",
+                                          @"MinMTD",		@"mtdMinValue",
+                                          @"MinMTDMonth",	@"mtdMinMonth",
+                                          @"MinMTDDay",		@"mtdMinDay",
+                                          nil];
+	
+	NSString *parentNodePath;
+	if( meter.isNetMeter )
+		parentNodePath = @"Power.Total";
+	else
+		parentNodePath = [NSString stringWithFormat: @"Power.MTU%ld", (long)meter.mtuNumber];
+	
+	isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:parentNodePath
+                                               andNodesKeyedByProperty:nodesKeyedByProperty];
+	[nodesKeyedByProperty release];
+	
+	if( meter.isNetMeter ) {
+		
+		// Fix peak/min for net meter
+		NSDictionary *netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                         @"PeakTdy",		@"todayPeakValue",
+                                                         @"MinTdy",			@"todayMinValue",
+                                                         @"PeakMTD",		@"mtdPeakValue",
+                                                         @"MinMTD",			@"mtdMinValue",
+                                                         nil];
+		
+		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
+                                                                intoObject:meter
+                                                       withParentMeterNode:@"Power"
+                                                   andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty
+                                                        usingAggregationOp:kAggregationOpSum];
+        
+		[netMeterFixNodesKeyedByProperty release];
+	}
+	
 	return isSuccessful;
 }
 

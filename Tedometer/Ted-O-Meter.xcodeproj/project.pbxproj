@@ -22,6 +22,7 @@
 		D834619210C5F42B00EDF14F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D834618910C5F42B00EDF14F /* ASINetworkQueue.m */; };
 		D834619810C5F45300EDF14F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D834619710C5F45300EDF14F /* CFNetwork.framework */; };
 		D83B275C10C99221003CCDCD /* LiveDataSolar3.xml in Resources */ = {isa = PBXBuildFile; fileRef = D83B275B10C99221003CCDCD /* LiveDataSolar3.xml */; };
+		D83D04ED193006AA009C2AC5 /* CXMLDocument+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D83D04EC193006AA009C2AC5 /* CXMLDocument+utils.m */; };
 		D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D845122510B31781002BE7D7 /* InternetRequiredView.xib */; };
 		D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */; };
 		D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123E10B31EC2002BE7D7 /* logo_no_internet.png */; };
@@ -126,6 +127,8 @@
 		D83B272610C8FFA7003CCDCD /* LiveDataSolar1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar1.xml; path = Documentation/Design/LiveDataSolar1.xml; sourceTree = "<group>"; };
 		D83B272A10C9001F003CCDCD /* LiveDataSolar2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar2.xml; path = Documentation/Design/LiveDataSolar2.xml; sourceTree = "<group>"; };
 		D83B275B10C99221003CCDCD /* LiveDataSolar3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar3.xml; path = Documentation/Design/LiveDataSolar3.xml; sourceTree = "<group>"; };
+		D83D04EB193006AA009C2AC5 /* CXMLDocument+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CXMLDocument+utils.h"; path = "Source/CXMLDocument+utils.h"; sourceTree = "<group>"; };
+		D83D04EC193006AA009C2AC5 /* CXMLDocument+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CXMLDocument+utils.m"; path = "Source/CXMLDocument+utils.m"; sourceTree = "<group>"; };
 		D845122510B31781002BE7D7 /* InternetRequiredView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InternetRequiredView.xib; path = Resources/InternetRequiredView.xib; sourceTree = "<group>"; };
 		D845123810B318EE002BE7D7 /* InternetRequiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetRequiredViewController.h; sourceTree = "<group>"; };
 		D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetRequiredViewController.m; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				D8ED1E851120BA830046C457 /* UITouch+TouchSorting.h */,
 				D8ED1E861120BA830046C457 /* UITouch+TouchSorting.m */,
 				D867991D112120F100F865E5 /* log.h */,
+				D83D04EB193006AA009C2AC5 /* CXMLDocument+utils.h */,
+				D83D04EC193006AA009C2AC5 /* CXMLDocument+utils.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D83D04ED193006AA009C2AC5 /* CXMLDocument+utils.m in Sources */,
 				D81E4D0A10A09027006F0A90 /* CXMLNode-utils.m in Sources */,
 				D8CB7C74190AD4BB000D3D97 /* CTidy.m in Sources */,
 				D8EE26261908560F00D29479 /* ASIDataDecompressor.m in Sources */,

@@ -100,6 +100,7 @@
     // load the page on either side to avoid flashes when the user starts scrolling
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
+    [self updateMeterVisibility];
 		
 	// register for mtuCount changes
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mtuCountDidChange:) name:kNotificationMtuCountDidChange object:tedometerData];
@@ -148,7 +149,22 @@
 
 }
 
+- (void) releaseMeterViewControllers;
+{    
+    for( int i=0; i < meterViewControllers.count; ++i ) {
+        NSObject *obj = [meterViewControllers objectAtIndex:i];
+        if( obj != [NSNull null] ) {
+            MeterViewController *meterViewController = (MeterViewController *) obj;
+            if( meterViewController.view.superview != nil ) {
+                [meterViewController.view removeFromSuperview];
+            }
+            [meterViewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+        }
+    }
 
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height);
+
+}
 
 - (void)dealloc {
 	[pageControl release];
@@ -260,7 +276,9 @@
 - (void)loadScrollViewWithPage:(long)page {
     if (page < 0) return;
     if (page >= kNumberOfPages) return;
-	
+
+    DLog(@"Loading scroll view with page %ld", page);
+    
     // replace the placeholder if necessary
     MeterViewController *controller = [meterViewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null]) {
@@ -286,15 +304,18 @@
     }
 	
     // add the controller's view to the scroll view
-    if (nil == controller.view.superview) {
+    if (controller.view.superview == nil) {
         CGRect frame = scrollView.frame;
         frame.origin.x = frame.size.width * page;
         //frame.origin.y = 0;
         controller.view.frame = frame;
         [scrollView addSubview:controller.view];
-		[self updateMeterVisibility];
+//		[self updateMeterVisibility];
     }
-	
+    else {
+        DLog( @"Controller's origin for page %ld was already set to (%ld, %ld)", page, (long) controller.view.frame.origin.x, (long) controller.view.frame.origin.y );
+    }
+    
 	[controller stopDialEdit];
 	[controller refreshView];
 }
@@ -327,6 +348,8 @@
 - (IBAction)changePage:(id)sender {
     long page = pageControl.currentPage;
 	
+    DLog(@"Changing main view controller to page %ld", page );
+    
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     [self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
@@ -337,6 +360,8 @@
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
 	DLog(@"Switching frame to origin at %f", frame.origin.x);
+    
+    
     [scrollView scrollRectToVisible:frame animated:YES];
 	
 	// nh 3/8/10: The following seems to work as well as the scrollRecToVisible method.
@@ -347,10 +372,7 @@
 	
     // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = NO;
-	//[scrollView setNeedsDisplay];
-	//[scrollView setNeedsLayout];
-	//[self.view setNeedsLayout];
-	//[self.view setNeedsDisplay];
+    
 }
 
 - (void) updateMeterVisibility;
@@ -366,9 +388,10 @@
 
 - (void) switchToPage:(NSInteger)pageNumber {
 	DLog(@"pageNumber = %ld mtuCount = %ld", (long)pageNumber, (long)tedometerData.meterCount);
-	if( pageNumber < 0 || pageNumber >= tedometerData.meterCount ) {
+    if( pageNumber < 0 || pageNumber >= tedometerData.meterCount ) {
 		pageNumber = 0;
 	}
+    
 	pageControl.currentPage = 1; //pageNumber;
 	//[self performSelector:@selector(changePage:) withObject:self afterDelay:1.5];
 	[self changePage:self];
@@ -381,14 +404,20 @@
 - (void) mtuCountDidChange:(NSNotification*)notification;
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // force controllers to reload into scrollview
+        [self releaseMeterViewControllers];
+        
         NSInteger newMtuCount = tedometerData.mtuCount;
 
         // if there's only one mtu, we only show the net meter
         if( newMtuCount <= 1 ) {
+            DLog(@"MTU count changed to %ld. Current page is %ld.", (long) newMtuCount, (long) pageControl.currentPage);
             if( pageControl.currentPage > 0 ) {
+                DLog(@"Current page is %ld; changing to 0...", (long) pageControl.currentPage );
                 pageControl.currentPage = 0;
-                [self changePage:self];
             }
+            [self changePage:self];
             pageControl.numberOfPages = 1;
         }
         else {
@@ -402,7 +431,6 @@
         }
         
         scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * tedometerData.meterCount, scrollView.frame.size.height);
-        
         [self updateMeterVisibility];
     });
 

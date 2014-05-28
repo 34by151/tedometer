@@ -68,6 +68,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
     self.mtdMinDay = 0;
     self.isLowPeakSupported = YES;
     self.isAverageSupported = YES;
+    self.infoLabel = nil;
 }
 - (NSString*) todayLowLabel {
 	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString] : @"";
@@ -110,8 +111,16 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return @"Est. Month Total";
 }
 
+-(void) setInfoLabel:(NSString *) value {
+    if( infoLabel != value ) {
+        NSString *oldValue = infoLabel;
+        infoLabel = [value copy];
+        [oldValue release];
+    }
+}
+
 - (NSString*) infoLabel {
-	return @"";
+	return infoLabel == nil ? @"" : infoLabel;
 }
 
 - (NSInteger) maxUnitsPerTick {

@@ -32,6 +32,8 @@
                    costMeter:(CostMeter*)costMeter
                        error:(NSError**)error;
 
+- (NSString*) ampsInfoLabelForCurrentInPhases:(NSArray*) phases;
+
 @end
 
 @implementation TED6000DataLoader
@@ -75,9 +77,11 @@
     // otherwise, show the kva/pf for each MTU on the individual MTU meters.
     if( tedometerData.mtuCount == 1 && powerMeter.mtuNumber == 0 ) {
         powerMeter.kva = [[overviewData[1] objectForKey:@"kva"] intValue];
+        voltageMeter.infoLabel = (NSString*)[overviewData[1] objectForKey:@"ampsInfoLabel"];
     }
     else if( tedometerData.mtuCount > 1 ) {
         powerMeter.kva = [[overviewData[powerMeter.mtuNumber] objectForKey:@"kva"] intValue];
+        voltageMeter.infoLabel = (NSString*)[overviewData[voltageMeter.mtuNumber] objectForKey:@"ampsInfoLabel"];
     }
     
     voltageMeter.now = voltage;
@@ -166,7 +170,7 @@
                     if( desc ) {
                         [overviewData[mtuIdx] setObject:desc forKey:@"desc"];
                     }
-                    DLog( @"Overview data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
+                    DLog( @"Settings data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
                 }
             }
 
@@ -202,6 +206,13 @@
                                                 forKey:@"kva"];
                         [overviewData[mtuIdx] setObject:[NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]]
                                                  forKey:@"pf"];
+                        NSNumber *ampsPhaseA = [xmlDoc integerAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PhaseCurrent.A", mtuIdx]];
+                        NSNumber *ampsPhaseB = [xmlDoc integerAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PhaseCurrent.B", mtuIdx]];
+                        NSNumber *ampsPhaseC = [xmlDoc integerAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PhaseCurrent.C", mtuIdx]];
+                        
+                        [overviewData[mtuIdx] setObject:[self ampsInfoLabelForCurrentInPhases: @[ampsPhaseA, ampsPhaseB, ampsPhaseC]]
+                                                 forKey:@"ampsInfoLabel"];
+                        
                         DLog( @"Overview data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
                     }
                 }
@@ -351,12 +362,29 @@
 
 -(void)dealloc {
     for( int i=0; i <= NUM_MTUS; ++i ) {
-        [overviewData[i] dealloc];
+        [overviewData[i] release];
     }
 
 	[super dealloc];
 }
 
+- (NSString*) ampsInfoLabelForCurrentInPhases:(NSArray*) phases;
+{
+    NSString* infoLabel = @"";
+
+    NSMutableArray *ampsArray = [[NSMutableArray alloc] init];
+    for( id currentValue in phases ) {
+        if( [currentValue longValue] > 0 ) {
+            [ampsArray addObject:[NSString stringWithFormat:@"%0.1f A", [currentValue longValue] / 10.0]];
+        }
+    }
+    if( [ampsArray count] > 0 ) {
+        infoLabel = [NSString stringWithFormat:@"Current:\n%@", [ampsArray componentsJoinedByString:@"\n"]];
+    }
+    [ampsArray release];
+    
+    return infoLabel;
+}
 
 
 @end

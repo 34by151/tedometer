@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
     BOOL isAverageSupported;
     BOOL isLowPeakSupported;
     
+    NSString *infoLabel;
+    
 	MeterValueType meterValueType;
 }
 
@@ -101,7 +103,7 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 @property(readonly) NSString* mtdPeakLabel;
 @property(readonly) NSString* mtdTotalLabel;
 @property(readonly) NSString* mtdProjectedLabel;
-@property(readonly) NSString* infoLabel;
+@property(getter=infoLabel, setter=setInfoLabel:, readwrite, copy) NSString* infoLabel;
 @property(readwrite, assign) BOOL isAverageSupported;
 @property(readwrite, assign) BOOL isLowPeakSupported;
 

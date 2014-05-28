@@ -79,6 +79,11 @@
 	return node;
 }
 
+-(NSNumber*) integerAtPath:(NSString*)path;
+{
+    return [NSNumber numberWithInteger:[self integerValueAtPath:path]];
+}
+
 - (NSInteger) integerValueAtPath:(NSString*)path;
 {
 

@@ -12,6 +12,7 @@
 - (CXMLNode *) nodeAtPath:(NSString*)nodePath;      /* path should NOT include the root node */
 - (NSInteger) integerValueAtPath:(NSString*)path;   /* path should NOT include the root node */
 - (NSString *) stringValueAtPath:(NSString*)path;   /* path should NOT include the root node */
+- (NSNumber*) integerAtPath:(NSString*)path;
 
 - (BOOL)loadIntegerValuesIntoObject:(NSObject*) object
                  withParentNodePath:(NSString*)parentNodePath

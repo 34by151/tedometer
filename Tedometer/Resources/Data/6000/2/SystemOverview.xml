@@ -1,57 +1,57 @@
 <DialDataDetail>
     <MTUVal>
         <MTU1>
-            <Value>-341</Value>
-            <KVA>1198</KVA>
-            <PF>284</PF>
-            <Voltage>1220</Voltage>
+            <Value>-672</Value>
+            <KVA>1217</KVA>
+            <PF>552</PF>
+            <Voltage>1218</Voltage>
             <Phase>5</Phase>
             <Conn>10</Conn>
             <PhaseCurrent>
-                <A>54</A>
-                <B>40</B>
+                <A>45</A>
+                <B>51</B>
                 <C>0</C>
             </PhaseCurrent>
             <PhaseVoltage>
-                <A>1219</A>
-                <B>1219</B>
-                <C>1219</C>
+                <A>1218</A>
+                <B>1218</B>
+                <C>1218</C>
             </PhaseVoltage>
         </MTU1>
         <MTU2>
-            <Value>714</Value>
-            <KVA>952</KVA>
-            <PF>750</PF>
-            <Voltage>1222</Voltage>
+            <Value>792</Value>
+            <KVA>847</KVA>
+            <PF>935</PF>
+            <Voltage>1221</Voltage>
             <Phase>5</Phase>
             <Conn>10</Conn>
             <PhaseCurrent>
-                <A>59</A>
-                <B>16</B>
-                <C>0</C>
-            </PhaseCurrent>
-            <PhaseVoltage>
-                <A>1223</A>
-                <B>1223</B>
-                <C>1223</C>
-            </PhaseVoltage>
-        </MTU2>
-        <MTU3>
-            <Value>-1167</Value>
-            <KVA>1386</KVA>
-            <PF>841</PF>
-            <Voltage>1219</Voltage>
-            <Phase>5</Phase>
-            <Conn>10</Conn>
-            <PhaseCurrent>
-                <A>53</A>
-                <B>55</B>
+                <A>34</A>
+                <B>32</B>
                 <C>0</C>
             </PhaseCurrent>
             <PhaseVoltage>
                 <A>1220</A>
                 <B>1220</B>
                 <C>1220</C>
+            </PhaseVoltage>
+        </MTU2>
+        <MTU3>
+            <Value>-1030</Value>
+            <KVA>1291</KVA>
+            <PF>797</PF>
+            <Voltage>1218</Voltage>
+            <Phase>5</Phase>
+            <Conn>10</Conn>
+            <PhaseCurrent>
+                <A>51</A>
+                <B>54</B>
+                <C>0</C>
+            </PhaseCurrent>
+            <PhaseVoltage>
+                <A>1218</A>
+                <B>1218</B>
+                <C>1218</C>
             </PhaseVoltage>
         </MTU3>
         <MTU4>

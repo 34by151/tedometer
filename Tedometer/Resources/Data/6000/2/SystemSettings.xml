@@ -1,6 +1,6 @@
 <SystemSettings>
     <NumberMTU>3</NumberMTU>
-    <NumberSpyder>3</NumberSpyder>
+
 
     <DemoMode>0</DemoMode>
     <NumberDisplay>1</NumberDisplay>
@@ -9,7 +9,7 @@
         <ServerAddress>pool.ntp.org</ServerAddress>
         <UseDLST>1</UseDLST>
         <InDLST>1</InDLST>
-        <TimeZone>-5</TimeZone>
+        <TimeZone>-50</TimeZone>
     </DateTime>
 
     <ZipCode>8344</ZipCode>
@@ -29,7 +29,7 @@
         <USNAPType2>0</USNAPType2>
     </USNAP>
 
-    <MTUPollingDelay>2</MTUPollingDelay>
+    <MTUPollingDelay>1</MTUPollingDelay>
 
     <MTUs>
         <MTU>
@@ -83,8 +83,8 @@
     <Displays>
         <DisplaySettings>
             <BacklightUnderPower>60</BacklightUnderPower>
-            <BacklightUnderBattery>50</BacklightUnderBattery>
-            <BacklightTimer>60</BacklightTimer>
+            <BacklightUnderBattery>40</BacklightUnderBattery>
+            <BacklightTimer>30</BacklightTimer>
             <ScrollTimer>5</ScrollTimer>
             <SleepTimer>120</SleepTimer>
             <RealTimeUseScreen>TRUE</RealTimeUseScreen>
@@ -112,12 +112,12 @@
         </Display>
         <Display>
             <DisplayNumber>3</DisplayNumber>
-            <DisplayID>01736D</DisplayID>
-            <DisplayDescription>p.comcast.net</DisplayDescription>
+            <DisplayID>000000</DisplayID>
+            <DisplayDescription></DisplayDescription>
         </Display>
         <Display>
             <DisplayNumber>4</DisplayNumber>
-            <DisplayID>6E6574</DisplayID>
+            <DisplayID>000000</DisplayID>
             <DisplayDescription></DisplayDescription>
         </Display>
 
@@ -125,22 +125,6 @@
     </Displays>
 
 
-    <Thermostats>
-        <NumberIPT>0</NumberIPT>
-        <Thermostat>
-            <IPTNumber>1</IPTNumber>
-            <IPTAddress>0.0.0.0</IPTAddress>
-            <IPTDescription></IPTDescription>
-            <RTAType>0</RTAType>
-        </Thermostat>
-        <Thermostat>
-            <IPTNumber>2</IPTNumber>
-            <IPTAddress>0.0.0.0</IPTAddress>
-            <IPTDescription></IPTDescription>
-            <RTAType>0</RTAType>
-        </Thermostat>
-        <StatRefresh>5</StatRefresh>
-    </Thermostats>
 
     <CarbonCost>155</CarbonCost>
 
@@ -158,8 +142,100 @@
     </NetworkSettings>
 
     <Username>mancuj1</Username>
-    <PasswordAll>1</PasswordAll>
+    <PasswordAll>0</PasswordAll>
     <PasswordConf>1</PasswordConf>
-    <ThirdPartyActivated>0</ThirdPartyActivated>
 
+    <Spyders>
+        <Spyder>
+            <Enabled>0</Enabled>
+            <Secondary>0</Secondary>
+            <MTUParent>0</MTUParent>
+            <CT><Mult>0</Mult><Description>CT 1</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 2</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 3</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 4</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 5</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 6</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 7</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 8</Description></CT>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+        </Spyder>
+        <Spyder>
+            <Enabled>0</Enabled>
+            <Secondary>0</Secondary>
+            <MTUParent>0</MTUParent>
+            <CT><Mult>0</Mult><Description>CT 1</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 2</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 3</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 4</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 5</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 6</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 7</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 8</Description></CT>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+        </Spyder>
+        <Spyder>
+            <Enabled>0</Enabled>
+            <Secondary>0</Secondary>
+            <MTUParent>0</MTUParent>
+            <CT><Mult>0</Mult><Description>CT 1</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 2</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 3</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 4</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 5</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 6</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 7</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 8</Description></CT>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+        </Spyder>
+        <Spyder>
+            <Enabled>0</Enabled>
+            <Secondary>0</Secondary>
+            <MTUParent>0</MTUParent>
+            <CT><Mult>0</Mult><Description>CT 1</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 2</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 3</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 4</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 5</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 6</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 7</Description></CT>
+            <CT><Mult>0</Mult><Description>CT 8</Description></CT>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+            <Group><Description></Description><UseCT>0</UseCT></Group>
+        </Spyder>
+    </Spyders>
+
+
+    <ECCDisplay>
+        <ScrollModeEnable>0</ScrollModeEnable>
+        <ScrollModeTimer>5</ScrollModeTimer>
+        <Contrast>80</Contrast>
+    </ECCDisplay>
 </SystemSettings>

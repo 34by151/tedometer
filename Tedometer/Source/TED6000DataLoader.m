@@ -162,7 +162,7 @@
                     continue;
                 }
                 else {
-                    NSString *desc = [xmlDoc stringValueAtPath:[NSString stringWithFormat:@"MTUs.MTU[%d].MTUDescription", mtuIdx]];
+                    NSString *desc = [xmlDoc stringValueAtPath:[NSString stringWithFormat:@"MTUs.MTU[%d].MTUDescription", mtuIdx-1]];
                     if( desc ) {
                         [overviewData[mtuIdx] setObject:desc forKey:@"desc"];
                     }

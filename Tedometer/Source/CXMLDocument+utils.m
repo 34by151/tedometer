@@ -12,6 +12,14 @@
 
 @implementation CXMLDocument (utils)
 
+// Path elements should be separated by periods. If a node has multiple children
+// with the same name (e.g., "<MTUs><MTU/><MTU/><MTU/></MTUs>), then the path
+// element may include a bracketed 0-based index to identify the child to retrieve.
+//
+// E.g.: "MTUs.MTU[0].MTUDescription"
+//
+// Paths should NOT include the root tag.
+//
 - (CXMLNode *) nodeAtPath:(NSString*)nodePath {
     CXMLDocument* document = self;
     
@@ -26,15 +34,45 @@
                 node = nil;
                 break;
             }
-            NSString *childIdx = [pathElement substringWithRange:NSMakeRange( startRange.location+1, 1 )];
-            int idx = [childIdx intValue];
-            node = [node childAtIndex:idx];
+            NSString *unindexedNodeName = [pathElement substringToIndex:startRange.location];
+            NSString *childIdxStr = [pathElement substringWithRange:NSMakeRange( startRange.location+1, 1 )];
+            int childSearchIdx = [childIdxStr intValue];
+            
+            // [CXMLNode childAtIndex:] creates "text" nodes for text between tags, so to find the
+            // indexed tag we need to skip over any nodes that don't have the provided tag name.
+            int rawNodeIdx = 0;
+            int curChildCount = 0;
+            CXMLNode *foundNode = nil;
+            while( rawNodeIdx < node.childCount ) {
+                CXMLNode *aChild = [node childAtIndex:rawNodeIdx];
+                if( [[aChild name] isEqualToString: unindexedNodeName] ) {
+                    if( curChildCount == childSearchIdx ) {
+                        foundNode = aChild;
+                        break;
+                    }
+                    else {
+                        ++curChildCount;
+                    }
+                }
+                ++rawNodeIdx;
+            }
+            if( ! foundNode ) {
+                ALog( @"Could not find indexed node '%@'.", pathElement );
+                break;
+            }
+            else {
+                node = foundNode;
+                //DLog( @"Retrieved node '%@' (%@) = %@ [parent = %@]", pathElement, [node name], [node stringValue], [[node parent] name] );
+            }
         }
         else {
             node = [node childNamed:pathElement];
             if( node == nil ) {
-                DLog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
+                ALog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
                 break;
+            }
+            else {
+                //DLog( @"Retrieved node '%@' (%@) = %@", pathElement, [node name], [node stringValue] );
             }
         }
 	}

@@ -10,7 +10,7 @@
 #import "DataLoader.h"
 
 @interface TED6000DataLoader : DataLoader {
-    NSDictionary* overviewData[NUM_MTUS];
+    NSMutableDictionary* overviewData[NUM_MTUS];
 }
 
 -(BOOL)reload:(TedometerData*)tedometerData error:(NSError**)error;

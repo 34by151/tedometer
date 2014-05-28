@@ -39,6 +39,9 @@
 - (id) init {
 	if( self = [super init] ) {
         // initialize member variables here
+        for( int i=0; i <= NUM_MTUS; ++i ) {
+            overviewData[i] = [[NSMutableDictionary alloc] init];
+        }
 	}
 	return self;
 }
@@ -153,6 +156,20 @@
             tedometerData.carbonRate = [xmlDoc integerValueAtPath:@"CarbonCost"];
             DLog(@"CarbonCost = %ld", (long) tedometerData.carbonRate);
             [xmlDoc release];
+            
+            for( int mtuIdx=0; mtuIdx < NUM_MTUS; ++mtuIdx ) {
+                if( mtuIdx == 0 ) {
+                    continue;
+                }
+                else {
+                    NSString *desc = [xmlDoc stringValueAtPath:[NSString stringWithFormat:@"MTUs.MTU[%d].MTUDescription", mtuIdx]];
+                    if( desc ) {
+                        [overviewData[mtuIdx] setObject:desc forKey:@"desc"];
+                    }
+                    DLog( @"Overview data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
+                }
+            }
+
         }
     }
 
@@ -177,13 +194,15 @@
                 for( int mtuIdx=0; mtuIdx < NUM_MTUS; ++mtuIdx ) {
                     
                     if( mtuIdx == 0 ) {
-                        overviewData[mtuIdx] = @{ @"kva": @0, @"pf": @0 };
+                        [overviewData[mtuIdx] setObject:@0 forKey:@"kva"];
+                        [overviewData[mtuIdx] setObject:@0 forKey:@"pf"];
                     }
                     else {
-                        NSDictionary* vals = @{ @"kva":   [NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.KVA", mtuIdx]]],
-                                                @"pf":    [NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]] };
-                        overviewData[mtuIdx] = vals;
-                        DLog( @"Read overview data for MTU%d: %@", mtuIdx, vals );
+                        [overviewData[mtuIdx] setObject:[NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.KVA", mtuIdx]]]
+                                                forKey:@"kva"];
+                        [overviewData[mtuIdx] setObject:[NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]]
+                                                 forKey:@"pf"];
+                        DLog( @"Overview data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
                     }
                 }
                 [xmlDoc release];
@@ -209,6 +228,10 @@
                 [meter reset];
                 meter.isLowPeakSupported = NO;
                 meter.isAverageSupported = NO;
+                NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
+                if( desc && ! [desc isEqualToString:@""] ) {
+                    meter.mtuName = desc;
+                }
             }
         }
         
@@ -327,6 +350,10 @@
 }
 
 -(void)dealloc {
+    for( int i=0; i <= NUM_MTUS; ++i ) {
+        [overviewData[i] dealloc];
+    }
+
 	[super dealloc];
 }
 

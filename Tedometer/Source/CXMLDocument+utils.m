@@ -17,11 +17,26 @@
     
 	CXMLNode *node = (CXMLNode *)[document rootElement];
 	for( NSString* pathElement in [nodePath componentsSeparatedByString:@"."] ) {
-		node = [node childNamed:pathElement];
-		if( node == nil ) {
-			DLog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
-			break;
-		}
+        
+        NSRange startRange = [pathElement rangeOfString:@"["];
+        if( startRange.location != NSNotFound ) {
+            NSRange endRange = [pathElement rangeOfString:@"]"];
+            if( endRange.location == NSNotFound ) {
+                ALog(@"Error: Invalid syntax for node path (missing closing bracket): \"%@\"", nodePath);
+                node = nil;
+                break;
+            }
+            NSString *childIdx = [pathElement substringWithRange:NSMakeRange( startRange.location+1, 1 )];
+            int idx = [childIdx intValue];
+            node = [node childAtIndex:idx];
+        }
+        else {
+            node = [node childNamed:pathElement];
+            if( node == nil ) {
+                DLog( @"Could not find node named '%@' at path '%@'.", pathElement, nodePath );
+                break;
+            }
+        }
 	}
 	return node;
 }

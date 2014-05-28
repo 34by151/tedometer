@@ -22,7 +22,7 @@
                 <outlet property="lowValue" destination="106" id="168"/>
                 <outlet property="lowValueUnit" destination="197" id="202"/>
                 <outlet property="meterLabel" destination="59" id="97"/>
-                <outlet property="meterTitle" destination="146" id="147"/>
+                <outlet property="meterTitle" destination="146" id="ofl-Lm-65Q"/>
                 <outlet property="modelLabel" destination="9eV-Pz-N5d" id="EdZ-aO-52k"/>
                 <outlet property="navigationBar" destination="223" id="PMd-Ya-c7L"/>
                 <outlet property="parentDialView" destination="61" id="213"/>
@@ -83,9 +83,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="146" userLabel="Meter Title">
-                                            <rect key="frame" x="52" y="159" width="215" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" id="146" userLabel="Meter Title">
+                                            <rect key="frame" x="74.5" y="159" width="170" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.85999999999999999" colorSpace="calibratedRGB"/>

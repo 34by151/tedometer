@@ -15,6 +15,7 @@
 @implementation Meter
 
 @synthesize mtuNumber;
+@synthesize mtuName;
 @synthesize now;
 @synthesize hour;
 @synthesize today;
@@ -185,7 +186,8 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 			title = [NSString stringWithFormat:@"Net %@", self.meterTitle];
 	}
 	else {
-		title = [NSString stringWithFormat:@"MTU%ld %@", (long)self.mtuNumber, self.meterTitle];
+        NSString *name = ((self.mtuName && ![self.mtuName isEqualToString:@""]) ? [self.mtuName stringByAppendingString:@"\n"]: [NSString stringWithFormat:@"MTU%ld", (long)self.mtuNumber]);
+		title = [NSString stringWithFormat:@"%@ %@", name, self.meterTitle];
 	}
 
 	return title;

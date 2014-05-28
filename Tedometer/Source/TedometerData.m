@@ -420,7 +420,6 @@ NSString* _archiveLocation;
 	NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
 
     BOOL success = NO;
-    NSError *error = nil;
 
     DataLoader *dataLoader = nil;
     if( self.detectedHardwareType == kHardwareTypeTED5000 ) {
@@ -429,33 +428,36 @@ NSString* _archiveLocation;
     else if( self.detectedHardwareType == kHardwareTypeTED6000 ) {
         dataLoader = [[TED6000DataLoader alloc] init];
     }
-    
-    if( dataLoader != nil ) {
-        success = [dataLoader reload:self error:&error ];
-        [dataLoader release];
+    else {
+        success = NO;
+        self.connectionErrorMsg = @"Unrecognized gateway";
     }
     
-    if( success ) {
-			self.connectionErrorMsg = nil;
-			self.hasEstablishedSuccessfulConnectionThisSession = YES;
-	}
-    else {
-        if( error ) {
-			self.connectionErrorMsg = [error localizedDescription];
-		}
-		else {
-            if( self.detectedHardwareType == kHardwareTypeUnknown ) {
-                self.connectionErrorMsg = @"Unrecognized gateway";
+    if( dataLoader != nil ) {
+        NSError *error = nil;
+        success = [dataLoader reload:self error:&error ];
+        [dataLoader release];
+    
+        if( success ) {
+            self.connectionErrorMsg = nil;
+            self.hasEstablishedSuccessfulConnectionThisSession = YES;
+        }
+        else {
+            if( error ) {
+                self.connectionErrorMsg = [error localizedDescription];
             }
             else {
-                self.connectionErrorMsg = @"Failed to load gateway data";
+                self.connectionErrorMsg = @"Unable to download data from gateway.";
             }
-		}
-        
-		ALog( @"%@", self.connectionErrorMsg);
-		[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
+        }
+    }
+    
+    if( ! success ) {
+        ALog( @"%@", self.connectionErrorMsg);
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
 
-	}
+    }
+    
 	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadDidFinish object:self];
 	DLog( "Finished loading XML document." );
 	[autoreleasePool drain];

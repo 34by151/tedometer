@@ -13,7 +13,14 @@
 @implementation PowerMeter
 
 @synthesize kva;
+@synthesize phase;
 
+- (void) reset;
+{
+    [super reset];
+    self.kva = 0;
+    self.phase = 0;
+}
 - (NSString*) meterTitle {
 	return @"Power";
 }
@@ -32,6 +39,9 @@
         NSString *kvaStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:kva/1000.0]];
         NSString *powerFactorStr = [[self powerFactorFormatter] stringFromNumber: [NSNumber numberWithDouble:(now / (double)kva)]];
         label = [NSString stringWithFormat:@"%@ kVA\nPF: %@", kvaStr, powerFactorStr ];
+        if( phase != 0 ) {
+            label = [label stringByAppendingFormat:@"\nPhs: %ld", (long) phase];
+        }
     }
     else {
         label = @"";

@@ -36,6 +36,8 @@
 @synthesize radiansPerTick;
 @synthesize unitsPerTick;
 @synthesize zeroAngle;
+@synthesize isLowPeakSupported;
+@synthesize isAverageSupported;
 
 static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -44,17 +46,38 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 	return mtuNumber == 0;
 }
 
-
+- (void) reset;
+{
+    self.now = 0;
+    self.hour = 0;
+    self.today = 0;
+    self.mtd = 0;
+    self.projected = 0;
+    self.todayPeakValue = 0;
+    self.todayPeakHour = 0;
+    self.todayPeakMinute = 0;
+    self.todayMinValue = 0;
+    self.todayMinHour = 0;
+    self.todayMinMinute = 0;
+    self.mtdPeakValue = 0;
+    self.mtdPeakMonth = 0;
+    self.mtdPeakDay = 0;
+    self.mtdMinValue = 0;
+    self.mtdMinMonth = 0;
+    self.mtdMinDay = 0;
+    self.isLowPeakSupported = YES;
+    self.isAverageSupported = YES;
+}
 - (NSString*) todayLowLabel {
-	return [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString];
+	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString] : @"";
 }
 
 - (NSString*) todayAverageLabel {
-	return @"Average";
+	return [self isAverageSupported] ? @"Average" : @"";
 }
 
 - (NSString*) todayPeakLabel {
-	return [NSString stringWithFormat:@"Peak (%@)", self.todayPeakTimeString];
+	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Peak (%@)", self.todayPeakTimeString] : @"";
 }
 
 - (NSString*) todayTotalLabel {
@@ -66,15 +89,15 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 }
 
 - (NSString*) mtdLowLabel {
-	return [NSString stringWithFormat:@"Low (%@)", self.mtdMinTimeString];
+	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Low (%@)", self.mtdMinTimeString] : @"";
 }
 
 - (NSString*) mtdAverageLabel {
-	return @"Average";
+	return [self isAverageSupported] ? @"Average" : @"";
 }
 
 - (NSString*) mtdPeakLabel {
-	return [NSString stringWithFormat:@"Peak (%@)", self.mtdPeakTimeString];
+	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Peak (%@)", self.mtdPeakTimeString] : @"";
 }
 
 - (NSString*) mtdTotalLabel {
@@ -118,11 +141,6 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 - (NSString*) cumulativeUnit {
 	[self doesNotRecognizeSelector:_cmd];
 	return nil;
-}
-
-- (BOOL) isAverageSupported;
-{
-	return YES;
 }
 
 - (NSInteger) todayAverage {

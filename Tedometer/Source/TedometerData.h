@@ -76,6 +76,8 @@ typedef enum {
 	NSInteger daysLeftInBillingCycle;
 	NSInteger mtuCount;
 	NSMutableArray* mtusArray;			// array of arrays containing mtus
+    
+    NSString *tedModel;
 }
 
 @property(readwrite, assign) BOOL isPatchingAggregationDataSelected;
@@ -85,6 +87,7 @@ typedef enum {
 @property(readwrite, copy) NSString* gatewayHost;
 @property(readwrite, copy) NSString* username;
 @property(readwrite, copy) NSString* password;
+@property(readwrite, copy) NSString* tedModel;
 @property(readwrite, assign) NSInteger gatewayHour;
 @property(readwrite, assign) NSInteger gatewayMinute;
 @property(readwrite, assign) NSInteger gatewayMonth;

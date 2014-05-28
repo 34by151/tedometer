@@ -44,6 +44,8 @@
 	UILabel *meterLabel;
 	UILabel *meterTitle;
 	UILabel *infoLabel;
+    UILabel *modelLabel;
+    
 	UIActivityIndicatorView *activityIndicator;
 	
 	UIImageView *avgLabelPointerImage;
@@ -98,6 +100,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *projValueUnit;
 @property (nonatomic, retain) IBOutlet UILabel *projLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterLabel;
+@property (nonatomic, retain) IBOutlet UILabel *modelLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterTitle;
 @property (nonatomic, retain) IBOutlet UILabel *infoLabel;
 @property (nonatomic, retain) IBOutlet DialView *dialView;

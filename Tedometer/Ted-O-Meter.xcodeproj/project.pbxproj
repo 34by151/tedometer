@@ -23,6 +23,7 @@
 		D834619810C5F45300EDF14F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D834619710C5F45300EDF14F /* CFNetwork.framework */; };
 		D83B275C10C99221003CCDCD /* LiveDataSolar3.xml in Resources */ = {isa = PBXBuildFile; fileRef = D83B275B10C99221003CCDCD /* LiveDataSolar3.xml */; };
 		D83D04ED193006AA009C2AC5 /* CXMLDocument+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D83D04EC193006AA009C2AC5 /* CXMLDocument+utils.m */; };
+		D83D04F01933D94E009C2AC5 /* TED6000DataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D83D04EF1933D94E009C2AC5 /* TED6000DataLoader.m */; };
 		D845122610B31781002BE7D7 /* InternetRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D845122510B31781002BE7D7 /* InternetRequiredView.xib */; };
 		D845123A10B318EE002BE7D7 /* InternetRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */; };
 		D845123F10B31EC2002BE7D7 /* logo_no_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = D845123E10B31EC2002BE7D7 /* logo_no_internet.png */; };
@@ -129,6 +130,8 @@
 		D83B275B10C99221003CCDCD /* LiveDataSolar3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LiveDataSolar3.xml; path = Documentation/Design/LiveDataSolar3.xml; sourceTree = "<group>"; };
 		D83D04EB193006AA009C2AC5 /* CXMLDocument+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CXMLDocument+utils.h"; path = "Source/CXMLDocument+utils.h"; sourceTree = "<group>"; };
 		D83D04EC193006AA009C2AC5 /* CXMLDocument+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CXMLDocument+utils.m"; path = "Source/CXMLDocument+utils.m"; sourceTree = "<group>"; };
+		D83D04EE1933D94E009C2AC5 /* TED6000DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TED6000DataLoader.h; path = Source/TED6000DataLoader.h; sourceTree = "<group>"; };
+		D83D04EF1933D94E009C2AC5 /* TED6000DataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TED6000DataLoader.m; path = Source/TED6000DataLoader.m; sourceTree = "<group>"; };
 		D845122510B31781002BE7D7 /* InternetRequiredView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InternetRequiredView.xib; path = Resources/InternetRequiredView.xib; sourceTree = "<group>"; };
 		D845123810B318EE002BE7D7 /* InternetRequiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetRequiredViewController.h; sourceTree = "<group>"; };
 		D845123910B318EE002BE7D7 /* InternetRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetRequiredViewController.m; sourceTree = "<group>"; };
@@ -592,6 +595,8 @@
 				D84BA507191023A1003066E3 /* DataLoader.m */,
 				D8A2DFDB1927CC5E0071621A /* TED5000DataLoader.h */,
 				D8A2DFDC1927CC5E0071621A /* TED5000DataLoader.m */,
+				D83D04EE1933D94E009C2AC5 /* TED6000DataLoader.h */,
+				D83D04EF1933D94E009C2AC5 /* TED6000DataLoader.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -734,6 +739,7 @@
 				D8EE262A1908574900D29479 /* Reachability.m in Sources */,
 				D8E974BC10A098520065EE31 /* CostMeter.m in Sources */,
 				D8E974BD10A098520065EE31 /* Meter.m in Sources */,
+				D83D04F01933D94E009C2AC5 /* TED6000DataLoader.m in Sources */,
 				D8E974BE10A098520065EE31 /* PowerMeter.m in Sources */,
 				D8A2DFDD1927CC5E0071621A /* TED5000DataLoader.m in Sources */,
 				D8CB7C70190AD4BB000D3D97 /* CXMLNamespaceNode.m in Sources */,

@@ -42,6 +42,7 @@
 @synthesize projLabel;
 @synthesize projValue;
 @synthesize projValueUnit;
+@synthesize modelLabel;
 @synthesize meterLabel;
 @synthesize meterTitle;
 @synthesize dialView;
@@ -140,6 +141,7 @@
 	 infoLabel.text = @"";
 	 
 	 meterTitle.text = @"";
+     modelLabel.text = @"";
 	 
 	 shouldAutoRefresh = YES;
 
@@ -328,6 +330,7 @@
 			}
 		}
 		
+        //modelLabel.text = tedometerData.tedModel;     // on second thought, this is ugly
 		infoLabel.text = self.curMeter.infoLabel;
 		
 						   
@@ -376,6 +379,11 @@ int buttonCount = 0;
 	 
 - (void)dealloc {
 	
+    [tedometerData removeObserver:self forKeyPath:@"curMeterTypeIdx"];
+    [tedometerData removeObserver:self forKeyPath:@"isShowingTodayStatistics"];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 	[mainViewController release];
 	[powerMeter release];
 	[costMeter release];

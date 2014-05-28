@@ -23,6 +23,7 @@
                 <outlet property="lowValueUnit" destination="197" id="202"/>
                 <outlet property="meterLabel" destination="59" id="97"/>
                 <outlet property="meterTitle" destination="146" id="147"/>
+                <outlet property="modelLabel" destination="9eV-Pz-N5d" id="EdZ-aO-52k"/>
                 <outlet property="navigationBar" destination="223" id="PMd-Ya-c7L"/>
                 <outlet property="parentDialView" destination="61" id="213"/>
                 <outlet property="peakLabel" destination="153" id="164"/>
@@ -92,6 +93,16 @@
                                             <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" text="MODEL" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="9" id="9eV-Pz-N5d" userLabel="TED Model">
+                                            <rect key="frame" x="52" y="78" width="215" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
+                                            <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.85999999999999999" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <size key="shadowOffset" width="0.0" height="0.0"/>
+                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="TED-O-Meter" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="59" userLabel="Meter Label">
                                             <rect key="frame" x="52" y="179" width="215" height="47"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -145,13 +156,13 @@
                                         <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                     </accessibility>
                                 </view>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" id="191" userLabel="Info Label">
-                                    <rect key="frame" x="32" y="32" width="113" height="30"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" id="191" userLabel="Info Label">
+                                    <rect key="frame" x="32" y="32" width="113" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="0.0" colorSpace="calibratedRGB"/>
                                     <string key="text">kVA
 PF:
-</string>
+Phs: </string>
                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>

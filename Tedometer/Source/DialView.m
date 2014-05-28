@@ -572,7 +572,7 @@ static UIFont *labelFont;
 -(void) drawArrow:(DialDrawingContext*) dialContext {
 	float dialAngle;
 	if( drawForIconScreenshot ) {
-		dialAngle = radOffset; //M_PI / 2;
+		dialAngle = M_PI * 110/180.0;
 		
 //#if	DRAW_FOR_LAUNCH_IMAGE
 //		dialAngle = radOffset;
@@ -625,7 +625,7 @@ static UIFont *labelFont;
 	double lowAngle = 0;
 	double overlapOffset = (0.5 * M_PI / 180.0);	// if values overlap, displace them by half a degree 
 	
-	if( [dial isValueVisible:peakValue] ) {
+	if( [self.curMeter isLowPeakSupported] && [dial isValueVisible:peakValue] ) {
 		peakAngle = [dial angleForValue:peakValue];
 		CGContextSetRGBFillColor( dialContext->context, 0.98, 0.62, 0.23, 1.0 );	// orange
 #ifdef DRAW_FOR_PEAK_POINTER_SCREENSHOT
@@ -636,7 +636,7 @@ static UIFont *labelFont;
 #endif
 	}
 	
-	if( [dial isValueVisible:lowValue] ) {
+	if( [self.curMeter isLowPeakSupported] && [dial isValueVisible:lowValue] ) {
 		lowAngle = [dial angleForValue:lowValue];
 		if( peakValue > 0 && ABS(peakAngle - lowAngle) < 2.0 * overlapOffset )
 			lowAngle += 2.0 * overlapOffset;

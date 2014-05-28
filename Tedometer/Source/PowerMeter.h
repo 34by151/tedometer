@@ -12,10 +12,12 @@
 @interface PowerMeter : Meter <NSCoding> {
 
 	NSInteger kva;
+    NSInteger phase;
 
 }
 
 @property(readwrite, assign) NSInteger kva;
+@property(readwrite, assign) NSInteger phase;
 
 - (NSNumberFormatter *)tickLabelStringNumberFormatter;
 - (NSNumberFormatter *)meterStringNumberFormatter;

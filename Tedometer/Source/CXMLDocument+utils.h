@@ -9,7 +9,10 @@
 #import "CXMLDocument.h"
 
 @interface CXMLDocument (utils)
-- (CXMLNode *) nodeAtPath:(NSString*)nodePath;
+- (CXMLNode *) nodeAtPath:(NSString*)nodePath;      /* path should NOT include the root node */
+- (NSInteger) integerValueAtPath:(NSString*)path;   /* path should NOT include the root node */
+- (NSString *) stringValueAtPath:(NSString*)path;   /* path should NOT include the root node */
+
 - (BOOL)loadIntegerValuesIntoObject:(NSObject*) object
                  withParentNodePath:(NSString*)parentNodePath
             andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict;

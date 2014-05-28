@@ -26,6 +26,37 @@
 	return node;
 }
 
+- (NSInteger) integerValueAtPath:(NSString*)path;
+{
+
+    NSInteger value;
+    CXMLNode *node = [self nodeAtPath:path];
+    if( node == nil ) {
+        DLog(@"Could not find node at path '%@'. Defaulting to 0.", path);
+        value = 0;
+    }
+    else {
+        value = [[node stringValue] integerValue];
+    }
+    
+    return value;
+}
+
+- (NSString *) stringValueAtPath:(NSString*)path;
+{
+    NSString *value;
+    CXMLNode *node = [self nodeAtPath:path];
+    if( node == nil ) {
+        DLog(@"Could not find node at path '%@'. Defaulting to nil.", path);
+        value = nil;
+    }
+    else {
+        value = [node stringValue];
+    }
+    
+    return value;
+}
+
 - (BOOL)loadIntegerValuesIntoObject:(NSObject*) object
                  withParentNodePath:(NSString*)parentNodePath
             andNodesKeyedByProperty:(NSDictionary*)nodesKeyedByPropertyDict

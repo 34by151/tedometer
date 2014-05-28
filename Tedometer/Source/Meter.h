@@ -46,6 +46,9 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 	double unitsPerTick;
 	double zeroAngle;
 	
+    BOOL isAverageSupported;
+    BOOL isLowPeakSupported;
+    
 	MeterValueType meterValueType;
 }
 
@@ -97,6 +100,8 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 @property(readonly) NSString* mtdTotalLabel;
 @property(readonly) NSString* mtdProjectedLabel;
 @property(readonly) NSString* infoLabel;
+@property(readwrite, assign) BOOL isAverageSupported;
+@property(readwrite, assign) BOOL isLowPeakSupported;
 
 - (id) initWithMtuNumber:(NSInteger)mtuNum;
 - (id) initNetMeterWithMtuMeters: (NSArray*)meters;
@@ -107,9 +112,10 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 - (NSString *) meterStringForInteger:(NSInteger) value; 
 - (NSString *) timeStringForHour:(NSInteger)anHour minute:(NSInteger)aMinute;
 - (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay;
-- (BOOL) isAverageSupported;
 
 - (NSString*) instantaneousUnit;
 - (NSString*) cumulativeUnit;
+- (void) reset;
+
 
 @end

@@ -1,0 +1,165 @@
+<SystemSettings>
+    <NumberMTU>1</NumberMTU>
+    <NumberSpyder>1</NumberSpyder>
+
+    <DemoMode>0</DemoMode>
+    <NumberDisplay>0</NumberDisplay>
+    <DateTime>
+        <UseServer>1</UseServer>
+        <ServerAddress>pool.ntp.org</ServerAddress>
+        <UseDLST>1</UseDLST>
+        <InDLST>1</InDLST>
+        <TimeZone>-7</TimeZone>
+    </DateTime>
+
+    <ZipCode>84604</ZipCode>
+    <WxUseLatLon>0</WxUseLatLon>
+    <WxLat>3282</WxLat>
+    <WxLon>-7986</WxLon>
+    <Configuration>
+        <SystemType>0</SystemType>
+        <MTUType1>0</MTUType1>
+        <MTUType2>0</MTUType2>
+        <MTUType3>0</MTUType3>
+        <MTUType4>0</MTUType4>
+    </Configuration>
+
+    <USNAP>
+        <USNAPType1>0</USNAPType1>
+        <USNAPType2>0</USNAPType2>
+    </USNAP>
+
+    <MTUPollingDelay>1</MTUPollingDelay>
+
+    <MTUs>
+        <MTU>
+            <MTUNumber>1</MTUNumber>
+            <MTUID>160019</MTUID>
+            <MTUDescription></MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>0</UseTCP>
+            <MTUIP>0.0.0.0</MTUIP>
+        </MTU>
+        <MTU>
+            <MTUNumber>2</MTUNumber>
+            <MTUID>000000</MTUID>
+            <MTUDescription></MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>0</UseTCP>
+            <MTUIP>0.0.0.0</MTUIP>
+        </MTU>
+        <MTU>
+            <MTUNumber>3</MTUNumber>
+            <MTUID>000000</MTUID>
+            <MTUDescription></MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>0</UseTCP>
+            <MTUIP>0.0.0.0</MTUIP>
+        </MTU>
+        <MTU>
+            <MTUNumber>4</MTUNumber>
+            <MTUID>000000</MTUID>
+            <MTUDescription></MTUDescription>
+            <PowerCalibrationFactor>1000</PowerCalibrationFactor>
+            <VoltageCalibrationFactor>1000</VoltageCalibrationFactor>
+            <UseTCP>0</UseTCP>
+            <MTUIP>0.0.0.0</MTUIP>
+        </MTU>
+
+        <PEUAT>10</PEUAT>
+        <PVAT>10</PVAT>
+
+    </MTUs>
+
+    <Gateway>
+        <GatewayID>260626</GatewayID>
+        <GatewayDescription></GatewayDescription>
+    </Gateway>
+
+
+    <Displays>
+        <DisplaySettings>
+            <BacklightUnderPower>60</BacklightUnderPower>
+            <BacklightUnderBattery>40</BacklightUnderBattery>
+            <BacklightTimer>30</BacklightTimer>
+            <ScrollTimer>5</ScrollTimer>
+            <SleepTimer>120</SleepTimer>
+            <RealTimeUseScreen>TRUE</RealTimeUseScreen>
+            <RecentUsageScreen>TRUE</RecentUsageScreen>
+            <MonthToDateScreen>TRUE</MonthToDateScreen>
+            <MonthlyProjectionScreen>TRUE</MonthlyProjectionScreen>
+            <VoltageScreen>TRUE</VoltageScreen>
+            <KWDetailScreen>TRUE</KWDetailScreen>
+            <SpendingDetailTdyScreen>TRUE</SpendingDetailTdyScreen>
+            <CO2TodayScreen>TRUE</CO2TodayScreen>
+            <MultiPanel1Screen>TRUE</MultiPanel1Screen>
+            <MultiPanel2Screen>TRUE</MultiPanel2Screen>
+            <Contrast>47</Contrast>
+        </DisplaySettings>
+
+        <Display>
+            <DisplayNumber>1</DisplayNumber>
+            <DisplayID>000000</DisplayID>
+            <DisplayDescription></DisplayDescription>
+        </Display>
+        <Display>
+            <DisplayNumber>2</DisplayNumber>
+            <DisplayID>000000</DisplayID>
+            <DisplayDescription></DisplayDescription>
+        </Display>
+        <Display>
+            <DisplayNumber>3</DisplayNumber>
+            <DisplayID>000000</DisplayID>
+            <DisplayDescription></DisplayDescription>
+        </Display>
+        <Display>
+            <DisplayNumber>4</DisplayNumber>
+            <DisplayID>000000</DisplayID>
+            <DisplayDescription></DisplayDescription>
+        </Display>
+
+
+    </Displays>
+
+
+    <Thermostats>
+        <NumberIPT>0</NumberIPT>
+        <Thermostat>
+            <IPTNumber>1</IPTNumber>
+            <IPTAddress>0.0.0.0</IPTAddress>
+            <IPTDescription></IPTDescription>
+            <RTAType>0</RTAType>
+        </Thermostat>
+        <Thermostat>
+            <IPTNumber>2</IPTNumber>
+            <IPTAddress>0.0.0.0</IPTAddress>
+            <IPTDescription></IPTDescription>
+            <RTAType>0</RTAType>
+        </Thermostat>
+        <StatRefresh>5</StatRefresh>
+    </Thermostats>
+
+    <CarbonCost>155</CarbonCost>
+
+    <NetworkSettings>
+        <UseDHCP>1</UseDHCP>
+        <IPAddress>10.1.1.14</IPAddress>
+        <SubnetMask>255.255.255.0</SubnetMask>
+        <GatewayAddress>10.1.1.1</GatewayAddress>
+        <PrimaryDNSServer>10.1.1.1</PrimaryDNSServer>
+        <SecondaryDNSServer>0.0.0.0</SecondaryDNSServer>
+        <NetBiosName>TED6000        </NetBiosName>
+        <HTTPPort>80</HTTPPort>
+        <HTTPSPort>443</HTTPSPort>
+
+    </NetworkSettings>
+
+    <Username>admin</Username>
+    <PasswordAll>0</PasswordAll>
+    <PasswordConf>0</PasswordConf>
+    <ThirdPartyActivated>0</ThirdPartyActivated>
+
+</SystemSettings>

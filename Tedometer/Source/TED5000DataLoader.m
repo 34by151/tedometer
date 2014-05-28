@@ -73,7 +73,6 @@
         }
     }
     
-    // TODO: move connection error message handling up to calling method
     if( !localError ) {
 		
 		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:responseContent options:0 error:&localError] retain];
@@ -123,6 +122,8 @@
     
 	BOOL isSuccessful = NO;
     
+    tedometerData.tedModel = @"TED 5000";
+    
 	NSDictionary* gatewayTimeNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys:
                                                      @"Hour", @"gatewayHour",
                                                      @"Minute", @"gatewayMinute",
@@ -157,6 +158,9 @@
 		for( NSArray *mtuArray in tedometerData.mtusArray ) {
 			for( Meter *aMeter in mtuArray ) {
 				DLog(@"Refreshing data for meter %@ MTU%ld...", [aMeter meterTitle], (long)[aMeter mtuNumber]);
+                
+                [aMeter reset];     // wipe old values
+                
                 if( [aMeter isMemberOfClass: [VoltageMeter class]] ) {
                     isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoVoltageMeter:(VoltageMeter*)aMeter];
                 }
@@ -335,6 +339,7 @@
 		
 	}
 	
+    meter.isAverageSupported = NO;
 	
 	return isSuccessful;
 }

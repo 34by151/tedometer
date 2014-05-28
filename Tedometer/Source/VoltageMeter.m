@@ -61,11 +61,6 @@
 	return 10 * self.maxUnitsPerTick;
 }
 
-- (BOOL) isAverageSupported;
-{
-	return NO;
-}
-
 static NSNumberFormatter *meterStringNumberFormatter;
 - (NSNumberFormatter *)meterStringNumberFormatter {
 	if( ! meterStringNumberFormatter ) {

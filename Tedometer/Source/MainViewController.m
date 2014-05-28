@@ -150,7 +150,8 @@
 }
 
 - (void) releaseMeterViewControllers;
-{    
+{
+
     for( int i=0; i < meterViewControllers.count; ++i ) {
         NSObject *obj = [meterViewControllers objectAtIndex:i];
         if( obj != [NSNull null] ) {

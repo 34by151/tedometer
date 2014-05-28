@@ -22,6 +22,7 @@
 #import "log.h"
 #import "Flurry.h"
 #import "TED5000DataLoader.h"
+#import "TED6000DataLoader.h"
 #import "CXMLNode-utils.h"
 
 
@@ -43,6 +44,7 @@
 @synthesize username;
 @synthesize password;
 @synthesize useSSL;
+@synthesize tedModel;
 @synthesize gatewayHour;
 @synthesize gatewayMinute;
 @synthesize gatewayMonth;
@@ -420,8 +422,15 @@ NSString* _archiveLocation;
     BOOL success = NO;
     NSError *error = nil;
 
+    DataLoader *dataLoader = nil;
     if( self.detectedHardwareType == kHardwareTypeTED5000 ) {
-        TED5000DataLoader *dataLoader = [[TED5000DataLoader alloc] init];
+        dataLoader = [[TED5000DataLoader alloc] init];
+    }
+    else if( self.detectedHardwareType == kHardwareTypeTED6000 ) {
+        dataLoader = [[TED6000DataLoader alloc] init];
+    }
+    
+    if( dataLoader != nil ) {
         success = [dataLoader reload:self error:&error ];
         [dataLoader release];
     }

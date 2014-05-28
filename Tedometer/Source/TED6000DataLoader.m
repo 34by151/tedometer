@@ -180,8 +180,8 @@
                         overviewData[mtuIdx] = @{ @"kva": @0, @"pf": @0 };
                     }
                     else {
-                        NSDictionary* vals = @{ @"kva":   [NSNumber numberWithInt:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.KVA", mtuIdx]]],
-                                                @"pf":    [NSNumber numberWithInt:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]] };
+                        NSDictionary* vals = @{ @"kva":   [NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.KVA", mtuIdx]]],
+                                                @"pf":    [NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]] };
                         overviewData[mtuIdx] = vals;
                         DLog( @"Read overview data for MTU%d: %@", mtuIdx, vals );
                     }

@@ -244,22 +244,6 @@
         //	 [PowerMtu3, CostMtu3, CarbonMtu3, VoltageMtu3],		// MTU3
         //	 [PowerMtu4, CostMtu4, CarbonMtu4, VoltageMtu4] ]		// MTU4
         
-        for( NSArray *mtuArray in tedometerData.mtusArray ) {
-            for( Meter *meter in mtuArray ) {
-                [meter reset];
-                meter.isLowPeakSupported = NO;
-                meter.isAverageSupported = NO;
-                NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
-                if( desc && ! [desc isEqualToString:@""] ) {
-                    meter.mtuName = desc;
-                }
-                
-                if( meter.isNetMeter ) {
-                    meter.totalsMeterType = tedometerData.totalsMeterType;
-                }
-            }
-        }
-        
         for( int mtuIdx=0; mtuIdx <= tedometerData.mtuCount; ++mtuIdx ) {
             NSArray* mtuArray = [tedometerData.mtusArray objectAtIndex:mtuIdx];
             
@@ -297,6 +281,25 @@
                     break;
             }
             
+            // Reset meters here (just before we set them, after we have downloaded the new data,
+            // rather than all at once before we begin downloading the data)
+            // because otherwise, if latency is high, the meters can get zeroed out before the new
+            // data is available, resulting in a short period of time when the meter shows zeroed values.
+            for( Meter *meter in @[powerMeter, carbonMeter, voltageMeter, costMeter] ) {
+                [meter reset];
+                meter.isLowPeakSupported = NO;
+                meter.isAverageSupported = NO;
+                NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
+                if( desc && ! [desc isEqualToString:@""] ) {
+                    meter.mtuName = desc;
+                }
+                
+                if( meter.isNetMeter ) {
+                    meter.totalsMeterType = tedometerData.totalsMeterType;
+                }
+            }
+            
+
             [self reloadFromXmlDocument:powerXmlDoc andTedometerData:tedometerData
                              powerMeter:powerMeter
                             carbonMeter:carbonMeter

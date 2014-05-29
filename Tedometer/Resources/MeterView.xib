@@ -104,7 +104,7 @@
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="TED-O-Meter" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="59" userLabel="Meter Label">
-                                            <rect key="frame" x="52" y="179" width="215" height="47"/>
+                                            <rect key="frame" x="52" y="177" width="215" height="47"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="0.0" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
@@ -376,7 +376,7 @@ Phs: </string>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
             </accessibility>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>

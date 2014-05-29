@@ -71,7 +71,9 @@
     powerMeter.projected = proj;
     powerMeter.mtd = mtd;
     powerMeter.isAverageSupported = YES;
-    
+
+    voltageMeter.now = voltage;
+
     
     // If only one MTU is installed, show MTU1 kva/pf on the net meter (the only meter visible);
     // otherwise, show the kva/pf for each MTU on the individual MTU meters.
@@ -84,7 +86,15 @@
         voltageMeter.infoLabel = (NSString*)[overviewData[voltageMeter.mtuNumber] objectForKey:@"ampsInfoLabel"];
     }
     
-    voltageMeter.now = voltage;
+    // nh 5/28/14: Attempting to calculate Amps from kwa/volts if no amp data is provided for each
+    // phase, but the result seems to be what would be expected if the voltage were double.
+    // Footprints shows voltage as "242/121" (where 242 fluctuates somewhat) but I'm not sure where
+    // the 242 comes from.
+//    if( (!voltageMeter.infoLabel || [@"" isEqualToString:voltageMeter.infoLabel]) && voltage > 0 ) {
+//        float amps = 10.0 * (powerMeter.kva / (float) voltage);
+//        voltageMeter.infoLabel = [self ampsInfoLabelForCurrentInPhases:@[[NSNumber numberWithFloat:amps]]];
+//    }
+    
     
     carbonMeter.carbonRate = tedometerData.carbonRate;
     carbonMeter.now = now;

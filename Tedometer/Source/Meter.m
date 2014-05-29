@@ -49,7 +49,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 
 - (void) reset;
 {
-    self.now = 0;
+//    self.now = 0;
     self.hour = 0;
     self.today = 0;
     self.mtd = 0;

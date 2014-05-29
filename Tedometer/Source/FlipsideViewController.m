@@ -26,6 +26,7 @@
 @synthesize password;
 @synthesize patchAggregationData;
 @synthesize navigationBar;
+@synthesize totalsMeterTypeSegmentedControl;
 
 // slider range must be 0 to num elts -1 (0-10)
 static NSInteger sliderToSeconds[] = {2,3,4,5,10,30,60,120,300,600,-1};
@@ -79,6 +80,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	refreshRateSlider.value = secondsToSliderValue( tedometerData.refreshRate );
 	disableAutolockWhilePluggedIn.on = tedometerData.isAutolockDisabledWhilePluggedIn;
 	patchAggregationData.on = tedometerData.isPatchingAggregationDataSelected;
+    totalsMeterTypeSegmentedControl.selectedSegmentIndex = tedometerData.totalsMeterType;
 	
 
 	
@@ -168,6 +170,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	tedometerData.username = username.text;
 	tedometerData.password = password.text;
 	tedometerData.isPatchingAggregationDataSelected = patchAggregationData.on;
+    tedometerData.totalsMeterType = totalsMeterTypeSegmentedControl.selectedSegmentIndex;
 	
 	[self.delegate flipsideViewControllerDidFinish:self];	
 }

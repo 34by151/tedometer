@@ -55,7 +55,8 @@ typedef enum {
 	BOOL isApplicationInactive;
 	BOOL isShowingTodayStatistics;
 	BOOL isDialBeingEdited;				// don't reload data while dial is being edited; seems to crash the app
-    NSInteger detectedHardwareType;
+    HardwareType detectedHardwareType;
+    TotalsMeterType totalsMeterType;
 	
 	BOOL hasDisplayedDialEditHelpMessage;
 	
@@ -105,7 +106,8 @@ typedef enum {
 @property(readwrite, assign) BOOL hasEstablishedSuccessfulConnectionThisSession;
 @property(readwrite, assign) BOOL isApplicationInactive;
 @property(readwrite, assign) BOOL isShowingTodayStatistics;
-@property(readwrite, assign) NSInteger detectedHardwareType;
+@property(readwrite, assign) HardwareType detectedHardwareType;
+@property(readwrite, assign) TotalsMeterType totalsMeterType;
 @property(readwrite, copy) NSString *connectionErrorMsg;
 @property(readwrite, assign) BOOL hasDisplayedDialEditHelpMessage;
 

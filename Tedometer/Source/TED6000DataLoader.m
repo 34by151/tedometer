@@ -253,6 +253,10 @@
                 if( desc && ! [desc isEqualToString:@""] ) {
                     meter.mtuName = desc;
                 }
+                
+                if( meter.isNetMeter ) {
+                    meter.totalsMeterType = tedometerData.totalsMeterType;
+                }
             }
         }
         
@@ -267,12 +271,14 @@
             CXMLDocument *powerXmlDoc;
             CXMLDocument *costXmlDoc;
             if( mtuIdx == 0 /* net meters */ ) {
-                xmlString = [self responseStringForFilename:@"DashData.xml?T=0&D=0" tedometerData:tedometerData error:&localError];
+                NSString *filename = [NSString stringWithFormat:@"DashData.xml?T=0&D=%ld", (long) tedometerData.totalsMeterType];
+                xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
                 powerXmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
                 if( localError )
                     break;
                 
-                xmlString = [self responseStringForFilename:@"DashData.xml?T=1&D=0" tedometerData:tedometerData error:&localError];
+                filename = [NSString stringWithFormat:@"DashData.xml?T=1&D=%ld", (long) tedometerData.totalsMeterType];
+                xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
                 costXmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
                 if( localError )
                     break;

@@ -64,6 +64,7 @@
 @synthesize hasDisplayedDialEditHelpMessage;
 @synthesize isDialBeingEdited;
 @synthesize isPatchingAggregationDataSelected;
+@synthesize totalsMeterType;
 
 
 // ----------------------------------------------------------------------
@@ -312,6 +313,7 @@ NSString* _archiveLocation;
 	[encoder encodeInteger:hasDisplayedDialEditHelpMessage forKey:@"hasDisplayedDialEditHelpMessage"];
 	[encoder encodeBool:isPatchingAggregationDataSelected forKey:@"isPatchingAggregationDataSelected"];
     [encoder encodeInteger:detectedHardwareType forKey:@"detectedHardwareType"];
+    [encoder encodeInteger:totalsMeterType forKey:@"totalsMeterType"];
 }
 
 - (id) initWithCoder:(NSCoder*)decoder {
@@ -336,6 +338,7 @@ NSString* _archiveLocation;
 		self.hasDisplayedDialEditHelpMessage = [decoder decodeIntegerForKey:@"hasDisplayedDialEditHelpMessage"];
 		self.isPatchingAggregationDataSelected = [decoder decodeBoolForKey:@"isPatchingAggregationDataSelected"];
         self.detectedHardwareType = [decoder decodeIntegerForKey:@"detectedHardwareType"];
+        self.totalsMeterType = [decoder decodeIntegerForKey:@"totalsMeterType"];
 	}
 	return self;
 }

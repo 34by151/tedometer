@@ -9,8 +9,8 @@
 #import "Meter.h"
 #import "CXMLNOde-utils.h"
 #import "MeterViewSizing.h"
-#import "TedometerData.h"
 #import "Flurry.h"
+#import "TedometerData.h"
 
 @implementation Meter
 
@@ -39,6 +39,7 @@
 @synthesize zeroAngle;
 @synthesize isLowPeakSupported;
 @synthesize isAverageSupported;
+@synthesize totalsMeterType;
 
 static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -69,6 +70,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
     self.isLowPeakSupported = YES;
     self.isAverageSupported = YES;
     self.infoLabel = nil;
+    self.totalsMeterType = kTotalsMeterTypeNet;
 }
 - (NSString*) todayLowLabel {
 	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString] : @"";
@@ -189,10 +191,15 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 - (NSString*) meterTitleWithMtuNumber {
 	NSString *title;
 	if( [self mtuNumber] == 0 ) {
-		if( [[TedometerData sharedTedometerData] mtuCount] <= 1 )
+        TedometerData *tedometerData = [TedometerData sharedTedometerData];
+		if( tedometerData.mtuCount <= 1 )
 			title = self.meterTitle;
-		else
-			title = [NSString stringWithFormat:@"Net %@", self.meterTitle];
+		else {
+            NSArray *totalsMeterTypes = @[ @"Net", @"Load", @"Gen"];
+			title = [NSString stringWithFormat:@"%@ %@",
+                     [totalsMeterTypes objectAtIndex:self.totalsMeterType],
+                     self.meterTitle];
+        }
 	}
 	else {
         NSString *name = ((self.mtuName && ![self.mtuName isEqualToString:@""]) ? [self.mtuName stringByAppendingString:@"\n"]: [NSString stringWithFormat:@"MTU%ld", (long)self.mtuNumber]);

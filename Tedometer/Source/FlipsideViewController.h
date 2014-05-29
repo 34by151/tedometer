@@ -28,6 +28,7 @@
 	NSString *connectionErrorMsg;
 	UISwitch *patchAggregationData;
     UINavigationBar *navigationBar;
+    UISegmentedControl *totalsMeterTypeSegmentedControl;
 }
 
 @property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
@@ -45,6 +46,7 @@
 @property (nonatomic, retain) IBOutlet UISwitch *patchAggregationData;
 @property (nonatomic, retain) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, copy) NSString *connectionErrorMsg;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *totalsMeterTypeSegmentedControl;
 
 
 

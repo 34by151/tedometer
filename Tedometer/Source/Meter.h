@@ -17,11 +17,18 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 	kMeterValueTypeProjected
 };
 
+typedef enum {
+    kTotalsMeterTypeNet = 0,
+    kTotalsMeterTypeLoad,
+    kTotalsMeterTypeGen
+} TotalsMeterType;
+
 @interface Meter : NSObject <NSCoding> {
 	
 	NSInteger mtuNumber;	// 0 if net meter
     NSString *mtuName;
 	NSArray *mtuMeters;		// nil if isNetMeter == NO
+    TotalsMeterType totalsMeterType;
 	
 	NSInteger now;
 	NSInteger hour;
@@ -53,11 +60,13 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
     NSString *infoLabel;
     
 	MeterValueType meterValueType;
+    
 }
 
 @property(readonly) BOOL isNetMeter;
 @property(readonly) NSInteger mtuNumber;
 @property(readwrite, copy) NSString* mtuName;
+@property(readwrite, assign) TotalsMeterType totalsMeterType;
 
 @property(readwrite, assign) NSInteger now;
 @property(readwrite, assign) NSInteger hour;

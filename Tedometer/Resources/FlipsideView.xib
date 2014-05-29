@@ -17,6 +17,7 @@
                 <outlet property="refreshRateSlider" destination="53" id="58"/>
                 <outlet property="scrollView" destination="WPv-2G-CWA" id="yjc-2i-8pp"/>
                 <outlet property="settingsView" destination="96" id="101"/>
+                <outlet property="totalsMeterTypeSegmentedControl" destination="nxg-a8-lpQ" id="Jbo-Qz-k55"/>
                 <outlet property="useSSL" destination="102" id="110"/>
                 <outlet property="username" destination="105" id="108"/>
                 <outlet property="view" destination="40" id="Drn-jg-zYT"/>

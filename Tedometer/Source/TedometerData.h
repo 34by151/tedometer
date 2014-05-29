@@ -35,11 +35,11 @@ typedef enum {
 	kAggregationOpMax
 } AggregationOp;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, HardwareType) {
     kHardwareTypeUnknown = 0,
     kHardwareTypeTED5000,
     kHardwareTypeTED6000
-} HardwareType;
+};
 
 @interface TedometerData : NSObject <NSCoding> {
 

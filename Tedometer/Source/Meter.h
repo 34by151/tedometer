@@ -17,11 +17,11 @@ typedef NS_ENUM(NSInteger, MeterValueType) {
 	kMeterValueTypeProjected
 };
 
-typedef enum {
+typedef NS_ENUM(NSInteger, TotalsMeterType) {
     kTotalsMeterTypeNet = 0,
     kTotalsMeterTypeLoad,
     kTotalsMeterTypeGen
-} TotalsMeterType;
+};
 
 @interface Meter : NSObject <NSCoding> {
 	

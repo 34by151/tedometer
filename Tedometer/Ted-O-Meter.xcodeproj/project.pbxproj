@@ -39,7 +39,7 @@
 		D88D3B2C11416FDB001007F1 /* metallic_blip.caf in Resources */ = {isa = PBXBuildFile; fileRef = D88D39C91136F50F001007F1 /* metallic_blip.caf */; };
 		D890424210F3DEAA00212963 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D890424110F3DEAA00212963 /* MeterView.m */; };
 		D892C3A61112F70500D157D2 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D892C3A51112F70500D157D2 /* SettingsView.m */; };
-		D89DFACD191919E50030C1FE /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D89DFACC191919E50030C1FE /* UICKeyChainStore.m */; };
+		D89DFACD191919E50030C1FE /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D89DFACC191919E50030C1FE /* UICKeyChainStore.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D8A2DFDD1927CC5E0071621A /* TED5000DataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2DFDC1927CC5E0071621A /* TED5000DataLoader.m */; };
 		D8C56CF010CE74210041B368 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C56CEF10CE74210041B368 /* CoreLocation.framework */; };
 		D8C681DF10E4702900DBF9E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C681DD10E4702900DBF9E3 /* MainViewController.m */; };
@@ -797,6 +797,7 @@
 					"$(PROJECT_DIR)/Flurry",
 				);
 				PRODUCT_NAME = "TED-O-Meter";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -808,8 +809,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nathan Hadfield (8Y3E6C589X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ted-O-Meter_Prefix.pch";
@@ -829,7 +830,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nathan Hadfield (QFZ7WN6KU9)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"USE_TEST_DATA=0",

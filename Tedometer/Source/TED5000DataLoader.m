@@ -41,7 +41,6 @@
 		urlString = [NSString stringWithFormat:@"%@://%@/api/LiveData.xml", tedometerData.useSSL ? @"https" : @"http", tedometerData.gatewayHost];
     }
     
-    BOOL success = NO;
     NSError *localError = nil;
     NSString *responseContent = nil;
 	
@@ -75,13 +74,15 @@
     
     if( !localError ) {
 		
-		CXMLDocument *newDocument = [[[CXMLDocument alloc] initWithXMLString:responseContent options:0 error:&localError] retain];
-		if( newDocument ) {
-			success = YES;
+		CXMLDocument *newDocument = [[CXMLDocument alloc] initWithXMLString:responseContent options:0 error:&localError];
+		if( !localError ) {
 			[self refreshTedometerData:tedometerData fromXmlDocument:newDocument];
 		}
-        else {
-            if( localError && [[localError domain] isEqualToString:@"CXMLErrorDomain"] ) {
+        [newDocument release];
+
+        if( localError ) {
+
+            if( [[localError domain] isEqualToString:@"CXMLErrorDomain"] ) {
                 localError = [NSError errorWithDomain:@"com.twistedrootsoftware.Ted-O-Meter"
                                              code:1
                                          userInfo:@{ NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Unable to parse data from %@", urlString],
@@ -103,14 +104,13 @@
                                              code:2
                                          userInfo:paramsWithUnderlyingError];
                 
-                [params release];
                 [paramsWithUnderlyingError release];
             }
         }
 	}
 	
 
-    if( !localError ) {
+    if( localError && error ) {
         *error = localError;
     }
     
@@ -318,7 +318,7 @@
 														 @"PeakVoltageMTD",			@"mtdPeakValue",
 														 nil];
 		
-		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
+		BOOL isMaxFixSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
                                                                 intoObject:meter
                                                        withParentMeterNode:@"Voltage"
                                                    andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty
@@ -331,11 +331,14 @@
                                            @"PeaVoltageMTD",			@"mtdMinValue",
                                            nil];
 		
-		isSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
+		BOOL isMinFixSuccessful = [TED5000DataLoader fixNetMeterValuesFromXmlDocument:document
                                                                 intoObject:meter
                                                        withParentMeterNode:@"Voltage" 
                                                    andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 
                                                         usingAggregationOp:kAggregationOpMin];
+        [netMeterFixNodesKeyedByProperty release];
+        
+        isSuccessful = isMaxFixSuccessful && isMinFixSuccessful;
 		
 	}
 	

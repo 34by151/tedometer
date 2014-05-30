@@ -252,76 +252,81 @@
             CarbonMeter *carbonMeter = (CarbonMeter*)[mtuArray objectAtIndex:kMeterTypeCarbon];
             VoltageMeter *voltageMeter = (VoltageMeter*)[mtuArray objectAtIndex:kMeterTypeVoltage];
             
-            CXMLDocument *powerXmlDoc;
-            CXMLDocument *costXmlDoc;
+            CXMLDocument *powerXmlDoc = nil;
+            CXMLDocument *costXmlDoc = nil;
             if( mtuIdx == 0 /* net meters */ ) {
                 NSString *filename = [NSString stringWithFormat:@"DashData.xml?T=0&D=%ld", (long) tedometerData.totalsMeterType];
                 xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
-                powerXmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
-                if( localError )
-                    break;
+                powerXmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
                 
-                filename = [NSString stringWithFormat:@"DashData.xml?T=1&D=%ld", (long) tedometerData.totalsMeterType];
-                xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
-                costXmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
-                if( localError )
-                    break;
+                if( !localError ) {
+                    filename = [NSString stringWithFormat:@"DashData.xml?T=1&D=%ld", (long) tedometerData.totalsMeterType];
+                    xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
+                    costXmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
+                }
             }
             else {
                 NSString *filename = [NSString stringWithFormat:@"DashData.xml?T=0&D=255&M=%d", mtuIdx];
                 xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
-                powerXmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
-                if( localError )
-                    break;
+                powerXmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
                 
-                filename = [NSString stringWithFormat:@"DashData.xml?T=1&D=255&M=%d", mtuIdx];
-                xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
-                costXmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
-                if( localError )
-                    break;
-            }
-            
-            // Reset meters here (just before we set them, after we have downloaded the new data,
-            // rather than all at once before we begin downloading the data)
-            // because otherwise, if latency is high, the meters can get zeroed out before the new
-            // data is available, resulting in a short period of time when the meter shows zeroed values.
-            for( Meter *meter in @[powerMeter, carbonMeter, voltageMeter, costMeter] ) {
-                [meter reset];
-                meter.isLowPeakSupported = NO;
-                meter.isAverageSupported = NO;
-                NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
-                if( desc && ! [desc isEqualToString:@""] ) {
-                    meter.mtuName = desc;
-                }
-                
-                if( meter.isNetMeter ) {
-                    meter.totalsMeterType = tedometerData.totalsMeterType;
+                if( !localError ) {
+                    filename = [NSString stringWithFormat:@"DashData.xml?T=1&D=255&M=%d", mtuIdx];
+                    xmlString = [self responseStringForFilename:filename tedometerData:tedometerData error:&localError];
+                    costXmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
                 }
             }
             
+            if( !localError ) {
+                // Reset meters here (just before we set them, after we have downloaded the new data,
+                // rather than all at once before we begin downloading the data)
+                // because otherwise, if latency is high, the meters can get zeroed out before the new
+                // data is available, resulting in a short period of time when the meter shows zeroed values.
+                for( Meter *meter in @[powerMeter, carbonMeter, voltageMeter, costMeter] ) {
+                    [meter reset];
+                    meter.isLowPeakSupported = NO;
+                    meter.isAverageSupported = NO;
+                    NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
+                    if( desc && ! [desc isEqualToString:@""] ) {
+                        meter.mtuName = desc;
+                    }
+                    
+                    if( meter.isNetMeter ) {
+                        meter.totalsMeterType = tedometerData.totalsMeterType;
+                    }
+                }
+                
 
-            [self reloadFromXmlDocument:powerXmlDoc andTedometerData:tedometerData
-                             powerMeter:powerMeter
-                            carbonMeter:carbonMeter
-                           voltageMeter:voltageMeter
-                                  error:&localError];
+                [self reloadFromXmlDocument:powerXmlDoc andTedometerData:tedometerData
+                                 powerMeter:powerMeter
+                                carbonMeter:carbonMeter
+                               voltageMeter:voltageMeter
+                                      error:&localError];
+                
+                if( !localError ) {
+            
+                    [self reloadFromXmlDocument:costXmlDoc andTedometerData:tedometerData
+                                      costMeter:costMeter
+                                          error:&localError];
+                }
+            }
+            
+            if( powerXmlDoc ) {
+                [powerXmlDoc release];
+                powerXmlDoc = nil;
+            }
+            if( costXmlDoc ) {
+                [costXmlDoc release];
+                costXmlDoc = nil;
+            }
+            
             if( localError )
                 break;
-            
-            [self reloadFromXmlDocument:costXmlDoc andTedometerData:tedometerData
-                              costMeter:costMeter
-                                  error:&localError];
-            if( localError )
-                break;
-            
-            [powerXmlDoc release];
-            [costXmlDoc release];
-            
         }
     }
    
     
-    if( localError ) {
+    if( localError && error ) {
         *error = localError;
     }
     
@@ -363,6 +368,7 @@
         [request setPassword:tedometerData.password];
         [request setUseSessionPersistence:NO];
         
+        [request setTimeOutSeconds:30];
         [request startSynchronous];
         localError = [request error];
         if (!localError) {
@@ -370,7 +376,7 @@
         }
     }
     
-    if( localError ) {
+    if( localError && error ) {
         *error = localError;
         responseContent = nil;
     }

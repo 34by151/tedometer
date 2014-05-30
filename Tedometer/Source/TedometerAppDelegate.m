@@ -104,7 +104,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	if( curReach == internetReach ) {
 		NetworkStatus netStatus = [curReach currentReachabilityStatus];
 		//BOOL connectionRequired = [curReach connectionRequired];
-		if( false && netStatus == NotReachable ) {
+		if( netStatus == NotReachable ) {
 			internetRequiredViewController.view.hidden = NO;
 		}
 		else {

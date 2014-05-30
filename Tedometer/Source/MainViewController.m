@@ -393,7 +393,7 @@
 		pageNumber = 0;
 	}
     
-	pageControl.currentPage = 1; //pageNumber;
+	pageControl.currentPage = pageNumber;
 	//[self performSelector:@selector(changePage:) withObject:self afterDelay:1.5];
 	[self changePage:self];
 	pageControlUsed = NO;
@@ -405,6 +405,13 @@
 - (void) mtuCountDidChange:(NSNotification*)notification;
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        // TODO: We seem to be having synchronization isues due to
+        // dependencies on meter controllers as they're being released.
+        // Need to fix code to not release meter controllers but simply
+        // readjust their position in the scrollview when the MTU count
+        // changes.
         
         // force controllers to reload into scrollview
         [self releaseMeterViewControllers];

@@ -436,7 +436,7 @@ NSString* _archiveLocation;
         self.connectionErrorMsg = @"Unrecognized gateway";
     }
     
-    if( dataLoader != nil ) {
+    if( dataLoader ) {
         NSError *error = nil;
         success = [dataLoader reload:self error:&error ];
         [dataLoader release];

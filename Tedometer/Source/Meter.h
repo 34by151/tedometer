@@ -56,6 +56,7 @@ typedef NS_ENUM(NSInteger, TotalsMeterType) {
 	
     BOOL isAverageSupported;
     BOOL isLowPeakSupported;
+    BOOL isTotalsMeterTypeSelectionSupported;
     
     NSString *infoLabel;
     
@@ -115,6 +116,7 @@ typedef NS_ENUM(NSInteger, TotalsMeterType) {
 @property(getter=infoLabel, setter=setInfoLabel:, readwrite, copy) NSString* infoLabel;
 @property(readwrite, assign) BOOL isAverageSupported;
 @property(readwrite, assign) BOOL isLowPeakSupported;
+@property(readwrite, assign) BOOL isTotalsMeterTypeSelectionSupported;
 
 - (id) initWithMtuNumber:(NSInteger)mtuNum;
 - (id) initNetMeterWithMtuMeters: (NSArray*)meters;

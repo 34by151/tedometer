@@ -39,6 +39,7 @@
 @synthesize zeroAngle;
 @synthesize isLowPeakSupported;
 @synthesize isAverageSupported;
+@synthesize isTotalsMeterTypeSelectionSupported;
 @synthesize totalsMeterType;
 
 static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -69,6 +70,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
     self.mtdMinDay = 0;
     self.isLowPeakSupported = YES;
     self.isAverageSupported = YES;
+    self.isTotalsMeterTypeSelectionSupported = NO;
     self.infoLabel = nil;
     self.totalsMeterType = kTotalsMeterTypeNet;
 }
@@ -202,8 +204,8 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
         }
 	}
 	else {
-        NSString *name = ((self.mtuName && ![self.mtuName isEqualToString:@""]) ? [self.mtuName stringByAppendingString:@"\n"]: [NSString stringWithFormat:@"MTU%ld", (long)self.mtuNumber]);
-		title = [NSString stringWithFormat:@"%@ %@", name, self.meterTitle];
+        NSString *name = ((self.mtuName != nil && ![self.mtuName isEqualToString:@""]) ? [self.mtuName stringByAppendingString:@"\n"]: [NSString stringWithFormat:@"MTU%ld", (long)self.mtuNumber]);
+		title = [NSString stringWithFormat:@"%@", name];
 	}
 
 	return title;

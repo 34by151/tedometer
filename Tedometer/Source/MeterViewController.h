@@ -44,7 +44,7 @@
 	UILabel *meterLabel;
 	UILabel *meterTitle;
 	UILabel *infoLabel;
-    UILabel *modelLabel;
+    UILabel *metricLabel;
     
 	UIActivityIndicatorView *activityIndicator;
 	
@@ -52,6 +52,7 @@
 	
 	UIButton *warningIconButton;
 	UIButton *stopDialEditButton;
+    UIButton *totalsTypeToggleButton;
 
 	UIView *parentDialView;
 	UIImageView *dialShadowView;
@@ -59,6 +60,7 @@
 	UIImageView *dialHaloView;
 	UIImageView *glareView;
 	UIImageView *dimmerView;
+    
 
     UINavigationBar *navigationBar;
 	UISegmentedControl *todayMonthSegmentedControl;
@@ -100,7 +102,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *projValueUnit;
 @property (nonatomic, retain) IBOutlet UILabel *projLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterLabel;
-@property (nonatomic, retain) IBOutlet UILabel *modelLabel;
+@property (nonatomic, retain) IBOutlet UILabel *metricLabel;
 @property (nonatomic, retain) IBOutlet UILabel *meterTitle;
 @property (nonatomic, retain) IBOutlet UILabel *infoLabel;
 @property (nonatomic, retain) IBOutlet DialView *dialView;
@@ -108,6 +110,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *avgLabelPointerImage;
 @property (nonatomic, retain) IBOutlet UIButton *warningIconButton;
 @property (nonatomic, retain) IBOutlet UIButton *stopDialEditButton;
+@property (nonatomic, retain) IBOutlet UIButton *totalsTypeToggleButton;
 
 - (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter;
 

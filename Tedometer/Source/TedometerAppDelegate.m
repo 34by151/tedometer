@@ -76,6 +76,8 @@ void uncaughtExceptionHandler(NSException *exception);
     [window makeKeyAndVisible];
 	
 	[L0SolicitReviewController solicit];		// Invitation to the review the app
+    
+    [mainViewController refreshData];
 
 }
 

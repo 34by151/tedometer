@@ -308,7 +308,6 @@
         //frame.origin.y = 0;
         controller.view.frame = frame;
         [scrollView addSubview:controller.view];
-//		[self updateMeterVisibility];
     }
     else {
         DLog( @"Controller's origin for page %ld was already set to (%ld, %ld)", page, (long) controller.view.frame.origin.x, (long) controller.view.frame.origin.y );

@@ -204,6 +204,7 @@
                     [meter reset];
                     meter.isLowPeakSupported = NO;
                     meter.isAverageSupported = NO;
+                    meter.isTotalsMeterTypeSelectionSupported = YES;
                     NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
                     if( desc && ! [desc isEqualToString:@""] ) {
                         meter.mtuName = desc;

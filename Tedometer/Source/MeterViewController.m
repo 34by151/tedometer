@@ -42,7 +42,7 @@
 @synthesize projLabel;
 @synthesize projValue;
 @synthesize projValueUnit;
-@synthesize modelLabel;
+@synthesize metricLabel;
 @synthesize meterLabel;
 @synthesize meterTitle;
 @synthesize dialView;
@@ -52,6 +52,7 @@
 @synthesize warningIconButton;
 @synthesize mainViewController;
 @synthesize stopDialEditButton;
+@synthesize totalsTypeToggleButton;
 @synthesize parentDialView;
 @synthesize dialShadowView;
 @synthesize dialShadowThinView;
@@ -141,7 +142,7 @@
 	 infoLabel.text = @"";
 	 
 	 meterTitle.text = @"";
-     modelLabel.text = @"";
+     metricLabel.text = @"";
 	 
 	 shouldAutoRefresh = YES;
 
@@ -255,7 +256,35 @@
 #else
 	if( true || ! tedometerData.connectionErrorMsg ) {
 
-		meterTitle.text = [self.curMeter.meterTitleWithMtuNumber uppercaseString];
+        metricLabel.text = [self.curMeter.meterTitle uppercaseString];
+        metricLabel.hidden = NO;
+        
+        if( self.curMeter.isNetMeter ) {
+            meterTitle.hidden = YES;
+            if( tedometerData.mtuCount <= 1 ) {
+                // If there is only one MTU, the totals meter is automatically the NET meter,
+                // so don't display the toggle button
+                totalsTypeToggleButton.hidden = YES;
+            }
+            else {
+                
+                // For the totals-type toggle button, we show the current state of the setting
+                // rather than the current state of the meter, so that there is immediate UI
+                // feedback even if it takes some time to reload. However, if the current meter
+                // doesn't support totals-type toggling (e.g., TED 5000), then we want to display
+                // the NET tag regardless of what is in the settings.
+                NSArray *totalsTypeImageNames = @[ @"totals_net.png", @"totals_load.png", @"totals_gen.png"];
+                NSInteger totalsMeterType = (self.curMeter.isTotalsMeterTypeSelectionSupported ? tedometerData.totalsMeterType : kTotalsMeterTypeNet);
+                NSString *totalsImage = [totalsTypeImageNames objectAtIndex:totalsMeterType];
+                [totalsTypeToggleButton setImage:[UIImage imageNamed:totalsImage] forState:UIControlStateNormal];
+                totalsTypeToggleButton.hidden = NO;
+            }
+        }
+        else {
+            totalsTypeToggleButton.hidden = YES;
+            meterTitle.hidden = NO;
+            meterTitle.text = [self.curMeter.meterTitleWithMtuNumber uppercaseString];
+        }
 		meterLabel.text =  [NSString stringWithFormat:@"%@%@", [self.curMeter meterStringForInteger: self.curMeter.now], self.curMeter.instantaneousUnit];
 
 		NSArray* detailLabels = [NSArray arrayWithObjects:lowLabel, avgLabel, peakLabel, totalLabel, projLabel, nil];
@@ -327,7 +356,18 @@
 	
 }
 
-
+- (IBAction) toggleTotalsMeterType {
+	if( self.curMeter.isTotalsMeterTypeSelectionSupported ) {
+        ++tedometerData.totalsMeterType;
+        if( tedometerData.totalsMeterType > kTotalsMeterTypeGen )
+            tedometerData.totalsMeterType = kTotalsMeterTypeNet;
+    }
+    else {
+        tedometerData.totalsMeterType = kTotalsMeterTypeNet;
+    }
+	[self refreshView];
+    [self.mainViewController refreshData];
+}
 
 
 int buttonCount = 0;
@@ -381,6 +421,8 @@ int buttonCount = 0;
 	[projLabel release];
 	[meterLabel release];
 	[meterTitle release];
+    [metricLabel release];
+    [totalsTypeToggleButton release];
 	[dialView release];
 	[activityIndicator release];
 	[avgLabelPointerImage release];

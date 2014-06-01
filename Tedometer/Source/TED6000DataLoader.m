@@ -41,93 +41,11 @@
 - (id) init {
 	if( self = [super init] ) {
         // initialize member variables here
-        for( int i=0; i <= NUM_MTUS; ++i ) {
+        for( int i=0; i < NUM_MTUS; ++i ) {
             overviewData[i] = [[NSMutableDictionary alloc] init];
         }
 	}
 	return self;
-}
-
-- (BOOL)reloadFromXmlDocument:(CXMLDocument*)xmlDoc
-            andTedometerData:(TedometerData*)tedometerData
-                  powerMeter:(PowerMeter*)powerMeter
-                 carbonMeter:(CarbonMeter*)carbonMeter
-                voltageMeter:(VoltageMeter*)voltageMeter
-                       error:(NSError**)error;
-{
-    BOOL isSuccessful = YES;
-    
-    
-    NSInteger now = [xmlDoc integerValueAtPath:@"Now"];
-    NSInteger tdy = [xmlDoc integerValueAtPath:@"TDY"];
-    NSInteger mtd = [xmlDoc integerValueAtPath:@"MTD"];
-//    NSInteger avg = [xmlDoc integerValueAtPath:@"Avg"];
-    NSInteger proj = [xmlDoc integerValueAtPath:@"Proj"];
-    NSInteger voltage = [xmlDoc integerValueAtPath:@"Voltage"];
-//    NSInteger phase = [xmlDoc integerValueAtPath:@"Phase"];
-    
-    powerMeter.now = now;
-    powerMeter.today = tdy;
-    powerMeter.projected = proj;
-    powerMeter.mtd = mtd;
-    powerMeter.isAverageSupported = YES;
-
-    voltageMeter.now = voltage;
-
-    
-    // If only one MTU is installed, show MTU1 kva/pf on the net meter (the only meter visible);
-    // otherwise, show the kva/pf for each MTU on the individual MTU meters.
-    if( tedometerData.mtuCount == 1 && powerMeter.mtuNumber == 0 ) {
-        powerMeter.kva = [[overviewData[1] objectForKey:@"kva"] intValue];
-        voltageMeter.infoLabel = (NSString*)[overviewData[1] objectForKey:@"ampsInfoLabel"];
-    }
-    else if( tedometerData.mtuCount > 1 ) {
-        powerMeter.kva = [[overviewData[powerMeter.mtuNumber] objectForKey:@"kva"] intValue];
-        voltageMeter.infoLabel = (NSString*)[overviewData[voltageMeter.mtuNumber] objectForKey:@"ampsInfoLabel"];
-    }
-    
-    // nh 5/28/14: Attempting to calculate Amps from kwa/volts if no amp data is provided for each
-    // phase, but the result seems to be what would be expected if the voltage were double.
-    // Footprints shows voltage as "242/121" (where 242 fluctuates somewhat) but I'm not sure where
-    // the 242 comes from.
-//    if( (!voltageMeter.infoLabel || [@"" isEqualToString:voltageMeter.infoLabel]) && voltage > 0 ) {
-//        float amps = 10.0 * (powerMeter.kva / (float) voltage);
-//        voltageMeter.infoLabel = [self ampsInfoLabelForCurrentInPhases:@[[NSNumber numberWithFloat:amps]]];
-//    }
-    
-    
-    carbonMeter.carbonRate = tedometerData.carbonRate;
-    carbonMeter.now = now;
-    carbonMeter.today = tdy;
-    carbonMeter.projected = proj;
-    carbonMeter.mtd = mtd;
-    carbonMeter.isAverageSupported = YES;
-    
-    return isSuccessful;
-}
-
-- (BOOL)reloadFromXmlDocument:(CXMLDocument*)xmlDoc
-            andTedometerData:(TedometerData*)tedometerData
-                   costMeter:(CostMeter*)costMeter
-                       error:(NSError**)error;
-{
-    BOOL isSuccessful = YES;
-    
-    NSInteger now = [xmlDoc integerValueAtPath:@"Now"];
-    NSInteger tdy = [xmlDoc integerValueAtPath:@"TDY"];
-    NSInteger mtd = [xmlDoc integerValueAtPath:@"MTD"];
-//    NSInteger avg = [xmlDoc integerValueAtPath:@"Avg"];
-    NSInteger proj = [xmlDoc integerValueAtPath:@"Proj"];
-//    NSInteger voltage = [xmlDoc integerValueAtPath:@"Voltage"];
-//    NSInteger phase = [xmlDoc integerValueAtPath:@"Phase"];
-    
-    costMeter.now = now;
-    costMeter.today = tdy;
-    costMeter.projected = proj;
-    costMeter.mtd = mtd;
-    costMeter.isAverageSupported = YES;
-    
-    return isSuccessful;
 }
 
 
@@ -149,7 +67,7 @@
     CXMLDocument *xmlDoc;
 
     tedometerData.tedModel = @"TED PRO";
-
+    
     // gateway time isn't reported by TED6000, so use iOS time
     // (time is needed for calcluating averages)
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
@@ -385,9 +303,93 @@
     return responseContent;
 }
 
+- (BOOL)reloadFromXmlDocument:(CXMLDocument*)xmlDoc
+             andTedometerData:(TedometerData*)tedometerData
+                   powerMeter:(PowerMeter*)powerMeter
+                  carbonMeter:(CarbonMeter*)carbonMeter
+                 voltageMeter:(VoltageMeter*)voltageMeter
+                        error:(NSError**)error;
+{
+    BOOL isSuccessful = YES;
+    
+    
+    NSInteger now = [xmlDoc integerValueAtPath:@"Now"];
+    NSInteger tdy = [xmlDoc integerValueAtPath:@"TDY"];
+    NSInteger mtd = [xmlDoc integerValueAtPath:@"MTD"];
+    //    NSInteger avg = [xmlDoc integerValueAtPath:@"Avg"];
+    NSInteger proj = [xmlDoc integerValueAtPath:@"Proj"];
+    NSInteger voltage = [xmlDoc integerValueAtPath:@"Voltage"];
+    //    NSInteger phase = [xmlDoc integerValueAtPath:@"Phase"];
+    
+    powerMeter.now = now;
+    powerMeter.today = tdy;
+    powerMeter.projected = proj;
+    powerMeter.mtd = mtd;
+    powerMeter.isAverageSupported = YES;
+    
+    voltageMeter.now = voltage;
+    
+    
+    // If only one MTU is installed, show MTU1 kva/pf on the net meter (the only meter visible);
+    // otherwise, show the kva/pf for each MTU on the individual MTU meters.
+    if( tedometerData.mtuCount == 1 && powerMeter.mtuNumber == 0 ) {
+        powerMeter.kva = [[overviewData[1] objectForKey:@"kva"] intValue];
+        voltageMeter.infoLabel = (NSString*)[overviewData[1] objectForKey:@"ampsInfoLabel"];
+    }
+    else if( tedometerData.mtuCount > 1 ) {
+        powerMeter.kva = [[overviewData[powerMeter.mtuNumber] objectForKey:@"kva"] intValue];
+        voltageMeter.infoLabel = (NSString*)[overviewData[voltageMeter.mtuNumber] objectForKey:@"ampsInfoLabel"];
+    }
+    
+    // nh 5/28/14: Attempting to calculate Amps from kwa/volts if no amp data is provided for each
+    // phase, but the result seems to be what would be expected if the voltage were double.
+    // Footprints shows voltage as "242/121" (where 242 fluctuates somewhat) but I'm not sure where
+    // the 242 comes from.
+    //    if( (!voltageMeter.infoLabel || [@"" isEqualToString:voltageMeter.infoLabel]) && voltage > 0 ) {
+    //        float amps = 10.0 * (powerMeter.kva / (float) voltage);
+    //        voltageMeter.infoLabel = [self ampsInfoLabelForCurrentInPhases:@[[NSNumber numberWithFloat:amps]]];
+    //    }
+    
+    
+    carbonMeter.carbonRate = tedometerData.carbonRate;
+    carbonMeter.now = now;
+    carbonMeter.today = tdy;
+    carbonMeter.projected = proj;
+    carbonMeter.mtd = mtd;
+    carbonMeter.isAverageSupported = YES;
+    
+    return isSuccessful;
+}
+
+- (BOOL)reloadFromXmlDocument:(CXMLDocument*)xmlDoc
+             andTedometerData:(TedometerData*)tedometerData
+                    costMeter:(CostMeter*)costMeter
+                        error:(NSError**)error;
+{
+    BOOL isSuccessful = YES;
+    
+    NSInteger now = [xmlDoc integerValueAtPath:@"Now"];
+    NSInteger tdy = [xmlDoc integerValueAtPath:@"TDY"];
+    NSInteger mtd = [xmlDoc integerValueAtPath:@"MTD"];
+    //    NSInteger avg = [xmlDoc integerValueAtPath:@"Avg"];
+    NSInteger proj = [xmlDoc integerValueAtPath:@"Proj"];
+    //    NSInteger voltage = [xmlDoc integerValueAtPath:@"Voltage"];
+    //    NSInteger phase = [xmlDoc integerValueAtPath:@"Phase"];
+    
+    costMeter.now = now;
+    costMeter.today = tdy;
+    costMeter.projected = proj;
+    costMeter.mtd = mtd;
+    costMeter.isAverageSupported = YES;
+    
+    return isSuccessful;
+}
+
+
 -(void)dealloc {
-    for( int i=0; i <= NUM_MTUS; ++i ) {
+    for( int i=0; i < NUM_MTUS; ++i ) {
         [overviewData[i] release];
+        overviewData[i] = nil;
     }
 
 	[super dealloc];

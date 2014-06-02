@@ -259,31 +259,38 @@
         metricLabel.text = [self.curMeter.meterTitle uppercaseString];
         metricLabel.hidden = NO;
         
-        if( self.curMeter.isNetMeter ) {
+        if( ! tedometerData.hasEstablishedSuccessfulConnectionThisSession ) {
             meterTitle.hidden = YES;
-            if( tedometerData.mtuCount <= 1 ) {
-                // If there is only one MTU, the totals meter is automatically the NET meter,
-                // so don't display the toggle button
-                totalsTypeToggleButton.hidden = YES;
-            }
-            else {
-                
-                // For the totals-type toggle button, we show the current state of the setting
-                // rather than the current state of the meter, so that there is immediate UI
-                // feedback even if it takes some time to reload. However, if the current meter
-                // doesn't support totals-type toggling (e.g., TED 5000), then we want to display
-                // the NET tag regardless of what is in the settings.
-                NSArray *totalsTypeImageNames = @[ @"totals_net.png", @"totals_load.png", @"totals_gen.png"];
-                NSInteger totalsMeterType = (self.curMeter.isTotalsMeterTypeSelectionSupported ? tedometerData.totalsMeterType : kTotalsMeterTypeNet);
-                NSString *totalsImage = [totalsTypeImageNames objectAtIndex:totalsMeterType];
-                [totalsTypeToggleButton setImage:[UIImage imageNamed:totalsImage] forState:UIControlStateNormal];
-                totalsTypeToggleButton.hidden = NO;
-            }
+            totalsTypeToggleButton.hidden = YES;
         }
         else {
-            totalsTypeToggleButton.hidden = YES;
-            meterTitle.hidden = NO;
-            meterTitle.text = [self.curMeter.meterTitleWithMtuNumber uppercaseString];
+            if( self.curMeter.isNetMeter ) {
+                meterTitle.hidden = YES;
+                if( tedometerData.mtuCount <= 1 ) {
+                    // If there is only one MTU, the totals meter is automatically the NET meter,
+                    // so don't display the toggle button
+                    totalsTypeToggleButton.hidden = YES;
+                }
+                else {
+                    
+                    // For the totals-type toggle button, we show the current state of the setting
+                    // rather than the current state of the meter, so that there is immediate UI
+                    // feedback even if it takes some time to reload. However, if the current meter
+                    // doesn't support totals-type toggling (e.g., TED 5000), then we want to display
+                    // the NET tag regardless of what is in the settings.
+                    NSArray *totalsTypeImageNames = @[ @"totals_net.png", @"totals_load.png", @"totals_gen.png"];
+                    NSInteger totalsMeterType = tedometerData.totalsMeterType;
+                    NSString *totalsImage = [totalsTypeImageNames objectAtIndex:totalsMeterType];
+                    [totalsTypeToggleButton setImage:[UIImage imageNamed:totalsImage] forState:UIControlStateNormal];
+                    totalsTypeToggleButton.hidden = NO;
+                }
+            }
+            else {
+                // we're an MTU meter (not a totals meter)
+                totalsTypeToggleButton.hidden = YES;
+                meterTitle.hidden = NO;
+                meterTitle.text = [self.curMeter.meterTitleWithMtuNumber uppercaseString];
+            }
         }
 		meterLabel.text =  [NSString stringWithFormat:@"%@%@", [self.curMeter meterStringForInteger: self.curMeter.now], self.curMeter.instantaneousUnit];
 

@@ -70,9 +70,9 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
     self.mtdMinDay = 0;
     self.isLowPeakSupported = YES;
     self.isAverageSupported = YES;
-    self.isTotalsMeterTypeSelectionSupported = NO;
+//    self.isTotalsMeterTypeSelectionSupported = NO;
     self.infoLabel = nil;
-    self.totalsMeterType = kTotalsMeterTypeNet;
+//    self.totalsMeterType = kTotalsMeterTypeNet;
 }
 - (NSString*) todayLowLabel {
 	return [self isLowPeakSupported] ? [NSString stringWithFormat:@"Low (%@)", self.todayMinTimeString] : @"";
@@ -193,15 +193,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 - (NSString*) meterTitleWithMtuNumber {
 	NSString *title;
 	if( [self mtuNumber] == 0 ) {
-        TedometerData *tedometerData = [TedometerData sharedTedometerData];
-		if( tedometerData.mtuCount <= 1 )
-			title = self.meterTitle;
-		else {
-            NSArray *totalsMeterTypes = @[ @"Net", @"Load", @"Gen"];
-			title = [NSString stringWithFormat:@"%@ %@",
-                     [totalsMeterTypes objectAtIndex:self.totalsMeterType],
-                     self.meterTitle];
-        }
+        title = self.meterTitle;
 	}
 	else {
         NSString *name = ((self.mtuName != nil && ![self.mtuName isEqualToString:@""]) ? [self.mtuName stringByAppendingString:@"\n"]: [NSString stringWithFormat:@"MTU%ld", (long)self.mtuNumber]);

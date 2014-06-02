@@ -160,6 +160,10 @@
 				DLog(@"Refreshing data for meter %@ MTU%ld...", [aMeter meterTitle], (long)[aMeter mtuNumber]);
                 
                 [aMeter reset];     // wipe old values
+                if( aMeter.isNetMeter ) {
+                    aMeter.isTotalsMeterTypeSelectionSupported = NO;
+                    aMeter.totalsMeterType = kTotalsMeterTypeNet;
+                }
                 
                 if( [aMeter isMemberOfClass: [VoltageMeter class]] ) {
                     isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoVoltageMeter:(VoltageMeter*)aMeter];

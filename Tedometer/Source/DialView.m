@@ -206,6 +206,11 @@ static UIFont *labelFont;
 	[self changeStateToEditMode];
 }
 
+-(void) stopDialEditAndSaveSettings {
+    [self stopDialEdit];
+    [TedometerData archiveToDocumentsFolder];
+}
+
 -(void) stopDialEdit {
 	[self changeStateToDefault];
 }

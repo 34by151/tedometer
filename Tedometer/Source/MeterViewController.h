@@ -118,6 +118,7 @@
 - (IBAction) nextMeterType;
 - (IBAction) showConnectionErrorMsg;
 - (IBAction) stopDialEdit;
+- (IBAction) stopDialEditAndSaveSettings;
 
 - (void) refreshView;
 

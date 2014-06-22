@@ -399,6 +399,10 @@ int buttonCount = 0;
 	[mainViewController showInfo];
 }
 
+- (IBAction) stopDialEditAndSaveSettings {
+    [dialView stopDialEditAndSaveSettings];
+}
+
 - (IBAction) stopDialEdit {
 	[dialView stopDialEdit];
 }

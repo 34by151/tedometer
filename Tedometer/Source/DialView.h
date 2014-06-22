@@ -66,6 +66,8 @@
 
 -(void) stopDialEdit;
 -(void) startDialEdit;
+-(void) stopDialEditAndSaveSettings;
+
 
 
 @end

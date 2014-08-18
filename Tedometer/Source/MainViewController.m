@@ -56,7 +56,7 @@
 												 name:UIApplicationWillResignActiveNotification object:nil];
 
 	// Add Info Icon to toolbar
-	UIButton * infoDarkButtonType = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+	UIButton * infoDarkButtonType = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	infoDarkButtonType.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
 	infoDarkButtonType.backgroundColor = [UIColor clearColor];
 	[infoDarkButtonType addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
@@ -65,9 +65,6 @@
 	NSMutableArray *toolbarItems = [[NSMutableArray alloc] initWithArray:toolbar.items];
 	[toolbarItems addObject:infoButton];
 	toolbar.items = toolbarItems;
-	[toolbarItems release];
-	[infoDarkButtonType release];
-	[infoButton release];
 	
 	
 	// view controllers are created lazily
@@ -77,7 +74,6 @@
         [controllers addObject:[NSNull null]];
     }
     self.meterViewControllers = controllers;
-    [controllers release];
 	
     // a page is the width of the scroll view
 	
@@ -164,14 +160,6 @@
 
 }
 
-- (void)dealloc {
-	[pageControl release];
-	[scrollView release];
-	[meterViewControllers release];
-	[toolbar release];
-
-    [super dealloc];
-}
 
 -(void) repeatRefresh {
 	[self refreshData];
@@ -191,7 +179,7 @@
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(repeatRefresh) object:nil];
 
 	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-	controller.delegate = self;
+	controller.delegate = (id<FlipsideViewControllerDelegate>)self;
 	controller.connectionErrorMsg = tedometerData.connectionErrorMsg;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -201,7 +189,6 @@
     // Note: flipsideViewControllerDidFinish: selector in this class
     // is called from FlipsideViewController when the Done button is selected.
     
-	[controller release];
 }
 
 - (IBAction) activateCostMeter {
@@ -223,7 +210,8 @@
 
 #pragma mark -
 #pragma mark Flipside View
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
+- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+{
 
 	BOOL needsInitialRefresh = ! tedometerData.hasEstablishedSuccessfulConnectionThisSession;
 	
@@ -298,7 +286,6 @@
 
 			
         meterViewControllers[page] = controller;
-        [controller release];
     }
 	
     // add the controller's view to the scroll view

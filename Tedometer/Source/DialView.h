@@ -55,14 +55,14 @@
 	
 }
 
-@property (nonatomic, retain) UIImageView *parentDialShadowView;
-@property (nonatomic, retain) UIImageView *parentDialShadowThinView;
-@property (nonatomic, retain) UIImageView *parentDialHaloView;
-@property (nonatomic, retain) UIImageView *parentGlareView;
-@property (nonatomic, retain) UIImageView *parentDimmerView;
-@property (nonatomic, retain) UIView *parentDialView;
-@property (nonatomic, retain) Meter *curMeter;
-@property (nonatomic, retain) UIButton *stopDialEditButton;
+@property (nonatomic, strong) UIImageView *parentDialShadowView;
+@property (nonatomic, strong) UIImageView *parentDialShadowThinView;
+@property (nonatomic, strong) UIImageView *parentDialHaloView;
+@property (nonatomic, strong) UIImageView *parentGlareView;
+@property (nonatomic, strong) UIImageView *parentDimmerView;
+@property (nonatomic, strong) UIView *parentDialView;
+@property (nonatomic, strong) Meter *curMeter;
+@property (nonatomic, strong) UIButton *stopDialEditButton;
 
 -(void) stopDialEdit;
 -(void) startDialEdit;

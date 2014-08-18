@@ -57,7 +57,7 @@
 	if( curMeter != aMeter ) {
 		Meter *oldMeter = curMeter;
 		
-		curMeter = [aMeter retain];
+		curMeter = aMeter;
 		
 		DLog(@"Dial.setCurMeter: aMeter.radiansPerTick = %f, aMeter.unitsPerTick = %f", aMeter.radiansPerTick, aMeter.unitsPerTick );
 		
@@ -83,7 +83,6 @@
 		isAtStretchLimit = NO;
 		isAtOffsetLimit = NO;
 
-		[oldMeter release];
 		
 	}
 }
@@ -267,10 +266,6 @@
 -(void) nextAnimationFrame {
 }
 
--(void) dealloc {
-	[curMeter release];
-	[super dealloc];
-}
 
 - (double) angleForValue:(double)value {
 	double angleFromStart = (value == 0 ? self.zeroAngle : self.zeroAngle + value * self.normalizedRadiansPerTick / self.normalizedUnitsPerTick);

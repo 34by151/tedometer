@@ -81,13 +81,12 @@
     
     xmlString = [self responseStringForFilename:@"SystemSettings.xml" tedometerData:tedometerData error:&localError];
     if( xmlString ) {
-        xmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
+        xmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
         if(xmlDoc) {
             tedometerData.mtuCount = [xmlDoc integerValueAtPath:@"NumberMTU"];
             DLog(@"NumberMTU = %ld", (long) tedometerData.mtuCount);
             tedometerData.carbonRate = [xmlDoc integerValueAtPath:@"CarbonCost"];
             DLog(@"CarbonCost = %ld", (long) tedometerData.carbonRate);
-            [xmlDoc release];
             
             for( int mtuIdx=0; mtuIdx < NUM_MTUS; ++mtuIdx ) {
                 if( mtuIdx == 0 ) {
@@ -108,11 +107,10 @@
     if( !localError ) {
         xmlString = [self responseStringForFilename:@"Rate.xml" tedometerData:tedometerData error:&localError];
         if( xmlString ) {
-            xmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
+            xmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
             if(xmlDoc) {
                 tedometerData.meterReadDate = [xmlDoc integerValueAtPath:@"MeterReadDate"];
                 DLog(@"MeterReadDate = %ld", (long) tedometerData.meterReadDate);
-                [xmlDoc release];
             }
         }
     }
@@ -120,7 +118,7 @@
     if( !localError ) {
         xmlString = [self responseStringForFilename:@"SystemOverview.xml" tedometerData:tedometerData error:&localError];
         if( xmlString ) {
-            xmlDoc = [[[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError] retain];
+            xmlDoc = [[CXMLDocument alloc] initWithXMLString:xmlString options:0 error:&localError];
             if(xmlDoc) {
                 // we skip MTU 0 (the net meter) because SystemOverview.xml doesn't provide it
                 for( int mtuIdx=0; mtuIdx < NUM_MTUS; ++mtuIdx ) {
@@ -141,7 +139,6 @@
                         DLog( @"Overview data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
                     }
                 }
-                [xmlDoc release];
             }
         }
     }
@@ -228,11 +225,9 @@
             }
             
             if( powerXmlDoc ) {
-                [powerXmlDoc release];
                 powerXmlDoc = nil;
             }
             if( costXmlDoc ) {
-                [costXmlDoc release];
                 costXmlDoc = nil;
             }
             
@@ -384,15 +379,6 @@
 }
 
 
--(void)dealloc {
-    for( int i=0; i < NUM_MTUS; ++i ) {
-        [overviewData[i] release];
-        overviewData[i] = nil;
-    }
-
-	[super dealloc];
-}
-
 - (NSString*) ampsInfoLabelForCurrentInPhases:(NSArray*) phases;
 {
     NSString* infoLabel = @"";
@@ -406,7 +392,6 @@
     if( [ampsArray count] > 0 ) {
         infoLabel = [NSString stringWithFormat:@"Current:\n%@", [ampsArray componentsJoinedByString:@"\n"]];
     }
-    [ampsArray release];
     
     return infoLabel;
 }

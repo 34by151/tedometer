@@ -25,13 +25,13 @@
 
 - (NSArray *)childrenAsStrings
 {
-	NSMutableArray *ret = [[NSMutableArray arrayWithCapacity:
-							[[self children] count]] retain];
+	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:
+							[[self children] count]];
 	NSEnumerator *e = [[self children] objectEnumerator];
 	CXMLNode *node;
 	while (node = [e nextObject])
 		[ret addObject:[node stringValue]];
 	
-	return [ret autorelease];
+	return ret;
 }
 @end

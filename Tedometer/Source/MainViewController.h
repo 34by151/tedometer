@@ -11,7 +11,7 @@
 #import "MeterViewController.h"
 
 #define kNumberOfPages 5
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIScrollViewDelegate> {
+@interface MainViewController : UIViewController <UIScrollViewDelegate> {
 
 	UIScrollView* scrollView;
 	UIPageControl* pageControl;
@@ -34,10 +34,10 @@
 
 }
 
-@property(nonatomic, retain) IBOutlet UIScrollView* scrollView;
-@property(nonatomic, retain) IBOutlet UIPageControl* pageControl;
-@property(nonatomic, retain) NSMutableArray *meterViewControllers;
-@property(nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property(nonatomic, strong) IBOutlet UIScrollView* scrollView;
+@property(nonatomic, strong) IBOutlet UIPageControl* pageControl;
+@property(nonatomic, strong) NSMutableArray *meterViewControllers;
+@property(nonatomic, strong) IBOutlet UIToolbar *toolbar;
 
 - (IBAction) showInfo;
 - (IBAction) refreshData;

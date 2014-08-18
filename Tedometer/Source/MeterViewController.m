@@ -170,7 +170,6 @@
 - (void)showAlertMessage:(NSString*) message withTitle:(NSString*)title {
 	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
-	[alert release];
 }
 
 
@@ -414,33 +413,6 @@ int buttonCount = 0;
     [tedometerData removeObserver:self forKeyPath:@"isShowingTodayStatistics"];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-	[mainViewController release];
-	[powerMeter release];
-	[costMeter release];
-	[carbonMeter release];
-	[voltageMeter release];
-	[avgValue release];
-	[avgLabel release];
-	[peakValue release];
-	[peakLabel release];
-	[lowValue release];
-	[lowLabel release];
-	[totalValue release];
-	[totalLabel release];
-	[projValue release];
-	[projLabel release];
-	[meterLabel release];
-	[meterTitle release];
-    [metricLabel release];
-    [totalsTypeToggleButton release];
-	[dialView release];
-	[activityIndicator release];
-	[avgLabelPointerImage release];
-	[warningIconButton release];
-	[stopDialEditButton release];
-	
-    [super dealloc];
 	
 }
 

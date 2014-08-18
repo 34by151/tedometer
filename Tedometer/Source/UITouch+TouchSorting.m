@@ -12,8 +12,8 @@
 
 @implementation UITouch (TouchSorting)
 - (NSComparisonResult)compareAddress:(id)obj {
-	if ((void *)self < (void *)obj) return NSOrderedAscending;
-    else if ((void *)self == (void *)obj) return NSOrderedSame;
+	if ((__bridge void *)self < (__bridge void *)obj) return NSOrderedAscending;
+    else if ((__bridge void *)self == (__bridge void *)obj) return NSOrderedSame;
     else return NSOrderedDescending;
 }
 @end

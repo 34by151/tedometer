@@ -30,7 +30,7 @@
 	Meter *curMeter;
 }
 
-@property (nonatomic, retain) Meter* curMeter; 
+@property (nonatomic, strong) Meter* curMeter; 
 @property (nonatomic, assign) double baseRadiansPerTick;
 @property (nonatomic, assign) double baseZeroAngle;
 @property (nonatomic, readonly) double unitsPerTick;

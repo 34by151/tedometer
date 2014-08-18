@@ -140,7 +140,6 @@
 			
 			NSNumber *aNumberObject = [[NSNumber alloc] initWithInteger:aValue];
 			[object setValue:aNumberObject forKey:aPropertyName];
-			[aNumberObject release];
 		}
 	}
 	

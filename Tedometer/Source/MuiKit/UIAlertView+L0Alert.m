@@ -43,7 +43,7 @@ const NSString* kL0AlertIconName = @"L0AlertIconName";
 	if (buttons && ![buttons isKindOfClass:[NSArray class]])
 		[NSException raise:(NSString*) kL0AlertInconsistencyException format:@"Alert dictionary unreadable: %@", dict];
 	
-	UIAlertView* alert = [[[UIAlertView alloc] initWithFrame:CGRectZero] autorelease];
+	UIAlertView* alert = [[UIAlertView alloc] initWithFrame:CGRectZero];
 	NSString* messageText = [dict[kL0AlertMessage] description];
 	if (bundle) messageText = [bundle localizedStringForKey:messageText value:messageText table:name];
 	alert.title = messageText;
@@ -92,7 +92,7 @@ const NSString* kL0AlertIconName = @"L0AlertIconName";
 	va_start(arguments, setMeToNil);
 	NSString* str = [[NSString alloc] initWithFormat:self.title arguments:arguments];
 	va_end(arguments);
-	self.title = [str autorelease];
+	self.title = str;
 }
 
 - (void) setMessageFormat:(id) setMeToNil,... {
@@ -100,7 +100,7 @@ const NSString* kL0AlertIconName = @"L0AlertIconName";
 	va_start(arguments, setMeToNil);
 	NSString* str = [[NSString alloc] initWithFormat:self.message arguments:arguments];
 	va_end(arguments);
-	self.message = [str autorelease];
+	self.message = str;
 }
 
 // -- -- -- -- -- -- -- --

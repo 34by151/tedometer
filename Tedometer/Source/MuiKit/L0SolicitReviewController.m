@@ -27,7 +27,7 @@
 
 @interface L0SolicitReviewController ()
 
-@property(retain) NSBundle* _resourcesBundle;
+@property(strong) NSBundle* _resourcesBundle;
 
 @end
 
@@ -91,12 +91,6 @@
 	return self;
 }
 
-- (void) dealloc {
-	self.applicationName = nil;
-	self.applicationAppStoreURL = nil;
-	self.firstLaunchDate = nil;
-	[super dealloc];
-}
 
 - (void) update {
 	if (!self.firstLaunchDate)

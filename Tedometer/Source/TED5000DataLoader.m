@@ -78,7 +78,6 @@
 		if( !localError ) {
 			[self refreshTedometerData:tedometerData fromXmlDocument:newDocument];
 		}
-        [newDocument release];
 
         if( localError ) {
 
@@ -104,7 +103,6 @@
                                              code:2
                                          userInfo:paramsWithUnderlyingError];
                 
-                [paramsWithUnderlyingError release];
             }
         }
 	}
@@ -235,7 +233,6 @@
 					
 					prevValueObject = [[NSNumber alloc] initWithInteger:aValue];
 					[mtuTotalsKeyedByProperty setValue:prevValueObject forKey:aPropertyName];
-					[prevValueObject release];
 				}
 				
 			}
@@ -248,7 +245,6 @@
 			}
 		}
 		
-		[mtuTotalsKeyedByProperty release];
 	}
     
 	return isSuccessful;
@@ -306,7 +302,6 @@
 	isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:parentNodePath
                                  andNodesKeyedByProperty:nodesKeyedByProperty];
 	
-	[nodesKeyedByProperty release];
 	
 	if( meter.isNetMeter ) {
 		
@@ -322,7 +317,6 @@
                                                    andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty
                                                         usingAggregationOp:kAggregationOpMax];
 		
-		[netMeterFixNodesKeyedByProperty release];
         
 		netMeterFixNodesKeyedByProperty = [[NSDictionary alloc] initWithObjectsAndKeys:
                                            @"LowVoltageToday",		@"todayMinValue",
@@ -334,7 +328,6 @@
                                                        withParentMeterNode:@"Voltage" 
                                                    andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty 
                                                         usingAggregationOp:kAggregationOpMin];
-        [netMeterFixNodesKeyedByProperty release];
         
         isSuccessful = isMaxFixSuccessful && isMinFixSuccessful;
 		
@@ -404,7 +397,6 @@
 	isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:parentNodePath
                                                andNodesKeyedByProperty:nodesKeyedByProperty];
 	
-	[nodesKeyedByProperty release];
 	
 	if( meter.isNetMeter ) {
 		
@@ -421,7 +413,6 @@
                                                        withParentMeterNode:@"Cost" 
                                                    andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty usingAggregationOp:kAggregationOpSum];
 		
-		[netMeterFixNodesKeyedByProperty release];
 	}
 	
 	return isSuccessful;
@@ -499,7 +490,6 @@
 	
 	isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:parentNodePath
                                                andNodesKeyedByProperty:nodesKeyedByProperty];
-	[nodesKeyedByProperty release];
 	
 	if( meter.isNetMeter ) {
 		
@@ -517,7 +507,6 @@
                                                    andNodesKeyedByProperty:netMeterFixNodesKeyedByProperty
                                                         usingAggregationOp:kAggregationOpSum];
         
-		[netMeterFixNodesKeyedByProperty release];
 	}
 	
 	return isSuccessful;

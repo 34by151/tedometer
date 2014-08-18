@@ -87,10 +87,10 @@ static UIFont *labelFont;
 - (void)awakeFromNib {
 
 	if( ! labelColor )
-		labelColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.4] retain];
+		labelColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
 	
 	if( ! labelFont )
-		labelFont = [[UIFont fontWithName:@"Helvetica" size:10.0] retain];
+		labelFont = [UIFont fontWithName:@"Helvetica" size:10.0];
 
 #if DRAW_FOR_ICON_SCREENSHOT
 	drawForIconScreenshot = YES;
@@ -133,8 +133,7 @@ static UIFont *labelFont;
 	// changes
 	
 	if( curMeter != aMeter ) {
-		[curMeter release];
-		curMeter = [aMeter retain];
+		curMeter = aMeter;
 		
 		dial.curMeter = curMeter;
 	}
@@ -199,7 +198,6 @@ static UIFont *labelFont;
 	NSString *helpMsg = @"Drag the dial to adjust the origin. Pinch and stretch to adjust the scale.";
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:helpMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alertView show];
-	[alertView release];
 }
 
 -(void) startDialEdit {
@@ -215,11 +213,6 @@ static UIFont *labelFont;
 	[self changeStateToDefault];
 }
 
-- (void)dealloc {
-	[curMeter release];
-	[dial release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Touch handling
@@ -264,7 +257,7 @@ static UIFont *labelFont;
 	
 	if( isEditMode || isTouchInsideMeter ) {
 		
-		touchesBeganDate = [[NSDate date] retain];
+		touchesBeganDate = [NSDate date];
 
 		initialDistanceBetweenTouches = 0;
 		lastOffsetDragClickAngle = 0;
@@ -370,7 +363,6 @@ static UIFont *labelFont;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	//DLog(@"touches count = %d", [touches count]);
 
-	[touchesBeganDate release];
 	touchesBeganDate = nil;
 	isBeingPinched = NO;
 

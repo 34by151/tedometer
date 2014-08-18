@@ -37,10 +37,9 @@ void uncaughtExceptionHandler(NSException *exception);
 
 	NSOperationQueue *opQueue = [[NSOperationQueue alloc] init];
 	self.sharedOperationQueue = opQueue;
-	[opQueue release];
 	
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+    internetReach = [Reachability reachabilityForInternetConnection];
 	[internetReach startNotifier];
 	
 	
@@ -57,11 +56,9 @@ void uncaughtExceptionHandler(NSException *exception);
 	
 	UIViewController *aController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
 	self.mainViewController = (MainViewController*) aController;
-	[aController release];
 
 	aController = [[InternetRequiredViewController alloc] initWithNibName:@"InternetRequiredView" bundle:nil];	
 	self.internetRequiredViewController = (InternetRequiredViewController *) aController;
-	[aController release];
 
     mainViewController.view.frame = [UIScreen mainScreen].bounds; //applicationFrame;
     internetRequiredViewController.view.frame = [UIScreen mainScreen].bounds; //applicationFrame;
@@ -85,15 +82,6 @@ void uncaughtExceptionHandler(NSException *exception);
 	[TedometerData archiveToDocumentsFolder];
 }
 
-- (void)dealloc {
-	[mainViewController release];
-	[internetRequiredViewController release];
-	[internetReach release];
-    [window release];
-	self.sharedOperationQueue = nil;
-	
-    [super dealloc];
-}
 
 void uncaughtExceptionHandler(NSException *exception) {
     [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];

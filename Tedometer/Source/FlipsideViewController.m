@@ -131,7 +131,6 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 	else {
 		NSString* label = [[NSString alloc] initWithFormat:@"%ld %@", (long) labelValue, unit, nil];
 		refreshRateLabel.text = label;
-		[label release];
 	}
 
 }
@@ -211,20 +210,6 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 }
 
 
-- (void)dealloc {
-	[patchAggregationData release];
-	[gatewayAddress release];
-	[refreshRateSlider release];
-	[refreshRateLabel release];	
-	[useSSL release];
-	[username release];
-	[password release];
-	[settingsView release];
-	[scrollView release];
-	[connectionErrorMsgLabel release];
-	[connectionErrorMsg release];
-	[super dealloc];
-}
 
 
 @end

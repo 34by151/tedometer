@@ -74,118 +74,90 @@ static TedometerData *sharedTedometerData = nil;
 
 + (TedometerData*)sharedTedometerData
 {
-    Class myClass = [self class];
-    @synchronized(myClass) {
-        if (sharedTedometerData == nil) {
-            [[self alloc] init];
-        }
-    }
-    return sharedTedometerData;
-}
-
-+ (id)alloc
-{
-    Class myClass = [self class];
-    @synchronized(myClass) {
-        if (sharedTedometerData == nil) {
-            return [super alloc];
-        }
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedTedometerData = [[self alloc] init];
+    });
     return sharedTedometerData;
 }
 
 - (instancetype)init
 {
-    Class myClass = [self class];
-    @synchronized(myClass) {
-        if (sharedTedometerData == nil) {
-            if (self = [super init]) {
-				
-                // custom initialization here
-				            
-				TedometerData *tedometerData = [TedometerData unarchiveFromDocumentsFolder];
-				DLog( @"tedometerData.curMeterTypeIdx = %ld", (long)tedometerData.curMeterTypeIdx );
-				
-				if( tedometerData ) {
-					[self release];
-					self = [tedometerData retain];
-				}
-				
-				// mtusArray is an NSArray of NUM_MTUS elements of type NSArray, 
-				// each of which is an array consisting of NUM_METER_TYPES elements of type Meter.
-				//
-				// [ [PowerNet,  CostNet,  CarbonNet,  VoltageNet],			// MTU0 (net)
-				//   [PowerMtu1, CostMtu1, CarbonMtu1, VoltageMtu1],		// MTU1
-				//	 [PowerMtu2, CostMtu2, CarbonMtu2, VoltageMtu2],		// MTU2
-				//	 [PowerMtu3, CostMtu3, CarbonMtu3, VoltageMtu3],		// MTU3
-				//	 [PowerMtu4, CostMtu4, CarbonMtu4, VoltageMtu4] ]		// MTU4
-				
-
-				// The first mtu's elements are net meters of each type
-				
-				if( mtusArray == nil || [mtusArray count] < NUM_MTUS) {
-					NSMutableArray* newMtusArray = [[NSMutableArray alloc] initWithCapacity:NUM_MTUS];
-					for( int i=0; i < NUM_MTUS; ++i ) 
-						[newMtusArray addObject: [NSMutableArray arrayWithCapacity:NUM_METER_TYPES]];
-
-					NSMutableArray *typeMeters;
-					for( NSInteger mtuNum = 1; mtuNum < NUM_MTUS; ++mtuNum ) {	// skip the net meter; we'll add it later
-						typeMeters = (NSMutableArray*) newMtusArray[mtuNum];
-						// NOTE: Ordering here is signficant (power, cost, carbon, voltage)
-						[typeMeters addObject: [[PowerMeter alloc] initWithMtuNumber:mtuNum]];
-						[typeMeters addObject: [[CostMeter alloc] initWithMtuNumber:mtuNum]];
-						[typeMeters addObject: [[CarbonMeter alloc] initWithMtuNumber:mtuNum]];
-						[typeMeters addObject: [[VoltageMeter alloc] initWithMtuNumber:mtuNum]];
-					}					
-					
-					// initialize net meters
-					NSMutableArray *netMtuTypeMeters = newMtusArray[kMtuNet];
-					for( NSInteger meterType = 0; meterType < NUM_METER_TYPES; ++meterType ) {
-						NSMutableArray *typeMetersForNetMtu = [NSMutableArray arrayWithCapacity:NUM_METER_TYPES];
-						for( NSInteger mtuNum = 1; mtuNum < NUM_MTUS; ++mtuNum ) {
-							[typeMetersForNetMtu addObject:newMtusArray[mtuNum][meterType]];
-						}
-						
-						Meter *aTypeNetMeter;
-						switch( meterType ) {
-							case kMeterTypePower:	aTypeNetMeter = [PowerMeter alloc]; break;
-							case kMeterTypeCost:	aTypeNetMeter = [CostMeter alloc]; break;
-							case kMeterTypeCarbon:	aTypeNetMeter = [CarbonMeter alloc]; break;
-							case kMeterTypeVoltage:	aTypeNetMeter = [VoltageMeter alloc]; break;
-						}
-						
-						[aTypeNetMeter initNetMeterWithMtuMeters: typeMetersForNetMtu];
-						[netMtuTypeMeters addObject:aTypeNetMeter];
-					}
-
-					
-					self.mtusArray = newMtusArray;
-					[newMtusArray release];
-					
-				}
-				
-				if( self.refreshRate == 0 )
-					self.refreshRate = 10;
-				
-				self.connectionErrorMsg = nil;
-				self.hasEstablishedSuccessfulConnectionThisSession = NO;
-
-				sharedTedometerData = self;
-            }
+    if (self = [super init]) {
+        
+        // custom initialization here
+                    
+        TedometerData *tedometerData = [TedometerData unarchiveFromDocumentsFolder];
+        DLog( @"tedometerData.curMeterTypeIdx = %ld", (long)tedometerData.curMeterTypeIdx );
+        
+        if( tedometerData ) {
+            self = tedometerData;
         }
+        
+        // mtusArray is an NSArray of NUM_MTUS elements of type NSArray, 
+        // each of which is an array consisting of NUM_METER_TYPES elements of type Meter.
+        //
+        // [ [PowerNet,  CostNet,  CarbonNet,  VoltageNet],			// MTU0 (net)
+        //   [PowerMtu1, CostMtu1, CarbonMtu1, VoltageMtu1],		// MTU1
+        //	 [PowerMtu2, CostMtu2, CarbonMtu2, VoltageMtu2],		// MTU2
+        //	 [PowerMtu3, CostMtu3, CarbonMtu3, VoltageMtu3],		// MTU3
+        //	 [PowerMtu4, CostMtu4, CarbonMtu4, VoltageMtu4] ]		// MTU4
+        
+
+        // The first mtu's elements are net meters of each type
+        
+        if( mtusArray == nil || [mtusArray count] < NUM_MTUS) {
+            NSMutableArray* newMtusArray = [[NSMutableArray alloc] initWithCapacity:NUM_MTUS];
+            for( int i=0; i < NUM_MTUS; ++i ) 
+                [newMtusArray addObject: [NSMutableArray arrayWithCapacity:NUM_METER_TYPES]];
+
+            NSMutableArray *typeMeters;
+            for( NSInteger mtuNum = 1; mtuNum < NUM_MTUS; ++mtuNum ) {	// skip the net meter; we'll add it later
+                typeMeters = (NSMutableArray*) newMtusArray[mtuNum];
+                // NOTE: Ordering here is signficant (power, cost, carbon, voltage)
+                [typeMeters addObject: [[PowerMeter alloc] initWithMtuNumber:mtuNum]];
+                [typeMeters addObject: [[CostMeter alloc] initWithMtuNumber:mtuNum]];
+                [typeMeters addObject: [[CarbonMeter alloc] initWithMtuNumber:mtuNum]];
+                [typeMeters addObject: [[VoltageMeter alloc] initWithMtuNumber:mtuNum]];
+            }					
+            
+            // initialize net meters
+            NSMutableArray *netMtuTypeMeters = newMtusArray[kMtuNet];
+            for( NSInteger meterType = 0; meterType < NUM_METER_TYPES; ++meterType ) {
+                NSMutableArray *typeMetersForNetMtu = [NSMutableArray arrayWithCapacity:NUM_METER_TYPES];
+                for( NSInteger mtuNum = 1; mtuNum < NUM_MTUS; ++mtuNum ) {
+                    [typeMetersForNetMtu addObject:newMtusArray[mtuNum][meterType]];
+                }
+                
+                Meter *aTypeNetMeter;
+                switch( meterType ) {
+                    case kMeterTypePower:	aTypeNetMeter = [PowerMeter alloc]; break;
+                    case kMeterTypeCost:	aTypeNetMeter = [CostMeter alloc]; break;
+                    case kMeterTypeCarbon:	aTypeNetMeter = [CarbonMeter alloc]; break;
+                    case kMeterTypeVoltage:	aTypeNetMeter = [VoltageMeter alloc]; break;
+                }
+                
+                aTypeNetMeter = [aTypeNetMeter initNetMeterWithMtuMeters: typeMetersForNetMtu];
+                [netMtuTypeMeters addObject:aTypeNetMeter];
+            }
+
+            
+            self.mtusArray = newMtusArray;
+            
+        }
+        
+        if( self.refreshRate == 0 )
+            self.refreshRate = 10;
+        
+        self.connectionErrorMsg = nil;
+        self.hasEstablishedSuccessfulConnectionThisSession = NO;
+
     }
-    return sharedTedometerData;
+    return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone { return self; }
 
-- (id)retain { return self; }
-
-- (NSUInteger)retainCount { return UINT_MAX; }
-
-- (oneway void)release {}
-
-- (id)autorelease { return self; }
 // ----------------------------------------------------------------------
 
 
@@ -206,7 +178,7 @@ NSString* _archiveLocation;
 	if (_archiveLocation == nil) {
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *documentsDirectory = paths[0];
-		_archiveLocation = [[documentsDirectory stringByAppendingPathComponent:@"TedometerData.plist" ] retain];       
+		_archiveLocation = [documentsDirectory stringByAppendingPathComponent:@"TedometerData.plist" ];
 	}
 	return _archiveLocation;
 }
@@ -407,7 +379,6 @@ NSString* _archiveLocation;
 	
 	NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(reloadXmlDocument) object:nil];
 	[[(TedometerAppDelegate *)[[UIApplication sharedApplication] delegate] sharedOperationQueue] addOperation:op];
-	[op release];
 }
 
 
@@ -420,60 +391,52 @@ NSString* _archiveLocation;
     
     self.detectedHardwareType = [DataLoader detectHardwareTypeWithSettingsInTedometerData: self];
     
-	NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
 
-    BOOL success = NO;
+        BOOL success = NO;
 
-    DataLoader *dataLoader = nil;
-    if( self.detectedHardwareType == kHardwareTypeTED5000 ) {
-        dataLoader = [[TED5000DataLoader alloc] init];
-    }
-    else if( self.detectedHardwareType == kHardwareTypeTED6000 ) {
-        dataLoader = [[TED6000DataLoader alloc] init];
-    }
-    else {
-        success = NO;
-        self.connectionErrorMsg = @"Unrecognized gateway";
-    }
-    
-    if( dataLoader ) {
-        NSError *error = nil;
-        success = [dataLoader reload:self error:&error ];
-        [dataLoader release];
-    
-        if( success ) {
-            self.connectionErrorMsg = nil;
-            self.hasEstablishedSuccessfulConnectionThisSession = YES;
+        DataLoader *dataLoader = nil;
+        if( self.detectedHardwareType == kHardwareTypeTED5000 ) {
+            dataLoader = [[TED5000DataLoader alloc] init];
+        }
+        else if( self.detectedHardwareType == kHardwareTypeTED6000 ) {
+            dataLoader = [[TED6000DataLoader alloc] init];
         }
         else {
-            if( error ) {
-                self.connectionErrorMsg = [error localizedDescription];
+            success = NO;
+            self.connectionErrorMsg = @"Unrecognized gateway";
+        }
+        
+        if( dataLoader ) {
+            NSError *error = nil;
+            success = [dataLoader reload:self error:&error ];
+        
+            if( success ) {
+                self.connectionErrorMsg = nil;
+                self.hasEstablishedSuccessfulConnectionThisSession = YES;
             }
             else {
-                self.connectionErrorMsg = @"Unable to download data from gateway.";
+                if( error ) {
+                    self.connectionErrorMsg = [error localizedDescription];
+                }
+                else {
+                    self.connectionErrorMsg = @"Unable to download data from gateway.";
+                }
             }
         }
-    }
-    
-    if( ! success ) {
-        ALog( @"%@", self.connectionErrorMsg);
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
+        
+        if( ! success ) {
+            ALog( @"%@", self.connectionErrorMsg);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnectionFailure object:self];
 
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadDidFinish object:self];
+        DLog( "Finished loading XML document." );
     }
-    
-	[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDocumentReloadDidFinish object:self];
-	DLog( "Finished loading XML document." );
-	[autoreleasePool drain];
 
 }
 
-
-- (void) dealloc {
-	self.mtusArray = nil;
-	if( gatewayHost )
-		[gatewayHost release];
-	[super dealloc];
-}
 
 
 -(BOOL)isUsingDemoAccount;

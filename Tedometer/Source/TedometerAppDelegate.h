@@ -21,10 +21,10 @@
     Reachability* internetReach;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) MainViewController *mainViewController;
-@property (nonatomic, retain) InternetRequiredViewController *internetRequiredViewController;
-@property (retain) NSOperationQueue *sharedOperationQueue;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) MainViewController *mainViewController;
+@property (nonatomic, strong) InternetRequiredViewController *internetRequiredViewController;
+@property (strong) NSOperationQueue *sharedOperationQueue;
 
 - (void) batteryStateDidChange:(NSNotification *) notification;
 - (void) updateInterfaceWithReachability: (Reachability*) curReach;

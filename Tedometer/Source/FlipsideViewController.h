@@ -12,7 +12,7 @@
 
 
 @interface FlipsideViewController : UIViewController {
-	id <FlipsideViewControllerDelegate> delegate;
+	id <FlipsideViewControllerDelegate> __weak delegate;
 	UITextField *gatewayAddress;
 	UISlider *refreshRateSlider;
 	UILabel *refreshRateLabel;
@@ -31,22 +31,22 @@
     UISegmentedControl *totalsMeterTypeSegmentedControl;
 }
 
-@property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
-@property (nonatomic, retain) IBOutlet UITextField *gatewayAddress;
-@property (nonatomic, retain) IBOutlet UISlider *refreshRateSlider;
-@property (nonatomic, retain) IBOutlet UILabel *refreshRateLabel;
-@property (nonatomic, retain) IBOutlet UISwitch *disableAutolockWhilePluggedIn;
-@property (nonatomic, retain) IBOutlet UILabel *connectionErrorMsgLabel;
-@property (nonatomic, retain) IBOutlet UIView *settingsView;
-@property (nonatomic, retain) IBOutlet UIView *warningView;
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet UISwitch *useSSL;
-@property (nonatomic, retain) IBOutlet UITextField *username;
-@property (nonatomic, retain) IBOutlet UITextField *password;
-@property (nonatomic, retain) IBOutlet UISwitch *patchAggregationData;
-@property (nonatomic, retain) IBOutlet UINavigationBar *navigationBar;
+@property (nonatomic, weak) id <FlipsideViewControllerDelegate> delegate;
+@property (nonatomic, strong) IBOutlet UITextField *gatewayAddress;
+@property (nonatomic, strong) IBOutlet UISlider *refreshRateSlider;
+@property (nonatomic, strong) IBOutlet UILabel *refreshRateLabel;
+@property (nonatomic, strong) IBOutlet UISwitch *disableAutolockWhilePluggedIn;
+@property (nonatomic, strong) IBOutlet UILabel *connectionErrorMsgLabel;
+@property (nonatomic, strong) IBOutlet UIView *settingsView;
+@property (nonatomic, strong) IBOutlet UIView *warningView;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet UISwitch *useSSL;
+@property (nonatomic, strong) IBOutlet UITextField *username;
+@property (nonatomic, strong) IBOutlet UITextField *password;
+@property (nonatomic, strong) IBOutlet UISwitch *patchAggregationData;
+@property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, copy) NSString *connectionErrorMsg;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *totalsMeterTypeSegmentedControl;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *totalsMeterTypeSegmentedControl;
 
 
 

@@ -117,9 +117,7 @@ static NSInteger daysInMonths[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 
 
 -(void) setInfoLabel:(NSString *) value {
     if( infoLabel != value ) {
-        NSString *oldValue = infoLabel;
         infoLabel = [value copy];
-        [oldValue release];
     }
 }
 
@@ -294,7 +292,7 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 			mtuNumber = [decoder decodeIntegerForKey:@"mtuNumber"];
 		
 		if( mtuNumber == 0 ) {
-			mtuMeters = [[decoder decodeObjectForKey:@"mtuMeters"] retain];
+			mtuMeters = [decoder decodeObjectForKey:@"mtuMeters"];
 		}
 		self.radiansPerTick = [decoder decodeDoubleForKey:@"radiansPerTick"];
 		self.unitsPerTick = [decoder decodeDoubleForKey:@"unitsPerTick"];
@@ -325,11 +323,5 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 	return [NSString stringWithFormat:@"%0ld", (long)value];
 }
 
--(void)dealloc {
-	if( mtuNumber == 0 ) {
-		[mtuMeters release];
-	}
-	[super dealloc];
-}
 
 @end

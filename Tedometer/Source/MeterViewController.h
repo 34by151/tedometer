@@ -112,7 +112,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *stopDialEditButton;
 @property (nonatomic, retain) IBOutlet UIButton *totalsTypeToggleButton;
 
-- (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter;
+- (instancetype) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter NS_DESIGNATED_INITIALIZER;
 
 - (IBAction) toggleTodayMonthStatistics;
 - (IBAction) nextMeterType;

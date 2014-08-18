@@ -66,7 +66,7 @@ NSInteger sliderValueToSeconds( NSInteger sliderValue ) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationBar.delegate = self;
+    self.navigationBar.delegate = (id<UINavigationBarDelegate>)self;
 
     //navigationController.view = settingsView;
     //self.view = navigationController.view;

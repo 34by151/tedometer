@@ -262,22 +262,23 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 }
 
 
-- (id) init {
+- (instancetype) init {
 	if( self = [super init] ) {
 		self.radiansPerTick = 0;
 		self.unitsPerTick = 0;
+        mtuNumber = 0;
 	}
 	return self;
 }
-- (id) initWithMtuNumber:(NSInteger)mtuNum {
-	if( self = [super init] ) {
+- (instancetype) initWithMtuNumber:(NSInteger)mtuNum {
+	if( self = [self init] ) {
 		mtuNumber = mtuNum;
 	}
 	return self;
 }
 
-- (id) initNetMeterWithMtuMeters: (NSArray*)meters {
-	if( self = [super init] ) {
+- (instancetype) initNetMeterWithMtuMeters: (NSArray*)meters {
+	if( self = [self init] ) {
 		mtuNumber = 0;
 		mtuMeters = [meters copy];
 	}
@@ -285,8 +286,8 @@ static NSString *monthStrings[] = {@"January", @"February", @"March", @"April", 
 }
 
 
-- (id) initWithCoder:(NSCoder*)decoder {
-	if (self = [super init]) {
+- (instancetype) initWithCoder:(NSCoder*)decoder {
+	if (self = [self init]) {
 		if( ! [decoder containsValueForKey:@"mtuNumber"] ) 
 			mtuNumber = 1;
 		else

@@ -63,7 +63,7 @@
 @synthesize navigationBar;
 
 
-- (id) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter {
+- (instancetype) initWithMainViewController:(MainViewController*) aMainViewController powerMeter:(Meter*)aPowerMeter costMeter:(Meter*)aCostMeter carbonMeter:(Meter*)aCarbonMeter voltageMeter:(Meter*)aVoltageMeter {
 	if (self = [super initWithNibName:@"MeterView" bundle:nil]) {
 		self.mainViewController = aMainViewController;
 		self.powerMeter = aPowerMeter;
@@ -85,7 +85,7 @@
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
  - (void)viewDidLoad {
 
-     self.navigationBar.delegate = self;        // handle positionForBar: so that nav bar extends to top of status bar
+     self.navigationBar.delegate = (id<UINavigationBarDelegate>) self;        // handle positionForBar: so that nav bar extends to top of status bar
 
 
 	 // wait to start refresh until we've drawn the initial screen, so that we're not
@@ -280,7 +280,7 @@
                     // the NET tag regardless of what is in the settings.
                     NSArray *totalsTypeImageNames = @[ @"totals_net.png", @"totals_load.png", @"totals_gen.png"];
                     NSInteger totalsMeterType = tedometerData.totalsMeterType;
-                    NSString *totalsImage = [totalsTypeImageNames objectAtIndex:totalsMeterType];
+                    NSString *totalsImage = totalsTypeImageNames[totalsMeterType];
                     [totalsTypeToggleButton setImage:[UIImage imageNamed:totalsImage] forState:UIControlStateNormal];
                     totalsTypeToggleButton.hidden = NO;
                 }
@@ -294,36 +294,36 @@
         }
 		meterLabel.text =  [NSString stringWithFormat:@"%@%@", [self.curMeter meterStringForInteger: self.curMeter.now], self.curMeter.instantaneousUnit];
 
-		NSArray* detailLabels = [NSArray arrayWithObjects:lowLabel, avgLabel, peakLabel, totalLabel, projLabel, nil];
-		NSArray* detailValueLabels = [NSArray arrayWithObjects: lowValue, avgValue, peakValue, totalValue, projValue, nil];
-		NSArray* detailUnitLabels = [NSArray arrayWithObjects: lowValueUnit, avgValueUnit, peakValueUnit, totalValueUnit, projValueUnit, nil];
+		NSArray* detailLabels = @[lowLabel, avgLabel, peakLabel, totalLabel, projLabel];
+		NSArray* detailValueLabels = @[lowValue, avgValue, peakValue, totalValue, projValue];
+		NSArray* detailUnitLabels = @[lowValueUnit, avgValueUnit, peakValueUnit, totalValueUnit, projValueUnit];
 		NSArray* meterValueProperties;
 		NSArray* meterLabelProperties;
 		NSArray* meterUnitProperties;
 		
 		if( tedometerData.isShowingTodayStatistics ) {
-			meterLabelProperties = [NSArray arrayWithObjects:@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"todayProjectedLabel", nil];
-			meterValueProperties = [NSArray arrayWithObjects:@"todayMinValue", @"todayAverage", @"todayPeakValue", @"today", @"projected", nil];
+			meterLabelProperties = @[@"todayLowLabel", @"todayAverageLabel", @"todayPeakLabel", @"todayTotalLabel", @"todayProjectedLabel"];
+			meterValueProperties = @[@"todayMinValue", @"todayAverage", @"todayPeakValue", @"today", @"projected"];
 		}
 		else {
-			meterLabelProperties = [NSArray arrayWithObjects:@"mtdLowLabel", @"mtdAverageLabel", @"mtdPeakLabel", @"mtdTotalLabel", @"mtdProjectedLabel", nil];
-			meterValueProperties = [NSArray arrayWithObjects:@"mtdMinValue", @"monthAverage", @"mtdPeakValue", @"mtd", @"projected", nil];
+			meterLabelProperties = @[@"mtdLowLabel", @"mtdAverageLabel", @"mtdPeakLabel", @"mtdTotalLabel", @"mtdProjectedLabel"];
+			meterValueProperties = @[@"mtdMinValue", @"monthAverage", @"mtdPeakValue", @"mtd", @"projected"];
 		}
 		
-		meterUnitProperties = [NSArray arrayWithObjects:@"instantaneousUnit", @"instantaneousUnit", @"instantaneousUnit", @"cumulativeUnit", @"cumulativeUnit", nil];
+		meterUnitProperties = @[@"instantaneousUnit", @"instantaneousUnit", @"instantaneousUnit", @"cumulativeUnit", @"cumulativeUnit"];
 		
 		for( NSInteger i = 0; i < [detailLabels count]; ++i ) {
-			NSString* aMeterLabelProperty = [meterLabelProperties objectAtIndex:i];
+			NSString* aMeterLabelProperty = meterLabelProperties[i];
 			NSString* aMeterLabelString = [self.curMeter valueForKey:aMeterLabelProperty];
-			NSString* aMeterUnitProperty = [meterUnitProperties objectAtIndex:i];
+			NSString* aMeterUnitProperty = meterUnitProperties[i];
 			
-			UILabel* aLabel = [detailLabels objectAtIndex:i];
-			UILabel* aValueLabel = [detailValueLabels objectAtIndex:i];
-			UILabel* aUnitLabel = [detailUnitLabels objectAtIndex:i];
+			UILabel* aLabel = detailLabels[i];
+			UILabel* aValueLabel = detailValueLabels[i];
+			UILabel* aUnitLabel = detailUnitLabels[i];
 			
 			if( ! [aMeterLabelString isEqualToString:@""] ) {
 				aLabel.text = aMeterLabelString;
-				NSString* aMeterValueProperty = [meterValueProperties objectAtIndex:i];
+				NSString* aMeterValueProperty = meterValueProperties[i];
 				if( ! [aMeterValueProperty isEqualToString:@""] ) {
 					NSNumber* aValue = [self.curMeter valueForKey:aMeterValueProperty];
 					if( aValue == nil )

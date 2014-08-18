@@ -82,20 +82,20 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 	return tickLabelStringNumberFormatter;
 }
 - (NSString *) tickLabelStringForInteger:(NSInteger) value  {
-	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:carbonRate*value/100000.0]];
+	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: @(carbonRate*value/100000.0)];
 	//NSLog(@"CarbonMeter.tickLabelStringForInteger:%i = %f (carbonRate = %i)", value, carbonRate * value / 100000.0, carbonRate );
 	return valueStr;
 }
 
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
-	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:carbonRate*value/100000.0]];
+	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: @(carbonRate*value/100000.0)];
 	return valueStr;
 }
 
 
 
-- (id) init {
+- (instancetype) init {
 	if( self = [super init] ) {
 		self.carbonRate = 524;	// initial default taken from http://www.pge.com/myhome/environment/calculator/assumptions.shtml
 	}

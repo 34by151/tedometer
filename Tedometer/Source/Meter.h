@@ -118,18 +118,19 @@ typedef NS_ENUM(NSInteger, TotalsMeterType) {
 @property(readwrite, assign) BOOL isLowPeakSupported;
 @property(readwrite, assign) BOOL isTotalsMeterTypeSelectionSupported;
 
-- (id) initWithMtuNumber:(NSInteger)mtuNum;
-- (id) initNetMeterWithMtuMeters: (NSArray*)meters;
+- (instancetype) init NS_DESIGNATED_INITIALIZER;
+- (instancetype) initWithMtuNumber:(NSInteger)mtuNum;
+- (instancetype) initNetMeterWithMtuMeters: (NSArray*)meters;
 - (void) encodeWithCoder:(NSCoder*)encoder;
-- (id) initWithCoder:(NSCoder*)decoder;
+- (instancetype) initWithCoder:(NSCoder*)decoder;
 - (NSInteger) valueForMeterValueType:(MeterValueType)unitType;
 - (NSString *) tickLabelStringForInteger:(NSInteger) value;
 - (NSString *) meterStringForInteger:(NSInteger) value; 
 - (NSString *) timeStringForHour:(NSInteger)anHour minute:(NSInteger)aMinute;
 - (NSString *) timeStringForMonth:(NSInteger)aMonth day:(NSInteger)aDay;
 
-- (NSString*) instantaneousUnit;
-- (NSString*) cumulativeUnit;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *instantaneousUnit;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *cumulativeUnit;
 - (void) reset;
 
 

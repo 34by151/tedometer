@@ -38,13 +38,13 @@
 
 @synthesize _resourcesBundle;
 
-+ (id) defaultController {
++ (L0SolicitReviewController*) defaultController {
 	static id myself = nil; if (!myself)
 		myself = [self new];
 	return myself;
 }
 
-- (id) init {
+- (instancetype) init {
 	if (self = [super init]) {
 		NSBundle* b = [NSBundle mainBundle];
 		

@@ -150,13 +150,13 @@
 {
 
     for( int i=0; i < meterViewControllers.count; ++i ) {
-        NSObject *obj = [meterViewControllers objectAtIndex:i];
+        NSObject *obj = meterViewControllers[i];
         if( obj != [NSNull null] ) {
             MeterViewController *meterViewController = (MeterViewController *) obj;
             if( meterViewController.view.superview != nil ) {
                 [meterViewController.view removeFromSuperview];
             }
-            [meterViewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+            meterViewControllers[i] = [NSNull null];
         }
     }
 
@@ -278,18 +278,18 @@
     DLog(@"Loading scroll view with page %ld", page);
     
     // replace the placeholder if necessary
-    MeterViewController *controller = [meterViewControllers objectAtIndex:page];
+    MeterViewController *controller = meterViewControllers[page];
     if ((NSNull *)controller == [NSNull null]) {
 		
 		NSInteger mtuNumber = page;
 
-		NSMutableArray *mtuMeters = [tedometerData.mtusArray objectAtIndex:mtuNumber];
+		NSMutableArray *mtuMeters = (tedometerData.mtusArray)[mtuNumber];
 		
         controller = [[MeterViewController alloc] initWithMainViewController:self
-																  powerMeter:[mtuMeters objectAtIndex:kMeterTypePower] 
-																   costMeter:[mtuMeters objectAtIndex:kMeterTypeCost] 
-																 carbonMeter:[mtuMeters objectAtIndex:kMeterTypeCarbon]
-																voltageMeter:[mtuMeters objectAtIndex:kMeterTypeVoltage]];
+																  powerMeter:mtuMeters[kMeterTypePower] 
+																   costMeter:mtuMeters[kMeterTypeCost] 
+																 carbonMeter:mtuMeters[kMeterTypeCarbon]
+																voltageMeter:mtuMeters[kMeterTypeVoltage]];
 		
 		if( page == 0 ) //page % 2 == 0 )
 			controller.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
@@ -297,7 +297,7 @@
 			controller.view.backgroundColor = [UIColor colorWithWhite:0.23 alpha:1.0];
 
 			
-        [meterViewControllers replaceObjectAtIndex:page withObject:controller];
+        meterViewControllers[page] = controller;
         [controller release];
     }
 	
@@ -375,7 +375,7 @@
 - (void) updateMeterVisibility;
 {
 	for( int i=0; i < kNumberOfPages; ++i ) {
-		MeterViewController* controller = [meterViewControllers objectAtIndex:i];
+		MeterViewController* controller = meterViewControllers[i];
 		if( (NSNull *)controller != [NSNull null] ) {
 			BOOL isHidden = (i >= tedometerData.meterCount);
 			controller.view.hidden = isHidden;

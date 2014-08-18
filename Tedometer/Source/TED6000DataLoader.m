@@ -38,7 +38,7 @@
 
 @implementation TED6000DataLoader
 
-- (id) init {
+- (instancetype) init {
 	if( self = [super init] ) {
         // initialize member variables here
         for( int i=0; i < NUM_MTUS; ++i ) {
@@ -96,7 +96,7 @@
                 else {
                     NSString *desc = [xmlDoc stringValueAtPath:[NSString stringWithFormat:@"MTUs.MTU[%d].MTUDescription", mtuIdx-1]];
                     if( desc ) {
-                        [overviewData[mtuIdx] setObject:desc forKey:@"desc"];
+                        overviewData[mtuIdx][@"desc"] = desc;
                     }
                     DLog( @"Settings data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
                 }
@@ -126,20 +126,17 @@
                 for( int mtuIdx=0; mtuIdx < NUM_MTUS; ++mtuIdx ) {
                     
                     if( mtuIdx == 0 ) {
-                        [overviewData[mtuIdx] setObject:@0 forKey:@"kva"];
-                        [overviewData[mtuIdx] setObject:@0 forKey:@"pf"];
+                        overviewData[mtuIdx][@"kva"] = @0;
+                        overviewData[mtuIdx][@"pf"] = @0;
                     }
                     else {
-                        [overviewData[mtuIdx] setObject:[NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.KVA", mtuIdx]]]
-                                                forKey:@"kva"];
-                        [overviewData[mtuIdx] setObject:[NSNumber numberWithLong:[xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]]
-                                                 forKey:@"pf"];
+                        overviewData[mtuIdx][@"kva"] = @([xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.KVA", mtuIdx]]);
+                        overviewData[mtuIdx][@"pf"] = @([xmlDoc integerValueAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PF", mtuIdx]]);
                         NSNumber *ampsPhaseA = [xmlDoc integerAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PhaseCurrent.A", mtuIdx]];
                         NSNumber *ampsPhaseB = [xmlDoc integerAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PhaseCurrent.B", mtuIdx]];
                         NSNumber *ampsPhaseC = [xmlDoc integerAtPath:[NSString stringWithFormat:@"MTUVal.MTU%d.PhaseCurrent.C", mtuIdx]];
                         
-                        [overviewData[mtuIdx] setObject:[self ampsInfoLabelForCurrentInPhases: @[ampsPhaseA, ampsPhaseB, ampsPhaseC]]
-                                                 forKey:@"ampsInfoLabel"];
+                        overviewData[mtuIdx][@"ampsInfoLabel"] = [self ampsInfoLabelForCurrentInPhases: @[ampsPhaseA, ampsPhaseB, ampsPhaseC]];
                         
                         DLog( @"Overview data for MTU%d: %@", mtuIdx, overviewData[mtuIdx] );
                     }
@@ -163,12 +160,12 @@
         //	 [PowerMtu4, CostMtu4, CarbonMtu4, VoltageMtu4] ]		// MTU4
         
         for( int mtuIdx=0; mtuIdx <= tedometerData.mtuCount; ++mtuIdx ) {
-            NSArray* mtuArray = [tedometerData.mtusArray objectAtIndex:mtuIdx];
+            NSArray* mtuArray = (tedometerData.mtusArray)[mtuIdx];
             
-            PowerMeter *powerMeter = (PowerMeter*)[mtuArray objectAtIndex:kMeterTypePower];
-            CostMeter *costMeter = (CostMeter*)[mtuArray objectAtIndex:kMeterTypeCost];
-            CarbonMeter *carbonMeter = (CarbonMeter*)[mtuArray objectAtIndex:kMeterTypeCarbon];
-            VoltageMeter *voltageMeter = (VoltageMeter*)[mtuArray objectAtIndex:kMeterTypeVoltage];
+            PowerMeter *powerMeter = (PowerMeter*)mtuArray[kMeterTypePower];
+            CostMeter *costMeter = (CostMeter*)mtuArray[kMeterTypeCost];
+            CarbonMeter *carbonMeter = (CarbonMeter*)mtuArray[kMeterTypeCarbon];
+            VoltageMeter *voltageMeter = (VoltageMeter*)mtuArray[kMeterTypeVoltage];
             
             CXMLDocument *powerXmlDoc = nil;
             CXMLDocument *costXmlDoc = nil;
@@ -205,7 +202,7 @@
                     meter.isLowPeakSupported = NO;
                     meter.isAverageSupported = NO;
                     meter.isTotalsMeterTypeSelectionSupported = YES;
-                    NSString *desc = [overviewData[meter.mtuNumber] objectForKey:@"desc"];
+                    NSString *desc = overviewData[meter.mtuNumber][@"desc"];
                     if( desc && ! [desc isEqualToString:@""] ) {
                         meter.mtuName = desc;
                     }
@@ -334,12 +331,12 @@
     // If only one MTU is installed, show MTU1 kva/pf on the net meter (the only meter visible);
     // otherwise, show the kva/pf for each MTU on the individual MTU meters.
     if( tedometerData.mtuCount == 1 && powerMeter.mtuNumber == 0 ) {
-        powerMeter.kva = [[overviewData[1] objectForKey:@"kva"] intValue];
-        voltageMeter.infoLabel = (NSString*)[overviewData[1] objectForKey:@"ampsInfoLabel"];
+        powerMeter.kva = [overviewData[1][@"kva"] intValue];
+        voltageMeter.infoLabel = (NSString*)overviewData[1][@"ampsInfoLabel"];
     }
     else if( tedometerData.mtuCount > 1 ) {
-        powerMeter.kva = [[overviewData[powerMeter.mtuNumber] objectForKey:@"kva"] intValue];
-        voltageMeter.infoLabel = (NSString*)[overviewData[voltageMeter.mtuNumber] objectForKey:@"ampsInfoLabel"];
+        powerMeter.kva = [overviewData[powerMeter.mtuNumber][@"kva"] intValue];
+        voltageMeter.infoLabel = (NSString*)overviewData[voltageMeter.mtuNumber][@"ampsInfoLabel"];
     }
     
     // nh 5/28/14: Attempting to calculate Amps from kwa/volts if no amp data is provided for each

@@ -19,8 +19,8 @@
 @property(readwrite, assign) NSInteger kva;
 @property(readwrite, assign) NSInteger phase;
 
-- (NSNumberFormatter *)tickLabelStringNumberFormatter;
-- (NSNumberFormatter *)meterStringNumberFormatter;
-- (NSNumberFormatter *)powerFactorFormatter;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumberFormatter *tickLabelStringNumberFormatter;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumberFormatter *meterStringNumberFormatter;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumberFormatter *powerFactorFormatter;
 
 @end

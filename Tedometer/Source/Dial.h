@@ -50,12 +50,12 @@
 @property (nonatomic, readonly) BOOL isAtOffsetLimit;
 
 
--(id) initWithMeter:(Meter*)aMeter;
+-(instancetype) initWithMeter:(Meter*)aMeter NS_DESIGNATED_INITIALIZER;
 -(void) updateBaseValues;
 -(void) animateToRestPosition;
 -(void) nextAnimationFrame;
 -(double) angleForValue:(double)value;
--(double) dialAngle;
+@property (NS_NONATOMIC_IOSONLY, readonly) double dialAngle;
 -(BOOL) isValueVisible:(double) value;
 
 

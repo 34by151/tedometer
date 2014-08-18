@@ -22,7 +22,7 @@
 
 - (instancetype)init;
 - (instancetype)initWithService:(NSString *)service;
-- (instancetype)initWithService:(NSString *)service accessGroup:(NSString *)accessGroup;
+- (instancetype)initWithService:(NSString *)service accessGroup:(NSString *)accessGroup NS_DESIGNATED_INITIALIZER;
 
 + (NSString *)stringForKey:(NSString *)key;
 + (NSString *)stringForKey:(NSString *)key service:(NSString *)service;

@@ -94,7 +94,7 @@ static TedometerData *sharedTedometerData = nil;
     return sharedTedometerData;
 }
 
-- (id)init
+- (instancetype)init
 {
     Class myClass = [self class];
     @synchronized(myClass) {
@@ -130,7 +130,7 @@ static TedometerData *sharedTedometerData = nil;
 
 					NSMutableArray *typeMeters;
 					for( NSInteger mtuNum = 1; mtuNum < NUM_MTUS; ++mtuNum ) {	// skip the net meter; we'll add it later
-						typeMeters = (NSMutableArray*) [newMtusArray objectAtIndex:mtuNum];
+						typeMeters = (NSMutableArray*) newMtusArray[mtuNum];
 						// NOTE: Ordering here is signficant (power, cost, carbon, voltage)
 						[typeMeters addObject: [[PowerMeter alloc] initWithMtuNumber:mtuNum]];
 						[typeMeters addObject: [[CostMeter alloc] initWithMtuNumber:mtuNum]];
@@ -139,11 +139,11 @@ static TedometerData *sharedTedometerData = nil;
 					}					
 					
 					// initialize net meters
-					NSMutableArray *netMtuTypeMeters = [newMtusArray objectAtIndex:kMtuNet];
+					NSMutableArray *netMtuTypeMeters = newMtusArray[kMtuNet];
 					for( NSInteger meterType = 0; meterType < NUM_METER_TYPES; ++meterType ) {
 						NSMutableArray *typeMetersForNetMtu = [NSMutableArray arrayWithCapacity:NUM_METER_TYPES];
 						for( NSInteger mtuNum = 1; mtuNum < NUM_MTUS; ++mtuNum ) {
-							[typeMetersForNetMtu addObject:[[newMtusArray objectAtIndex:mtuNum] objectAtIndex:meterType]];
+							[typeMetersForNetMtu addObject:newMtusArray[mtuNum][meterType]];
 						}
 						
 						Meter *aTypeNetMeter;
@@ -205,7 +205,7 @@ NSString* _archiveLocation;
 {
 	if (_archiveLocation == nil) {
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-		NSString *documentsDirectory = [paths objectAtIndex:0];
+		NSString *documentsDirectory = paths[0];
 		_archiveLocation = [[documentsDirectory stringByAppendingPathComponent:@"TedometerData.plist" ] retain];       
 	}
 	return _archiveLocation;
@@ -259,7 +259,7 @@ NSString* _archiveLocation;
 }
 
 - (Meter*) curMeter {
-	Meter *meter = [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
+	Meter *meter = mtusArray[curMeterTypeIdx][curMtuIdx];
 	NSLog(@"curMeter = %@ MTU%ld", [meter meterTitle], (long)[meter mtuNumber] );
 	return meter;
 }
@@ -316,7 +316,7 @@ NSString* _archiveLocation;
     [encoder encodeInteger:totalsMeterType forKey:@"totalsMeterType"];
 }
 
-- (id) initWithCoder:(NSCoder*)decoder {
+- (instancetype) initWithCoder:(NSCoder*)decoder {
 	if (self = [super init]) {
 		self.mtusArray = [decoder decodeObjectForKey:@"mtusArray"];
 		self.refreshRate = [decoder decodeIntegerForKey:@"refreshRate"];
@@ -349,7 +349,7 @@ NSString* _archiveLocation;
 		newIdx = 0;
 	
 	self.curMtuIdx = newIdx;
-	return [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
+	return mtusArray[curMeterTypeIdx][curMtuIdx];
 }
 
 - (Meter*) prevMtu {
@@ -359,7 +359,7 @@ NSString* _archiveLocation;
 	
 	self.curMtuIdx = newIdx;
 	
-	return [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
+	return mtusArray[curMeterTypeIdx][curMtuIdx];
 }
 
 -(Meter*) nextMeterType {
@@ -368,7 +368,7 @@ NSString* _archiveLocation;
 		newIdx = 0;
 	
 	self.curMeterTypeIdx = newIdx;
-	return [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
+	return mtusArray[curMeterTypeIdx][curMtuIdx];
 }
 
 -(Meter*) prevMeterType {
@@ -378,7 +378,7 @@ NSString* _archiveLocation;
 	
 	self.curMeterTypeIdx = newIdx;
 	
-	return [[mtusArray objectAtIndex: curMeterTypeIdx] objectAtIndex:curMtuIdx];
+	return mtusArray[curMeterTypeIdx][curMtuIdx];
 }
 
 -(void) reloadXmlDocumentInBackground {

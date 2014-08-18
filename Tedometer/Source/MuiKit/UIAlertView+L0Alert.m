@@ -39,17 +39,17 @@ const NSString* kL0AlertIconName = @"L0AlertIconName";
 	
 //	L0Log(@"%@, %@, %@", name, bundle, dict);
 	
-	NSArray* buttons = [dict objectForKey:kL0AlertButtons];
+	NSArray* buttons = dict[kL0AlertButtons];
 	if (buttons && ![buttons isKindOfClass:[NSArray class]])
 		[NSException raise:(NSString*) kL0AlertInconsistencyException format:@"Alert dictionary unreadable: %@", dict];
 	
 	UIAlertView* alert = [[[UIAlertView alloc] initWithFrame:CGRectZero] autorelease];
-	NSString* messageText = [[dict objectForKey:kL0AlertMessage] description];
+	NSString* messageText = [dict[kL0AlertMessage] description];
 	if (bundle) messageText = [bundle localizedStringForKey:messageText value:messageText table:name];
 	alert.title = messageText;
 	
 	
-	NSString* informativeText = [[dict objectForKey:kL0AlertInformativeText] description];
+	NSString* informativeText = [dict[kL0AlertInformativeText] description];
 	if (bundle) informativeText = [bundle localizedStringForKey:informativeText value:informativeText table:name];
 	alert.message = informativeText;
 	

@@ -150,7 +150,7 @@
  L0SolicitReviewControllerDidFinish notification to know when the -solicit
  method has done its job and the instance can be released).
  */
-+ (id) defaultController;
++ (L0SolicitReviewController*) defaultController;
 
 /*
  Updates values at .firstLaunchDate and .numberOfLaunches, optionally saving

@@ -36,8 +36,8 @@
 - (NSString*) infoLabel {
     NSString *label;
     if( kva != 0 && now != 0 ) {
-        NSString *kvaStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithDouble:kva/1000.0]];
-        NSString *powerFactorStr = [[self powerFactorFormatter] stringFromNumber: [NSNumber numberWithDouble:(now / (double)kva)]];
+        NSString *kvaStr = [[self meterStringNumberFormatter] stringFromNumber: @(kva/1000.0)];
+        NSString *powerFactorStr = [[self powerFactorFormatter] stringFromNumber: @(now / (double)kva)];
         label = [NSString stringWithFormat:@"%@ kVA\nPF: %@", kvaStr, powerFactorStr ];
         if( phase != 0 ) {
             label = [label stringByAppendingFormat:@"\nPhs: %ld", (long) phase];
@@ -100,17 +100,17 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 }
 
 - (NSString *) tickLabelStringForInteger:(NSInteger) value  {
-	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/1000.0]];
+	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: @(value/1000.0)];
 	return valueStr;
 }
 
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
-	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/1000.0]];
+	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: @(value/1000.0)];
 	return valueStr;
 }
 
-- (id) init {
+- (instancetype) init {
 	if( self = [super init] ) {
 	}
 	return self;

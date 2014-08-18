@@ -27,7 +27,7 @@
 @synthesize pivotValueForPinching;
 @synthesize isBeingTouched;
 
--(id) initWithMeter:(Meter*)aMeter {
+-(instancetype) initWithMeter:(Meter*)aMeter {
 	if( self = [super init] ) {
 		curMeter = nil;
 		self.curMeter = aMeter;

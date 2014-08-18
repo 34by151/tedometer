@@ -14,26 +14,26 @@
 #define NUM_METER_TYPES		4
 #define NUM_MTUS			5	// 4 MTUs plus a net
 
-typedef enum {
+typedef NS_ENUM(NSInteger, MeterType) {
 	kMeterTypePower = 0,
 	kMeterTypeCost,
 	kMeterTypeCarbon,
 	kMeterTypeVoltage
-} MeterType;
+} ;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, MtuType) {
 	kMtuNet = 0,
 	kMtu1,
 	kMtu2,
 	kMtu3,
 	kMtu4
-} MtuType;
+} ;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, AggregationOp) {
 	kAggregationOpSum = 0,
 	kAggregationOpMin,
 	kAggregationOpMax
-} AggregationOp;
+} ;
 
 typedef NS_ENUM(NSInteger, HardwareType) {
     kHardwareTypeUnknown = 0,
@@ -118,11 +118,12 @@ typedef NS_ENUM(NSInteger, HardwareType) {
 
 + (TedometerData *) sharedTedometerData;
 
-- (Meter*) nextMtu;
-- (Meter*) prevMtu;
-- (Meter*) nextMeterType;
-- (Meter*) prevMeterType;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Meter *nextMtu;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Meter *prevMtu;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Meter *nextMeterType;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Meter *prevMeterType;
 
+- (instancetype) init NS_DESIGNATED_INITIALIZER;
 - (void) reloadXmlDocumentInBackground;
 - (void) reloadXmlDocument;
 
@@ -132,9 +133,9 @@ typedef NS_ENUM(NSInteger, HardwareType) {
 - (void) activateVoltageMeter;
 
 - (void) encodeWithCoder:(NSCoder*)encoder;
-- (id) initWithCoder:(NSCoder*)decoder;
+- (instancetype) initWithCoder:(NSCoder*)decoder NS_DESIGNATED_INITIALIZER;
 
-- (BOOL) isUsingDemoAccount;
+@property (NS_NONATOMIC_IOSONLY, getter=isUsingDemoAccount, readonly) BOOL usingDemoAccount;
 
 + (NSString*)archiveLocation;
 + (TedometerData *) unarchiveFromDocumentsFolder;

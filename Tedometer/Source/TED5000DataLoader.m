@@ -124,31 +124,25 @@
     
     tedometerData.tedModel = @"TED 5000";
     
-	NSDictionary* gatewayTimeNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                     @"Hour", @"gatewayHour",
-                                                     @"Minute", @"gatewayMinute",
-                                                     @"Month", @"gatewayMonth",
-                                                     @"Day", @"gatewayDayOfMonth",
-                                                     @"Year", @"gatewayYear",
-                                                     nil];
+	NSDictionary* gatewayTimeNodesKeyedByProperty = @{@"gatewayHour": @"Hour",
+                                                     @"gatewayMinute": @"Minute",
+                                                     @"gatewayMonth": @"Month",
+                                                     @"gatewayDayOfMonth": @"Day",
+                                                     @"gatewayYear": @"Year"};
 	isSuccessful = [document loadIntegerValuesIntoObject:tedometerData withParentNodePath:@"GatewayTime"
                                            andNodesKeyedByProperty:gatewayTimeNodesKeyedByProperty];
     
 	if( isSuccessful ) {
-		NSDictionary* utilityNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                     @"CarbonRate", @"carbonRate",
-                                                     @"CurrentRate", @"currentRate",
-                                                     @"MeterReadDate", @"meterReadDate",
-                                                     @"DaysLeftInBillingCycle", @"daysLeftInBillingCycle",
-                                                     nil];
+		NSDictionary* utilityNodesKeyedByProperty = @{@"carbonRate": @"CarbonRate",
+                                                     @"currentRate": @"CurrentRate",
+                                                     @"meterReadDate": @"MeterReadDate",
+                                                     @"daysLeftInBillingCycle": @"DaysLeftInBillingCycle"};
 		isSuccessful = [document loadIntegerValuesIntoObject:tedometerData withParentNodePath:@"Utility"
                                                andNodesKeyedByProperty:utilityNodesKeyedByProperty];
 	}
 	
 	if( isSuccessful ) {
-		NSDictionary* systemNodesKeyedByProperty = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                    @"NumberMTU", @"mtuCount",
-                                                    nil];
+		NSDictionary* systemNodesKeyedByProperty = @{@"mtuCount": @"NumberMTU"};
 		isSuccessful = [document loadIntegerValuesIntoObject:tedometerData withParentNodePath:@"System"
 											   andNodesKeyedByProperty:systemNodesKeyedByProperty];
 	}
@@ -216,7 +210,7 @@
 			}
 			
 			for( NSString *aPropertyName in [netMeterFixNodesKeyedByProperty allKeys] ) {
-				NSString *aNodeName = [netMeterFixNodesKeyedByProperty objectForKey:aPropertyName];
+				NSString *aNodeName = netMeterFixNodesKeyedByProperty[aPropertyName];
 				CXMLNode *aNode = [mtuNode childNamed:aNodeName];
 				NSInteger aValue;
 				if( aNode == nil ) {
@@ -225,7 +219,7 @@
 				if( aNode != nil ) {
 					aValue = [[aNode stringValue] integerValue];
                     
-					NSNumber *prevValueObject = [mtuTotalsKeyedByProperty objectForKey:aPropertyName];
+					NSNumber *prevValueObject = mtuTotalsKeyedByProperty[aPropertyName];
 					if( prevValueObject ) {
 						NSInteger prevValue = [prevValueObject integerValue];
 						switch( aggregationOp ) {
@@ -248,7 +242,7 @@
 		}
         
 		for( NSString *aPropertyName in [netMeterFixNodesKeyedByProperty allKeys] ) {
-			NSNumber *prevValueObject = [mtuTotalsKeyedByProperty objectForKey:aPropertyName];
+			NSNumber *prevValueObject = mtuTotalsKeyedByProperty[aPropertyName];
 			if( prevValueObject ) {
 				[meterObject setValue:prevValueObject forKey:aPropertyName];
 			}
@@ -439,7 +433,7 @@
 	BOOL isSuccessful = [TED5000DataLoader refreshDataFromXmlDocument:document intoPowerMeter:meter];
 	if( isSuccessful ) {
 		isSuccessful = [document loadIntegerValuesIntoObject:meter withParentNodePath:@"Utility"
-                                     andNodesKeyedByProperty:[NSDictionary dictionaryWithObject:@"CarbonRate" forKey:@"carbonRate"]];
+                                     andNodesKeyedByProperty:@{@"carbonRate": @"CarbonRate"}];
 	}
 	
 	return isSuccessful;

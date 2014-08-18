@@ -42,7 +42,7 @@ typedef struct __DialDrawingContext {
 -(void) drawArrow:(DialDrawingContext*) dialContext;
 -(void) drawLimitReachedGlow: (DialDrawingContext*) dialContext;
 -(void) drawEditModeGlow:(DialDrawingContext*) dialContext;
--(double) meterRadius;
+@property (NS_NONATOMIC_IOSONLY, readonly) double meterRadius;
 -(CGPoint) polarCoordFromViewPoint:(CGPoint)point;
 -(double) radiansFromMeterStartAngleToViewPoint:(CGPoint)point;
 -(double) radiansFromMeterBottomAngleToViewPoint:(CGPoint)point;
@@ -72,7 +72,7 @@ static UIFont *labelFont;
 #pragma mark -
 #pragma mark Public methods
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		/*
@@ -124,7 +124,7 @@ static UIFont *labelFont;
 					  [[NSBundle mainBundle] resourcePath],
 					  soundFilename];
 	NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
-	AudioServicesCreateSystemSoundID((CFURLRef)filePath, soundId);
+	AudioServicesCreateSystemSoundID((__bridge CFURLRef)filePath, soundId);
 }
 
 - (void) setCurMeter:(Meter*)aMeter {
@@ -290,8 +290,8 @@ static UIFont *labelFont;
 			isBeingPinched = YES;
 			
 			NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(compareAddress:)];
-			UITouch *first = [sortedTouches objectAtIndex:0];
-			UITouch *second = [sortedTouches objectAtIndex:1];
+			UITouch *first = sortedTouches[0];
+			UITouch *second = sortedTouches[1];
 
 			double distanceBetweenTouches = distanceBetweenPoints( [first locationInView:self], [second locationInView:self] );
 

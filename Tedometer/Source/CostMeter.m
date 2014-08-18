@@ -63,17 +63,17 @@ static NSNumberFormatter *tickLabelStringNumberFormatter;
 }
 
 - (NSString *) tickLabelStringForInteger:(NSInteger) value  {
-	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
+	NSString *valueStr = [[self tickLabelStringNumberFormatter] stringFromNumber: @(value/100.0F)];
 	return valueStr;
 }
 
 - (NSString *) meterStringForInteger:(NSInteger) value {
-	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: [NSNumber numberWithFloat:value/100.0]];
+	NSString *valueStr = [[self meterStringNumberFormatter] stringFromNumber: @(value/100.0F)];
 	return valueStr;
 }
 
 
-- (id) init {
+- (instancetype) init {
 	if( self = [super init] ) {
 	}
 	return self;
